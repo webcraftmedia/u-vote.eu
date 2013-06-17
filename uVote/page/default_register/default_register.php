@@ -1,10 +1,7 @@
 <?php
 
 class default_page extends SYSTEM\PAGE\Page {
-    
-    private function js(){        
-        return '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/timer.js').'"></script>';
-    }      
+      
 
      public function html(){
         $vars = array();               
