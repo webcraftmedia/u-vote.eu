@@ -12,4 +12,19 @@ class votes {
             
         return $result;
     }
+    public static function write_vote($poll_ID, $vote){
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+         $res = $con->prepare(   'selVote',
+                                'SELECT * FROM `uvote_data` WHERE `poll_ID` = ?;',
+                                array($poll_ID));
+//         print_r($res->next());
+//         die();
+         if ($res->next()){
+             throw new ERROR('You already voted!');         }
+        $res = $con->prepare(   'insertVote',
+                                'INSERT INTO uvote_data
+                                 VALUES (?, ?, ?);',
+                                array($poll_ID, NULL, $vote));   
+        return JsonResult::ok();
+    }
 }

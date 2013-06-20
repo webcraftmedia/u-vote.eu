@@ -4,7 +4,8 @@ require_once '../system/autoload.inc.php';                                      
 require_once 'uVote/autoload.inc.php';                                           //Project Classes
 require_once '../system/log/register_exception_shortcut.php';                      //allow ERROR() instead of \SYSTEM\LOG\ERROR()
 require_once '../system/log/register_errorhandler_jsonoutput.php';                 //print errors as json to caller
-       
+require_once '../system/log/register_result_shortcut.php'; 
+
 SYSTEM\system::start(array( array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_ERRORREPORTING,  E_ALL | E_STRICT),
                             array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL,    'http://www.mojotrollz.eu/web/uVote/'),
                             array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEPATH,   '/home/web/webdir/uVote/'),
