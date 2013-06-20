@@ -21,6 +21,8 @@ class votes {
 //         die();
          if ($res->next()){
              throw new ERROR('You already voted!');         }
+             $poll_ID = $_GET["poll_ID"];
+             $vote = $_GET["vote"];
         $res = $con->prepare(   'insertVote',
                                 'INSERT INTO uvote_data
                                  VALUES (?, ?, ?);',
