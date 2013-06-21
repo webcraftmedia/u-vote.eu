@@ -5,8 +5,8 @@ class PageApi extends \SYSTEM\PAGE\PageClass {
     public static function default_page(){
         return new default_page();}
     
-    public static function default_myVote(){
-        return new default_myVote();}
+    public static function action_myvote(){
+        return new default_myvote();}
     
     public static function action_media(){      
         throw new ERROR("test");

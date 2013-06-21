@@ -8,25 +8,12 @@
 
         <div class="span5" style="">
             <h2>Abstimmung</h2>             
-            <a class="btn btn-large btn-green" style="width: 110px;">Pro &raquo;
-            <script language="javascript">            
-                $(function(){
+            <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="${poll_ID}">Pro &raquo;
 
-                $('#btn btn-large btn-green').on('click', function (e) {
-                            
-                var poll_ID = "15";
-                var vote = "4";
-
-                document.write('href="mojotrollz.eu/web/uVote/api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote + '"');
-                });
-    
-
-});
-            </script>
             </a>
 
-            <a class="btn btn-large btn-red" style="width: 110px; background-color: red;" href="#">Contra &raquo;</a>
-            <a class="btn btn-large btn-grey" style="width: 110px; background-color: grey;" href="#">Enthaltung &raquo;</a>
+            <a class="btn btn-large btn-red btnvote_no" style="width: 110px; background-color: red;" href="#" poll_ID="${poll_ID}">Contra &raquo;</a>
+            <a class="btn btn-large btn-grey btnvote_off" style="width: 110px; background-color: grey;" href="#" poll_ID="${poll_ID}">Enthaltung &raquo;</a>
             
             <!-- Countdown-Generator by www.coolplace.cc -->
             <form name="coolcccount">            
