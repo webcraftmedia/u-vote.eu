@@ -8,7 +8,7 @@
 
         <div class="span5" style="">
             <h2>Abstimmung</h2>             
-            <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="${ID}">Pro &raquo;
+            <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="${poll_ID}">Pro &raquo;
 
             </a>
 

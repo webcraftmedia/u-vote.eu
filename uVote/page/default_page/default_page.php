@@ -19,10 +19,18 @@ class default_page extends SYSTEM\PAGE\Page {
         return $result;
     }
     
+    public function exchange_registerform(){
+        $result= "";
+        $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());
+    
+    return $result;
+}
+    
     public function html(){
         $vars = array();               
         $vars['js'] = $this->js(); 
         $vars['votelist'] = $this->generate_votelist();
+        $vars['registerform'] = $this->exchange_registerform();
         $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.html'), $vars);
         
