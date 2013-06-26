@@ -26,10 +26,18 @@ class default_page extends SYSTEM\PAGE\Page {
     public function exchange_registerform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());}
     
-       
+    public function create_account(){
+        $result = "";
+        $accdata = data::getuserpersonaldata(1);
+            $vars = array('input')
+        return SYSTEM\SECURITY\Security::create($dbinfo, $username, $password, $email, $locale);}
     
+
     
-    public function html(){
+
+
+
+public function html(){
         //\SYSTEM\SECURITY\Security::available($dbinfo, $username)                                  //account available
         //\SYSTEM\SECURITY\Security::check($dbinfo, $rightid)                                       //recht prüfen
         //\SYSTEM\SECURITY\Security::create($dbinfo, $username, $password, $email, $locale)         //account erstellen

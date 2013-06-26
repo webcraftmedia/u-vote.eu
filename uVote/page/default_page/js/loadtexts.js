@@ -19,10 +19,13 @@ $(document).ready(function() {
             vote_click($(this).attr('inputEmail', 'inputPassword', 'inputPassword2'), array());
             });
 });
-function getuserpersonaldata(){
-    $.get('./api.php?call=account&action=create&username=0&password_sha=' + inputPassword + '&email=' + inputEmail'&locale=' + deDE' {
-    
- });
+function getuserpersonaldata(inputEmail, inputPassword){
+    $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + inputPassword + '&email=' + inputEmail + '&locale=deDE', function (data) {
+            dataTmp = data;               
+    }).complete(function() {      
+
+    }); 
+}
 
 
 function vote_click (poll_ID, vote) {
