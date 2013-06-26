@@ -13,20 +13,20 @@ class votes {
         return $result;
     }
     public static function write_vote($poll_ID, $vote){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+            
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
-         $res = $con->prepare(   'selVote',
-                                'SELECT * FROM `uvote_data` WHERE `poll_ID` = ?;',
-                                array($poll_ID));
-//         print_r($res->next());
-//         die();
+        $res = $con->prepare(   'selVote',
+                                'SELECT * FROM `uvote_data` WHERE `poll_ID` = ? AND user_ID = ?;',
+                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id));
          if ($res->next()){
-             throw new ERROR('You already voted!');         }
-             $poll_ID = $_GET["poll_ID"];
-             $vote = $_GET["vote"];
+             throw new ERROR('You already voted!');}
+                     
         $res = $con->prepare(   'insertVote',
                                 'INSERT INTO uvote_data
                                  VALUES (?, ?, ?);',
-                                array($poll_ID, NULL, $vote));   
+                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
 }

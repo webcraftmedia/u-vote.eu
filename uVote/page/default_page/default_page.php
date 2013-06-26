@@ -19,18 +19,26 @@ class default_page extends SYSTEM\PAGE\Page {
         return $result;
     }
     
-    public function exchange_registerform(){
-        $result= "";
-        $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());
+    public function getloggedinform(){
+        return "abc";}
     
-    return $result;
-}
+    public function exchange_registerform(){
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());}
     
     public function html(){
+        //\SYSTEM\SECURITY\Security::available($dbinfo, $username)                                  //account available
+        //\SYSTEM\SECURITY\Security::check($dbinfo, $rightid)                                       //recht prüfen
+        //\SYSTEM\SECURITY\Security::create($dbinfo, $username, $password, $email, $locale)         //account erstellen
+        //\SYSTEM\SECURITY\Security::getUser()                                                      //nutzerinfos
+        //\SYSTEM\SECURITY\Security::isLoggedIn()                                                   //ist eingeloggt?
+        //\SYSTEM\SECURITY\Security::login($dbinfo, $username, $password_sha, $password_md5)        //einloggen
+        //\SYSTEM\SECURITY\Security::load($key)                                                     //wert aus session laden..
+        //\SYSTEM\SECURITY\Security::save($key, $value)                                             //wert in session speichern(nutzerbezogen, cookie)
+        //\SYSTEM\SECURITY\Security::logout()                                                       //ausloggen
         $vars = array();               
         $vars['js'] = $this->js(); 
         $vars['votelist'] = $this->generate_votelist();
-        $vars['registerform'] = $this->exchange_registerform();
+        $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.html'), $vars);
         
