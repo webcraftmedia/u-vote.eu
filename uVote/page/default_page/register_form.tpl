@@ -1,24 +1,19 @@
+<div>
+    <br>
+<form class="form-horizontal" align="right">
 
-<form class="form-horizontal">
-<h2 style="text-align:right; margin-right: 45px;">Accounterstellung<h2>
+<h2 style="" align="right">Accounterstellung<h2>
 
-    <label class="control-label" for="inputEmail"></label>
-    <div class="controls">
-      <input type="text" id="inputEmail" placeholder="Email">
-    </div>
-
-
-    <label class="control-label" for="inputPassword"></label>
-    <div class="controls">
-      <input type="password" id="inputPassword" placeholder="Passwort">
-    </div>
-
-
-    <div class="controls">
-      <label class="checkbox">
-        <input type="checkbox"> Passwort speichern
-      </label>
-      <button type="submit" class="btn">Account erstellen</button>
-
-  </div>
+      <input type="text" id="inputEmail" placeholder="Email" align="right"> 
+      <br>
+      <input type="password" id="inputPassword" placeholder="Passwort" align="right">
+      <br>
+      <input type="password" id="inputPassword" placeholder="Passwort wiederholen" align="right">
+      <br>
+     
+      <button type="submit" class="btn" align="right">Account erstellen</button>
+      
 </form>
+    
+</div>
+<br>
