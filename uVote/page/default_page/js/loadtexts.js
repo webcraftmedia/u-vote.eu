@@ -15,7 +15,16 @@ $(document).ready(function() {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
+        $('.getuserpersonaldata').click(function () {
+            vote_click($(this).attr('inputEmail', 'inputPassword', 'inputPassword2'), array());
+            });
 });
+function getuserpersonaldata(){
+    $.get('./api.php?call=account&action=create&username=0&password_sha=' + inputPassword + '&email=' + inputEmail'&locale=' + deDE' {
+    
+ });
+
+
 function vote_click (poll_ID, vote) {
     $.get('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function (data) {
             dataTmp = data;               

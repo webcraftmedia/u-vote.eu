@@ -8,10 +8,10 @@
       <br>
       <input type="password" id="inputPassword" placeholder="Passwort" align="right">
       <br>
-      <input type="password" id="inputPassword" placeholder="Passwort wiederholen" align="right">
+      <input type="password" id="inputPassword2" placeholder="Passwort wiederholen" align="right">
       <br>
      
-      <button type="submit" class="btn" align="right">Account erstellen</button>
+      <button type="submit" class="btn" align="right" $(personaldata)>Account erstellen</button>
       
 </form>
     
