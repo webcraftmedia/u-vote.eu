@@ -20,10 +20,13 @@ class default_page extends SYSTEM\PAGE\Page {
     }
     
     public function getloggedinform(){
-        return "abc";}
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loggedinform.tpl'),array());} 
     
     public function exchange_registerform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());}
+    
+       
+    
     
     public function html(){
         //\SYSTEM\SECURITY\Security::available($dbinfo, $username)                                  //account available
