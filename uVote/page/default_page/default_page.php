@@ -26,11 +26,11 @@ class default_page extends SYSTEM\PAGE\Page {
     public function exchange_registerform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());}
     
-    public function create_account(){
-        $result = "";
-        $accdata = data::getuserpersonaldata(1);
-            $vars = array('input')
-        return SYSTEM\SECURITY\Security::create($dbinfo, $username, $password, $email, $locale);}
+//    public function create_account(){
+//        $result = "";
+//        $accdata = data::getuserpersonaldata(1);
+//            $vars = array('input')
+//        return SYSTEM\SECURITY\Security::create($dbinfo, $username, $password, $email, $locale);}
     
 
     
@@ -50,7 +50,7 @@ public function html(){
         $vars = array();               
         $vars['js'] = $this->js(); 
         $vars['votelist'] = $this->generate_votelist();
-        $vars['personaldata'] = $this->getuserpersonaldata();
+//        $vars['personaldata'] = $this->getuserpersonaldata();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.html'), $vars);
