@@ -15,12 +15,12 @@ $(document).ready(function() {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
-        $('.getuserpersonaldata').click(function () {
-            vote_click($(this).attr('inputEmail', 'inputPassword', 'inputPassword2'), array());
+        $('.inputEmail, inputPassword, inputPassword2').click(function () {
+            vote_click($(this).attr('email', 'password', 'password2'), inputEmail, inputPassword, inputPassword2);
             });
 });
 function getuserpersonaldata(inputEmail, inputPassword){
-    $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + inputPassword + '&email=' + inputEmail + '&locale=deDE', function (data) {
+    $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
     }).complete(function() {      
 
