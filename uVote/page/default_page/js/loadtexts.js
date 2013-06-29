@@ -15,11 +15,28 @@ $(document).ready(function() {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
-        $('.inputEmail, inputPassword, inputPassword2').click(function () {
-            vote_click($(this).attr('email', 'password', 'password2'), inputEmail, inputPassword, inputPassword2);
-            });
+//        $('#register_btn').click(function () {
+//            account_create ($(this).attr ('#inputEmail'))
+//            });
+            //jqBootstrapValidation        
+        $("#form_register input").not("[type=submit]").jqBootstrapValidation(
+        {
+            preventSubmit: true,            
+            submitError: function($form, event, errors) {},
+            submitSuccess: function($form, event){
+        alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
+                $.get('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val() + '&email=' + $('#bt_login_user').val() + '&locale=deDE'), function (data) {
+                    if(data == 1){
+ alert ("abc");
+                    } else {
+                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                    }                    
+                });
+                event.preventDefault();
+            }            
+        });
 });
-function getuserpersonaldata(inputEmail, inputPassword){
+function account_create(inputEmail, inputPassword){
     $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
     }).complete(function() {      
