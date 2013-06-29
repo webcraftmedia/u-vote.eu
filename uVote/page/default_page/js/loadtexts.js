@@ -24,10 +24,10 @@ $(document).ready(function() {
             preventSubmit: true,            
             submitError: function($form, event, errors) {},
             submitSuccess: function($form, event){
-        alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
-                $.get('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val() + '&email=' + $('#bt_login_user').val() + '&locale=deDE'), function (data) {
+//             alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
+                $.get('./api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE', function (data) {
                     if(data == 1){
- alert ("abc");
+                        window.location.reload();
                     } else {
                         $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
                     }                    
@@ -35,6 +35,35 @@ $(document).ready(function() {
                 event.preventDefault();
             }            
         });
+
+    $("#form_login input").not("[type=submit]").jqBootstrapValidation(
+        {
+            preventSubmit: true,            
+            submitError: function($form, event, errors) {},
+            submitSuccess: function($form, event){
+//             alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
+                $.get('./api.php?call=account&action=login&username=' + $('#login_email').val() + '&password_sha=' + $.sha1($('#login_password').val()) + '&password_md5=' + $.md5($('#login_password').val()), function (data) {
+                    if(data == 1){
+                        window.location.reload();
+                    } else {
+                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                    }                    
+                });
+                event.preventDefault();
+            }            
+        });
+        $("#form_logout input").not("[type=submit]").jqBootstrapValidation(
+        {
+            preventSubmit: true,            
+            submitError: function($form, event, errors) {},
+            submitSuccess: function($form, event){
+                $.get('./api.php?call=account&action=logout', function (data) {                      
+                    window.location.reload();                                  
+                });
+                event.preventDefault();
+            }            
+        });
+
 });
 function account_create(inputEmail, inputPassword){
     $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
