@@ -11,8 +11,8 @@
                     style="margin-bottom: 15px;"
                     id="bt_login_user"
                     placeholder="${loginUsername}"
-                    minlength="3" data-validation-minlength-message="${login_username_too_short}"
-                    required data-validation-required-message="${login_username_required}"/>
+                    data-validation-email-message="${check_mail_format}"
+                    required data-validation-required-message="${email_required}"/>
         </div>
 
         <div class="controls">
@@ -23,6 +23,17 @@
                     placeholder="${loginPassword}"
                     minlength="5" data-validation-minlength-message="${login_password_too_short}"
                     required data-validation-required-message="${login_password_required}"/>
+        </div>
+        
+        <div class="controls">
+            <input  type="password"
+                    size="30"
+                    style="margin-bottom: 15px;"
+                    id="bt_login_password2"
+                    placeholder="${loginPassword}"
+                    data-validation-matches-match="user_register_password1"
+                    data-validation-matches-message="${register_password_dont_math}"/>
+
         </div>
         <label><input type="checkbox" id="remember_me" style="margin-top: -1px;">  ${login_rememberMe}</label><br />
         <div class="help-block"></div>
