@@ -1,4 +1,4 @@
-<div class="hero-unit" style="padding: 5px; background: white;">
+<div class="hero-unit" style="padding: 5px; background: white; margin-bottom: 8px;">
     <div class="row" style="width: 100%; margin: auto;">           
         <div class="span6">
             <h2>${vote_title}</h2>
