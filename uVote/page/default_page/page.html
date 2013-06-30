@@ -59,15 +59,14 @@
       </div>
     </div>
 
-    <div class="container" id="site-content-wrapper">
+    <div class="container" id="site-content-wrapper" style="margin-top: 0; ">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div id="site-content">
-      <div class="hero-unit" style="padding: 1px; margin: 1px; margin-top: -30px; background: white;">
-        <div class="hero-unit" style="height: 200px; background: white;">
+      <div id="site-content" style="padding: 0; margin: 0;">
+        <div class="hero-unit" style="height: 180px; background: white; margin: 0; margin-top: -18px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
           <div class="row">
             <img src="${PIC_PATH}logo2.png" width="600" style="margin-top: -40px;" />
-            <div class="hero-unit" style="margin: 0px; padding: 15px; float: right; margin-top: -40px; background-color: silver;">
+            <div class="hero-unit" style="margin: 0px; padding: 15px; float: right; margin-top: -61px; background-color: silver;">
 <!--                margin-left: 600px; margin-right: -60px; padding: 5px; margin-top: -240px;-->
          
             ${registerform}
@@ -88,14 +87,17 @@
               <i class="icon-tags" style="margin-left: 20px;"></i>Verändern
               <p></p>    
           </div>-->
+
         </div>
-      </div>
-      <div class="navbar-inner" style="background: black;">
+<div class="navbar navbar-inverse">
+<div class="navbar-inner" style="background: black;">
           <form class="navbar-form pull-left">              
               <input class="span2" type="password" placeholder="">
               <button type="submit" class="btn" style="margin-top: 5px;">suchen</button>
             </form>
+        </div>
       </div>
+      
       <!-- Example row of columns -->
       <div class="hero-unit" style="padding: 0px; padding-top: 5px">
         ${votelist}
@@ -107,6 +109,7 @@
         </div>
     </div>
       </div>
+    </div>
 
   </body>
 </html>

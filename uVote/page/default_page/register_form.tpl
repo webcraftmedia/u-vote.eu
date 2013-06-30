@@ -1,7 +1,7 @@
 <div>
-<form class="form-vertical" id="form_register">
+    <form class="form-vertical" id="form_register" style="padding: 0;">
 
-<h3 style="" align="left">Accounterstellung</h3>
+<h3 style="margin-top: 0;" align="left">Accounterstellung</h3>
 
       <div class="control-group" style="margin: 0px; padding: 0px;">
         <div class="controls">

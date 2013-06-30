@@ -1,7 +1,8 @@
-<div class="hero-unit" style="padding: 5px; background: white; margin-bottom: 8px;">
+<div class="hero-unit" style="padding: 5px; background: white; margin-bottom: 8px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
     <div class="row" style="width: 100%; margin: auto;">           
         <div class="span6">
-            <h2>${vote_title}</h2>
+            <h3>${vote_title}</h3>
             <p>${vote_text}</p>
             <i class="icon-chevron-sign-down"></i>
         </div>
