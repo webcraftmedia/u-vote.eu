@@ -15,6 +15,10 @@ $(document).ready(function() {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
+        
+        $('.btn_openvoteinfo').click(function () {
+            load_openvoteinfo($(this).attr('url'));
+            });
 //        $('#register_btn').click(function () {
 //            account_create ($(this).attr ('#inputEmail'))
 //            });
@@ -73,6 +77,21 @@ function account_create(inputEmail, inputPassword){
     }); 
 }
 
+function load_openvoteinfo (url){
+ var dataTmp;
+	$.get(url, function (data) {
+                dataTmp = data;
+                bodyelem = $("html,body");
+                bodyelem.animate();
+	}).complete(function() {      
+            $('#openvoteinfo').slideUp({duration: 'slow',
+            complete: function(){ 
+                $('#openvoteinfo').html(dataTmp);
+                $('#openvoteinfo').slideDown('slow');
+                site_content_is_visible = true;
+            }});
+        });  
+} 
 
 function vote_click (poll_ID, vote) {
     $.get('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function (data) {

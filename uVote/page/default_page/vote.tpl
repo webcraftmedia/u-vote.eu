@@ -3,8 +3,13 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
     <div class="row" style="width: 100%; margin: auto;">           
         <div class="span6">
             <h3>${vote_title}</h3>
-            <p>${vote_text}</p>
-            <i class="icon-chevron-sign-down"></i>
+            
+            <div class="span5" id="openvoteinfo" style="margin: 0; ">
+                <p>${vote_text}</p>
+            </div>
+            <button class="btn btn-mini btn_openvoteinfo" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
         </div>
 
         <div class="span5" style="">
@@ -20,7 +25,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
             <form name="coolcccount">            
                     <input size="120" name="coolcc">
             </form>
-
+            
         </div>            
     </div>           
 </div>
