@@ -4,7 +4,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
         <div class="span6">
             <h3>${vote_title}</h3>
             
-            <div class="span5" id="openvoteinfo" style="margin: 0; ">
+            <div class="span5" id="openvoteinfo" style="margin: 0; display: none;">
                 <p>${vote_text}</p>
             </div>
             <button class="btn btn-mini btn_openvoteinfo" data-toggle="dropdown">
@@ -12,8 +12,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
   </button>
         </div>
 
-        <div class="span5" style="">
-            <h2>Abstimmung</h2>             
+        <div class="span5" style="margin-top: 15px;">            
             <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="${poll_ID}">Pro &raquo;
 
             </a>
