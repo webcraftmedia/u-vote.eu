@@ -4,10 +4,11 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
         <div class="span6">
             <h3>${vote_title}</h3>
             
-            <div class="span5" id="openvoteinfo" style="margin: 0; display: none;">
-                <p>${vote_text}</p>
+            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none;">
+                
             </div>
-            <button class="btn btn-mini btn_openvoteinfo" data-toggle="dropdown">
+            <br>
+            <button class="btn btn-mini btn_openvoteinfo" data-toggle="dropdown" poll_ID=${poll_ID}>
     <span class="caret"></span>
   </button>
         </div>

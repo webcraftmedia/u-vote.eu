@@ -12,6 +12,14 @@ class votes {
             
         return $result;
     }
+    public static function get_openinfo($poll_ID){
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+        $res = $con->prepare(   'selVoteByID',
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
+                                array($poll_ID));        
+        $result = $res->next();                                   
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),$result == NULL ? array() : $result);
+    }
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}

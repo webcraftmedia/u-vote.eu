@@ -17,7 +17,7 @@ $(document).ready(function() {
             });
         
         $('.btn_openvoteinfo').click(function () {
-            load_openvoteinfo($(this).attr('openvoteinfo'));
+            load_openvoteinfo($(this).attr('poll_ID'));
             });
 //        $('#register_btn').click(function () {
 //            account_create ($(this).attr ('#inputEmail'))
@@ -70,24 +70,24 @@ $(document).ready(function() {
 
 });
 function account_create(inputEmail, inputPassword){
-    $.get('.api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
+    $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
     }).complete(function() {      
 
     }); 
 }
 
-function load_openvoteinfo (openvoteinfo){
-       var dataTmp;
-       $.get(openvoteinfo, function (data) {
-                dataTmp = data;
+function load_openvoteinfo (poll_ID){
+       var openvoteinfo;
+       $.get('./api.php?call=vote&action=openinfo&poll_ID=' + poll_ID, function (data) {
+                openvoteinfo = data;
                 bodyelem = $("");
                 bodyelem.animate();                
 	}).complete(function() {      
-            $('#openvoteinfo').slideUp({duration: 'slow',
+            $('#openvoteinfo'+poll_ID).slideUp({duration: 'slow',
             complete: function(){ 
-                $('#openvoteinfo').html(dataTmp);
-                $('#openvoteinfo').slideDown('slow');
+                $('#openvoteinfo'+poll_ID).html(openvoteinfo);
+                $('#openvoteinfo'+poll_ID).slideDown('slow');
                 site_content_is_visible = true;
             }});
         });  
