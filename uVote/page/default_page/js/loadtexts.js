@@ -17,7 +17,12 @@ $(document).ready(function() {
             });
         
         $('.btn_openvoteinfo').click(function () {
+            if($("#openvoteinfo").not(":visible")){
             load_openvoteinfo($(this).attr('poll_ID'));
+            }
+        else{
+            exit;
+        }
             });
 //        $('#register_btn').click(function () {
 //            account_create ($(this).attr ('#inputEmail'))
