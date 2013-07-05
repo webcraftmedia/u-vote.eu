@@ -17,7 +17,7 @@ class default_page extends SYSTEM\PAGE\Page {
         $result = "";
         $votes = votes::getAllVotesOfGroup(1);        
         foreach($votes as $vote){
-            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'poll_ID' => $vote['ID']);
+            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
         }
         return $result;
