@@ -16,19 +16,15 @@ $(document).ready(function() {
             vote_click($(this).attr('poll_ID'),3);
             });
         
-        $('.btn_openvoteinfo').click(function () {
-            alert ("#openvoteinfo"+$(this).attr('poll_ID'));
-            if($("#openvoteinfo"+$(this).attr('poll_ID')).not(":visible")){
-            load_openvoteinfo($(this).attr('poll_ID'));
+        $('.btn_openvoteinfo').click(function () {            
+            if($("#openvoteinfo"+$(this).attr('poll_ID')).is(':visible')){                
+                $('#openvoteinfo'+$(this).attr('poll_ID')).slideUp('slow');                
+            }else{                                            
+                load_openvoteinfo($(this).attr('poll_ID'));
             }
-        else{
-            exit;
-        }
-            });
-//        $('#register_btn').click(function () {
-//            account_create ($(this).attr ('#inputEmail'))
-//            });
-            //jqBootstrapValidation        
+        });
+
+        //jqBootstrapValidation        
         $("#form_register input").not("[type=submit]").jqBootstrapValidation(
         {
             preventSubmit: true,            
@@ -44,7 +40,7 @@ $(document).ready(function() {
                 });
                 event.preventDefault();
             }            
-        });
+    });
 
     $("#form_login input").not("[type=submit]").jqBootstrapValidation(
         {
@@ -61,20 +57,22 @@ $(document).ready(function() {
                 });
                 event.preventDefault();
             }            
-        });
-        $("#form_logout input").not("[type=submit]").jqBootstrapValidation(
-        {
-            preventSubmit: true,            
-            submitError: function($form, event, errors) {},
-            submitSuccess: function($form, event){
-                $.get('./api.php?call=account&action=logout', function (data) {                      
-                    window.location.reload();                                  
-                });
-                event.preventDefault();
-            }            
-        });
+    });
+    
+    $("#form_logout input").not("[type=submit]").jqBootstrapValidation(
+    {
+        preventSubmit: true,            
+        submitError: function($form, event, errors) {},
+        submitSuccess: function($form, event){
+            $.get('./api.php?call=account&action=logout', function (data) {                      
+                window.location.reload();                                  
+            });
+            event.preventDefault();
+        }            
+    });
 
 });
+
 function account_create(inputEmail, inputPassword){
     $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
