@@ -17,7 +17,8 @@ $(document).ready(function() {
             });
         
         $('.btn_openvoteinfo').click(function () {
-            if($("#openvoteinfo").not(":visible")){
+            alert ("#openvoteinfo"+$(this).attr('poll_ID'));
+            if($("#openvoteinfo"+$(this).attr('poll_ID')).not(":visible")){
             load_openvoteinfo($(this).attr('poll_ID'));
             }
         else{
