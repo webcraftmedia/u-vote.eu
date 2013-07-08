@@ -23,17 +23,19 @@ class votes {
                                 array($poll_ID));        
         $res = $res->next();
         $result = array();
-        $parties = array('cdu', 'spd', 'fdp', 'b90', 'linke');
+        
         $pb = "";
         $part = $con->prepare(  'selVoteByPoll_ID',
-                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` =' .$poll_ID.';',
-                                array($party, $votes_pro, $votes_contra, $nr_attending));
-        foreach($parties as $party){
-            $vars = array('votes_pro' => $party['votes_pro'], 'votes_contra' => $party['votes_contra'], 'nr_attending' => $party['nr_attending'],);
-             $pb .= self::getProgessbar($votes_pro);
+                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ?;',
+                                array($poll_ID));
+        
+        while ($result = $part->next()){            
+             $pb .= self::getProgessbar($result['votes_pro']);
+
         }
+        
         $result['graph_right'] = $pb;
-        $result = array_merge($result,$res, $part);
+        $result = array_merge($result,$res);
         
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),$result);
     }
