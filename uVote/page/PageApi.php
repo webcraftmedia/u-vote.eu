@@ -38,6 +38,9 @@ class PageApi extends \SYSTEM\PAGE\PageClass {
     }
     
     public static function action_developer(){
+        require_once '../system/sai/autoload.inc.php';        
+        //require_once 'dasense/sai/autoload.inc.php';
+        //require_once 'dasense/sai/register_modules.php';
         return new \SYSTEM\SAI\saigui();}
     
 }

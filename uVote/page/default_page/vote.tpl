@@ -8,7 +8,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
             <h3>${vote_title}</h3>
                 
             
-            <div class="span5" id="openvoteinfo${poll_ID}{time_end}" style="margin: 0; display: none;">
+            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none;">
                 
             </div>
             <br>

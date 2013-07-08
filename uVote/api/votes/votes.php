@@ -12,13 +12,30 @@ class votes {
             
         return $result;
     }
+    private static function getProgessbar($percentage){
+        $vars = array('percentage' => $percentage);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/closedvoteinfo.tpl'), $vars);
+    }
     public static function get_openinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByID',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
-        $result = $res->next();                                   
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),$result == NULL ? array() : $result);
+        $res = $res->next();
+        $result = array();
+        $parties = array('cdu', 'spd', 'fdp', 'b90', 'linke');
+        $pb = "";
+        $part = $con->prepare(  'selVoteByPoll_ID',
+                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` =' .$poll_ID.';',
+                                array($party, $votes_pro, $votes_contra, $nr_attending));
+        foreach($parties as $party){
+            $vars = array('votes_pro' => $party['votes_pro'], 'votes_contra' => $party['votes_contra'], 'nr_attending' => $party['nr_attending'],);
+             $pb .= self::getProgessbar($votes_pro);
+        }
+        $result['graph_right'] = $pb;
+        $result = array_merge($result,$res, $part);
+        
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),$result);
     }
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
