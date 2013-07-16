@@ -7,11 +7,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
         <div class="span6">
             <h3>${vote_title}</h3>
                 
-            
-            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none;">
-                
-            </div>
-            <br>
+
 
         </div>
 
@@ -28,6 +24,10 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
                     <input size="120" name="coolcc">
             </form>
             
-        </div>            
+        </div>
+                        
+            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none; width: 100%;">
+                
+            </div>
     </div>           
 </div>
