@@ -98,6 +98,14 @@ function load_openvoteinfo (poll_ID){
 
 }
 
+function get_barsperparty (poll_ID) {
+    $.get('./api.php?call_bars_action_getbarsperparty&poll_ID=' + poll_ID, function (data) {
+    dataTmp = data;               
+    }).complete(function() {      
+
+    }); 
+}
+
 function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
         var items = [];        

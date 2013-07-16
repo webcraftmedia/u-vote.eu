@@ -16,6 +16,19 @@ class votes {
         $vars = array('percentage' => $percentage);
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/closedvoteinfo.tpl'), $vars);
     }
+    
+    public static function get_barsperparty($poll_ID){
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+        $pbpp = "";
+        $part = $con->prepare(  'selVoteByPoll_ID',
+                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ?;',
+                                array($poll_ID));
+
+        while ($result = $part->next()){            
+        $pbpp .= self::getProgessbar($result['votes_pro']);}
+        return $result;
+}
+
     public static function get_openinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByID',
@@ -23,22 +36,11 @@ class votes {
                                 array($poll_ID));        
         $res = $res->next();
         $result = array();
-        
-        $pb = "";
-        $part = $con->prepare(  'selVoteByPoll_ID',
-                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ?;',
-                                array($poll_ID));
-        
-        while ($result = $part->next()){            
-             $pb .= self::getProgessbar($result['votes_pro']);
-
-        }
-        
-        $result['graph_right'] = $pb;
-        $result = array_merge($result,$res);
-        
+        $result['graph_right'] = get_barsperparty($pbpp);
+        $result = array_merge($result,$res);       
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),$result);
     }
+    
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
