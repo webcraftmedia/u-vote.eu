@@ -42,5 +42,8 @@ class PageApi extends \SYSTEM\PAGE\PageClass {
         //require_once 'dasense/sai/autoload.inc.php';
         //require_once 'dasense/sai/register_modules.php';
         return new \SYSTEM\SAI\saigui();}
+                
+     public static function action_openinfo($poll_ID){
+        return new default_openinfo($poll_ID);}
     
 }

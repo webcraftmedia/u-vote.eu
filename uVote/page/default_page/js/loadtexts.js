@@ -83,7 +83,7 @@ function account_create(inputEmail, inputPassword){
 
 function load_openvoteinfo (poll_ID){
        var openvoteinfo;
-       $.get('./api.php?call=vote&action=openinfo&poll_ID=' + poll_ID, function (data) {
+       $.get('./index.php?action=openinfo&poll_ID=' + poll_ID, function (data) {
                 openvoteinfo = data;
                 bodyelem = $("");
                 bodyelem.animate();                

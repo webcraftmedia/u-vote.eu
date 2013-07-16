@@ -36,8 +36,8 @@ class default_page extends SYSTEM\PAGE\Page {
     public function exchange_loginform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loggedinformtop.tpl'),array());}
     
-    public function load_openvoteinfo(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),array());} 
+    //public function load_openvoteinfo(){
+    //    return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/openvoteinfo.tpl'),array());} 
     
     
 //    public function create_account(){
@@ -65,7 +65,7 @@ public function html(){
         $vars['js'] = $this->js(); 
         $vars['votelist'] = $this->generate_votelist();
 //        $vars['personaldata'] = $this->getuserpersonaldata();
-        $vars['openvoteinfo'] = $this->load_openvoteinfo();
+        //$vars['openvoteinfo'] = $this->load_openvoteinfo();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');

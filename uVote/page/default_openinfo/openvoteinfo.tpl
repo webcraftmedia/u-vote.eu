@@ -1,4 +1,7 @@
-${graph_right}
+<table style="widht: 1000px;;">
+${bars_party}
+</table>
+${bars_user}
 <div class="span6" style="margin: 0;">
     <div class="hero_unit" style="margin: 0; padding: 20px; background-color: gainsboro; width: 95%;">
 <p>${text}</p>
