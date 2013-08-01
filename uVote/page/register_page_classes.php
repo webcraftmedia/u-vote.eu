@@ -1,9 +1,6 @@
 <?php
-
-$autoload = SYSTEM\autoload::getInstance();
-
-$autoload->registerFolder(dirname(__FILE__),'');
-$autoload->registerFolder(dirname(__FILE__).'/default_page','');
-$autoload->registerFolder(dirname(__FILE__).'/default_myvote','');
-$autoload->registerFolder(dirname(__FILE__).'/default_register','');
-$autoload->registerFolder(dirname(__FILE__).'/default_openinfo','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__),'');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_page','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_myvote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_register','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_openinfo','');
