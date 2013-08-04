@@ -9,5 +9,4 @@ require_once '../system/log/register_result_shortcut.php';
 require_once 'config.php';
 SYSTEM\system::start($uvote_config);
 
-$api = new \SYSTEM\API\Api (new SYSTEM\verifyclass(), new ApiClass());
-echo $api->CALL(array_merge($_POST,$_GET));
+echo \SYSTEM\API\api::run('\SYSTEM\API\verify','api_uvote',array_merge($_POST,$_GET));
