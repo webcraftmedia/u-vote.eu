@@ -1,6 +1,6 @@
-<div class="hero-unit" style="padding: 5px; padding-bottom: 30px; background: white; margin-bottom: 8px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+<div class="hero-unit" style="padding: 5px; background: white; margin-bottom: 8px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
-    <div class="row" style="width: 100%; margin: auto;">    
+    <div class="row" style="width: 100%; margin: 0; margin-top: 15px;">    
         <button class="btn btn-mini btn_openvoteinfo" data-toggle="dropdown" poll_ID=${poll_ID} style="float: right;">
                     <span class="caret"></span>
                 </button>
@@ -26,7 +26,7 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
             
         </div>
                         
-            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none; width: 100%;">
+            <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none; width: 100%; margin-top: 15px;">
                 
             </div>
     </div>           
