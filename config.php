@@ -10,5 +10,5 @@ $uvote_config = array(  array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_ERRORREPORTIN
                         array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_PASSWORD,         'dsjgfasudzfsvad'),
                         array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_DBNAME,           'host_uVote'),
                         array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_SYSTEMPATHREL, '../system/'),
-                        array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,              \serialize(array('deDE', 'enUS', 'huHU'))),
+                        array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,              array('deDE', 'enUS', 'huHU')),
                         array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DEFAULT_LANG,       'deDE'));   

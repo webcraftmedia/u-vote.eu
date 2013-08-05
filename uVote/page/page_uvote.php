@@ -1,6 +1,6 @@
 <?php
 
-class PageApi extends \SYSTEM\PAGE\PageClass {
+class page_uvote extends \SYSTEM\API\api_default {
 
     public static function default_page(){
         return new default_page();}

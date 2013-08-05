@@ -1,5 +1,2 @@
 <?php
-
-$autoload = SYSTEM\autoload::getInstance();
-
-$autoload->registerFolder(dirname(__FILE__),'');
+SYSTEM\autoload::registerFolder(dirname(__FILE__),'');
