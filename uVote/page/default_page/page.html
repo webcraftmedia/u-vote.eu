@@ -1,37 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    
-    <title>iVote</title>
+<html>
+  <head>    
+    <title>uVote</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    ${js}
-
-    <!-- Le styles -->
+    
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="lib/custom/custom_buttons.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
     <link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-      
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+    
+    ${css}
+    
+    ${js}
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body style="background-color: #f2f2f2;">
@@ -63,16 +48,16 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div id="site-content" style="padding: 0; margin: 0;">
-        <div class="hero-unit" style="height: 180px; background: white; margin: 0; margin-top: -18px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
-          <div class="row">
-            <img src="${PIC_PATH}logo2.png" width="600" style="margin-top: -40px;" />
-            <div class="hero-unit" style="margin: 0px; padding: 5px; float: right; margin-top: -61px; background-color: silver;">
+        <div class="container" style="background: lightyellow; margin: 0; margin-top: -18px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
+     
+            <img src="${PIC_PATH}logo2.png" width="600" style="margin-left: 20px;" />
+            <div class="container" style="margin-right: 30px; float: right; width: 220px;">
 <!--                margin-left: 600px; margin-right: -60px; padding: 5px; margin-top: -240px;-->
          
             ${registerform}
         
             </div>
-          </div>
+      
             
             
 <!--          <div class="hero-unit" style="height: 300px; padding: 5px; padding-top: 50px; width: 400px; margin-left: 700px; margin-top: -260px; background: white;">           
@@ -89,14 +74,14 @@
           </div>-->
 
         </div>
-<div class="navbar navbar-inverse">
-<div class="navbar-inner" style="background: black;">
+    
+<div class="container" style="background: black; height: 40px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
           <form class="navbar-form pull-left">              
-              <input class="span2" type="password" placeholder="">
+              <input class="span2" type="password" placeholder="" style="margin-left: 5px;">
               <button type="submit" class="btn" style="margin-top: 5px;">suchen</button>
             </form>
         </div>
-      </div>
+
       
       <!-- Example row of columns -->
       <div class="hero-unit" style="padding: 0px; padding-top: 5px">

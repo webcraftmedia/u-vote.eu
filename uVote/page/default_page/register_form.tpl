@@ -1,5 +1,5 @@
 <div>
-    <form class="form-vertical" id="form_register" style="padding: 0;">
+    <form class="form-vertical" id="form_register" style="padding: 0; background: lightyellow">
 
 <h3 style="margin-top: 0;" align="left">Accounterstellung</h3>
 

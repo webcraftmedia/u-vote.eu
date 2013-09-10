@@ -1,6 +1,6 @@
 function getuserpersonaldata()
-        {
-            var userInput = document.getElementById("userInput").value;
-            document.write(userInput);
-        }
+{
+    var userInput = document.getElementById("userInput").value;
+    document.write(userInput);
+}
 
