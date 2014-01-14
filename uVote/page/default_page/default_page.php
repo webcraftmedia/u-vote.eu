@@ -17,11 +17,24 @@ class default_page extends SYSTEM\PAGE\Page {
         return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';}
         
     public function generate_votelist(){
+        
         $result = "";
         $votes = votes::getAllVotesOfGroup(1);        
         foreach($votes as $vote){
-            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
+        }
+        new \SYSTEM\LOG\INFO("generated votelist successfully");
+        return $result;
+    }
+    
+    public function generate_vote(){
+        $result = "";
+        $votes = votes::getAllVotesOfGroup(1);  
+        
+        foreach($votes as $vote){
+            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vars);
         }
         return $result;
     }
@@ -44,6 +57,7 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars['js'] = $this->js(); 
         $vars['css'] = $this->css();
         $vars['votelist'] = $this->generate_votelist();
+        $vars['vote'] = $this->generate_vote();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');

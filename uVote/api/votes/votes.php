@@ -12,6 +12,15 @@ class votes {
             
         return $result;
     }
+
+     public static function getVoteOfGroup($poll_ID){
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+        $res = $con->prepare(   'selVoteByGrp',
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? LIMIT 1;',
+                                array($poll_ID));        
+        $result = $res->next();                                        
+        return $result;
+    }
     
     public static function get_barsperusers($poll_ID,$return_as_json = true){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
@@ -85,5 +94,20 @@ class votes {
                                  VALUES (?, ?, ?);',
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
+    }
+    public static function open_vote($poll_ID){
+        new \SYSTEM\LOG\INFO($poll_ID);
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+            
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+        $res = $con->prepare(   'selVote',
+                                'SELECT * FROM `uvote_votes` WHERE ID = ?;',
+                                array($poll_ID));
+        $vote = votes::getVoteOfGroup($poll_ID);
+        new INFO(print_r($vote, true));
+        $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
+        return $res;
     }
 }

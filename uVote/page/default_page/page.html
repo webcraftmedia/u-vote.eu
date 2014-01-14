@@ -38,63 +38,22 @@
               <li><a href="#" url="?action=Download">Download</a></li>
               
             </ul>
+              
             ${loginform}
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
-    <div class="container" id="site-content-wrapper" style="margin-top: 0; ">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="container" id="site-content-wrapper" style="margin-top: 0;">
       <div id="site-content" style="padding: 0; margin: 0;">
-        <div class="container" style="background: lightyellow; margin: 0; margin-top: -18px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
-     
-            <img src="${PIC_PATH}logo2.png" width="600" style="margin-left: 20px;" />
-            <div class="container" style="margin-right: 30px; float: right; width: 220px;">
-<!--                margin-left: 600px; margin-right: -60px; padding: 5px; margin-top: -240px;-->
-         
-            ${registerform}
-        
-            </div>
-      
+        <div id="list" style="padding: 0px; max-height: 720px; overflow-y: scroll; float: left;">
+            ${votelist}
+        </div>
+        <div id="stats" style="float: right;">
             
-            
-<!--          <div class="hero-unit" style="height: 300px; padding: 5px; padding-top: 50px; width: 400px; margin-left: 700px; margin-top: -260px; background: white;">           
-              <i class="icon-tags" style="margin-left: 20px; margin-top: -30px;" ></i>Informieren
-              <p></p>
-              <i class="icon-tags" style="margin-left: 20px; margin-top: 10px;"></i>Diskutieren
-              <p></p>
-               <i class="icon-tags" style="margin-left: 20px;"></i>Abstimmen 
-              <p></p>
-               <i class="icon-tags" style="margin-left: 20px;"></i>Vergleichen 
-              <p></p>
-              <i class="icon-tags" style="margin-left: 20px;"></i>Verändern
-              <p></p>    
-          </div>-->
-
         </div>
-    
-<div class="container" style="background: black; height: 40px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
-          <form class="navbar-form pull-left">              
-              <input class="span2" type="password" placeholder="" style="margin-left: 5px;">
-              <button type="submit" class="btn" style="margin-top: 5px;">suchen</button>
-            </form>
-        </div>
-
-      
-      <!-- Example row of columns -->
-      <div class="hero-unit" style="padding: 0px; padding-top: 5px">
-        ${votelist}
-    </div> <!-- /container -->
-    
-    <div class="navbar-inner">
-        <div class="container">
-            <p>Entwurf der Seite von Tobias Rechel, Mojotrollz.eu</p>
-        </div>
+      </div>  
     </div>
-      </div>
-    </div>
-
   </body>
 </html>

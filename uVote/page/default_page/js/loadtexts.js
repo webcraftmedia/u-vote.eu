@@ -6,6 +6,10 @@ $(document).ready(function() {
             
             //loadUrlPic($(this).attr('url'));
 	});
+        $('.btn_vote').click(function () {
+            //vote_click($(this).attr('poll_ID'));
+            open_vote($(this).attr('poll_ID'));
+            });
         $('.btnvote_yes').click(function () {
             vote_click($(this).attr('poll_ID'),1);
             });
@@ -108,6 +112,17 @@ function get_barsperparty (poll_ID) {
 
 function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
+        var items = [];        
+        if(data.status == true){
+            alert("sucess");
+        } else {
+            alert(data.result.message);
+        }
+    }); 
+}
+
+function open_vote (poll_ID) {
+    $.getJSON('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID , function(data) {
         var items = [];        
         if(data.status == true){
             alert("sucess");
