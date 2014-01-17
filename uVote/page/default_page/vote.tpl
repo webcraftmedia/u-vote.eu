@@ -1,4 +1,4 @@
-<div style="padding: 5px; background: lightyellow; margin-bottom: 8px; -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);">
+<div style="padding: 5px; background: #f1f1f1; margin-bottom: 8px; border: 2px solid #ccc;">
     <div class="row" style="width: 100%; margin: 0; margin-top: 5px; margin-bottom: 8px;">    
         <div class="span6">
             <h4>${vote_title}</h4>

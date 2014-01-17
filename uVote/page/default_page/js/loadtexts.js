@@ -1,16 +1,17 @@
 /* jQuery on document ready */
 $(document).ready(function() {
     // handle navigation link click
-	$('.navbar ul li a').not('#menu_uvote').click(function () {
+	/*$('.navbar ul li a').not('#menu_uvote').click(function () {
             loadAjaxContent($(this).attr('url'));
             
             //loadUrlPic($(this).attr('url'));
-	});
+	});*/
         $('.btn_vote').click(function () {
             //vote_click($(this).attr('poll_ID'));
             open_vote($(this).attr('poll_ID'));
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
             });
-        $('.btnvote_yes').click(function () {
+        /*$('.btnvote_yes').click(function () {
             vote_click($(this).attr('poll_ID'),1);
             });
         $('.btnvote_no').click(function () {
@@ -26,33 +27,16 @@ $(document).ready(function() {
             }else{                                            
                 load_openvoteinfo($(this).attr('poll_ID'));
             }
-        });
+        });*/
 
         //jqBootstrapValidation        
-        $("#form_register input").not("[type=submit]").jqBootstrapValidation(
-        {
-            preventSubmit: true,            
-            submitError: function($form, event, errors) {},
-            submitSuccess: function($form, event){
-//             alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
-                $.get('./api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE', function (data) {
-                    if(data == 1){
-                        window.location.reload();
-                    } else {
-                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
-                    }                    
-                });
-                event.preventDefault();
-            }            
-    });
-
-    $("#form_login input").not("[type=submit]").jqBootstrapValidation(
-        {
-            preventSubmit: true,            
-            submitError: function($form, event, errors) {},
-            submitSuccess: function($form, event){
-//             alert ('.api.php?call=account&action=create&username=' + $('#bt_login_user').val() + '&password_sha=' + $.sha1($('#bt_login_password').val()) + '&email=' + $('#bt_login_user').val() + '&locale=deDE');
-                $.get('./api.php?call=account&action=login&username=' + $('#login_email').val() + '&password_sha=' + $.sha1($('#login_password').val()) + '&password_md5=' + $.md5($('#login_password').val()), function (data) {
+        
+    
+    $("#form_login input").not("[type=submit]").jqBootstrapValidation({
+        preventSubmit: true,
+        submitError: function($form, event, errors) {},
+        submitSuccess: function($form, event){
+            $.get('./api.php?call=account&action=login&username=' + $('#bt_login_user').val()+'&password_sha='+$.sha1($('#bt_login_password').val())+'&password_md5='+$.md5($('#bt_login_password').val()), function (data) {
                     if(data == 1){
                         window.location.reload();
                     } else {
@@ -74,8 +58,46 @@ $(document).ready(function() {
             event.preventDefault();
         }            
     });
-
+    
+    $('#user_main').load('./?action=user_main', function(){
+        $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
+        {
+            preventSubmit: true,            
+            submitError: function($form, event, errors) {},
+            submitSuccess: function($form, event){
+                $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                    if(data == 1){
+                        window.location.reload();
+                    } else {
+                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                    }                    
+                });
+                event.preventDefault();
+            }            
+        });
+        $('#tabs_user_main a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            load_user_main_tab($(this).attr('action'));        
+        });
+    });
+        
 });
+
+function load_user_main_tab(action){
+    switch(action){
+        case 'user_main_uVote':
+            $('#tab_uVote').load('./?action='+ action);
+            return;
+        case 'user_main_urVote':
+            $('#tab_urVote').load('./?action='+ action);
+            return;
+        case 'user_main_myVote':
+            $('#tab_myVote').load('./?action='+ action);
+            return;
+        default:
+    }   
+}
 
 function account_create(inputEmail, inputPassword){
     $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
@@ -122,14 +144,7 @@ function vote_click (poll_ID, vote) {
 }
 
 function open_vote (poll_ID) {
-    $.getJSON('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID , function(data) {
-        var items = [];        
-        if(data.status == true){
-            alert("sucess");
-        } else {
-            alert(data.result.message);
-        }
-    }); 
+    $('#list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID); 
 }
 
 function loadAjaxContent(url) {
