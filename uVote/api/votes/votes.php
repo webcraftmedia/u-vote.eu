@@ -100,7 +100,7 @@ class votes {
 
         $vote = votes::getVoteOfGroup($poll_ID);
         new INFO(print_r($vote, true));
-        $vars = array('vote_text' => $vote['text'], 'vote_quick' => $vote['quick'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+        $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
         $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vars);
         return $result;
     }

@@ -1,4 +1,4 @@
-<div style="padding: 5px; background: #f1f1f1; margin-bottom: 8px; border: 2px solid #ccc;">
+<div style="padding: 5px; background: #f1f1f1; margin-bottom: 8px;">
     <div class="row" style="width: 100%; margin: 0; margin-top: 5px; margin-bottom: 8px;">    
         <div class="span6">
             <h4>${vote_title}</h4>
@@ -6,7 +6,7 @@
             <br>
             Politikfeld(er):
         </div>
-        <a class="btn btn_vote" poll_ID="${poll_ID}" style="float: right; margin-top: 10px;">Abstimmen</a>            
+        <a class="btn btn_primary btn_vote" poll_ID="${poll_ID}" style="float: right; margin-top: 10px;">Abstimmen</a>            
          <!--<div class="span5" style="margin-top: 15px;">            
             <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="$">Pro &raquo;</a>
             <a class="btn btn-large btn-red btnvote_no" style="width: 110px; background-color: red;" href="#" poll_ID="$">Contra &raquo;</a>

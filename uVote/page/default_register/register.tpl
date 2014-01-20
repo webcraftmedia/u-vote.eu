@@ -1,4 +1,4 @@
-<h1>${register}</h1>
+<img src="${frontend_logos}logo2.png"/>
 <br />
 <br />
 <form class="textbox" id="register_user_form">
