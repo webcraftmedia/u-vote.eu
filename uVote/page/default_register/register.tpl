@@ -82,6 +82,5 @@
            </tbody>
         </table>
         <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
-        <button class="btn btn-primary" type="reset" id="btn_user_registration_cancel"><i class="icon-remove icon-white"></i> ${cancel}</button>
     </div>
 </form>

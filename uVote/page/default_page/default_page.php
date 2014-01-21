@@ -17,12 +17,30 @@ class default_page extends SYSTEM\PAGE\Page {
     private function css(){  
         return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';}
         
+        
+    private static function tablerow_class($choice){
+        switch($choice){
+            case 1:
+                return 'pro';
+            case 2:
+                return 'contra';
+            case 3:
+                return 'ent';
+            default:
+                return '';
+        }        
+    }
     public function generate_votelist(){
         
         $result = "";
-        $votes = votes::getAllVotesOfGroup(1);        
+        $votes = votes::getAllVotesOfGroup(1);       
         foreach($votes as $vote){
-            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+            $vars = array(  'vote_title' => $vote['title'],
+                            'vote_text' => $vote['text'], 
+                            'vote_init' => $vote['initiative'],
+                            'vote_class' => $this->tablerow_class(votes::getUserPollData($vote['ID'])),
+                            'poll_ID' => $vote['ID'], 
+                            'time_end' => $vote['time_end']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
         }
         new \SYSTEM\LOG\INFO("generated votelist successfully");

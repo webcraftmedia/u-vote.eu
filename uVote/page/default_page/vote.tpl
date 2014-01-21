@@ -1,4 +1,4 @@
-<div style="padding: 5px; background: #f1f1f1; margin-bottom: 8px;">
+<div class="${vote_class}" style="padding: 5px; margin-bottom: 8px;">
     <div class="row" style="width: 100%; margin: 0; margin-top: 5px; margin-bottom: 8px;">    
         <div class="span6">
             <h4>${vote_title}</h4>
@@ -22,4 +22,5 @@
             <div class="span5" id="openvoteinfo${poll_ID}" style="margin: 0; display: none; width: 100%; margin-top: 15px;">
                 
             </div>  
+        
             </div>

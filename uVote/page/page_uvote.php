@@ -9,6 +9,8 @@ class page_uvote extends \SYSTEM\API\api_default {
         return new default_myvote();}
         
     public static function action_open_bulletin ($poll_ID){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return new default_register ($poll_ID);}
         return new default_bulletin($poll_ID);}
         
     public static function action_user_main(){

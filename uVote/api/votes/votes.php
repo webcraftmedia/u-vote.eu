@@ -22,6 +22,18 @@ class votes {
         return $result;
     }
     
+    public static function getUserPollData($poll_ID){
+        if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return NULL;}
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+        $res = $con->prepare(   'selVoteByGrp',
+                                'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ?;',
+                                array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
+        $result = $res->next();                                        
+        return $result['choice'];                
+            
+    }
+    
     public static function get_barsperusers($poll_ID,$return_as_json = true){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         //count
@@ -95,6 +107,9 @@ class votes {
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
+    
+
+    
     public static function open_vote($poll_ID){
         new \SYSTEM\LOG\INFO($poll_ID);
 

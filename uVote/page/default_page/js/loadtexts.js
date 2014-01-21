@@ -8,20 +8,11 @@ $(document).ready(function() {
 	});*/
         $('.btn_vote').click(function () {
             //vote_click($(this).attr('poll_ID'));
-            open_vote($(this).attr('poll_ID'));
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+            open_vote($(this).attr('poll_ID'));                     
+           
             });
-        $('.btnvote_yes').click(function () {
-            alert("1");
-            vote_click($(this).attr('poll_ID'),1);
-            alert("2");
-            });
-        $('.btnvote_no').click(function () {
-            vote_click($(this).attr('poll_ID'),2);
-            });
-        $('.btnvote_off').click(function () {
-            vote_click($(this).attr('poll_ID'),3);
-            });
+        
         
         /*$('.btn_openvoteinfo').click(function () {                 
             if($("#openvoteinfo"+$(this).attr('poll_ID')).is(':visible')){                
@@ -101,6 +92,7 @@ function load_user_main_tab(action){
     }   
 }
 
+
 function account_create(inputEmail, inputPassword){
     $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
@@ -138,16 +130,25 @@ function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
         var items = [];        
         if(data.status == true){
-            alert("sucess");
+            alert("success");
         } else {
             alert(data.result.message);
-            alert("abc")
         }
     }); 
 }
 
 function open_vote (poll_ID) {
-    $('#list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID); 
+    $('#list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID, function(){
+        $('.btnvote_yes').click(function () {            
+            vote_click($(this).attr('poll_ID'),1);
+            });
+        $('.btnvote_no').click(function () {
+            vote_click($(this).attr('poll_ID'),2);
+            });
+        $('.btnvote_off').click(function () {
+            vote_click($(this).attr('poll_ID'),3);
+            });
+    }); 
 }
 
 function loadAjaxContent(url) {
