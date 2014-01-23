@@ -15,5 +15,5 @@ $uvote_config = array(  array(SYSTEM\CONFIG\config_ids::SYS_CONFIG_ERRORREPORTIN
                             array(\SYSTEM\CONFIG\config_ids::SYS_SAI_CONFIG_TITLE,          'mojotrollz - Admin Area'),
                             array(\SYSTEM\CONFIG\config_ids::SYS_SAI_CONFIG_COPYRIGHT,      '<a href="http://www.mojotrollz.eu/web/uVote/" target="_blank">uVote</a>, &copy; WebCraft Media 2013'),
                         
-                        array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,              array('deDE', 'enUS', 'huHU')),
+                        array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,              array('deDE', 'enUS')),
                         array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DEFAULT_LANG,       'deDE'));   

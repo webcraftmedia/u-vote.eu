@@ -57,6 +57,9 @@ class default_page extends SYSTEM\PAGE\Page {
         }
         return $result;
     }
+    
+    public function get_coverpage(){
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_cover/cover.tpl'), array());}
 
 
     public function getloggedinform(){
@@ -75,12 +78,14 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars = array();               
         $vars['js'] = $this->js(); 
         $vars['css'] = $this->css();
-        $vars['votelist'] = $this->generate_votelist();
+        $vars['votelist'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->generate_votelist() : $this->get_coverpage() ;
         $vars['vote'] = $this->generate_vote();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
-        $vars['PIC_PATH'] = SYSTEM\WEBPATH(new PPAGE(),'default_page/pics/');
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
+
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.html'), $vars);
         
     }

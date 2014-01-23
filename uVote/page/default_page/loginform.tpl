@@ -6,30 +6,31 @@
 
 <form class="navbar-form pull-right" style="" id="form_login">
     <div class="control-group">
-        <div class="controls" style="float: left;">
+        <div class="help-block"style="float: left; padding: 0;"></div>
+        <input type="hidden" />
+        <div class="controls" style="float: left; margin-right: 10px;">
             <input  type="text"
                     size="20"
                     style=""
                     id="bt_login_user"
-                    placeholder="${sai_mod_login_username}"
-                    minlength="3" data-validation-minlength-message="${sai_error_mod_login_username_too_short}"
-                    maxlength="16" data-validation-maxlength-message="${sai_error_mod_login_username_too_long}"
-                    required data-validation-required-message="${sai_error_mod_login_username_required}"/>
+                    placeholder="${user_name_login}"
+                    minlength="3" data-validation-minlength-message="${register_user_name_too_short}"
+                    maxlength="16" data-validation-maxlength-message="${register_user_name_too_long}"
+                    required data-validation-required-message="${register_user_name_required}"/>
         </div>
-        <div class="controls" style="float: left;">
+        <div class="controls" style="float: left;margin-right: 20px;">
             <input  type="password"
                     size="20"
                     style=""
                     id="bt_login_password"
-                    placeholder="${sai_mod_login_password}"
-                    minlength="5" data-validation-minlength-message="${sai_error_mod_login_password_too_short}"
-                    maxlength="16" data-validation-maxlength-message="${sai_error_mod_login_password_too_long}"
-                    required data-validation-required-message="${sai_error_mod_login_password_required}"/>
+                    placeholder="${user_password_login}"
+                    minlength="5" data-validation-minlength-message="${register_password_too_short}"
+                    maxlength="16" data-validation-maxlength-message="${register_user_password_too_long}"
+                    required data-validation-required-message="${register_user_password_required}"/>
         </div>        
-        <div class="help-block"style="float: left;"></div>
-        <input type="hidden" />
+        
         <button class="btn btn-primary" style="float: left; height: 32px; font-size: 13px;"
                 type="submit"
-                id="login_submit">${sai_mod_login_login}</button>
+                id="login_submit">${login}</button>
     </div>
 </form>

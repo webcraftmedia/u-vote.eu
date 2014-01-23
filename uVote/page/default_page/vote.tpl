@@ -1,4 +1,4 @@
-<div class="${vote_class}" style="padding: 5px; margin-bottom: 8px;">
+<div class="${vote_class}" style="padding: 5px; margin-bottom: 8px; border: 2px solid #ccc; float: left;">
     <div class="row" style="width: 100%; margin: 0; margin-top: 5px; margin-bottom: 8px;">    
         <div class="span6">
             <h4>${vote_title}</h4>
