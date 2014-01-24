@@ -10,3 +10,4 @@ SYSTEM\system::start($uvote_config);
 \SYSTEM\system::register_errorhandler_jsonoutput();
 
 echo \SYSTEM\API\api::run('\SYSTEM\API\verify','page_uvote',array_merge($_POST,$_GET),1,false,true)->html();
+new \SYSTEM\LOG\COUNTER("Page was called sucessfully.");
