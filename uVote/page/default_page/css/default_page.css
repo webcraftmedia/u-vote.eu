@@ -8,13 +8,13 @@ body {
 }*/
 
 .pro{
-    background: lightgreen;
+    background: url(http://mojotrollz.eu/web/uVote/api.php?call=img&cat=frontend_logos&id=pro.png);
 }
 
 .contra{
-    background: lightcoral;
+    background: url(http://mojotrollz.eu/web/uVote/api.php?call=img&cat=frontend_logos&id=contra.png)no-repeat;
 }
 
 .ent{
-    background: lightgray;
+    background: url(http://mojotrollz.eu/web/uVote/api.php?call=img&cat=frontend_logos&id=enth.png)no-repeat;
 }

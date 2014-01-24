@@ -1,11 +1,12 @@
 <?php
 class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {  
-    public static function sai_mod__SYSTEM_SAI_saimod_uvote_vote_edit_action_add($id, $category){
+    public static function sai_mod__SYSTEM_SAI_saimod_uvote_vote_edit_action_add($poll_ID, $title, $text, $p_fields, $time_start, $time_end){
          $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
          $res = null;
-         $res = $con->prepare('addText' ,'INSERT INTO uvote_votes (ID) VALUES ($1);', array($poll_ID));        
+         $res = $con->prepare('addText' ,'INSERT INTO uvote_votes (poll_ID, title, text, p_fields, time_start, time_end) VALUES (?1, ?2, ?3, ?4, ?5, ?6);', array($poll_ID));        
         return $res->affectedRows() == 0 ? \SYSTEM\LOG\JsonResult::error(new \SYSTEM\LOG\WARNING("no data added")) : \SYSTEM\LOG\JsonResult::ok();
     }
+
     public static function sai_mod_saimod_uvote_vote_edit(){       
         $vars = array();
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';

@@ -1,55 +1,20 @@
 function init_saimod_uvote_data_input(){
-    $('#realm_start').click(function(){
-        $.ajax({
-                url: SAI_ENDPOINT,
-                data: { sai_mod: 'saimod_mojotrollz_server_handling',
-                        action: 'realmstart'
-                      },
-                type: 'POST',
-                
+    
+        $('#vote_data_submit').click(function (poll_ID) {
+            //vote_click($(this).attr('poll_ID'));
+            alert("doc ready works")
+            vote_data_submit($(this).attr('poll_ID'));                           
             });
-        update_realmstatus();
-    });    
-    $('#realm_stop').click(function(){
-        $.ajax({
-                url: SAI_ENDPOINT,
-                data: { sai_mod: 'saimod_mojotrollz_server_handling',
-                        action: 'realmstop'
-                      },
-                type: 'POST',
-                
-            });
-        update_realmstatus();        
-    });    
-    $('#world_start').click(function(){
-        $.ajax({
-                url: SAI_ENDPOINT,
-                data: { sai_mod: 'saimod_mojotrollz_server_handling',
-                        action: 'worldstart'
-                      },
-                type: 'POST',
-                
-            });
-        update_worldstatus();
-    });
-    $('#world_stop').click(function(){
-        $.ajax({
-                url: SAI_ENDPOINT,
-                data: { sai_mod: 'saimod_mojotrollz_server_handling',
-                        action: 'worldstop'
-                      },
-                type: 'POST',
-                
-            });
-        update_worldstatus();
-    });
-}
+            
+            };
 
-function update_realmstatus(){
-    $('status_realm').load(SAI_ENDPOINT+'sai_mod=saimod_mojotrollz_server_handling&action=realmstatus');
+function vote_data_submit (poll_ID, vote) {
+    $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID, function(data) {
+        var items = [];        
+        if(data.status == true){
+            alert("success");
+        } else {
+            alert(data.result.message);
+        }
+    }); 
 }
-
-function update_worldstatus(){
-    $('status_world').load(SAI_ENDPOINT+'sai_mod=saimod_mojotrollz_server_handling&action=world status');
-}
-

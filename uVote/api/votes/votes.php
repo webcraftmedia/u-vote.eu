@@ -99,6 +99,18 @@ class votes {
         return JsonResult::ok();
     }
     
+    public static function write_feedback($feedback){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+            
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());                    
+        $res = $con->prepare(   'insertFeedback',
+                                'INSERT INTO uvote_beta_feedback
+                                 VALUES (?, ?);',
+                                array(\SYSTEM\SECURITY\Security::getUser()->id, $feedback));   
+        return JsonResult::ok();
+    }
+    
 
     
     public static function open_vote($poll_ID){

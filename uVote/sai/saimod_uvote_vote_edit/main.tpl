@@ -48,7 +48,7 @@
             <h5>Auf einen Blick</h5>
             <form action="/html/tags/html_form_tag_action.cfm" method="post">
             <br />
-            <textarea name="vote_quick" id="vote_quick">Insert Info into here!</textarea>
+            <textarea name="vote_quick" id="vote_text">Insert Info into here!</textarea>
             <br />
             <input type="submit" value="Submit" />
             </form>
@@ -71,4 +71,4 @@
         </div>
 </div>
 <br>
-<a class="btn btn-primary" id="vote_submit">Submit</a>
+<a class="btn btn-primary" id="vote_data_submit">Submit</a>

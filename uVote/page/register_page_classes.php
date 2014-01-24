@@ -7,4 +7,6 @@ SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_openinfo','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_bulletin','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_uVote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_urVote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_myVote','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_cover','');

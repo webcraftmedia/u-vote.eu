@@ -77,7 +77,7 @@ class default_page extends SYSTEM\PAGE\Page {
     public function html(){
         $vars = array();               
         $vars['js'] = $this->js(); 
-        $vars['css'] = $this->css();
+        $vars['css'] = $this->css();       
         $vars['votelist'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->generate_votelist() : $this->get_coverpage() ;
         $vars['vote'] = $this->generate_vote();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();

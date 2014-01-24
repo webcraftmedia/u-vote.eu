@@ -10,3 +10,4 @@
         <div class="tab-pane" id="tab_myVote"></div>
     </div>
 </div>
+${uVote}

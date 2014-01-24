@@ -68,6 +68,11 @@ $(document).ready(function() {
                 event.preventDefault();
             }            
         });
+        $('#feedback_submit').click(function (data){
+            
+            send_feedback($('#feedback_text').val());
+            
+        });
         $('#tabs_user_main a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
@@ -79,8 +84,10 @@ $(document).ready(function() {
 
 function load_user_main_tab(action){
     switch(action){
+        
         case 'user_main_uVote':
-            $('#tab_uVote').load('./?action='+ action);
+            window.location.reload();
+            $('#tab_uVote').load('./?action='+ action);                             
             return;
         case 'user_main_urVote':
             $('#tab_urVote').load('./?action='+ action);
@@ -129,6 +136,20 @@ function get_barsperparty (poll_ID) {
 function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
         var items = [];        
+        if(data.status == true){
+            alert("success");
+        } else {
+            alert(data.result.message);
+        }
+    }); 
+}
+
+function send_feedback (feedback) {
+    
+    $.getJSON('./api.php?call=vote&action=feedback&feedback=' + feedback, function(data) {
+        console.log("hallo3672rt2ziuzir");
+        var items = []; 
+        alert(feedback);
         if(data.status == true){
             alert("success");
         } else {
