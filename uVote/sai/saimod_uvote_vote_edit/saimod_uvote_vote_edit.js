@@ -1,6 +1,7 @@
 function init_saimod_uvote_vote_edit(){
 $('#vote_data_submit').click(function() {
-    var data = new Array();   
+    var data = new Array(); 
+    alert("bla")
        $.ajax({
         url: SAI_ENDPOINT+'sai_mod=.SYSTEM.SAI.saimod_uvote_vote_edit&action='+ vote,
         contentType : "application/json; charset=utf-8",

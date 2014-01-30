@@ -7,7 +7,6 @@ class api_uvote extends \SYSTEM\API\api_login {
     }
     
     public static function call_vote_action_feedback($feedback) {
-        new \SYSTEM\LOG\INFO($feedback);
         return votes::write_feedback($feedback);
         
     }

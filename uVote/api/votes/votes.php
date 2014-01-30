@@ -114,8 +114,6 @@ class votes {
 
     
     public static function open_vote($poll_ID){
-        new \SYSTEM\LOG\INFO($poll_ID);
-
         $vote = votes::getVoteOfGroup($poll_ID);
         new INFO(print_r($vote, true));
         $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);

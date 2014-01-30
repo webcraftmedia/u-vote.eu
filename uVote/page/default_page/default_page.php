@@ -43,7 +43,6 @@ class default_page extends SYSTEM\PAGE\Page {
                             'time_end' => $vote['time_end']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
         }
-        new \SYSTEM\LOG\INFO("generated votelist successfully");
         return $result;
     }
     

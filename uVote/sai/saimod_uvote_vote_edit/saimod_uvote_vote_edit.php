@@ -21,6 +21,5 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     public static function sai_mod_saimod_uvote_vote_edit_flag_js(){return \SYSTEM\LOG\JsonResult::toString(array(
             \SYSTEM\WEBPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
     ));}
-    public static function sai_mod_saimod_uvote_data_input_flag_css(){}
     
 }
