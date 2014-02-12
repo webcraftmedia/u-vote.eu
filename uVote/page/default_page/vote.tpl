@@ -1,18 +1,16 @@
-<table class="${vote_class} table table-hover" style="display: table; margin-bottom: 5px; border: 2px solid #ccc; float: left; width: 85%; height: 100px;"> 
+<table class="table" style="display: table; margin-bottom: 5px; float: left; width: 95%; height: 100px;"> 
     <div style="margin: 0; margin-top: 5px; margin-bottom: 8px;">    
         <tr>
-            <td style="border-right: 2px solid #ccc; width: 20px;">Nr.
-            <br>
-            ${poll_ID}</td>
         
         <td class="" style="">
+            <a class="btn btn-primary btn-small btn_vote" style="float:right" poll_ID="${poll_ID}">${full_vote_btn}</a>
              <h4>${vote_title}</h4>
-             Politikfeld(er):
+             Nr.${poll_ID}         
         </td>
-            <td style="width: 70px; margin-top: 10px; border-left: 2px solid #ccc;">
-        <a class="btn btn_primary btn_vote" poll_ID="${poll_ID}">Abstimmen</a>
+            <td class="${vote_class}" style="width: 20px; margin-top: 10px; border-left: 2px solid black;">             
             </td>
-            </tr>
+        </tr>
+            
          <!--<div class="span5" style="margin-top: 15px;">            
             <a class="btn btn-large btn-green btnvote_yes" style="width: 110px;" poll_ID="$">Pro &raquo;</a>
             <a class="btn btn-large btn-red btnvote_no" style="width: 110px; background-color: red;" href="#" poll_ID="$">Contra &raquo;</a>

@@ -40,23 +40,26 @@ class default_page extends SYSTEM\PAGE\Page {
                             'vote_init' => $vote['initiative'],
                             'vote_class' => $this->tablerow_class(votes::getUserPollData($vote['ID'])),
                             'poll_ID' => $vote['ID'], 
-                            'time_end' => $vote['time_end']);
+                            'time_end' => $vote['time_end'],
+                            'full_vote_btn' => (strtotime($vote['time_end'])-  microtime(true)) > 0 ? 'Abstimmen' : 'Ansehen');
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
         }
         return $result;
     }
     
-    public function generate_vote(){
-        $result = "";
-        $votes = votes::getAllVotesOfGroup(1);  
-        
-        foreach($votes as $vote){
-            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vars);
-        }
-        return $result;
-    }
-    
+//    public function generate_vote(){
+//        $result = "";
+//        $votes = votes::getAllVotesOfGroup(1);  
+//        
+//        foreach($votes as $vote){
+//            new INFO (print_r($vote, TRUE));
+//            $vars = array('vote_title' => $vote['title'], 'vote_text' => $vote['text'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end'], 'iframe_link' => $vote['iframe_link']);
+//            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vars);
+//            
+//        }
+//        return $result;
+//    }
+   
     public function get_coverpage(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_cover/cover.tpl'), array());}
 
@@ -78,7 +81,7 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars['js'] = $this->js(); 
         $vars['css'] = $this->css();       
         $vars['votelist'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->generate_votelist() : $this->get_coverpage() ;
-        $vars['vote'] = $this->generate_vote();
+//        $vars['vote'] = $this->generate_vote();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';

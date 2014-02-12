@@ -34,13 +34,14 @@ class votes {
         $res = $res->next();
         $result = array();
         $result['poll_ID'] = $poll_ID;
-        $result['count'] = $res['count'];
+        $result['count'] = $res['count'] >= 1 ? $res['count'] : 1;
         //yes
         $res = $con->prepare(  'selVoteBy_count',
                                 'SELECT COUNT(*) as "count" FROM `uvote_data` WHERE `poll_ID` = ? AND choice = 1;',
                                 array($poll_ID));
         $res = $res->next();
         $result['yes'] = $res['count'];
+        
         $result['yes_perc'] = $res['count'] / $result['count'];
         //no
         $res = $con->prepare(  'selVoteBy_count',
@@ -60,6 +61,10 @@ class votes {
         return $return_as_json ? JsonResult::toString($result) : $result;
     }
     
+    public static function get_bar_bt_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
+
+
     public static function get_voteinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByID',
@@ -87,14 +92,14 @@ class votes {
             
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVote',
-                                'SELECT * FROM `uvote_data` WHERE `poll_ID` = ? AND user_ID = ?;',
-                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id));
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND time_end < CURDATE();',
+                                array($poll_ID));
          if ($res->next()){
-             throw new ERROR('You already voted!');}
+             throw new ERROR('Your rights have expired!');}
                      
         $res = $con->prepare(   'insertVote',
-                                'INSERT INTO uvote_data
-                                 VALUES (?, ?, ?);',
+                                'REPLACE uvote_data
+                                 VALUES (?, ?, ?, 0);',
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
@@ -115,9 +120,8 @@ class votes {
     
     public static function open_vote($poll_ID){
         $vote = votes::getVoteOfGroup($poll_ID);
-        new INFO(print_r($vote, true));
-        $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
-        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vars);
+//        $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
+        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vote);
         return $result;
     }
 }
