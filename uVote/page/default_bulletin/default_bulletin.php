@@ -53,8 +53,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(2));
         $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(3));
         $vars = array();
-        $vars['bars_party'] = $this->bars_party();
-        $vars['bars_user'] =  $poll_expired ? '' : $this->bars_user();
+        $vars['bars_party'] = $poll_expired ? '' : $this->bars_party();
+        $vars['bars_user'] =  $this->bars_user();
         $vars['bars_bt'] = $this->bars_bt();
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();

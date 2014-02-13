@@ -5,4 +5,5 @@ ${party}
           <div class="bar bar-danger" style="width: ${party_no}%;"></div>
           <div class="bar bar-info" style="width: ${party_ent}%;"><p></p></div>
         </div>
+        ${choice}
 </div>

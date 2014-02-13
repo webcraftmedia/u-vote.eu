@@ -75,16 +75,7 @@ class votes {
     }
     
     public static function get_barsperparty($poll_ID){
-        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
-        $pbpp = array();
-        $part = $con->prepare(  'selVoteByPoll_ID',
-                                'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ?;',
-                                array($poll_ID));
-
-        while ($result = $part->next()){            
-            $pbpp[] = $result;}
-        return $pbpp;
-    }
+        return \DBD\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));}
     
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
@@ -99,7 +90,7 @@ class votes {
                      
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
-                                 VALUES (?, ?, ?, 0);',
+                                 VALUES (?, ?, ?, 0, NOW());',
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
