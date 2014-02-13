@@ -1,8 +1,9 @@
 <input type="text" id="vote_title" placeholder="${vote_title}"/>
+<input type="text" id="iframe_link" placeholder="${iframe_link}"/>
 <input type="text" id="poll_ID" placeholder="${poll_ID}"/>
 <br>
 <br>
-<h4>Eingebracht durch</h4>
+<!-- <h4>Eingebracht durch</h4>
 <label><input type="checkbox" id="checkbox_breg" style="margin-top: -1px;">BReg</label>
 <label><input type="checkbox" id="checkbox_cdu" style="margin-top: -1px;">CDU</label>
 <label><input type="checkbox" id="checkbox_csu" style="margin-top: -1px;">CSU</label>
@@ -33,7 +34,7 @@
 <label><input type="checkbox" id="checkbox_Verteidigungspolitik" style="margin-top: -1px;">Verteidigungspolitik</label>
 <label><input type="checkbox" id="checkbox_Wirtschaftspolitik" style="margin-top: -1px;">Wirtschaftspolitik</label>
 <label><input type="checkbox" id="checkbox_Europapolitik" style="margin-top: -1px;">Europapolitik</label>
-
+-->
 
 
 
@@ -42,7 +43,7 @@
 <h4>poll end</h4>
 <input type="text" placeholder="JJJJ-TT-MM"/> - 00:00
 
-<div id="user_main" style="border: 2px solid #ccc; right: 0px; position: fixed; padding: 0px; padding-right: 10px; width: 35%; top: 50px; bottom: 50px; overflow-y: scroll;">                  
+<!-- <div id="user_main" style="border: 2px solid #ccc; right: 0px; position: fixed; padding: 0px; padding-right: 10px; width: 35%; top: 50px; bottom: 50px; overflow-y: scroll;">                  
 <div style="margin-right: 10px;">
     <img src="${frontend_logos}logo2.png" style="float: right" height="100%" width="200px"/>
             <h5>Auf einen Blick</h5>
@@ -69,6 +70,6 @@
                poll_ID="${poll_ID}"><font 
                size="3">Enthaltung</font></a> 
         </div>
-</div>
+</div> -->
 <br>
 <a class="btn btn-primary" id="vote_data_submit">Submit</a>

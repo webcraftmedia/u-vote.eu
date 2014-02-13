@@ -61,6 +61,13 @@ class votes {
         return $return_as_json ? JsonResult::toString($result) : $result;
     }
     
+    public static function get_all_votes(){
+        $res = \DBD\UVOTE_DATA_ALL_VOTES::Q1();
+        $votes = mysql_query($res);
+        $result = mysql_num_rows($votes);
+        return $result;
+    }
+    
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     
@@ -95,6 +102,15 @@ class votes {
                                 'REPLACE uvote_data
                                  VALUES (?, ?, ?, 0, NOW());',
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
+        return JsonResult::ok();
+    }
+    
+    public static function write_poll($ID, $title, $iframe_link ){    
+        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());                    
+        $res = $con->prepare(   'insertPoll',
+                                'INSERT INTO uvote_votes
+                                 VALUES (?, ?, ?);',
+                                array($ID, $title, $iframe_link));   
         return JsonResult::ok();
     }
     

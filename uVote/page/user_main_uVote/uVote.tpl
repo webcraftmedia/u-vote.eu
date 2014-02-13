@@ -1,3 +1,4 @@
+${votes_all}
 <img src="${frontend_logos}logo2.png"/>
 <form>
     <br />

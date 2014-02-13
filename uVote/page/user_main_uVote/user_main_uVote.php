@@ -14,12 +14,17 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
         return $pbpp;
     }
     
+    private static function user_all_votes(){
+        $res = votes::get_all_votes();
+        return $res;
+    }
+    
     public function html(){ 
         $poll_data = array();
         $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(1));
         $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(2));
         $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(3));
-        $vars['votes_overall'] = $this->votes_overall();
+        
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id='; 
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_uVote/uVote.tpl'),$vars);
     }
