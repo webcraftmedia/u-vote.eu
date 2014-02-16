@@ -1,3 +1,10 @@
 <div id="statistics_uvote_users">
-${choices_user_ID}
+    <table>
+        <tr>
+            <th>Party</th>
+            <th>Match</th>
+            <th>Missmatch</th>    
+        </tr>
+        ${choices_user_ID}
+    </table>
 </div>

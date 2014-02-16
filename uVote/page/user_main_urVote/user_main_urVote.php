@@ -2,15 +2,20 @@
 class user_main_urVote extends SYSTEM\PAGE\Page { 
     
     private function user_per_party_overall(){
-        $vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
-        return print_r(array(\SYSTEM\SECURITY\Security::getUser()->id,$vars), TRUE);
-                
-//        if (!$vars['bt_total']){
-//            return 'no data yet';}
-//        $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
-//        $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
-//        $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);           
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_bt.tpl'), $vars);
+        //$vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
+        $result = '';
+        $con = new \SYSTEM\DB\Connection();
+        $res = $con->prepare(   'test',
+                                'SELECT party, sum(case when uvote_data.choice = uvote_votes_per_party.choice then 1 else 0 end) class_MATCH,
+                                               sum(case when uvote_data.choice != uvote_votes_per_party.choice then 1 else 0 end) class_MISSMATCH 
+                                FROM uvote_data INNER JOIN uvote_votes_per_party 
+                                    ON uvote_data.poll_ID = uvote_votes_per_party.poll_ID 
+                                WHERE user_ID = ? GROUP BY party;',
+                                array(\SYSTEM\SECURITY\Security::getUser()->id));
+        while($row = $res->next()){
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/urvoteparties.tpl'), $row);;
+        }
+        return $result;        
     }
     
     public function html(){
