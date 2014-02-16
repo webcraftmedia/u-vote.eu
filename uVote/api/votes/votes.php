@@ -62,10 +62,8 @@ class votes {
     }
     
     public static function get_all_votes(){
-        $res = \DBD\UVOTE_DATA_ALL_VOTES::Q1();
-        $votes = mysql_query($res);
-        $result = mysql_num_rows($votes);
-        return $result;
+        $res = \DBD\UVOTE_DATA_CHOICE_OVERALL::QA();
+        return $res;
     }
     
     public static function get_bar_bt_per_poll($poll_ID){

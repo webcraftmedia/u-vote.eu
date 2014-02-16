@@ -5,9 +5,16 @@
         <li><a href="#tab_myVote" action="user_main_myVote">myVote</a></li>        
     </ul>
     <div class="tab-content">        
-        <div class="tab-pane active" id="tab_uVote"></div>
+        <div class="tab-pane active" id="tab_uVote">${uVote}</div>
         <div class="tab-pane" id="tab_urVote" style="overflow: hidden;"></div>
         <div class="tab-pane" id="tab_myVote"></div>
     </div>
 </div>
-${uVote}
+<img src="${frontend_logos}logo2.png"/>
+<form>
+    <br />
+    <h4>uVote BETA Feedback</h4>
+    <textarea id="feedback_text">Sag uns was dich stört!</textarea>
+    <br />
+    <input type="submit" id="feedback_submit" />
+</form>
