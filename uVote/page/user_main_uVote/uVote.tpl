@@ -1,7 +1,6 @@
 <table>
     <tr>
-        <th>Choice</th>
-        <th>Vote Count</th>
+    <th>${uVote_overall_votes_title}</th>
     </tr>
     ${votes_all}
 </table>

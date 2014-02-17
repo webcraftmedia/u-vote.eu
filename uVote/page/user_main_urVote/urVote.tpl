@@ -1,10 +1,13 @@
 <div id="statistics_uvote_users">
-    <table>
+    
+    <table style="border-collapse: separate;
+        border-spacing: 10px 5px;">
         <tr>
-            <th>Party</th>
-            <th>Match</th>
-            <th>Missmatch</th>    
+        <h5>${urVote_title}</h5>
         </tr>
+        <tr>
+        <h6>${urVote_user_party_compare}</h6>
         ${choices_user_ID}
+        </tr>
     </table>
 </div>

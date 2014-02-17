@@ -1,4 +1,4 @@
 <tr>
-    <td>${choice}</td>
-    <td>${count}</td>
+    <td><span class="badge badge-info">${choice}</span></td>
+    <td><span class="badge badge-success">${count}</span></td>
 </tr>
