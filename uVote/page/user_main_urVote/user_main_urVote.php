@@ -3,7 +3,6 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
     
     private function user_per_party_overall(){
         $vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));
-
         return print_r($vars, TRUE);
                 
 //        if (!$vars['bt_total']){
@@ -16,8 +15,7 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
     
     public function html(){
         $vars = array();
-        $vars['choices_user_ID'] = $this->user_per_party_overall();
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id='; 
+        $vars['choices_user_ID'] = $this->user_per_party_overall();        
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/urVote.tpl'),$vars);
     }
   

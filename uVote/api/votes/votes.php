@@ -3,6 +3,9 @@
 class votes {
     public static function getAllVotesOfGroup($groupid){
         return \DBD\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
+        
+    public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
+        return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
 
      public static function getVoteOfGroup($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
@@ -70,7 +73,8 @@ class votes {
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     
     public static function get_user_per_party_overall($user_ID){
-        return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));}
+        return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        
+    }
 
 
     public static function get_voteinfo($poll_ID){

@@ -9,6 +9,10 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         return $res->affectedRows() == 0 ? \SYSTEM\LOG\JsonResult::error(new \SYSTEM\LOG\WARNING("no data added")) : \SYSTEM\LOG\JsonResult::ok();
         new \SYSTEM\LOG\INFO($vote);
     }
+    
+    public static function sai_mod_saimod_uvote_vote_edit_action_insertPartyChoice ($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
+        $vars = votes::insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice);       
+    }
 
     public static function sai_mod_saimod_uvote_vote_edit(){       
         $vars = array();

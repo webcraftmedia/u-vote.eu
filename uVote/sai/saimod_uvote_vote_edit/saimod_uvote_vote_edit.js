@@ -1,7 +1,6 @@
 function init_saimod_uvote_vote_edit(){
     
     $('#vote_data_submit').click(function() {
-        alert ('bla');
         vote_data_edit(array(
                 $('#vote_title').val(title),
                 $('#iframe_link').val(iframe_link),
