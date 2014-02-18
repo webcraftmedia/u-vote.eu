@@ -7,7 +7,7 @@ class votes {
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
 
-     public static function getVoteOfGroup($poll_ID){
+    public static function getVoteOfGroup($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ? LIMIT 1;',
@@ -24,8 +24,7 @@ class votes {
                                 'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ?;',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
         $result = $res->next();                                        
-        return $result['choice'];                
-            
+        return $result['choice'];            
     }
     
     public static function get_barsperusers($poll_ID,$return_as_json = true){
@@ -75,7 +74,6 @@ class votes {
     public static function get_user_per_party_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        
     }
-
 
     public static function get_voteinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
@@ -128,11 +126,8 @@ class votes {
         return JsonResult::ok();
     }
     
-
-    
     public static function open_vote($poll_ID){
         $vote = votes::getVoteOfGroup($poll_ID);
-//        $vars = array('vote_text' => $vote['text'], 'vote_title' => $vote['title'], 'vote_init' => $vote['initiative'], 'poll_ID' => $vote['ID'], 'time_end' => $vote['time_end']);
         $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vote);
         return $result;
     }
