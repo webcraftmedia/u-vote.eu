@@ -78,6 +78,8 @@ $(document).ready(function() {
             $(this).tab('show');
             load_user_main_tab($(this).attr('action'));        
         });
+        
+        //load_user_main_tab('user_main_uVote');
     });
         
 });

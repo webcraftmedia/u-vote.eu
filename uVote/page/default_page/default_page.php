@@ -8,8 +8,7 @@ class default_page extends SYSTEM\PAGE\Page {
                 '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PVALIDATION(),'jqBootstrapValidation.js').'"></script>'.
                 '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.md5.js').'"></script>'.
                 '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.sha1.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery.countdown\jquery.countdown.js').'"></script>'.
-                '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/timer.js').'"></script>'.
+                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery.countdown\jquery.countdown.js').'"></script>'.                
                 '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/loadtexts.js').'"></script>';
                 '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/account_create.js').'"></script>';
     }
@@ -35,14 +34,9 @@ class default_page extends SYSTEM\PAGE\Page {
         $result = "";
         $votes = votes::getAllVotesOfGroup(1);       
         foreach($votes as $vote){
-            $vars = array(  'vote_title' => $vote['title'],
-                            'vote_text' => $vote['text'], 
-                            'vote_init' => $vote['initiative'],
-                            'vote_class' => $this->tablerow_class(votes::getUserPollData($vote['ID'])),
-                            'poll_ID' => $vote['ID'], 
-                            'time_end' => $vote['time_end'],
-                            'full_vote_btn' => (strtotime($vote['time_end'])-  microtime(true)) > 0 ? 'Abstimmen' : 'Ansehen');
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vars);
+            $vote['vote_class'] = $this->tablerow_class(votes::getUserPollData($vote['ID']));
+            $vote['full_vote_btn'] = (strtotime($vote['time_end'])-  microtime(true)) > 0 ? 'Abstimmen' : 'Ansehen';            
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
         }
         return $result;
     }
@@ -61,8 +55,7 @@ class default_page extends SYSTEM\PAGE\Page {
 //    }
    
     public function get_coverpage(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_cover/cover.tpl'), array());}
-
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/cover.tpl'), array());}
 
     public function getloggedinform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loggedinform.tpl'),array());} 
@@ -88,7 +81,6 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
 
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.tpl'), $vars);
-        
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.tpl'), $vars);        
     }
 }
