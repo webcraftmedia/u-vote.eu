@@ -65,7 +65,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                 default: array('','','');
             }
             
-            return '<h4>Stimme hier ab</h4>
+            return '<h4>Ändere deine bereits abgegebene Stimme hier ab</h4>
                                      <a class="btn '.$classes[0].' btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
