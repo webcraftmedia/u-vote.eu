@@ -7,5 +7,5 @@ class UVOTE_GENERATE_VOTELIST extends \SYSTEM\DB\QP {
 //pg            
 '',
 //mys
-'SELECT * FROM `uvote_votes` WHERE `group` = ?;'
+'SELECT * FROM `uvote_votes` WHERE `group` = ? ORDER BY (time_end-time_start) ASC;'
 );}}
