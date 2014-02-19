@@ -20,41 +20,32 @@
 
     </head>
 
-    <body style="">
-        <div class="navbar navbar-inverse navbar-fixed-top" style="width: 100%">
-            <div class="navbar-inner" style="width: 100%">
-                <div class="container" style="width: 95%">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="" id="menu_uvote">uVote</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">              
+    <body style="padding-top: 50px;">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner" style="padding-left: 50px; padding-right: 50px;">                
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="" id="menu_uvote">uVote</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">              
 <!--
                             <li><a href="#" url="?action=myvote">myVote</a></li>
                             <li><a href="#" url="?action=Dokumentation">Dokumentation</a></li>
                             <li><a href="#" url="?action=Download">Download</a></li>
 -->              
-                        </ul>
-              
-                        ${loginform}
-            
-                    </div>
-                </div>
+                    </ul>              
+                    ${loginform}
+                </div>                
             </div>
-        </div>
-        <div class="box" style="margin-top: 0; clear: both;">
-            <div id="site-content" style="padding: 0; margin: 0; margin-left: 40px;">         
-                <div id="user_main" style="padding: 0px; width: 50%; float: left;"></div>
-                <div id="list" style="padding: 0px; width: 50%; float: right;">            
-                    ${votelist}
-                </div>
-            </div>  
-        </div>
-        <div id="wrap">
-            <div class="navbar navbar-inverse navbar-fixed-bottom" style="height: 30px; text-align: center; padding-top: 7px;"></div>
-        </div>
+        </div>        
+        <div id="site-content" style="padding: 0; margin: 0; margin-left: 40px;">         
+            <div id="user_main" style="padding: 0px; width: 50%; float: left;"></div>
+            <div id="list" style="padding: 0px; width: 50%; float: right;">            
+                ${votelist}
+            </div>
+        </div>        
     </body>
 </html>
