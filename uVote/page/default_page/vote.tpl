@@ -1,16 +1,22 @@
-<table style="margin-bottom: 5px; float: left; width: 95%; height: 100px; border: solid lightgray 1px; background: beige;">     
+<table style="margin-bottom: 5px; width: 95%; height: 100px; border: solid lightgray 1px; background: beige;">
     <tr>        
         <td style="padding: 5px;">            
             <h4>${title}</h4>
             Nr.${ID}
             <a class="btn btn-primary btn-small btn_vote" style="float:right" poll_ID="${ID}">${full_vote_btn}</a>
         </td>
-        <td class="${bt_vote_class}" style="width: 75px; margin-top: 10px; border-left: 1px solid lightgray;">            
-            cdu<span class="badge badge-success" style="float:right;">5</span><br/>
-            csu<span class="badge badge-important" style="float:right;">5</span><br/>
-            spd<span class="badge" style="float:right;">5</span><br/>
-            grüne<span class="badge badge-success" style="float:right;">5</span><br/>
-            linke<span class="badge badge-important" style="float:right;">5</span>
+        <td class="${bt_vote_class}" style="width: 80px; margin-top: 10px; border-left: 1px solid lightgray;">            
+            cdu<span class="badge badge-success" style="float:right;">123</span><br/>
+            csu<span class="badge badge-important" style="float:right;">123</span><br/>
+            spd<span class="badge" style="float:right;">123</span><br/>
+            grüne<span class="badge badge-success" style="float:right;">123</span><br/>
+            linke<span class="badge badge-important" style="float:right;">123</span>
+        </td>
+        <td class="" style="width: 30px; margin-top: 10px; border-left: 1px solid lightgray;">
+            uv
+            <span class="badge badge-success" style="float:right;">123</span>
+            <span class="badge badge-important" style="float:right;">123</span>
+            <span class="badge" style="float:right;">123</span>
         </td>
         <td class="${vote_class}" style="width: 20px; margin-top: 10px; border-left: 1px solid lightgray;">            
         </td>
@@ -20,5 +26,5 @@
                 <tr id="time_left" style="height: ${time_left}%; background: blue; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>
             </table>
         </td>
-    </tr>            
+    </tr>
 </table>
