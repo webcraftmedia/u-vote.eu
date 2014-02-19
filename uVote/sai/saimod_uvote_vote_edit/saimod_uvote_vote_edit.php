@@ -15,11 +15,38 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     }
 
     public static function sai_mod_saimod_uvote_vote_edit(){       
-        $vars = array();
+        /*$vars = array();
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(dirname(__FILE__).'/main.tpl', $vars);}     
+        return \SYSTEM\PAGE\replace::replaceFile(dirname(__FILE__).'/main.tpl', $vars);*/
         
-    public static function html_li_menu(){return '<li><a href="#" saimenu="saimod_uvote_vote_edit">votemask</a></li><li class="divider"></li>';}
+        $result = '';
+        $votes = votes::getAllVotesOfGroup(1);               
+        foreach($votes as $vote){
+            $time_remain = strtotime($vote['time_end'])-  microtime(true);
+            $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
+            $vote['vote_class'] = self::tablerow_class(votes::getUserPollData($vote['ID']));
+            $vote['bt_vote_class'] = self::tablerow_class($vote['bt_choice']);            
+            $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
+            $vote['time_done'] = 100-$vote['time_left'];            
+            $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/vote.tpl'), $vote);
+        }
+        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('list' => $result));
+    }
+    
+    private static function tablerow_class($choice){
+        switch($choice){
+            case 1:
+                return 'pro';
+            case 2:
+                return 'contra';
+            case 3:
+                return 'ent';
+            default:
+                return '';
+        }        
+    }
+        
+    public static function html_li_menu(){return '<li><a href="#" saimenu="saimod_uvote_vote_edit">Edit Votes</a></li><li class="divider"></li>';}
     public static function right_public(){return false;}    
     public static function right_right(){return \SYSTEM\SECURITY\Security::check(\SYSTEM\SECURITY\RIGHTS::SYS_SAI);}
     public static function sai_mod_saimod_uvote_vote_edit_flag_js(){return \SYSTEM\LOG\JsonResult::toString(array(
