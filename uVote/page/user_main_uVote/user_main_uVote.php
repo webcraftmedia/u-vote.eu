@@ -1,5 +1,6 @@
 <?php
 class user_main_uVote extends SYSTEM\PAGE\Page {    
+   
     private function votes_all(){
         $votes = votes::get_all_votes();
         $result = '';

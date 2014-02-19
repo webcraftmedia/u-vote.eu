@@ -9,5 +9,9 @@
         <h6>${urVote_user_party_compare}</h6>
         ${choices_user_ID}
         </tr>
+        
+        <tr>
+        ${choices_bt_to_user}
+        </tr>
     </table>
 </div>

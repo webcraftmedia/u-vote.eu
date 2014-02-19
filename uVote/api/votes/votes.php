@@ -75,7 +75,9 @@ class votes {
     public static function get_user_per_party_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        
     }
-
+    public static function get_user_to_bt_overall($user_ID){
+        return \DBD\UVOTE_DATA_USER_TO_BT::QA(array($user_ID));        
+    }
 
     public static function get_voteinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
