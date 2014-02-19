@@ -1,12 +1,19 @@
-<table class="table" style="display: table; margin-bottom: 5px; float: left; width: 95%; height: 100px;"> 
-    <div style="margin: 0; margin-top: 5px; margin-bottom: 8px;">    
+<table style="margin-bottom: 5px; float: left; width: 95%; height: 100px; border: solid lightgray 1px; background: beige;">     
     <tr>        
-        <td class="" style="">
-            <a class="btn btn-primary btn-small btn_vote" style="float:right" poll_ID="${ID}">${full_vote_btn}</a>
+        <td style="padding: 5px;">            
             <h4>${title}</h4>
-             Nr.${ID}         
+            Nr.${ID}
+            <a class="btn btn-primary btn-small btn_vote" style="float:right" poll_ID="${ID}">${full_vote_btn}</a>
         </td>
-        <td class="${vote_class}" style="width: 20px; margin-top: 10px; border-left: 2px solid black;"></td>
+        <td class="${bt_vote_class}" style="width: 75px; margin-top: 10px; border-left: 1px solid lightgray;">            
+            cdu<span class="badge badge-success" style="float:right;">5</span><br/>
+            csu<span class="badge badge-important" style="float:right;">5</span><br/>
+            spd<span class="badge" style="float:right;">5</span><br/>
+            grüne<span class="badge badge-success" style="float:right;">5</span><br/>
+            linke<span class="badge badge-important" style="float:right;">5</span>
+        </td>
+        <td class="${vote_class}" style="width: 20px; margin-top: 10px; border-left: 1px solid lightgray;">            
+        </td>
         <td style="margin: 0; padding: 0; width: 3px;" >
             <table class="poll_time" time="${time_end}" style="width: 100%; height: 100%; margin: 0; padding: 0;">
                 <tr id="time_done" style="height: ${time_done}%; background: white; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>

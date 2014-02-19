@@ -37,6 +37,7 @@ class default_page extends SYSTEM\PAGE\Page {
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
             $vote['vote_class'] = $this->tablerow_class(votes::getUserPollData($vote['ID']));
+            $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
             $vote['full_vote_btn'] = $time_remain > 0 ? 'Abstimmen' : 'Ansehen';
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
