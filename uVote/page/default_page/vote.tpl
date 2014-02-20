@@ -6,11 +6,11 @@
             <a class="btn btn-primary btn-small btn_vote" style="float:right" poll_ID="${ID}">${full_vote_btn}</a>
         </td>
         <td class="${bt_vote_class}" style="width: 80px; margin-top: 10px; border-left: 1px solid lightgray;">            
-            cdu<span class="badge badge-success" style="float:right;">123</span><br/>
-            csu<span class="badge badge-important" style="float:right;">123</span><br/>
-            spd<span class="badge" style="float:right;">123</span><br/>
-            grüne<span class="badge badge-success" style="float:right;">123</span><br/>
-            linke<span class="badge badge-important" style="float:right;">123</span>
+            <img src="${frontend_logos}icon_cdu.png" width="30"/><span class="badge badge-success" style="float:right;">123</span><br/>
+            <img src="${frontend_logos}icon_csu.png" width="30"/><span class="badge badge-important" style="float:right;">123</span><br/>
+            <img src="${frontend_logos}icon_spd.png" width="30"/><span class="badge" style="float:right;">123</span><br/>
+            <img src="${frontend_logos}icon_gruene.png" width="30"/><span class="badge badge-success" style="float:right;">123</span><br/>
+            <img src="${frontend_logos}icon_linke.png" width="30"/><span class="badge badge-important" style="float:right;">123</span>
         </td>
         <td class="" style="width: 30px; margin-top: 10px; border-left: 1px solid lightgray;">
             uv
