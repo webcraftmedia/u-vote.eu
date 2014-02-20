@@ -53,6 +53,7 @@ $(document).ready(function() {
     });
     
     $('#user_main').load('./?action=user_main', function(){
+        
         $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
         {
             preventSubmit: true,            
@@ -69,8 +70,8 @@ $(document).ready(function() {
             }            
         });
         $('#feedback_submit').click(function (data){
-            
-            send_feedback($('#feedback_text').val());
+            var test = $('textarea#feedback_text').val();
+            send_feedback(test);
             
         });
         $('#tabs_user_main a').click(function (e) {
@@ -148,16 +149,30 @@ function vote_click (poll_ID, vote) {
 
 function send_feedback (feedback) {
     
-    $.getJSON('./api.php?call=vote&action=feedback&feedback=' + feedback, function(data) {
-        console.log("hallo3672rt2ziuzir");
-        var items = []; 
-        alert(feedback);
-        if(data.status == true){
+//    $.getJSON('./api.php?call=vote&action=feedback&feedback=' + feedback, function(data) {
+//        console.log("hallo3672rt2ziuzir");
+//        var items = []; 
+//        alert(feedback);
+//        if(data.status == true){
+//            alert("success");
+//        } else {
+//            alert(data.result.message);
+//        }
+//    }); 
+
+$.ajax({
+        url: 'http://mojotrollz.eu/web/uVote/api.php',
+       // contentType : "application/json; charset=utf-8",
+        data : {
+            call: 'vote',
+            action: 'feedback',
+            feedback: feedback
+        },
+        dataType : 'json',
+        type : 'POST' ,
+        success: function(data) {
             alert("success");
-        } else {
-            alert(data.result.message);
-        }
-    }); 
+        }});
 }
 
 function open_vote (poll_ID) {

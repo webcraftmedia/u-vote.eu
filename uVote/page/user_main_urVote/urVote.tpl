@@ -5,6 +5,7 @@
         <tr>
         <h5>${urVote_title}</h5>
         </tr>
+         
         <tr>
         <h6>${urVote_user_party_compare}</h6>
         ${choices_user_ID}
@@ -12,6 +13,7 @@
         
         <tr>
         ${choices_bt_to_user}
-        </tr>
+        </tr>               
     </table>
+        ${poll_compare}
 </div>
