@@ -29,6 +29,7 @@ class default_page extends SYSTEM\PAGE\Page {
                 return '';
         }        
     }
+    
     public function generate_votelist(){
         
         $result = array('','');
@@ -41,7 +42,9 @@ class default_page extends SYSTEM\PAGE\Page {
             $vote['full_vote_btn'] = $time_remain > 0 ? 'Abstimmen' : 'Ansehen';
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
+            
             if($time_remain > 0){
+                
                 $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
             } else {
                 $result[1] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
@@ -68,11 +71,11 @@ class default_page extends SYSTEM\PAGE\Page {
     public function html(){
         $vars = array();               
         $vars['js'] = $this->js(); 
-        $vars['css'] = $this->css();       
+        $vars['css'] = $this->css();
         $vars['votelist'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->generate_votelist() : $this->get_coverpage() ;
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';        
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
 

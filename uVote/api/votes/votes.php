@@ -4,8 +4,9 @@ class votes {
     public static function getAllVotesOfGroup($groupid){
         return \DBD\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
     
-    public static function countAllPolls($group){
-        return \DBD\UVOTE_DATA_COUNT_VOTES::QP($group);}
+    public static function countAllPolls(){
+        $res = \DBD\UVOTE_DATA_COUNT_VOTES::QQ();
+    return $res;}
         
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
