@@ -42,7 +42,7 @@
             </div>
         </div>        
         <div id="site-content" style="padding: 0; margin: 0; margin-left: 40px;">         
-            <div id="user_main" style="padding: 0px; width: 50%; float: left;"></div>
+            <div id="user_main" style="position: absolute; padding: 0px; width: 50%;"></div>
             <div id="list" style="padding: 0px; width: 50%; float: right;">            
                 ${votelist}
             </div>

@@ -21,12 +21,16 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
                                 array(\SYSTEM\SECURITY\Security::getUser()->id));
         while($row = $res->next()){
             $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH']+1)*100,2);
+            
             $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/bt_to_user_overall.tpl'), $row);;
         }
-        return $result;        
+        return $result;   
+        $row['votes_cast'] = round(($row['class_MATCH']+$row['class_MISSMATCH']),2);
     }
     
-    private function user_per_party_overall(){
+
+
+        private function user_per_party_overall(){
         //$vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
         $result = '';
         $con = new \SYSTEM\DB\Connection();
@@ -46,7 +50,7 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
     
     public function html(){
         $vars = array();
-        $vars['poll_compare'] = $this->count_all_polls();
+//        $vars['poll_compare'] = $this->count_all_polls();
         $vars['choices_user_ID'] = $this->user_per_party_overall();
         $vars['choices_bt_to_user'] = $this->user_to_bt();      
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';

@@ -72,6 +72,11 @@ class votes {
         return $res;
     }
     
+    public static function get_all_votes_bt(){
+        $res = \DBD\UVOTE_DATA_CHOICE_BT_OVERALL::QA();
+        return $res;
+    }
+    
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     

@@ -14,6 +14,5 @@
         <tr>
         ${choices_bt_to_user}
         </tr>               
-    </table>
-        ${poll_compare}
+    </table>       
 </div>
