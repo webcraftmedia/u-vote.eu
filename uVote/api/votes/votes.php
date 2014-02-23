@@ -77,6 +77,9 @@ class votes {
         return $res;
     }
     
+    public static function get_user_temp_votes($user_ID){
+        return \DBD\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
+    
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     

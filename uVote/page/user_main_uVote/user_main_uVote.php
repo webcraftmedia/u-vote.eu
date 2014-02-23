@@ -37,7 +37,7 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
                     $vote['bt_choice'] = 'ENTH';
                     break;
                 case 0:
-                    $vote['bt_choice'] = 'OPEN';
+                    $vote['bt_choice'] = 'OFFEN';
             }
             //$vote['count'];
             //$vote['choice'];

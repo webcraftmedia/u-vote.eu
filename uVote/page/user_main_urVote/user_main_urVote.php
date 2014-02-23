@@ -1,11 +1,13 @@
 <?php
 class user_main_urVote extends SYSTEM\PAGE\Page { 
     
-    private function count_all_polls (){
-        $result = '';
-        $vars = votes::countAllPolls(); 
-        new INFO(print_r($vars, true));       
-        return $result;        
+    private function user_temp_votes (){
+        $vars = votes::get_user_temp_votes(\SYSTEM\SECURITY\Security::getUser()->id);
+        $v = $vars['voted'];
+        $nv = $vars['not_voted'];
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/all_polls.tpl'),
+                array(  'vote_perc'=> round($v/($nv+$v)*100,0),
+                        'no_vote_perc'=> round($nv/($nv+$v)*100,0)));
     }
 
         private function user_to_bt(){
@@ -22,7 +24,7 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
         while($row = $res->next()){
             $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH']+1)*100,2);
             
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/bt_to_user_overall.tpl'), $row);;
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/bt_to_user_overall.tpl'), $row);
         }
         return $result;   
         $row['votes_cast'] = round(($row['class_MATCH']+$row['class_MISSMATCH']),2);
@@ -54,6 +56,7 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
         $vars['choices_user_ID'] = $this->user_per_party_overall();
         $vars['choices_bt_to_user'] = $this->user_to_bt();      
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
+        $vars['user_temp_votes'] = $this->user_temp_votes();
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/urVote.tpl'),$vars);
