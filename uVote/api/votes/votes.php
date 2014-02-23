@@ -87,6 +87,9 @@ class votes {
         return \DBD\UVOTE_DATA_USER_TO_BT::QA(array($user_ID));        
     }
 
+    public static function get_users_choice_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
+    
     public static function get_voteinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByID',
@@ -98,6 +101,11 @@ class votes {
     
     public static function get_barsperparty($poll_ID){
         return \DBD\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));}
+        
+    public static function get_party_choice($poll_ID, $party){
+        $res = \DBD\UVOTE_DATA_PARTY_CHOICE_PER_POLL::Q1(array($poll_ID, $party));
+        return $res;                            
+    }
     
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){

@@ -4,5 +4,5 @@
     </td>
     <td><span class="badge badge-success">${class_MATCH}</span></td>
     <td><span class="badge badge-important">${class_MISSMATCH}</span></td>
-    <td><span class="badge">${match_percentage}</span></td>
+    <td><span class="badge">${match_percentage}%</span></td>
 </tr>    
