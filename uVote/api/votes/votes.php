@@ -83,6 +83,12 @@ class votes {
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     
+    public static function get_user_count(){
+        return \DBD\UVOTE_DATA_USER_COUNT_USERS::Q1(array());}
+    
+    public static function get_count_user_votes_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($poll_ID));}
+    
     public static function get_user_per_party_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        
     }

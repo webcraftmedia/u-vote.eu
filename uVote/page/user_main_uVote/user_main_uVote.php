@@ -46,10 +46,17 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
         return $result;        
     } 
     
+    private function user_count(){
+        $vars = votes::get_user_count();       
+        return $vars['count'];
+    }
+
+
     public function html(){                 
         $vars = array();
         $vars['votes_all'] = $this->votes_all();
         $vars['votes_all_bt'] = $this->votes_all_bt();
+        $vars['user_count'] = $this->user_count();
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_uVote/uVote.tpl'),$vars);

@@ -2,6 +2,9 @@
     <div>
        ${bars_user}
     </div>
+    <div>
+    ${voice_weight}
+</div>
     <div>   
        <h4>Ergebnis Bundestag</h4>
        ${bars_bt}
@@ -16,6 +19,6 @@
 <div style="float: left;">    
     ${vote_buttons} 
 </div>
-
 <div style="clear: both"></div>
+
    

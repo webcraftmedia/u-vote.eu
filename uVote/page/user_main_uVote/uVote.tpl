@@ -15,5 +15,10 @@
     </span>
     <span style="">  Wie oft der Bundestag 
         <br>  Dafür, Dagegen oder 
-        <br>  Enthaltung gestimmt hat.</span>
+        <br>  Enthaltung gestimmt hat.</span>    
 </div>
+    <div style="clear: both; height: 50px;">
+    </div>
+    <div>
+        <span class="badge badge-info">${user_count}</span> Nutzer auf uVote
+    </div>

@@ -38,6 +38,12 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_bt.tpl'), $vars);
     }
     
+    private function voice_weight(){
+        $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
+        $vars['voteweight'] = 1/$vars['count']*100;      
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);;
+    }
+    
     private function vote_buttons($poll_expired){
         $user_poll = votes::getUserPollData($this->poll_ID);
         if($poll_expired){
@@ -105,6 +111,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['css'] = $this->css();
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
         $vars ['vote_buttons'] =   $this->vote_buttons($poll_expired);
+        $vars['voice_weight'] = $this->voice_weight();
         $vars['poll_ID'] =  $this->poll_ID;
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/bulletin.tpl'),$vars);
