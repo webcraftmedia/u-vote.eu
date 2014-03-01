@@ -7,7 +7,9 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/all_polls.tpl'),
                 array(  'vote_perc'=> round($v/($nv+$v)*100,0),
-                        'no_vote_perc'=> round($nv/($nv+$v)*100,0)));
+                        'no_vote_perc'=> round($nv/($nv+$v)*100,0),
+                        'voted'=> $v,
+                        'not_voted'=> $nv));
     }
 
         private function user_to_bt(){

@@ -13,7 +13,7 @@
         </tr>               
     </table>
     </div>
-        <div style="float: left; padding-left: 50px;">
+        <div style="float: right;">
              ${user_temp_votes}
         </div>
 </div>
