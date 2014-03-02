@@ -14,9 +14,21 @@ class default_page extends SYSTEM\PAGE\Page {
     }
     
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';}
-        
-        
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';}        
+
+    private function get_party_per_poll($choice){
+        switch($choice){
+            case 1:
+                return 'PRO';
+            case 2:
+                return 'CON';
+            case 3:
+                return 'ENT';
+            default:
+                return 'NONE';
+        }           
+    }
+    
     private static function tablerow_class($choice){
         switch($choice){
             case 1:
@@ -91,20 +103,7 @@ class default_page extends SYSTEM\PAGE\Page {
             }
         }
         return $result[0].$result[1];
-    }
-    
-    private function get_party_per_poll($choice){
-        switch($choice){
-            case 1:
-                return 'PRO';
-            case 2:
-                return 'CON';
-            case 3:
-                return 'ENT';
-            default:
-                return 'NONE';
-        }           
-    }
+    }        
 
     public function get_coverpage(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/cover.tpl'), array());}
