@@ -103,8 +103,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['bars_party'] = $vars['bars_user'] = $vars['bars_bt'] = $vars['voice_weight'] = 'Vote to see results!';
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
-        
-        $vars['poll_ID'] =  $this->poll_ID;
+                
         $vars['vote_buttons'] =   $this->vote_buttons($poll_expired,$user_vote);
         
         if($user_vote){
@@ -113,7 +112,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $vars['bars_bt'] = $this->bars_bt();
             $vars['voice_weight'] = $this->voice_weight();
         }
-                
+        
+        $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';                
         
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       

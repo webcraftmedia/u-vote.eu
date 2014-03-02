@@ -1,7 +1,7 @@
 <div style="width: 50%; float: left;">
     
     <h5>Entscheidungsverhalten der uVote Community</h5>
-    <span style="float: left,">
+    <span style="float: left;">
     ${votes_all}
     </span>
     <span style="">  Wie oft die uVote Community 
