@@ -30,47 +30,59 @@ class default_page extends SYSTEM\PAGE\Page {
         }        
     }
     
-    public function generate_votelist(){
-        
+    private static function badge_class($choice){
+        switch($choice){
+            case 1:
+                return 'badge-success';
+            case 2:
+                return 'badge-important';
+            case 3:
+                return '';
+            default:
+                return '';
+        }
+    }
+    
+    public function generate_votelist(){        
         $result = array('','');
         $votes = votes::getAllVotesOfGroup(1);               
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
-            $vote['vote_class'] = $this->tablerow_class(votes::getUserPollData($vote['ID']));            
-            $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
-            $vote['full_vote_btn'] = $time_remain > 0 ? 'Abstimmen' : 'Ansehen';
+            $vote_count = votes::get_count_user_votes_per_poll($vote['ID']);
+            
+            $vote['title'] = utf8_encode($vote['title']);            
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
-            $cdu = votes::get_party_choice($vote['ID'], 'cdu');
-            $vote['cdu'] = $this->get_party_per_poll($cdu['choice']);
-            $vote['choice_class_cdu'] = $this->tablerow_class($cdu['choice']);
-            $csu = votes::get_party_choice($vote['ID'], 'csu');
-            $vote['csu'] = $this->get_party_per_poll($csu['choice']);
-            $vote['choice_class_csu'] = $this->tablerow_class($csu['choice']);
-            $spd = votes::get_party_choice($vote['ID'], 'spd');
-            $vote['spd'] = $this->get_party_per_poll($spd['choice']);
-            $vote['choice_class_spd'] = $this->tablerow_class($spd['choice']);
-            $gruene = votes::get_party_choice($vote['ID'], 'gruene');
-            $vote['gruene'] = $this->get_party_per_poll($gruene['choice']);
-            $vote['choice_class_gruene'] = $this->tablerow_class($gruene['choice']);
-            $linke = votes::get_party_choice($vote['ID'], 'linke');
-            $vote['linke'] = $this->get_party_per_poll($linke['choice']);
-            $vote['choice_class_linke'] = $this->tablerow_class($linke['choice']);
             
-            $uvote = votes::get_users_choice_per_poll($vote['ID']);
-            $vote['uv_vote_class'] = count($uvote) > 0 ? $this->tablerow_class($uvote[0]['choice']) : '';
-                        
-            $vote['uv_pro'] = $vote['uv_con'] = $vote['uv_ent'] = '<2';
-            foreach($uvote as $v){
-                switch($v['choice']){
-                    case 1: $vote['uv_pro'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
-                    case 2: $vote['uv_con'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
-                    case 3: $vote['uv_ent'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
-                    default:
+            $vote['full_vote_btn'] = $time_remain > 0 ? 'Abstimmen' : 'Ansehen';            
+            $vote['uv'] = $vote['bt'] = '';            
+            $vote['uv_count'] = $vote_count['count'] > 4 ? $vote_count['count'] : '< 5';
+            
+            $user_vote = votes::getUserPollData($vote['ID']);
+            if($user_vote){
+                //user vote
+                $vote['vote_class'] = $this->tablerow_class($user_vote);                
+
+                //bt vote
+                $party_votes = votes::get_barsperparty($vote['ID']);
+                $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
+                foreach($party_votes as $pv){
+                    $vote['bt'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_bt.tpl'),
+                                    array(  'party' => $pv['party'],
+                                            'choice' => $this->get_party_per_poll($pv['choice']),
+                                            'choice_class' => $this->tablerow_class($pv['choice'])));                    
+                }                        
+
+                //uvote vote
+                $uvote = votes::get_users_choice_per_poll($vote['ID']);                
+                $vote['uv_vote_class'] = count($uvote) > 0 ? $this->tablerow_class($uvote[0]['choice']) : '';                                
+                foreach($uvote as $v){
+                    $vote['uv'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_uv.tpl'),
+                                    array(  'badge' => self::badge_class($v['choice']),
+                                            'perc' => $v['count'] > 0 ? $v['count']/$vote_count['count']*100 : 0));
                 }
             }
-            $vote['title'] = utf8_encode($vote['title']);
             
             if($time_remain > 0){               
                 $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
@@ -82,7 +94,7 @@ class default_page extends SYSTEM\PAGE\Page {
     }
     
     private function get_party_per_poll($choice){
-            switch($choice){
+        switch($choice){
             case 1:
                 return 'PRO';
             case 2:
@@ -91,12 +103,8 @@ class default_page extends SYSTEM\PAGE\Page {
                 return 'ENT';
             default:
                 return 'NONE';
-        }        
-    
-        
-
+        }           
     }
-
 
     public function get_coverpage(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/cover.tpl'), array());}
