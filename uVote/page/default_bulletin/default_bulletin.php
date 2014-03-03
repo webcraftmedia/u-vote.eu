@@ -40,7 +40,11 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
-        $vars['voteweight'] = 1/$vars['count']*100;      
+        if (!$vars['count']){
+            $vars['voteweight'] = 100;           
+        }
+        else {$vars['voteweight'] = 1/$vars['count']*100;        
+        }            
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);;
     }
     

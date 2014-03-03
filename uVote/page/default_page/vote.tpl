@@ -14,11 +14,15 @@
             <img src="${frontend_logos}icon_gruene.png" width="30"/><span class="badge ${choice_class_gruene}" style="float:right;">${gruene}</span><br/>
             <img src="${frontend_logos}icon_linke.png" width="30"/><span class="badge ${choice_class_linke}" style="float:right;">${linke}</span>
         </td>
-        <td class="${uv_vote_class}" style="width: 35px; height: 100%; border-left: 1px solid lightgray;">          
-            <img src="${frontend_logos}icon_urn.png" width="25"/>
-            <span class="badge badge-success" style="">${uv_pro}</span>
-            <span class="badge badge-important" style="">${uv_con}</span>
-            <span class="badge" style="">${uv_ent}</span>
+        <td class="${uv_vote_class}" style="width: 50px; height: 100%; border-left: 1px solid lightgray;">          
+            <img src="${frontend_logos}icon_urn.png" width="15"/>
+            <div style="float: right"><font size=1>uVote</font></div>                  
+            <span class="badge badge-success" style="">${uv_pro}%</span>
+            <span class="badge badge-important" style="">${uv_con}%</span>
+            <span class="badge" style="">${uv_ent}%</span>
+            <br>
+            <br>
+            <br>
  
         </td>
         

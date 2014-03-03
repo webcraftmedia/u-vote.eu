@@ -10,7 +10,6 @@
 </div>
 <div style="width: 50%; float: right;">
     <h5>Entscheidungsverhalten des Bundestags</h5>
-    <br>
     <span style="float: left">
     ${votes_all_bt}
     </span>

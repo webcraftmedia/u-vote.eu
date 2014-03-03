@@ -59,14 +59,16 @@ class default_page extends SYSTEM\PAGE\Page {
             $vote['choice_class_linke'] = $this->tablerow_class($linke['choice']);
             
             $uvote = votes::get_users_choice_per_poll($vote['ID']);
+            $vo = votes::get_count_user_votes_per_poll($vote['ID']);
             $vote['uv_vote_class'] = count($uvote) > 0 ? $this->tablerow_class($uvote[0]['choice']) : '';
                         
-            $vote['uv_pro'] = $vote['uv_con'] = $vote['uv_ent'] = '<2';
+            $vote['uv_pro'] = $vote['uv_con'] = $vote['uv_ent'] = '0';
+            
             foreach($uvote as $v){
                 switch($v['choice']){
-                    case 1: $vote['uv_pro'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
-                    case 2: $vote['uv_con'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
-                    case 3: $vote['uv_ent'] = $v['count'] > 1 ? $v['count'] : '<2'; break;
+                    case 1: $vote['uv_pro'] = $v['count'] > 0 ? $v['count']/$vo['count']*100 : '0'; break;
+                    case 2: $vote['uv_con'] = $v['count'] > 0 ? $v['count']/$vo['count']*100  : '0'; break;
+                    case 3: $vote['uv_ent'] = $v['count'] > 0 ? $v['count']/$vo['count']*100  : '0'; break;
                     default:
                 }
             }
