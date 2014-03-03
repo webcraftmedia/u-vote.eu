@@ -44,6 +44,19 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);
     }
     
+    private function p_fields (){
+        $result = "";
+        
+        $list = array   (array(1, 'Aussenpolitik'),
+                        array(2, 'Aussenpolitik'),
+                        array(4, 'Aussenpolitik'),
+                        array(8, 'Aussenpolitik'));
+        foreach($list as $l){
+        if($p_fields & $l[0]) $result .= $l[1];       
+        }
+        return $result;
+    }
+    
     private function vote_buttons($poll_expired,$user_poll){        
         if($poll_expired){
             if(!$user_poll){
@@ -105,7 +118,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['css'] = $this->css();
                 
         $vars['vote_buttons'] =   $this->vote_buttons($poll_expired,$user_vote);
-        
+//        $vars['p_fields'] = $this->p_fields();
         if($user_vote){
             $vars['bars_party'] = $poll_expired ? '' : $this->bars_party();
             $vars['bars_user'] =  $this->bars_user();

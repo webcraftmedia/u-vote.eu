@@ -1,6 +1,8 @@
 <?php
 class user_main_urVote extends SYSTEM\PAGE\Page { 
     
+    
+    
     private function user_temp_votes (){
         $vars = votes::get_user_temp_votes(\SYSTEM\SECURITY\Security::getUser()->id);
         $v = $vars['voted'];
@@ -54,7 +56,7 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
     
     public function html(){
         $vars = array();
-//        $vars['poll_compare'] = $this->count_all_polls();
+//        $vars['poll_compare'] = $this->count_all_polls();        
         $vars['choices_user_ID'] = $this->user_per_party_overall();
         $vars['choices_bt_to_user'] = $this->user_to_bt();      
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';

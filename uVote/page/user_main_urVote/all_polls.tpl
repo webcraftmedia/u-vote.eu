@@ -1,5 +1,4 @@
 <h5>Deine Abstimmungsquote</h5>
-<br>
 <div style="">
     <div style="float: left">Abgestimmt/</div>
     <div style="margin-left: 90px;">Offen</div>

@@ -1,4 +1,4 @@
-<div style="width: 50%; float: left;">
+<div style="width: 50%; float: left; margin-bottom: 30px;">
     
     <h5>Entscheidungsverhalten der uVote Community</h5>
     <span style="float: left;">
@@ -8,12 +8,12 @@
         <br>  insgesamt Dafür, Dagegen oder 
         <br>  Enthaltung gestimmt hat.</span>
 </div>
-<div style="width: 50%; float: right;">
+<div style="width: 50%;">
     <h5>Entscheidungsverhalten des Bundestags</h5>
-    <span style="float: left">
+    <span style="">
     ${votes_all_bt}
     </span>
-    <span style="">  Wie oft der Bundestag 
+    <span style="float: left;">  Wie oft der Bundestag 
         <br>  Dafür, Dagegen oder 
         <br>  Enthaltung gestimmt hat.</span>    
 </div>

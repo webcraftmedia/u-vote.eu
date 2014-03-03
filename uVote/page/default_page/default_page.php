@@ -34,11 +34,11 @@ class default_page extends SYSTEM\PAGE\Page {
             case 1:
                 return 'pro';
             case 2:
-                return 'contra';
+                return 'con';
             case 3:
                 return 'ent';
             default:
-                return '';
+                return 'open';
         }        
     }
     
@@ -49,7 +49,7 @@ class default_page extends SYSTEM\PAGE\Page {
             case 2:
                 return 'badge-important';
             case 3:
-                return '';
+                return 'badge-info';
             default:
                 return '';
         }
@@ -72,6 +72,7 @@ class default_page extends SYSTEM\PAGE\Page {
             $vote['uv_count'] = $vote_count['count'] > 4 ? $vote_count['count'] : '< 5';
             
             $user_vote = votes::getUserPollData($vote['ID']);
+            $vote['vote_class'] = $this->tablerow_class($user_vote);
             if($user_vote){
                 //user vote
                 $vote['vote_class'] = $this->tablerow_class($user_vote);                
@@ -124,7 +125,7 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars = array();               
         $vars['js'] = $this->js(); 
         $vars['css'] = $this->css();
-        $vars['votelist'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->generate_votelist() : $this->get_coverpage() ;
+        $vars['votelist'] = $this->generate_votelist();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';        

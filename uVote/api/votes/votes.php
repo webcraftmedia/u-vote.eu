@@ -95,8 +95,15 @@ class votes {
     public static function get_user_to_bt_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_TO_BT::QA(array($user_ID));        
     }
+    
+    public static function get_uvote_to_bt_overall(){
+        return \DBD\UVOTE_DATA_UVOTE_TO_PARTY_OVERALL::QA(array());        
+    }
 
     public static function get_users_choice_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
+        
+    public static function get_pfields_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
     
     public static function get_voteinfo($poll_ID){

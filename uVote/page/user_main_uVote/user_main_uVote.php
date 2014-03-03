@@ -1,6 +1,9 @@
 <?php
 class user_main_uVote extends SYSTEM\PAGE\Page {    
    
+   
+    
+    
     private function votes_all(){
         $votes = votes::get_all_votes();
         $result = '';
@@ -8,12 +11,15 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
             switch($vote['choice']){
                 case 1:
                     $vote['choice'] = 'PRO';
+                    $vote['badge_color'] = 'badge-success';
                     break;
                 case 2:
-                    $vote['choice'] = 'CONTRA';
+                    $vote['choice'] = 'CON';
+                    $vote['badge_color'] = 'badge-important';
                     break;
                 case 3:
-                    $vote['choice'] = 'ENTH';
+                    $vote['choice'] = 'ENT';
+                    $vote['badge_color'] = 'badge-info';
                     break;
             }
             //$vote['count'];
@@ -29,12 +35,15 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
             switch($vote['bt_choice']){
                 case 1:
                     $vote['bt_choice'] = 'PRO';
+                    $vote['badge_color'] = 'badge-success';
                     break;
                 case 2:
-                    $vote['bt_choice'] = 'CONTRA';
+                    $vote['bt_choice'] = 'CON';
+                    $vote['badge_color'] = 'badge-important';
                     break;
                 case 3:
-                    $vote['bt_choice'] = 'ENTH';
+                    $vote['bt_choice'] = 'ENT';
+                    $vote['badge_color'] = 'badge-info';
                     break;
                 case 0:
                     $vote['bt_choice'] = 'OFFEN';
@@ -51,6 +60,7 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
         return $vars['count'];
     }
 
+    
 
     public function html(){                 
         $vars = array();

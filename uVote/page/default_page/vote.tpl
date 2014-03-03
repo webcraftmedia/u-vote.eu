@@ -1,9 +1,10 @@
 <table style="margin-bottom: 5px; width: 95%; height: 100px; border: solid lightgray 1px; background: beige;">
     <tr> 
-        <td class="${vote_class}" style="width: 10px; margin-top: 10px; border-left: 1px solid lightgray;">            
-        </td>
-        <td style="padding: 5px;">            
-            <h4>${title}</h4>
+        <!--<td class="${vote_class}" style="width: 10px; margin-top: 10px; border-left: 1px solid lightgray;">            
+        </td>-->
+        <td style="padding: 5px; padding-top: 0;">            
+            <h5>${title}</h5>
+            <img src="${frontend_logos}icon_urn_${vote_class}.png"/>
             <a class="btn btn-primary btn-small btn_vote" style="" poll_ID="${ID}">${full_vote_btn}</a>
         </td>
         <td class="${bt_vote_class}" style="width: 80px; margin-top: 10px; border-left: 1px solid lightgray;">            

@@ -1,3 +1,4 @@
+<div style="width: 90%;">
 <img src="${frontend_logos}logo2.png"/>
 <br />
 <br />
@@ -84,3 +85,4 @@
         <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
     </div>
 </form>
+</div>
