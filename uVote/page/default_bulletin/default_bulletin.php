@@ -17,15 +17,15 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function bars_party(){
         $partyvotes = votes::get_barsperparty($this->poll_ID);
         
-        $pbpp = "";
+        $result = "";
         foreach($partyvotes as $vote){
             $vote['party_yes'] = round($vote['votes_pro']/$vote['total']*100,0);
             $vote['party_no'] = round($vote['votes_contra']/$vote['total']*100,0);
             $vote['party_ent'] = round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0);
-            $pbpp .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_parties.tpl'), $vote);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_parties.tpl'), $vote);
         }
         
-        return $pbpp;
+        return $result;
     }
     
     private function bars_bt(){
@@ -40,16 +40,11 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
-        if (!$vars['count']){
-            $vars['voteweight'] = 100;           
-        }
-        else {$vars['voteweight'] = 1/$vars['count']*100;        
-        }            
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);;
+        $vars['voteweight'] = 1/$vars['count']*100;      
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);
     }
     
-    private function vote_buttons($poll_expired){
-        $user_poll = votes::getUserPollData($this->poll_ID);
+    private function vote_buttons($poll_expired,$user_poll){        
         if($poll_expired){
             if(!$user_poll){
                 return '<h4>Stimme hier ab</h4>
@@ -102,21 +97,25 @@ class default_bulletin extends SYSTEM\PAGE\Page {
 
     public function html(){
         $poll_expired = \DBD\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
+        $user_vote = votes::getUserPollData($this->poll_ID);
         
-        /*$poll_data = array();
-        $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(1));
-        $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(2));
-        $poll_data[] = DBD\UVOTE_DATA_CHOICE_OVERALL::Q1(array(3));*/
         $vars = array();
-        $vars['bars_party'] = $poll_expired ? '' : $this->bars_party();
-        $vars['bars_user'] =  $this->bars_user();
-        $vars['bars_bt'] = $this->bars_bt();
+        $vars['bars_party'] = $vars['bars_user'] = $vars['bars_bt'] = $vars['voice_weight'] = 'Vote to see results!';
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
-        $vars ['vote_buttons'] =   $this->vote_buttons($poll_expired);
-        $vars['voice_weight'] = $this->voice_weight();
-        $vars['poll_ID'] =  $this->poll_ID;
+                
+        $vars['vote_buttons'] =   $this->vote_buttons($poll_expired,$user_vote);
+        
+        if($user_vote){
+            $vars['bars_party'] = $poll_expired ? '' : $this->bars_party();
+            $vars['bars_user'] =  $this->bars_user();
+            $vars['bars_bt'] = $this->bars_bt();
+            $vars['voice_weight'] = $this->voice_weight();
+        }
+        
+        $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';                
+        
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/bulletin.tpl'),$vars);
     }
