@@ -8,8 +8,8 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/all_polls.tpl'),
-                array(  'vote_perc'=> round($v/($nv+$v)*100,0),
-                        'no_vote_perc'=> round($nv/($nv+$v)*100,0),
+                array(  'vote_perc'=> round($v/($nv+$v)*100, 2),
+                        'no_vote_perc'=> round($nv/($nv+$v)*100, 2),
                         'voted'=> $v,
                         'not_voted'=> $nv));
     }

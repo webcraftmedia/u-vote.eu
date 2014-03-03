@@ -11,10 +11,15 @@
             <img src="${frontend_logos}icon_bt.png" width="80"/>
             ${bt}            
         </td>
-        <td class="${uv_vote_class}" style="width: 50px; height: 100%; border-left: 1px solid lightgray;">          
-            <img src="${frontend_logos}icon_urn.png" width="25"/><br/>
+        <td class="${uv_vote_class}" style="width: 60px; height: 100%; border-left: 1px solid lightgray;">          
+            <img src="${frontend_logos}icon_urn.png" width="20"/>
+            <span style="float: right"><font size="2">uVote</font></span>
+            <br/>
             ${uv}
             <span class="badge badge-info" style="">${uv_count}</span>
+            <br>
+            <br>
+            <br>
         </td>
         <td style="margin: 0; padding: 0; width: 3px;" >
             <table class="poll_time" time="${time_end}" style="width: 100%; height: 100%; margin: 0; padding: 0;">

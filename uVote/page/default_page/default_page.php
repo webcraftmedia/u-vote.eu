@@ -93,7 +93,7 @@ class default_page extends SYSTEM\PAGE\Page {
                 foreach($uvote as $v){
                     $vote['uv'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_uv.tpl'),
                                     array(  'badge' => self::badge_class($v['choice']),
-                                            'perc' => $v['count'] > 0 ? $v['count']/$vote_count['count']*100 : 0));
+                                            'perc' => $v['count'] > 0 ? round($v['count']/$vote_count['count']*100, 2) : 0));
                 }
             }
             

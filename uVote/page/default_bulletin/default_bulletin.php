@@ -40,7 +40,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
-        $vars['voteweight'] = 1/$vars['count']*100;      
+        $vars['voteweight'] = round(1/$vars['count']*100);      
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);
     }
     
@@ -113,7 +113,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();
-        $vars['bars_party'] = $vars['bars_user'] = $vars['bars_bt'] = $vars['voice_weight'] = 'Vote to see results!';
+         $vars['voice_weight'] = $vars['bars_user'] = $vars['bars_bt'] = '';
+        $vars['bars_party'] = 'Erst nach der Abgabe deiner Stimme werden dir die daten angezeigt';
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
                 

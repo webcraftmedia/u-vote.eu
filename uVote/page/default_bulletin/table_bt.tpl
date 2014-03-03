@@ -1,4 +1,5 @@
-<div style="">   
+<div style="">
+    <h4>Ergebnis Bundestag</h4>
         <div class="progress" style="height: 20px;">
           <div class="bar bar-success" style="width: ${bt_pro}%;">${bt_pro}%</div>
           <div class="bar bar-danger" style="width: ${bt_con}%;">${bt_con}%</div>

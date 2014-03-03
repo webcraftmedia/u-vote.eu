@@ -6,7 +6,7 @@
     ${voice_weight}
 </div>
     <div>   
-       <h4>Ergebnis Bundestag</h4>
+       
        ${bars_bt}
     </div>
     <div>
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<img src="${frontend_logos}logo2.png" style="margin-left: 40px;" width="35%"/>
+<img src="${frontend_logos}logo2.png" style="" width="35%"/>
 
 <div style="float: left;">    
     ${vote_buttons} 
