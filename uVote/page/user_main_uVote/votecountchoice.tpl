@@ -1,4 +1,5 @@
-<tr>
-    <td><span class="badge badge-info">${choice}</span></td>
-    <td><span class="badge badge-success">${count}</span></td>
-</tr>
+<div>
+<span class="badge" style="">${choice}</span>
+<span class="badge ${badge_color}" style="">${count}</span>
+
+</div>

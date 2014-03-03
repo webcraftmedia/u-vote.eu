@@ -4,8 +4,9 @@ class votes {
     public static function getAllVotesOfGroup($groupid){
         return \DBD\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
     
-    public static function countAllPolls($group){
-        return \DBD\UVOTE_DATA_COUNT_VOTES::Q1();}
+    public static function countAllPolls(){
+        $res = \DBD\UVOTE_DATA_COUNT_VOTES::QQ();
+    return $res;}
         
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
@@ -71,8 +72,22 @@ class votes {
         return $res;
     }
     
+    public static function get_all_votes_bt(){
+        $res = \DBD\UVOTE_DATA_CHOICE_BT_OVERALL::QA();
+        return $res;
+    }
+    
+    public static function get_user_temp_votes($user_ID){
+        return \DBD\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
+    
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
+    
+    public static function get_user_count(){
+        return \DBD\UVOTE_DATA_USER_COUNT_USERS::Q1(array());}
+    
+    public static function get_count_user_votes_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($poll_ID));}
     
     public static function get_user_per_party_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        
@@ -80,7 +95,17 @@ class votes {
     public static function get_user_to_bt_overall($user_ID){
         return \DBD\UVOTE_DATA_USER_TO_BT::QA(array($user_ID));        
     }
+    
+    public static function get_uvote_to_bt_overall(){
+        return \DBD\UVOTE_DATA_UVOTE_TO_PARTY_OVERALL::QA(array());        
+    }
 
+    public static function get_users_choice_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
+        
+    public static function get_pfields_per_poll($poll_ID){
+        return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
+    
     public static function get_voteinfo($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByID',
@@ -92,6 +117,11 @@ class votes {
     
     public static function get_barsperparty($poll_ID){
         return \DBD\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));}
+        
+    public static function get_party_choice($poll_ID, $party){
+        $res = \DBD\UVOTE_DATA_PARTY_CHOICE_PER_POLL::Q1(array($poll_ID, $party));
+        return $res;                            
+    }
     
     public static function write_vote($poll_ID, $vote){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
