@@ -1,5 +1,13 @@
-<div style="width: 50%; float: left; margin-bottom: 30px;">
-    
+<div style="float: left">
+<table style="border-collapse: separate;
+        border-spacing: 10px 5px; width: 350px;"> 
+        <tr>
+     <h5>Übereinstimmung von uVote & Politik</h5>
+     ${uvote_to_bt}
+     </tr>
+    </table>
+     </div>
+<div style="width: 50%; float: right; margin-bottom: 30px;">   
     <h5>Entscheidungsverhalten der uVote Community</h5>
     <span style="float: left;">
     ${votes_all}
@@ -8,7 +16,7 @@
         <br>  insgesamt Dafür, Dagegen oder 
         <br>  Enthaltung gestimmt hat.</span>
 </div>
-<div style="width: 50%;">
+<div style="width: 50%; float: right;">
     <h5>Entscheidungsverhalten des Bundestags</h5>
     <span style="">
     ${votes_all_bt}
