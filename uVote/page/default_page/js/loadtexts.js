@@ -141,6 +141,7 @@ function vote_click (poll_ID, vote) {
         var items = [];        
         if(data.status == true){
             alert("success");
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                   
         } else {
             alert(data.result.message);
         }

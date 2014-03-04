@@ -20,7 +20,7 @@
 
     </head>
 
-    <body style="background: ${frontend_logos}background.png, padding-top: 50px;">
+    <body style="background: ${frontend_logos}background.png, padding-top: 51px;">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner" style="padding-left: 50px; padding-right: 50px;">                
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">

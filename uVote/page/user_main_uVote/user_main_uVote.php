@@ -4,11 +4,12 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
    private function uvote_to_parties (){
        $votes = votes::get_uvote_to_bt_overall();
        $result = '';
-       print_r($votes, TRUE);
+       
        foreach($votes as $vote){
            $vote['match_percentage'] = round($vote['class_MATCH']/($vote['class_MATCH']+$vote['class_MISSMATCH'])*100,2);
            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_uVote/uvoteparties.tpl'), $vote);
        }
+       print_r($votes, TRUE);
        return $result;
    }
     
@@ -80,6 +81,7 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_uVote/uVote.tpl'),$vars);
     }
   

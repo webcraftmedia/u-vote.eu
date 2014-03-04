@@ -4,6 +4,26 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     public function __construct($poll_ID) {
         $this->poll_ID=$poll_ID;}
+    
+    public function vote_choice(){
+        $result = '';
+        $vars = votes::get_user_choice_per_poll($this->poll_ID, \SYSTEM\SECURITY\Security::getUser()->id);
+        $vars['vote_class'] = $this->tablerow_class($vars);
+        return $vars['vote_class'];
+    }
+    
+    private static function tablerow_class($choice){
+        switch($choice){
+            case 1:
+                return 'pro';
+            case 2:
+                return 'con';
+            case 3:
+                return 'ent';
+            default:
+                return 'open';
+        }        
+    }
         
     private function bars_user(){
         $bars = votes::get_barsperusers($this->poll_ID,false);
@@ -60,7 +80,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function vote_buttons($poll_expired,$user_poll){        
         if($poll_expired){
             if(!$user_poll){
-                return '<h4>Stimme hier ab</h4>
+                return '<h5>Stimme hier ab</h5>
                                      <a class="btn btn-success btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
@@ -83,7 +103,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                 default: array('','','');
             }
             
-            return '<h4>Ändere deine bereits abgegebene Stimme hier ab</h4>
+            return '
+                                     <h5>Ändere deine Stimme hier ab</h5>
                                      <a class="btn '.$classes[0].' btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
@@ -97,7 +118,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                                         style="width: 70px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Enthaltung</font></a>';
+                                        size="3">Enthaltung</font></a>
+                                        ';
         } else {
             return 'ye soon to come infos';
         }                                            
@@ -113,8 +135,9 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();
-         $vars['voice_weight'] = $vars['bars_user'] = $vars['bars_bt'] = '';
+        $vars['voice_weight'] = $vars['bars_user'] = $vars['bars_bt'] = '';
         $vars['bars_party'] = 'Erst nach der Abgabe deiner Stimme werden dir die daten angezeigt';
+        $vars['vote_class'] = $this->vote_choice();
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
                 

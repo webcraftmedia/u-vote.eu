@@ -20,6 +20,10 @@ class votes {
         return $result;
     }
     
+    public static function get_user_choice_per_poll($poll_ID, $user_ID){
+        return \DBD\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
+    }
+    
     public static function getUserPollData($poll_ID){
         if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
             return NULL;}
@@ -79,6 +83,9 @@ class votes {
     
     public static function get_user_temp_votes($user_ID){
         return \DBD\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
+    
+    public static function get_user_overall_votes($user_ID, $creationDate){
+        return \DBD\UVOTE_DATA_OVERALL_VOTES::Q1(array($user_ID, $user_ID, $user_ID, $creationDate));}
     
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}

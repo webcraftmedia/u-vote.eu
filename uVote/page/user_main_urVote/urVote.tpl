@@ -16,6 +16,9 @@
         <div style="margin-left: 40px; float: left;">
              ${user_temp_votes}
         </div>
+        <div style="margin-left: 40px; float: left;">
+             ${user_overall_votes}
+        </div>
 </div>
         
        

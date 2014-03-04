@@ -1,15 +1,16 @@
 <div style="float: left">
 <table style="border-collapse: separate;
-        border-spacing: 10px 5px; width: 350px;"> 
+        border-spacing: 10px 5px; width: 350px;">
+    ${welcome_text}
         <tr>
      <h5>Übereinstimmung von uVote & Politik</h5>
      ${uvote_to_bt}
      </tr>
     </table>
      </div>
-<div style="width: 50%; float: right; margin-bottom: 30px;">   
+<div style="width: 50%; margin-bottom: 30px; float: left;">   
     <h5>Entscheidungsverhalten der uVote Community</h5>
-    <span style="float: left;">
+    <span style="">
     ${votes_all}
     </span>
     <span style="">  Wie oft die uVote Community 
@@ -21,10 +22,11 @@
     <span style="">
     ${votes_all_bt}
     </span>
-    <span style="float: left;">  Wie oft der Bundestag 
+    <span style="">  Wie oft der Bundestag 
         <br>  Dafür, Dagegen oder 
         <br>  Enthaltung gestimmt hat.</span>    
 </div>
+
     <div style="clear: both; height: 50px;">
     </div>
     <div>
