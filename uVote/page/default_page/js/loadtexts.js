@@ -138,10 +138,12 @@ function get_barsperparty (poll_ID) {
 
 function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
-        var items = [];        
+        var items = [];   
         if(data.status == true){
             alert("success");
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                   
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
+                open_vote(poll_ID);
+            });                   
         } else {
             alert(data.result.message);
         }
@@ -187,6 +189,10 @@ function open_vote (poll_ID) {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
+        $('#test').click(function(){
+            $('#myModal').modal();
+        });
+        
     }); 
 }
 

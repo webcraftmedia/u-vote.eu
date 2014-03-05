@@ -1,10 +1,10 @@
 <div id="statistics_uvote_users"> 
-    <h4>${urVote_title}</h4>
+    <h5>${urVote_title}</h5>
     <div style="float: left;">
     <table style="border-collapse: separate;
         border-spacing: 10px 5px; width: 350px;"> 
         <tr>
-        <h5>${urVote_user_party_compare}</h5>
+        <font>${urVote_user_party_compare}</font>
         ${choices_user_ID}
         </tr>
         

@@ -6,10 +6,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $this->poll_ID=$poll_ID;}
     
     public function vote_choice(){
-        $result = '';
-        $vars = votes::get_user_choice_per_poll($this->poll_ID, \SYSTEM\SECURITY\Security::getUser()->id);
-        $vars['vote_class'] = $this->tablerow_class($vars);
-        return $vars['vote_class'];
+        $vars = votes::getUserPollData($this->poll_ID);
+        return $this->tablerow_class($vars);
     }
     
     private static function tablerow_class($choice){
@@ -24,7 +22,33 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                 return 'open';
         }        
     }
-        
+    
+    private function get_party_per_poll($choice){
+        switch($choice){
+            case 1:
+                return 'PRO';
+            case 2:
+                return 'CON';
+            case 3:
+                return 'ENT';
+            default:
+                return 'NONE';
+        }           
+    }
+  
+    private function choice_party (){
+        $result = '';
+        $party_votes = votes::get_barsperparty($this->poll_ID);
+//        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
+        foreach($party_votes as $pv){
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/vote_bt.tpl'),
+                                    array(  'party' => $pv['party'],
+                                            'choice' => $this->get_party_per_poll($pv['choice']),
+                                            'choice_class' => $this->tablerow_class($pv['choice'])));                    
+        }
+        return $result;              
+    }
+    
     private function bars_user(){
         $bars = votes::get_barsperusers($this->poll_ID,false);
         $bars['vote_yes_perc'] = round($bars['yes_perc']*100,0);
@@ -135,6 +159,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();
+        $vars['choice_party'] = $this->choice_party();
         $vars['voice_weight'] = $vars['bars_user'] = $vars['bars_bt'] = '';
         $vars['bars_party'] = 'Erst nach der Abgabe deiner Stimme werden dir die daten angezeigt';
         $vars['vote_class'] = $this->vote_choice();
