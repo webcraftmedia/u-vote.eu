@@ -1,39 +1,34 @@
-<img src="${frontend_logos}logo2.png" style="" width="35%"/>
-<br>
-</br>
-<table>
-    <div style="float:right">
-    ${voice_weight}
-</div>
-    <tr>
-        Ergebnis uVote
-       ${bars_user}
-       
-    </tr>
-    
-    <tr>
-        Ergebnis Bundestag   
-       ${bars_bt}
-    </tr>
-    <br>
-    
-    
-    <tr>
-        ${bars_party}
-    </tr>
-    <tr>
-    ${choice_party}
-    </tr>
-</table>
-<div style="float: left;">
-    <div style="float: left;">
+
+<div style="float: right;">
+    <div>
+    ${vote_buttons}
+    <div style="float: right;">
     <img src="${frontend_logos}icon_urn_${vote_class}.png"/>
     </div>
-    <div style="floa: right">
-    ${vote_buttons}
+    </div>
+    <br>
+    <div>
+    ${voice_weight}
     </div>
 </div>
-<div style="clear: both"></div>
+<div style="">
+    
+    <div>
+        
+       ${bars_user}    
+    </div>  
+    <div>
+          
+       ${bars_bt}
+    </div>
+</div>
+    
+<div style="float: left;">
+    ${icons_party}
+    ${choice_party}
+ </div>
+    <img src="${frontend_logos}logo2.png" style="" width="35%"/>
+
 
 <!--<div class="btn" id="test">
     test

@@ -39,12 +39,17 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function choice_party (){
         $result = '';
         $party_votes = votes::get_barsperparty($this->poll_ID);
+
 //        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
         foreach($party_votes as $pv){
+            
             $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/vote_bt.tpl'),
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
-                                            'choice_class' => $this->tablerow_class($pv['choice'])));                    
+                                            'choice_class' => $this->tablerow_class($pv['choice']),
+                                            'party_yes' => round($pv['votes_pro']/$pv['total']*100,0),
+                                            'party_no' => round($pv['votes_contra']/$pv['total']*100,0),
+                                            'party_ent' => round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['total']*100,0)));                    
         }
         return $result;              
     }
@@ -70,6 +75,11 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         }
         
         return $result;
+    }
+    
+    private function icons_party(){
+        $vars = array();
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/icons_table_parties.tpl'), $vars);
     }
     
     private function bars_bt(){
@@ -121,14 +131,13 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                                         size="3">Enthaltung</font></a>';}
             $classes = array('','','');
             switch($user_poll){
-                case 1: $classes = array('btn-success','',''); break;
-                case 2: $classes = array('','btn-danger',''); break;
-                case 3: $classes = array('','','btn-info'); break;
+                case 1: $classes = array('btn-success disabled','btn-danger','btn-info'); break;
+                case 2: $classes = array('btn-success','btn-danger disabled','btn-info'); break;
+                case 3: $classes = array('btn-success','btn-danger','btn-info disabled'); break;
                 default: array('','','');
             }
             
-            return '
-                                     <h5>Ändere deine Stimme hier ab</h5>
+            return '                 <h5>Ändere deine Stimme hier ab</h5>
                                      <a class="btn '.$classes[0].' btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
@@ -159,9 +168,10 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();
-        $vars['choice_party'] = $this->choice_party();
+        $vars['choice_party'] = '';
         $vars['voice_weight'] = $vars['bars_user'] = $vars['bars_bt'] = '';
-        $vars['bars_party'] = 'Erst nach der Abgabe deiner Stimme werden dir die daten angezeigt';
+        $vars['bars_party'] = '';
+        $vars['icons_party'] = '';
         $vars['vote_class'] = $this->vote_choice();
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
@@ -169,14 +179,19 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['vote_buttons'] =   $this->vote_buttons($poll_expired,$user_vote);
 //        $vars['p_fields'] = $this->p_fields();
         if($user_vote){
-            $vars['bars_party'] = $poll_expired ? '' : $this->bars_party();
+            $vars['icons_party'] = $this->icons_party();
+            $vars['choice_party'] = $this->choice_party();
+            $vars['bars_party'] = $this->bars_party();
             $vars['bars_user'] =  $this->bars_user();
             $vars['bars_bt'] = $this->bars_bt();
             $vars['voice_weight'] = $this->voice_weight();
         }
         
         $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';                
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
         
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/bulletin.tpl'),$vars);

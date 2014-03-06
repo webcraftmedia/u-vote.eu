@@ -1,6 +1,5 @@
 <div class="row" style="margin: 0;">
-    <div class="span6">
-        <h3>${title}</h3>
+    <div class="span6" style="float: right">       
         Quelle: <a href="${iframe_link}">${iframe_link} </a>
     </div>
     <div class="span6" style="width: 50%;">          
