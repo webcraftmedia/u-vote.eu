@@ -33,4 +33,7 @@ class api_uvote extends \SYSTEM\API\api_login {
         return votes::vote_submit($poll_ID);
         
     }
+    
+    public static function call_graph_bt_to_uvote_overall_by_time($timespan = 84600){
+        return votes::get_graph_bt_to_uvote_overall_by_time($timespan);}
 }

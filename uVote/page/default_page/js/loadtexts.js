@@ -79,11 +79,15 @@ $(document).ready(function() {
             $(this).tab('show');
             load_user_main_tab($(this).attr('action'));        
         });
-        
+
         //load_user_main_tab('user_main_uVote');
-    });
+    });    
         
 });
+
+function drawChart(){
+    //load_visualisation('#graph_bt_uv_overall',84600);
+}
 
 function load_user_main_tab(action){
     switch(action){
@@ -235,5 +239,34 @@ function loadApiPic(id) {
         bodyelem.animate();
     }).complete(function() { 
         
+    });
+}
+
+function load_visualisation(id, timespan){
+    $('img#loader').show();    
+    $.getJSON('./api.php?call=graph_bt_to_uvote_overall_by_time',function(json){
+        if(!json || json.status != true || !json.result){
+            $('img#loader').hide();            
+            return;
+        }        
+        json = json.result;
+        $('img#loader').hide();
+        var data = new google.visualization.DataTable();
+        first = true;        
+        $.each(json[0], function(key, value){
+            if(first){                
+                data.addColumn('datetime',key);
+                first = false;
+            } else {
+                data.addColumn('number',key);
+            }       
+        });            
+        $.each(json, function(key, value){
+            first = true;
+            data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
+         
+        console.log(data);
+        var options = {title: id, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false,  width: "300", height: "250"};
+        new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
     });
 }

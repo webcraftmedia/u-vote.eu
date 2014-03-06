@@ -7,5 +7,5 @@ class UVOTE_DATA_USERS_CHOICE_PER_POLL extends \SYSTEM\DB\QP {
 //pg            
 '',
 //mys
-'SELECT COUNT(*) as count, choice FROM uvote_data WHERE `poll_ID` = ? GROUP BY choice ORDER BY count DESC;'
+'SELECT COUNT(*) as count, choice FROM uvote_data WHERE `poll_ID` = ? GROUP BY choice ORDER BY count DESC, choice;'
 );}}

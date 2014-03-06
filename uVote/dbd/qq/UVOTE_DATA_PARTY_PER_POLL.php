@@ -7,5 +7,5 @@ class UVOTE_DATA_PARTY_PER_POLL extends \SYSTEM\DB\QP {
 //pg            
 '',
 //mys
-'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ?;'
+'SELECT * FROM `uvote_votes_per_party` WHERE `poll_ID` = ? ORDER BY party;'
 );}}
