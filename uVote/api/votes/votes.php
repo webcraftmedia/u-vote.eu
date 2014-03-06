@@ -7,8 +7,8 @@ class votes {
         $res = \DBD\UVOTE_DATA_GRAPH_BT_TO_UVOTE_OVERALL_BY_TIME::QQ(array($timespan));
         while ($row = $res->next()){
             $result[] = array(  0 => $row['day'],
-                                'class_match' => $row['class_match'] / ($row['class_match']+$row['class_mismatch']+1),
-                                'class_mismatch' => $row['class_mismatch'] / ($row['class_match']+$row['class_mismatch']+1));
+                                'class_match' => $row['class_match'] > 0 ? round($row['class_match'] / ($row['class_match']+$row['class_mismatch']),2) : 0,
+                                'class_mismatch' => $row['class_match'] > 0 ? round($row['class_mismatch'] / ($row['class_match']+$row['class_mismatch']),2) : 0);
         }
         return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
     }
