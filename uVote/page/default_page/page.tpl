@@ -20,8 +20,8 @@
 
     </head>
 
-    <body style="background: ${frontend_logos}background.png, padding-top: 51px;">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+    <body style="background: ${frontend_logos}background.png; padding-top: 51px;">
+        <div class="navbar navbar-inverse navbar-fixed-top" style="">
             <div class="navbar-inner" style="padding-left: 50px; padding-right: 50px;">                
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
@@ -42,7 +42,7 @@
             </div>
         </div>        
         <div id="site-content" style="padding: 0; margin: 0; margin-left: 40px;">         
-            <div id="user_main" style="position: absolute; padding: 0px; width: 50%;"></div>
+            <div id="user_main" style="position: absolute; padding: 0; padding-top: 0px; width: 50%;"></div>
             <div id="list" style="padding: 0px; width: 50%; float: right;">            
                 ${votelist}
             </div>
