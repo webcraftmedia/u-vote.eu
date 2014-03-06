@@ -9,8 +9,8 @@ $(document).ready(function() {
         $('.btn_vote').click(function () {
             //vote_click($(this).attr('poll_ID'));
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-            open_vote($(this).attr('poll_ID'));                     
-           
+                open_vote($(this).attr('poll_ID'));                     
+                register_registerform();
             });
         
         
@@ -149,8 +149,7 @@ function vote_click (poll_ID, vote) {
         if(data.status == true){
             alert("success");
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
-                open_vote(poll_ID);
-                register_registerform();
+                open_vote(poll_ID);                
             });                   
         } else {
             alert(data.result.message);
@@ -200,7 +199,7 @@ function open_vote (poll_ID) {
         $('#test').click(function(){
             $('#myModal').modal();
         });
-        
+        register_registerform();        
     }); 
 }
 
