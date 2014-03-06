@@ -53,22 +53,7 @@ $(document).ready(function() {
     });
     
     $('#user_main').load('./?action=user_main', function(){
-        
-        $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
-        {
-            preventSubmit: true,            
-            submitError: function($form, event, errors) {},
-            submitSuccess: function($form, event){
-                $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
-                    if(data == 1){
-                        window.location.reload();
-                    } else {
-                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
-                    }                    
-                });
-                event.preventDefault();
-            }            
-        });
+        register_registerform();
         $('#feedback_submit').click(function (data){
             var test = $('textarea#feedback_text').val();
             send_feedback(test);
@@ -84,6 +69,24 @@ $(document).ready(function() {
     });    
         
 });
+
+function register_registerform(){
+    $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
+    {
+        preventSubmit: true,            
+        submitError: function($form, event, errors) {},
+        submitSuccess: function($form, event){
+            $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                if(data == 1){
+                    window.location.reload();
+                } else {
+                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                }                    
+            });
+            event.preventDefault();
+        }
+    });
+}
 
 function drawChart(){
     //load_visualisation('#graph_bt_uv_overall',84600);
@@ -147,6 +150,7 @@ function vote_click (poll_ID, vote) {
             alert("success");
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
                 open_vote(poll_ID);
+                register_registerform();
             });                   
         } else {
             alert(data.result.message);
