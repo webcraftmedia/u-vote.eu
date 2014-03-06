@@ -23,14 +23,14 @@ class votes {
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
 
-    public static function getVoteOfGroup($poll_ID){
+    /*public static function getVoteOfGroup($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ? LIMIT 1;',
                                 array($poll_ID));        
         $result = $res->next();                                        
         return $result;
-    }
+    }*/
     
     public static function get_user_choice_per_poll($poll_ID, $user_ID){
         return \DBD\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
@@ -131,6 +131,7 @@ class votes {
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
         $res = $res->next();
+        $res['title'] = utf8_encode($res['title']);
         return $res;
     }
     
@@ -182,7 +183,7 @@ class votes {
     }
     
     public static function open_vote($poll_ID){
-        $vote = votes::getVoteOfGroup($poll_ID);
+        $vote = self::get_voteinfo($poll_ID); //votes::getVoteOfGroup($poll_ID);
         $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vote);
         return $result;
     }
