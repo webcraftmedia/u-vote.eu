@@ -16,7 +16,7 @@ class default_page extends SYSTEM\PAGE\Page {
     }
     
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';}        
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/default_page.css').'" rel="stylesheet">';}        
 
     private function get_party_per_poll($choice){
         switch($choice){
@@ -86,7 +86,7 @@ class default_page extends SYSTEM\PAGE\Page {
                     $vote['bt'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_bt.tpl'),
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
-                                            'choice_class' => $this->tablerow_class($pv['choice'])));                    
+                                            'choice_class' => $this->badge_class($pv['choice'])));                    
                 }                        
 
                 //uvote vote
