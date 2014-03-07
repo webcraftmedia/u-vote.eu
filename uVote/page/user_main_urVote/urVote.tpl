@@ -21,6 +21,8 @@
         <div style="margin-left: 40px; float: left;">
              ${user_overall_votes}
         </div>
+        <div id="graph_bt_user_overall" style=""></div>
+    <script type="text/javascript" language="JavaScript">load_visualisation_urvote('graph_bt_user_overall',84600);</script>
 </div>
         
        

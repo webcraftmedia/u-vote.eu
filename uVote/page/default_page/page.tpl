@@ -53,7 +53,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="brand" href="" id="menu_uvote">uVote</a>
-                <a data-toggle="modal" class="brand" href="#impressum" id="impressum">impressum</a>
+                <a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">impressum</font></a>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">              

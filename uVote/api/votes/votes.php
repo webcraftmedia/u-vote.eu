@@ -167,9 +167,18 @@ class votes {
                      
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
-                                 VALUES (?, ?, ?, 0, NOW());',
+                                 VALUES (?, ?, ?, 0, NOW());', 
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
+    }
+    
+    public static function write_data($location, $birthyear, $gender, $children){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}          
+        return \DBD\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children));}  
+
+    public static function get_add_data(){
+        return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
     }
     
     public static function write_poll($ID, $title, $iframe_link ){    

@@ -93,17 +93,23 @@ function drawChart(){
 }
 
 function load_user_main_tab(action){
+    
     switch(action){
         
         case 'user_main_uVote':
             window.location.reload();
-            $('#tab_uVote').load('./?action='+ action);                             
+            $('#tab_uVote').load('./?action='+ action);        
             return;
         case 'user_main_urVote':
             $('#tab_urVote').load('./?action='+ action);
             return;
         case 'user_main_myVote':
-            $('#tab_myVote').load('./?action='+ action);
+            $('#tab_myVote').load('./?action='+ action, function(){
+            $('.add_data_submit').click(function () {
+            submit_add_data();
+            alert('success');
+            });
+            });
             return;
         default:
     }   
@@ -151,6 +157,25 @@ function vote_click (poll_ID, vote) {
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
                 open_vote(poll_ID);                
             });                   
+        } else {
+            alert(data.result.message);
+        }
+    }); 
+}
+
+function submit_add_data () {
+    var a = document.getElementById("location");
+    var location = a.options[a.selectedIndex].text;
+    var b = document.getElementById("birthyear");
+    var birthyear = b.options[b.selectedIndex].text;
+    var c = document.getElementById("gender");
+    var gender = c.options[c.selectedIndex].text;
+    var d = document.getElementById("children");
+    var children = d.options[d.selectedIndex].text;
+    $.getJSON('./api.php?call=vote&action=data&location=' + location + '&birthyear=' + birthyear + '&gender=' + gender + '&children=' + children, function(data) {
+        var items = [];   
+        if(data.status == true){
+            alert("success");                   
         } else {
             alert(data.result.message);
         }

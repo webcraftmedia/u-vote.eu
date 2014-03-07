@@ -5,6 +5,10 @@ class api_uvote extends \SYSTEM\API\api_login {
         return votes::write_vote($poll_ID, $vote);
         
     }
+     public static function call_vote_action_data($location, $birthyear, $gender, $children) {
+        return votes::write_data($location, $birthyear, $gender, $children);
+        
+    }
     
     public static function call_vote_action_new_vote($ID, $title, $iframe_link) {
         return votes::write_poll($ID, $title, $iframe_link);
