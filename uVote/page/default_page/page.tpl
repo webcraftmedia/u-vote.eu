@@ -20,8 +20,8 @@
 
     </head>
 
-    <body style="background: ${frontend_logos}background.png; padding-top: 51px;">
-        <div class="modal fade" id="impressum" style="width: 1000px;">
+    <body style="padding-top: 51px;">
+<div class="modal fade" id="impressum" style="float: left; display:none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
