@@ -4,4 +4,5 @@
     <div style="margin-left: 5px; width: 20px; float: left"class="badge badge-success">${party_yes}%</div>
     <div style="margin-left: 5px; width: 20px; float: left"class="badge badge-important">${party_no}%</div>
     <div style="margin-left: 5px; width: 20px; float: left"class="badge badge-info">${party_ent}%</div>
+    <div style="margin-left: 5px; width: 20px; float: left"class="badge ">${party_off}%</div>
 </div>

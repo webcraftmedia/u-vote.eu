@@ -47,9 +47,10 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
                                             'choice_class' => $this->tablerow_class($pv['choice']),
-                                            'party_yes' => round($pv['votes_pro']/$pv['total']*100,0),
-                                            'party_no' => round($pv['votes_contra']/$pv['total']*100,0),
-                                            'party_ent' => round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['total']*100,0)));                    
+                                            'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : 'votes_pro',
+                                            'party_no' => $pv['votes_contra'] > 0 ? round($pv['votes_contra']/$pv['total']*100,0) : $pv['votes_contra'],
+                                            'party_off' => $pv['total'] > 0 ? round(($pv['total'] - $pv['nr_attending'])/$pv['total']*100,0) : $pv['total'],
+                                            'party_ent' => $pv['nr_attending'] > 0 ? round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['nr_attending']*100,0) : $pv['nr_attending']));                    
         }
         return $result;              
     }
@@ -68,9 +69,9 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         
         $result = "";
         foreach($partyvotes as $vote){
-            $vote['party_yes'] = round($vote['votes_pro']/$vote['total']*100,0);
-            $vote['party_no'] = round($vote['votes_contra']/$vote['total']*100,0);
-            $vote['party_ent'] = round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0);
+            $vote['party_yes'] = $vote['votes_pro'] > 0 ? round($vote['votes_pro']/$vote['total']*100,0) : $vote['votes_pro'];
+            $vote['party_no'] = $vote['votes_contra'] > 0 ? round($vote['votes_contra']/$vote['total']*100,0) : $vote['votes_contra'];
+            $vote['party_ent'] = $vote['nr_attending'] > 0 ? round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0) : $vote['nr_attending'];
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_parties.tpl'), $vote);
         }
         

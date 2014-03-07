@@ -1,4 +1,4 @@
-<div style="width: 300px; border-style: solid; border-width: 1px; padding: 5px;">
+<div style="width: 280px; border-style: solid; border-width: 1px; padding: 5px;">
     <font size="2">Abstimmungsquote seit Accounterstellung</font>
     <div class="progress" style="height: 20px;">   
       <div class="bar" style="width: ${vote_perc}%;">${vote_perc}%</div>

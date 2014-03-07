@@ -1,5 +1,8 @@
-
-<div style="float: right;">
+<h4>${title}</h4>
+<div style="margin-top: 30px;">
+${openvote_help_text}${title}${openvote_help_text1}
+</div>
+<div style="float: right; margin-top: 30px;">
     <div>
     ${vote_buttons}
     <div style="float: right;">
@@ -23,7 +26,7 @@
     </div>
 </div>
     
-<div style="float: left;">
+<div style="float: left;">   
     ${icons_party}
     ${choice_party}
  </div>

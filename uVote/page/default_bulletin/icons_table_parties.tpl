@@ -1,3 +1,4 @@
+<h5>${urvote_party_table_desc}</h5>
 <div style="width: 500px; float: left">   
     <div style="float: left"><img src="${frontend_logos}icon_urn.png" width="30"/></div>
     <div style="float: left"></div>
