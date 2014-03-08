@@ -1,56 +1,51 @@
+<div style="float: left;"> 
+
 <h4>${title}</h4>
-<div style="margin-top: 30px;">
-${openvote_help_text}${title}${openvote_help_text1}
-</div>
-<div style="float: right; margin-top: 30px;">
-    <div>
+<div>
     ${vote_buttons}
-    <div style="float: right;">
+    <div style="float: left;">
     <img src="${frontend_logos}icon_urn_${vote_class}.png"/>
     </div>
-    </div>
-    <br>
-    <div>
-    ${voice_weight}
-    </div>
+<div style="margin-top: 30px;">
+    ${openvote_help_text}
+    ${title}
+    ${openvote_help_text1}
 </div>
-<div style="">
-    
-    <div>
-        
+
+<div>
+    ${voice_weight}
+</div>
+<div style="float: left; width: 50%"> 
+    <div>      
        ${bars_user}    
     </div>  
-    <div>
-          
+    <div>         
        ${bars_bt}
     </div>
 </div>
-    
-<div style="float: left;">   
+<div style="float: left; width: 50%;">   
     ${icons_party}
     ${choice_party}
- </div>
-    <img src="${frontend_logos}logo2.png" style="" width="35%"/>
+</div>
+<div style="clear: both"></div>
+</div>
+
+<div style="width: 50%">
+        ${comments_pro}
+        ${comments_con}
+        <font></font>
+        <textarea id="c_txt_pro">
+        </textarea>
+        <font></font>
+        <input type="text" id="c_src_pro"/><br>
+        <div class="btn btn-primary submit_pro" id="submit_pro" poll_ID="${poll_ID}">${submit}</div>  
+</div>
+  
 
 
 <!--<div class="btn" id="test">
     test
 </div>
 -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+
 </div><!-- /.modal -->

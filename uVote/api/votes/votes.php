@@ -27,13 +27,21 @@ class votes {
     public static function getAllVotesOfGroup($groupid){
         return \DBD\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
     
+    public static function getAllExpVotesOfGroup($groupid){
+        return \DBD\UVOTE_GENERATE_VOTELIST_EXP::QA(array($groupid));}
+    
+    public static function getUserComments($poll_ID, $c_choice){
+        return \DBD\UVOTE_GENERATE_COMMENTS_PER_POLL::QA(array($poll_ID, $c_choice));}
+    
     public static function countAllPolls(){
         $res = \DBD\UVOTE_DATA_COUNT_VOTES::QQ();
     return $res;}
         
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
-
+    
+    public static function insertUserComment($c_choice, $poll_ID, $user_ID, $c_txt, $c_src, $timestamp){
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::QI(array($c_choice, $poll_ID, $user_ID, $c_txt, $c_src, $timestamp));}
     /*public static function getVoteOfGroup($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByGrp',
@@ -177,6 +185,11 @@ class votes {
             throw new ERROR("You need to be logged in.");}          
         return \DBD\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children));}  
 
+    public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}          
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id,  $c_txt, $c_src));}
+        
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
     }

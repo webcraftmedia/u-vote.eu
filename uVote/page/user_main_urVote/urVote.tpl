@@ -18,7 +18,8 @@
         <div style="margin-left: 40px; float: left;">
              ${user_temp_votes}
         </div>
-        <div style="margin-left: 40px; float: left;">
+        <br>
+        <div style="margin-left: 40px; float: right;">
              ${user_overall_votes}
         </div>
         <div id="graph_bt_user_overall" style=""></div>

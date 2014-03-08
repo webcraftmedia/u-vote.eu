@@ -36,18 +36,20 @@ $(document).ready(function() {
         //load_user_main_tab('user_main_uVote');
     });    
     
-    $('#user_list').load('./?action=user_list', function(){     
+    $('#user_list').load('./?action=user_list', function(){
+        $('#tabs_user_list a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            load_user_list_tab($(this).attr('action'));
+            
+        });
         $('.btn_vote').click(function () {
             //vote_click($(this).attr('poll_ID'));
             $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
                 open_vote($(this).attr('poll_ID'));                     
                 register_registerform();
             });      
-        $('#tabs_user_list a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-            load_user_list_tab($(this).attr('action'));
-        });
+        
 
         //load_user_main_tab('user_main_uVote');
     });    
@@ -130,10 +132,22 @@ function load_user_list_tab(action){
     switch(action){
         
         case 'user_list_active':
-            $('#tab_active').load('./?action='+ action);          
+            $('#tab_active').load('./?action='+ action);
+            $('.btn_vote').click(function () {
+            //vote_click($(this).attr('poll_ID'));
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+                open_vote($(this).attr('poll_ID'));                     
+                register_registerform();
+            });      
             return;
         case 'user_list_ended':
             $('#tab_ended').load('./?action='+ action);
+            $('.btn_vote').click(function () {
+            //vote_click($(this).attr('poll_ID'));
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+                open_vote($(this).attr('poll_ID'));                     
+                register_registerform();
+            });      
             return;
             default:
     }
@@ -174,6 +188,22 @@ function get_barsperparty (poll_ID) {
 
 function vote_click (poll_ID, vote) {
     $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
+        var items = [];   
+        if(data.status == true){
+            alert("success");
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
+                open_vote(poll_ID);                
+            });                   
+        } else {
+            alert(data.result.message);
+        }
+    }); 
+}
+function submit_c_data (poll_ID, c_choice) {
+    var c_txt = document.getElementById("c_txt_pro").textContent;  
+    var c_src = document.getElementById("c_src_pro").textContent;
+    alert(c_choice);
+    $.getJSON('./api.php?call=vote&action=comment&poll_ID=' + poll_ID + '&c_choice=' + c_choice + '&c_txt=' + c_txt + '&c_src=' + c_src, function(data) {
         var items = [];   
         if(data.status == true){
             alert("success");
@@ -244,9 +274,18 @@ function open_vote (poll_ID) {
         $('.btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
+        $('.submit_pro').click(function () {
+            submit_c_data($(this).attr('poll_ID',1));
+            alert('success');
+            });
+        $('.submit_con').click(function () {
+            submit_c_data($(this).attr('poll_ID'));
+            alert('success');
+            });
         $('#test').click(function(){
             $('#myModal').modal();
         });
+        
         register_registerform();        
     }); 
 }

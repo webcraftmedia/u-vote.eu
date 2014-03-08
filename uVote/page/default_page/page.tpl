@@ -70,7 +70,7 @@
                 
         <div id="site-content" style="padding: 0; margin: 0; margin-left: 40px;">
             
-            <div id="user_main" style="position: absolute; padding: 0; padding-top: 0px; width: 50%;"></div>
+            <div id="user_main" style="position: absolute; padding: 0; padding-top: 0px; width: 49%;"></div>
             
             <div id="user_list" style="padding: 0px; width: 50%; float: right;">            
                 

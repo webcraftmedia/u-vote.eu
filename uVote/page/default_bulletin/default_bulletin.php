@@ -55,6 +55,27 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         return $result;              
     }
     
+    private function get_pro_comments (){
+        $result = '';
+        $vars = votes::getUserComments($this->poll_ID, 1);
+        foreach($vars as $com){
+            $com['c_txt'] = utf8_encode($com['c_txt']);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
+        }
+        return $result;
+    
+    }
+    private function get_con_comments (){
+        $result = '';
+        $vars = votes::getUserComments($this->poll_ID, 2);
+        
+        foreach($vars as $com){
+            $com['c_txt'] = utf8_encode($com['c_txt']);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
+        }
+        return $result;
+    
+    }
     private function bars_user(){
         $bars = votes::get_barsperusers($this->poll_ID,false);
         $bars['vote_yes_perc'] = round($bars['yes_perc']*100,0);
@@ -174,12 +195,16 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['bars_party'] = '';
         $vars['icons_party'] = '';
         $vars['vote_class'] = $this->vote_choice();
+        $vars['comments_pro'] = '';
+        $vars['comments_con'] = '';
         $vars['js'] = $this->js();
         $vars['css'] = $this->css();
                 
         $vars['vote_buttons'] =   $this->vote_buttons($poll_expired,$user_vote);
 //        $vars['p_fields'] = $this->p_fields();
         if($user_vote){
+            $vars['comments_pro'] = $this->get_pro_comments();
+            $vars['comments_con'] = $this->get_con_comments();
             $vars['icons_party'] = $this->icons_party();
             $vars['choice_party'] = $this->choice_party();
             $vars['bars_party'] = $this->bars_party();

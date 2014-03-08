@@ -41,7 +41,7 @@ class user_list_ended extends SYSTEM\PAGE\Page {
     
     public function generate_votelist(){        
         $result = array('','');
-        $votes = votes::getAllVotesOfGroup(1);               
+        $votes = votes::getAllExpVotesOfGroup(1);               
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
