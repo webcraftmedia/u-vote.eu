@@ -72,8 +72,8 @@
             
             <div id="user_main" style="position: absolute; padding: 0; padding-top: 0px; width: 50%;"></div>
             
-            <div id="list" style="padding: 0px; width: 50%; float: right;">            
-                ${votelist}
+            <div id="user_list" style="padding: 0px; width: 50%; float: right;">            
+                
             </div>
         </div>
 

@@ -13,7 +13,10 @@ class page_uvote extends \SYSTEM\API\api_default {
     public static function action_user_main(){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             return new default_register ();}
-        return new user_main();}    
+        return new user_main();}
+        
+    public static function action_user_list(){
+        return new user_list();}
     
     public static function action_user_main_uVote(){
         return new user_main_uVote();}

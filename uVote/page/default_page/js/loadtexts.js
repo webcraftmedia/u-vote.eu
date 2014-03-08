@@ -6,12 +6,7 @@ $(document).ready(function() {
             
             //loadUrlPic($(this).attr('url'));
 	});*/
-        $('.btn_vote').click(function () {
-            //vote_click($(this).attr('poll_ID'));
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-                open_vote($(this).attr('poll_ID'));                     
-                register_registerform();
-            });
+        
         
         
         /*$('.btn_openvoteinfo').click(function () {                 
@@ -23,9 +18,43 @@ $(document).ready(function() {
         });*/
 
         //jqBootstrapValidation        
-        
+
     
-    $("#form_login input").not("[type=submit]").jqBootstrapValidation({
+    $('#user_main').load('./?action=user_main', function(){
+        register_registerform();
+        $('#feedback_submit').click(function (data){
+            var test = $('textarea#feedback_text').val();
+            send_feedback(test);
+            
+        });
+        $('#tabs_user_main a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            load_user_main_tab($(this).attr('action'));        
+        });
+
+        //load_user_main_tab('user_main_uVote');
+    });    
+    
+    $('#user_list').load('./?action=user_list', function(){     
+        $('.btn_vote').click(function () {
+            //vote_click($(this).attr('poll_ID'));
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+                open_vote($(this).attr('poll_ID'));                     
+                register_registerform();
+            });      
+        $('#tabs_user_list a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            load_user_list_tab($(this).attr('action'));
+        });
+
+        //load_user_main_tab('user_main_uVote');
+    });    
+        
+});
+$("#form_login input").not("[type=submit]").jqBootstrapValidation({
+        
         preventSubmit: true,
         submitError: function($form, event, errors) {},
         submitSuccess: function($form, event){
@@ -52,25 +81,8 @@ $(document).ready(function() {
         }            
     });
     
-    $('#user_main').load('./?action=user_main', function(){
-        register_registerform();
-        $('#feedback_submit').click(function (data){
-            var test = $('textarea#feedback_text').val();
-            send_feedback(test);
-            
-        });
-        $('#tabs_user_main a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-            load_user_main_tab($(this).attr('action'));        
-        });
-
-        //load_user_main_tab('user_main_uVote');
-    });    
-        
-});
-
 function register_registerform(){
+    console.log("wegwegwegwegwegweg");
     $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
     {
         preventSubmit: true,            
@@ -97,7 +109,6 @@ function load_user_main_tab(action){
     switch(action){
         
         case 'user_main_uVote':
-            window.location.reload();
             $('#tab_uVote').load('./?action='+ action);        
             return;
         case 'user_main_urVote':
@@ -114,7 +125,19 @@ function load_user_main_tab(action){
         default:
     }   
 }
-
+function load_user_list_tab(action){
+    
+    switch(action){
+        
+        case 'user_list_active':
+            $('#tab_active').load('./?action='+ action);          
+            return;
+        case 'user_list_ended':
+            $('#tab_ended').load('./?action='+ action);
+            return;
+            default:
+    }
+}
 
 function account_create(inputEmail, inputPassword){
     $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
@@ -211,7 +234,7 @@ $.ajax({
 }
 
 function open_vote (poll_ID) {
-    $('#list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID, function(){
+    $('#user_list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID, function(){
         $('.btnvote_yes').click(function () {            
             vote_click($(this).attr('poll_ID'),1);
             });
