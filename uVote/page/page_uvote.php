@@ -18,8 +18,11 @@ class page_uvote extends \SYSTEM\API\api_default {
     public static function action_user_list(){
         return new user_list();}
     
-    public static function action_user_main_uVote(){
-        return new user_main_uVote();}
+    public static function action_user_list_active(){
+        return new user_list_active();}
+    
+    public static function action_user_list_ended(){
+        return new user_list_ended();}
     
     public static function action_user_main_urVote(){
         return new user_main_urVote();}

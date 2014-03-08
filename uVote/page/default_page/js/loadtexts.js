@@ -51,9 +51,7 @@ $(document).ready(function() {
 
         //load_user_main_tab('user_main_uVote');
     });    
-        
-});
-$("#form_login input").not("[type=submit]").jqBootstrapValidation({
+ $("#form_login input").not("[type=submit]").jqBootstrapValidation({
         
         preventSubmit: true,
         submitError: function($form, event, errors) {},
@@ -80,7 +78,9 @@ $("#form_login input").not("[type=submit]").jqBootstrapValidation({
             event.preventDefault();
         }            
     });
-    
+           
+});
+
 function register_registerform(){
     console.log("wegwegwegwegwegweg");
     $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
