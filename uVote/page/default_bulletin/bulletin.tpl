@@ -1,45 +1,55 @@
-<div style="float: left;"> 
-
-<h4>${title}</h4>
-<div>
+<div style="float: left; width: 100%;"> 
+    <h4>${title}</h4>
     ${vote_buttons}
     <div style="float: left;">
-    <img src="${frontend_logos}icon_urn_${vote_class}.png"/>
+        <img src="${frontend_logos}icon_urn_${vote_class}.png"/>
     </div>
-<div style="margin-top: 30px;">
-    ${openvote_help_text}
-    ${title}
-    ${openvote_help_text1}
-</div>
-
-<div>
-    ${voice_weight}
-</div>
-<div style="float: left; width: 50%"> 
-    <div>      
-       ${bars_user}    
-    </div>  
-    <div>         
-       ${bars_bt}
+    <div style="margin-top: 30px;">
+        ${openvote_help_text}
+        ${title}
+        ${openvote_help_text1}
     </div>
-</div>
-<div style="float: left; width: 50%;">   
-    ${icons_party}
-    ${choice_party}
-</div>
-<div style="clear: both"></div>
-</div>
+    <div>
+        ${voice_weight}
+    </div>
+    <div style="float: left; width: 50%"> 
+        <div>      
+           ${bars_user}    
+        </div>  
+        <div>         
+           ${bars_bt}
+        </div>
+    </div>
+    <div style="width: 50%;">   
+        ${icons_party}
+        ${choice_party}
+    </div>
+    <div style="clear: both"></div>
 
-<div style="width: 50%">
-        ${comments_pro}
-        ${comments_con}
-        <font></font>
-        <textarea id="c_txt_pro">
-        </textarea>
-        <font></font>
-        <input type="text" id="c_src_pro"/><br>
-        <div class="btn btn-primary submit_pro" id="submit_pro" poll_ID="${poll_ID}">${submit}</div>  
-</div>
+
+    <div style="padding-top: 30px; width: 100%;">
+        <div style="width: 50%; float: left">
+            <h5>Pro</h5>
+            ${comments_pro}
+        </div>
+        <div style="width: 50%; float: right">
+            <h5>Contra</h5>
+            ${comments_con}
+        </div>
+    </div>
+        <div style="clear: both"></div>
+        <div>
+            <font size="2">Kommentar</font><br>
+            <textarea id="c_txt_pro"></textarea><br>
+            <font size="2">Quelle</font><br>
+            <input type="text" id="c_src_pro" placeholder="optional"/><br>
+            <select id="side_select" name="side_select">
+                <option>Seite</option>
+                <option value="1">Argument Pro</option>
+                <option value="2">Argument Con</option>
+            </select><br>
+            <div class="btn btn-primary submit_pro" id="submit_pro" poll_ID="${poll_ID}">${submit}</div>  
+    </div>
   
 
 

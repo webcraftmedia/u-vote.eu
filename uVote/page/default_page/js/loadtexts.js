@@ -132,22 +132,22 @@ function load_user_list_tab(action){
     switch(action){
         
         case 'user_list_active':
-            $('#tab_active').load('./?action='+ action);
-            $('.btn_vote').click(function () {
-            //vote_click($(this).attr('poll_ID'));
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-                open_vote($(this).attr('poll_ID'));                     
-                register_registerform();
-            });      
+            $('#tab_active').load('./?action='+ action, function(){
+                $('.btn_vote').click(function () {
+                //vote_click($(this).attr('poll_ID'));
+                $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+                    open_vote($(this).attr('poll_ID'));                     
+                    register_registerform();
+                })});      
             return;
         case 'user_list_ended':
-            $('#tab_ended').load('./?action='+ action);
-            $('.btn_vote').click(function () {
-            //vote_click($(this).attr('poll_ID'));
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-                open_vote($(this).attr('poll_ID'));                     
-                register_registerform();
-            });      
+            $('#tab_ended').load('./?action='+ action, function(){
+                $('.btn_vote').click(function () {
+                //vote_click($(this).attr('poll_ID'));
+                $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+                    open_vote($(this).attr('poll_ID'));                     
+                    register_registerform();
+                })});      
             return;
             default:
     }
@@ -199,9 +199,11 @@ function vote_click (poll_ID, vote) {
         }
     }); 
 }
-function submit_c_data (poll_ID, c_choice) {
-    var c_txt = document.getElementById("c_txt_pro").textContent;  
-    var c_src = document.getElementById("c_src_pro").textContent;
+function submit_c_data (poll_ID) {
+    var c_txt = $("#c_txt_pro").val();  
+    var c_src = $("#c_src_pro").val();
+    var a = document.getElementById("side_select");
+    var c_choice = a.options[a.selectedIndex].value;
     alert(c_choice);
     $.getJSON('./api.php?call=vote&action=comment&poll_ID=' + poll_ID + '&c_choice=' + c_choice + '&c_txt=' + c_txt + '&c_src=' + c_src, function(data) {
         var items = [];   
@@ -275,10 +277,6 @@ function open_vote (poll_ID) {
             vote_click($(this).attr('poll_ID'),3);
             });
         $('.submit_pro').click(function () {
-            submit_c_data($(this).attr('poll_ID',1));
-            alert('success');
-            });
-        $('.submit_con').click(function () {
             submit_c_data($(this).attr('poll_ID'));
             alert('success');
             });

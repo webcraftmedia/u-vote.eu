@@ -184,7 +184,7 @@ class votes {
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}          
         return \DBD\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children));}  
-
+                                        
     public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}          
