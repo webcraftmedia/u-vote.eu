@@ -1,7 +1,6 @@
 <?php
 
-class default_page extends SYSTEM\PAGE\Page {
-    
+class default_page extends SYSTEM\PAGE\Page {        
     private function js(){        
         return  '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PJQUERY(),'jquery-1.9.1.min.js').'"></script>'.
                 '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PBOOTSTRAP(),'js/bootstrap.min.js').'"></script>'.

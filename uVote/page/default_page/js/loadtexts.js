@@ -1,38 +1,51 @@
-/* jQuery on document ready */
-$(document).ready(function() {
-    // handle navigation link click
-	/*$('.navbar ul li a').not('#menu_uvote').click(function () {
-            loadAjaxContent($(this).attr('url'));
-            
-            //loadUrlPic($(this).attr('url'));
-	});*/
-        
-        
-        
-        /*$('.btn_openvoteinfo').click(function () {                 
-            if($("#openvoteinfo"+$(this).attr('poll_ID')).is(':visible')){                
-                $('#openvoteinfo'+$(this).attr('poll_ID')).slideUp('slow');
-            }else{                                            
-                load_openvoteinfo($(this).attr('poll_ID'));
-            }
-        });*/
+$(document).ready(function() {    
+    load_user_main();
+    load_user_list();            
+    register_login();
+    register_logout();
+});
 
-        //jqBootstrapValidation        
-
-    
+function load_user_list(){
+    $('#user_list').load('./?action=user_list', function(){
+        register_user_list();});
+}
+function load_user_main(){
     $('#user_main').load('./?action=user_main', function(){
-        register_registerform();
-        $('#feedback_submit').click(function (data){
-            var test = $('textarea#feedback_text').val();
-            send_feedback(test);
-            
-        });
-        $('#tabs_user_main a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-            load_user_main_tab($(this).attr('action'));        
-        });
+        register_user_main();
+    });
+}
 
+function register_user_list(){
+    $('#tabs_user_list a').click(function (e) {
+        e.preventDefault();
+        load_user_list_tab($(this).attr('action'));
+        $(this).tab('show');        
+    });
+    $('.btn_vote').click(function () {
+        //vote_click($(this).attr('poll_ID'));
+        $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                      
+        open_vote($(this).attr('poll_ID'));                     
+        register_registerform();
+    });      
+    $('.btn_fade').click(function () {           
+        $('#vote_data_panel' + $(this).attr('poll_ID')).toggle();
+    });
+}
+function register_user_main(){
+    register_registerform();
+    $('#feedback_submit').click(function (data){
+        var test = $('textarea#feedback_text').val();
+        send_feedback(test);            
+    });
+    $('#tabs_user_main a').click(function (e) {
+        e.preventDefault();
+        load_user_main_tab($(this).attr('action'));
+        $(this).tab('show');                
+    });
+}
+
+function register_login(){
+    $("#form_login input").not("[type=submit]").jqBootstrapValidation({        
         //load_user_main_tab('user_main_uVote');
     });    
     
@@ -61,16 +74,17 @@ $(document).ready(function() {
         submitError: function($form, event, errors) {},
         submitSuccess: function($form, event){
             $.get('./api.php?call=account&action=login&username=' + $('#bt_login_user').val()+'&password_sha='+$.sha1($('#bt_login_password').val())+'&password_md5='+$.md5($('#bt_login_password').val()), function (data) {
-                    if(data == 1){
-                        window.location.reload();
-                    } else {
-                        $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
-                    }                    
-                });
-                event.preventDefault();
-            }            
+                if(data == 1){
+                    window.location.reload();
+                } else {
+                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                }                    
+            });
+            event.preventDefault();
+        }
     });
-    
+}
+function register_logout(){
     $("#form_logout input").not("[type=submit]").jqBootstrapValidation(
     {
         preventSubmit: true,            
@@ -82,8 +96,7 @@ $(document).ready(function() {
             event.preventDefault();
         }            
     });
-           
-});
+}
 
 function register_registerform(){
     console.log("wegwegwegwegwegweg");
@@ -104,35 +117,27 @@ function register_registerform(){
     });
 }
 
-function drawChart(){
-    //load_visualisation('#graph_bt_uv_overall',84600);
-}
-
-function load_user_main_tab(action){
-    
-    switch(action){
-        
+function load_user_main_tab(action){    
+    switch(action){        
         case 'user_main_uVote':
-            $('#tab_uVote').load('./?action='+ action);        
+            //$('#tab_uVote').load('./?action='+ action);        //causes error
             return;
         case 'user_main_urVote':
             $('#tab_urVote').load('./?action='+ action);
             return;
         case 'user_main_myVote':
             $('#tab_myVote').load('./?action='+ action, function(){
-            $('.add_data_submit').click(function () {
-            submit_add_data();
-            alert('success');
-            });
+                $('.add_data_submit').click(function () {
+                    submit_add_data();
+                    alert('success');
+                });
             });
             return;
         default:
     }   
 }
-function load_user_list_tab(action){
-    
-    switch(action){
-        
+function load_user_list_tab(action){    
+    switch(action){        
         case 'user_list_active':
             $('#tab_active').load('./?action='+ action, function(){
                 $('.btn_fade').click(function () {           
@@ -259,19 +264,7 @@ function submit_add_data () {
 }
 
 function send_feedback (feedback) {
-    
-//    $.getJSON('./api.php?call=vote&action=feedback&feedback=' + feedback, function(data) {
-//        console.log("hallo3672rt2ziuzir");
-//        var items = []; 
-//        alert(feedback);
-//        if(data.status == true){
-//            alert("success");
-//        } else {
-//            alert(data.result.message);
-//        }
-//    }); 
-
-$.ajax({
+    $.ajax({
         url: 'http://mojotrollz.eu/web/uVote/api.php',
        // contentType : "application/json; charset=utf-8",
         data : {
@@ -283,7 +276,8 @@ $.ajax({
         type : 'POST' ,
         success: function(data) {
             alert("success");
-        }});
+        }
+    });
 }
 
 function open_vote (poll_ID) {
