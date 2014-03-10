@@ -58,7 +58,9 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function get_pro_comments (){
         $result = '';
         $vars = votes::getUserComments($this->poll_ID, 1);
+        
         foreach($vars as $com){
+            $com['count'] = votes::get_commentrate($com['c_ID'], 1);
             $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }
@@ -67,9 +69,11 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     }
     private function get_con_comments (){
         $result = '';
-        $vars = votes::getUserComments($this->poll_ID, 2);
-        
+        $vars = votes::getUserComments($this->poll_ID, 2); 
+                     
         foreach($vars as $com){
+            $com['count'] = votes::get_commentrate($com['c_ID'], 2);
+            $com['nr_down'] = $c['count'];
             $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }
@@ -185,6 +189,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function css(){  
         return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';} 
 
+        
+    
     public function html(){
         $poll_expired = \DBD\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
         $user_vote = votes::getUserPollData($this->poll_ID);

@@ -124,6 +124,9 @@ class votes {
     public static function get_user_count(){
         return \DBD\UVOTE_DATA_USER_COUNT_USERS::Q1(array());}
     
+    public static function get_commentrate($c_ID, $val){
+        return \DBD\UVOTE_DATA_USER_COMMENTRATE_PER_COMMENT::Q1(array($c_ID, $val));}
+    
     public static function get_count_user_votes_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($poll_ID));}
     
@@ -187,8 +190,13 @@ class votes {
                                         
     public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
-            throw new ERROR("You need to be logged in.");}          
+            throw new ERROR("You need to be logged in.");}
         return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id,  $c_txt, $c_src));}
+        
+    public static function write_commentrate($c_ID, $val){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+        return \DBD\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val));}
         
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 

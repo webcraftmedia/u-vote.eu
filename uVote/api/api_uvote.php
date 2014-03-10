@@ -15,6 +15,11 @@ class api_uvote extends \SYSTEM\API\api_login {
         
     }
     
+    public static function call_vote_action_commentrate($c_ID, $val) {
+        return votes::write_commentrate($c_ID, $val);
+        
+    }
+    
     public static function call_vote_action_new_vote($ID, $title, $iframe_link) {
         return votes::write_poll($ID, $title, $iframe_link);
         

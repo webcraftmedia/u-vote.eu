@@ -45,11 +45,13 @@ $(document).ready(function() {
         });
         $('.btn_vote').click(function () {
             //vote_click($(this).attr('poll_ID'));
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                      
                 open_vote($(this).attr('poll_ID'));                     
                 register_registerform();
             });      
-        
+        $('.btn_fade').click(function () {           
+            $('#vote_data_panel' + $(this).attr('poll_ID')).show();
+            });
 
         //load_user_main_tab('user_main_uVote');
     });    
@@ -133,15 +135,22 @@ function load_user_list_tab(action){
         
         case 'user_list_active':
             $('#tab_active').load('./?action='+ action, function(){
+                $('.btn_fade').click(function () {           
+                    $('#vote_data_panel' + $(this).attr('poll_ID')).show();
+                });
                 $('.btn_vote').click(function () {
                 //vote_click($(this).attr('poll_ID'));
                 $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
                     open_vote($(this).attr('poll_ID'));                     
                     register_registerform();
+                
                 })});      
             return;
         case 'user_list_ended':
             $('#tab_ended').load('./?action='+ action, function(){
+                $('.btn_fade').click(function () {           
+                    $('#vote_data_panel' + $(this).attr('poll_ID')).show();
+                });
                 $('.btn_vote').click(function () {
                 //vote_click($(this).attr('poll_ID'));
                 $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
@@ -199,6 +208,18 @@ function vote_click (poll_ID, vote) {
         }
     }); 
 }
+
+function submit_commentrate (c_ID, val) {
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {
+        var items = [];   
+        if(data.status == true){
+            alert("success");                       
+        } else {
+            alert(data.result.message);
+        }
+    }); 
+}
+
 function submit_c_data (poll_ID) {
     var c_txt = $("#c_txt_pro").val();  
     var c_src = $("#c_src_pro").val();
@@ -280,6 +301,15 @@ function open_vote (poll_ID) {
             submit_c_data($(this).attr('poll_ID'));
             alert('success');
             });
+        $('.c_up').click(function () {
+                   submit_commentrate($(this).attr('c_ID'), 1);
+                });
+        $('.c_down').click(function () {
+                   submit_commentrate($(this).attr('c_ID'), 2);
+                });
+        $('.c_spam').click(function () {
+                   submit_commentrate($(this).attr('c_ID'), 3);
+                });
         $('#test').click(function(){
             $('#myModal').modal();
         });
