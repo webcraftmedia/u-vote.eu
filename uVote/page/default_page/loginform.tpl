@@ -3,7 +3,6 @@
               <input class="span2" type="password" id="login_password" placeholder="Passwort">
               <button type="submit" class="btn">Login</button>
 </form> -->
-
 <form class="navbar-form pull-right" style="" id="form_login">
     <div class="control-group">
         <div class="help-block"style="float: left; padding: 0;"></div>

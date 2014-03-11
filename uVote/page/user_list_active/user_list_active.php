@@ -1,23 +1,6 @@
 <?php
-
-class default_page extends SYSTEM\PAGE\Page {
+class user_list_active extends SYSTEM\PAGE\Page { 
     
-    private function js(){        
-        return  '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PJQUERY(),'jquery-1.9.1.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PBOOTSTRAP(),'js/bootstrap.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PVALIDATION(),'jqBootstrapValidation.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.md5.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.sha1.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery.countdown\jquery.countdown.js').'"></script>'.                
-                '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/loadtexts.js').'"></script>'.               
-                '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/account_create.js').'"></script>'.
-                '<script src="https://www.google.com/jsapi" type="text/javascript"></script>'.
-                '<script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>';
-    }
-    
-    private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/default_page.css').'" rel="stylesheet">';}        
-
     private function get_party_per_poll($choice){
         switch($choice){
             case 1:
@@ -106,34 +89,16 @@ class default_page extends SYSTEM\PAGE\Page {
             }
         }
         return $result[0].$result[1];
-    }        
-
-    public function get_coverpage(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/cover.tpl'), array());}
-
-    public function getloggedinform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loggedinform.tpl'),array());} 
-    
-    public function exchange_registerform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/register_form.tpl'),array());}
-    
-    public function getloginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loginform.tpl'),array());} 
-    
-    public function exchange_loginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/loggedinformtop.tpl'),array());}
-
+    }
+ 
     public function html(){
-        $vars = array();               
-        $vars['js'] = $this->js(); 
-        $vars['css'] = $this->css();
+        $vars = array();
         $vars['votelist'] = $this->generate_votelist();
-        $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
-        $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';        
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
-
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/page.tpl'), $vars);        
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(110));
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_list_active/active.tpl'), $vars);
     }
+  
 }

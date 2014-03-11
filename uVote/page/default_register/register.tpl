@@ -1,4 +1,4 @@
-<div style="width: 90%;">
+<div style="width: 50%; padding: 60px;">
 <img src="${frontend_logos}logo2.png"/>
 <br />
 <br />
