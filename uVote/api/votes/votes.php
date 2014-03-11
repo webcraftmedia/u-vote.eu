@@ -212,6 +212,7 @@ class votes {
     }
     
     public static function write_feedback($feedback){
+        $feedback = json_decode($feedback);
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
             
@@ -220,6 +221,7 @@ class votes {
                                 'INSERT INTO uvote_beta_feedback
                                  VALUES (?, ?);',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id, $feedback));   
+        new WARNING("feedback was added");
         return JsonResult::ok();
     }
     

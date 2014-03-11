@@ -215,10 +215,9 @@ function vote_click (poll_ID, vote) {
 }
 
 function submit_commentrate (c_ID, val) {
-    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {   
         var items = [];   
-        if(data.status == true){
-            alert("success");                       
+        if(data.status == true){                  
         } else {
             alert(data.result.message);
         }
@@ -264,18 +263,24 @@ function submit_add_data () {
 }
 
 function send_feedback (feedback) {
+    var val = JSON.stringify(feedback);
+    console.log("feedback called");
     $.ajax({
         url: 'http://mojotrollz.eu/web/uVote/api.php',
        // contentType : "application/json; charset=utf-8",
         data : {
-            call: 'vote',
-            action: 'feedback',
-            feedback: feedback
+            'call': 'vote',
+            'action': 'feedback',
+            'feedback': val
         },
-        dataType : 'json',
-        type : 'POST' ,
-        success: function(data) {
+        type : 'POST',
+        dataType: 'json',
+        async: false,
+        success: function() {
             alert("success");
+        },
+        error: function(error){
+            alert("something failed..."+error);
         }
     });
 }
