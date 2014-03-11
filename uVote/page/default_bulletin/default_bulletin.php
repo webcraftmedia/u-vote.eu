@@ -47,7 +47,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
                                             'choice_class' => $this->tablerow_class($pv['choice']),
-                                            'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : 'votes_pro',
+                                            'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : $pv['votes_pro'],
                                             'party_no' => $pv['votes_contra'] > 0 ? round($pv['votes_contra']/$pv['total']*100,0) : $pv['votes_contra'],
                                             'party_off' => $pv['total'] > 0 ? round(($pv['total'] - $pv['nr_attending'])/$pv['total']*100,0) : $pv['total'],
                                             'party_ent' => $pv['nr_attending'] > 0 ? round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['nr_attending']*100,0) : $pv['nr_attending']));                    
@@ -60,7 +60,10 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars = votes::getUserComments($this->poll_ID, 1);
         
         foreach($vars as $com){
-            $com['count'] = votes::get_commentrate($com['c_ID'], 1);
+            $rating = votes::get_commentrate($com['c_ID'], 1);
+            $com['count_up'] = $rating['count'];
+            $rating2 = votes::get_commentrate($com['c_ID'], 2);
+            $com['count_down'] = $rating2['count'];
             $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }
@@ -72,8 +75,10 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars = votes::getUserComments($this->poll_ID, 2); 
                      
         foreach($vars as $com){
-            $com['count'] = votes::get_commentrate($com['c_ID'], 2);
-            $com['nr_down'] = $c['count'];
+            $rating = votes::get_commentrate($com['c_ID'], 1);
+            $com['count_up'] = $rating['count'];
+            $rating2 = votes::get_commentrate($com['c_ID'], 2);
+            $com['count_down'] = $rating2['count'];
             $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }

@@ -302,12 +302,17 @@ function open_vote (poll_ID) {
             });
         $('.c_up').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 1);
+                   alert("Daumen hoch!");
+                   $('#count_up').reload();
                 });
         $('.c_down').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 2);
+                   alert("Daumen runter!");
+                   $('#count_down').reload();
                 });
         $('.c_spam').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 3);
+                   alert("Als Spammer gemeldet");
                 });
         $('#test').click(function(){
             $('#myModal').modal();
