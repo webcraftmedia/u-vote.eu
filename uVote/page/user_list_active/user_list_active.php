@@ -98,6 +98,7 @@ class user_list_active extends SYSTEM\PAGE\Page {
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(110));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_list_active/active.tpl'), $vars);
     }
   

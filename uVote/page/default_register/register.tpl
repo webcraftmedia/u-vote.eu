@@ -1,5 +1,6 @@
 <div style="width: 50%; padding: 60px;">
-<img src="${frontend_logos}logo2.png"/>
+    <img src="${frontend_logos}logo2.png"/>
+<img src="${frontend_logos}cover.png"/>
 <br />
 <br />
 <form class="textbox" id="register_user_form">

@@ -1,8 +1,37 @@
 <?php
 
 class votes {
+    
+    public static function get_graph_bt_to_uvote_overall_by_time ($timespan = 84600,$returnasjson = true){
+        $result = array();
+        $res = \DBD\UVOTE_DATA_GRAPH_BT_TO_UVOTE_OVERALL_BY_TIME::QQ(array($timespan));
+        while ($row = $res->next()){
+            $result[] = array(  0 => $row['day'],
+                                'match' => $row['class_match'] > 0 ? round($row['class_match'] / ($row['class_match']+$row['class_mismatch']),2) : 0,
+                                'mismatch' => $row['class_match'] > 0 ? round($row['class_mismatch'] / ($row['class_match']+$row['class_mismatch']),2) : 0);
+        }
+        return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
+    }
+    
+    public static function get_graph_bt_to_user_overall_by_time ($timespan = 84600,$returnasjson = true){
+        $result = array();
+        $res = \DBD\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id));
+        while ($row = $res->next()){
+            $result[] = array(  0 => $row['day'],
+                                'class_match' => $row['class_match'] / ($row['class_match']+$row['class_mismatch']+1),
+                                'class_mismatch' => $row['class_mismatch'] / ($row['class_match']+$row['class_mismatch']+1));
+        }
+        return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
+    }
+
     public static function getAllVotesOfGroup($groupid){
         return \DBD\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
+    
+    public static function getAllExpVotesOfGroup($groupid){
+        return \DBD\UVOTE_GENERATE_VOTELIST_EXP::QA(array($groupid));}
+    
+    public static function getUserComments($poll_ID, $c_choice){
+        return \DBD\UVOTE_GENERATE_COMMENTS_PER_POLL::QA(array($poll_ID, $c_choice));}
     
     public static function countAllPolls(){
         $res = \DBD\UVOTE_DATA_COUNT_VOTES::QQ();
@@ -10,14 +39,20 @@ class votes {
         
     public static function insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
         return \DBD\UVOTE_GENERATE_VOTELIST::QI(array($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice));}
-
-    public static function getVoteOfGroup($poll_ID){
+    
+    public static function insertUserComment($c_choice, $poll_ID, $user_ID, $c_txt, $c_src, $timestamp){
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::QI(array($c_choice, $poll_ID, $user_ID, $c_txt, $c_src, $timestamp));}
+    /*public static function getVoteOfGroup($poll_ID){
         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ? LIMIT 1;',
                                 array($poll_ID));        
         $result = $res->next();                                        
         return $result;
+    }*/
+    
+    public static function get_user_choice_per_poll($poll_ID, $user_ID){
+        return \DBD\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
     }
     
     public static function getUserPollData($poll_ID){
@@ -80,11 +115,17 @@ class votes {
     public static function get_user_temp_votes($user_ID){
         return \DBD\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
     
+    public static function get_user_overall_votes($user_ID, $creationDate){
+        return \DBD\UVOTE_DATA_OVERALL_VOTES::Q1(array($user_ID, $user_ID, $user_ID, $creationDate));}
+    
     public static function get_bar_bt_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
     
     public static function get_user_count(){
         return \DBD\UVOTE_DATA_USER_COUNT_USERS::Q1(array());}
+    
+    public static function get_commentrate($c_ID, $val){
+        return \DBD\UVOTE_DATA_USER_COMMENTRATE_PER_COMMENT::Q1(array($c_ID, $val));}
     
     public static function get_count_user_votes_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($poll_ID));}
@@ -112,6 +153,7 @@ class votes {
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
         $res = $res->next();
+        $res['title'] = utf8_encode($res['title']);
         return $res;
     }
     
@@ -136,9 +178,28 @@ class votes {
                      
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
-                                 VALUES (?, ?, ?, 0, NOW());',
+                                 VALUES (?, ?, ?, 0, NOW());', 
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
+    }
+    
+    public static function write_data($location, $birthyear, $gender, $children){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}          
+        return \DBD\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children));}  
+                                        
+    public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id,  $c_txt, $c_src));}
+        
+    public static function write_commentrate($c_ID, $val){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            throw new ERROR("You need to be logged in.");}
+        return \DBD\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val));}
+        
+    public static function get_add_data(){
+        return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
     }
     
     public static function write_poll($ID, $title, $iframe_link ){    
@@ -163,7 +224,7 @@ class votes {
     }
     
     public static function open_vote($poll_ID){
-        $vote = votes::getVoteOfGroup($poll_ID);
+        $vote = self::get_voteinfo($poll_ID); //votes::getVoteOfGroup($poll_ID);
         $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/full_vote.tpl'), $vote);
         return $result;
     }

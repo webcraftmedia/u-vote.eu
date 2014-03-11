@@ -5,6 +5,20 @@ class api_uvote extends \SYSTEM\API\api_login {
         return votes::write_vote($poll_ID, $vote);
         
     }
+     public static function call_vote_action_data($location, $birthyear, $gender, $children) {
+        return votes::write_data($location, $birthyear, $gender, $children);
+        
+    }
+    
+    public static function call_vote_action_comment($poll_ID, $c_choice, $c_txt, $c_src) {
+        return votes::write_comment($poll_ID, $c_choice, $c_txt, $c_src);
+        
+    }
+    
+    public static function call_vote_action_commentrate($c_ID, $val) {
+        return votes::write_commentrate($c_ID, $val);
+        
+    }
     
     public static function call_vote_action_new_vote($ID, $title, $iframe_link) {
         return votes::write_poll($ID, $title, $iframe_link);
@@ -33,4 +47,7 @@ class api_uvote extends \SYSTEM\API\api_login {
         return votes::vote_submit($poll_ID);
         
     }
+    
+    public static function call_graph_bt_to_uvote_overall_by_time($timespan = 84600){
+        return votes::get_graph_bt_to_uvote_overall_by_time($timespan);}
 }

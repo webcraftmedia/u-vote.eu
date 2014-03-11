@@ -3,7 +3,7 @@
         Quelle: <a href="${iframe_link}">${iframe_link} </a>
     </div>
     <div class="span6" style="width: 50%;">          
-        <iframe src="${iframe_link}" width="730" height="650"></iframe>
+        <iframe src="${iframe_link}" width="730" height="4000"></iframe>
     </div>
 </div>
 
