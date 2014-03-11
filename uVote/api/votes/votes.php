@@ -196,7 +196,7 @@ class votes {
     public static function write_commentrate($c_ID, $val){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
-        return \DBD\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val));}
+        return \DBD\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val, $c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val));}
         
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 

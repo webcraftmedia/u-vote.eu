@@ -215,10 +215,9 @@ function vote_click (poll_ID, vote) {
 }
 
 function submit_commentrate (c_ID, val) {
-    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {   
         var items = [];   
-        if(data.status == true){
-            alert("success");                       
+        if(data.status == true){                  
         } else {
             alert(data.result.message);
         }
@@ -297,12 +296,17 @@ function open_vote (poll_ID) {
             });
         $('.c_up').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 1);
+                   alert("Daumen hoch!");
+                   $('#count_up').reload();
                 });
         $('.c_down').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 2);
+                   alert("Daumen runter!");
+                   $('#count_down').reload();
                 });
         $('.c_spam').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 3);
+                   alert("Als Spammer gemeldet");
                 });
         $('#test').click(function(){
             $('#myModal').modal();

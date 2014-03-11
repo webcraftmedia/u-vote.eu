@@ -7,6 +7,5 @@ class UVOTE_DATA_USER_COMMENTRATE_INSERT extends \SYSTEM\DB\QP {
 //pg            
 '',
 //mys
-'INSERT INTO `uvote_user_comments_additional` (`c_ID`, `user_ID`, `val`, `timestamp`) 
-    VALUES (?, ?, ?, NOW());'
+'INSERT INTO `uvote_user_comments_additional`  (`c_ID`, `user_ID`, `val`, `timestamp`) VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE `c_ID` = ?, `user_ID` = ?, `val` = ?, `timestamp` = NOW();'
 );}}
