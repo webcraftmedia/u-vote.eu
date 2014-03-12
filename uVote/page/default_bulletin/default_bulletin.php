@@ -109,14 +109,17 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     }
     
     private function icons_party(){
-        $vars = array();
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/icons_table_parties.tpl'), $vars);
+        $vars = votes::get_bar_bt_per_poll($this->poll_ID);
+        if (!$vars['bt_total']){
+            return '';}
+        $info = array();
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/icons_table_parties.tpl'), $info);
     }
     
     private function bars_bt(){
         $vars = votes::get_bar_bt_per_poll($this->poll_ID);
         if (!$vars['bt_total']){
-            return 'no data yet';}
+            return 'Keine Ergebnisse für den Bundestag verfügbar';}
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
         $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);           

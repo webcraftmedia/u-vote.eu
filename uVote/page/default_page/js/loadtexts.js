@@ -215,7 +215,8 @@ function vote_click (poll_ID, vote) {
 }
 
 function submit_commentrate (c_ID, val) {
-    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {   
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {  
+        alert('success');
         var items = [];   
         if(data.status == true){                  
         } else {
@@ -229,7 +230,6 @@ function submit_c_data (poll_ID) {
     var c_src = $("#c_src_pro").val();
     var a = document.getElementById("side_select");
     var c_choice = a.options[a.selectedIndex].value;
-    alert(c_choice);
     $.getJSON('./api.php?call=vote&action=comment&poll_ID=' + poll_ID + '&c_choice=' + c_choice + '&c_txt=' + c_txt + '&c_src=' + c_src, function(data) {
         var items = [];   
         if(data.status == true){
@@ -253,6 +253,7 @@ function submit_add_data () {
     var d = document.getElementById("children");
     var children = d.options[d.selectedIndex].text;
     $.getJSON('./api.php?call=vote&action=data&location=' + location + '&birthyear=' + birthyear + '&gender=' + gender + '&children=' + children, function(data) {
+
         var items = [];   
         if(data.status == true){
             alert("success");                   

@@ -210,16 +210,11 @@ class votes {
         
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
+    }   
+    public static function write_poll($ID, $title, $iframe_link ){    
+        return \DBD\UVOTE_DATA_NEW_POLL::Q1($ID, $title, $iframe_link);       
     }
     
-    public static function write_poll($ID, $title, $iframe_link ){    
-        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());                    
-        $res = $con->prepare(   'insertPoll',
-                                'INSERT INTO uvote_votes
-                                 VALUES (?, ?, ?);',
-                                array($ID, $title, $iframe_link));   
-        return JsonResult::ok();
-    }
     
     public static function write_feedback($feedback){
         $feedback = json_decode($feedback);

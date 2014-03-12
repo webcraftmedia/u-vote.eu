@@ -1,6 +1,8 @@
 <tr style="border: solid lightgray 1px;">    
     <td style="padding: 5px;">            
-        ${title}                
+        <input id="input_poll_title" type="text" placeholder="${title}" style="width: 500px;">
+        <input id="input_poll_link" type="text" placeholder="Link" style="width: 500px;">
+        <input id="input_poll_id" type="text" placeholder="ID" style="">
     </td>
     <td>
         Nr.${ID}
@@ -8,12 +10,27 @@
     <td>
         <a class="btn btn-primary btn-small btn_editvote" style="float:right" poll_ID="${ID}">Edit</a>
     </td>
-    <td class="${bt_vote_class}" style="width: 80px; margin-top: 10px; border-left: 1px solid lightgray;">            
-        cdu<span class="badge badge-success" style="float:right;">123</span><br/>
-        csu<span class="badge badge-important" style="float:right;">123</span><br/>
-        spd<span class="badge" style="float:right;">123</span><br/>
-        grüne<span class="badge badge-success" style="float:right;">123</span><br/>
-        linke<span class="badge badge-important" style="float:right;">123</span>
+    <td class="${bt_vote_class}" style="width: 200px; margin-top: 10px; border-left: 1px solid lightgray;">            
+        cdu<span class="badge badge-success" style="float:left;"></span>
+        <span class="badge badge-important" style="float:left;">123</span>
+        <span class="badge" style="float:left;">123</span>
+        <span class="badge badge-info" style="float:left;">123</span><br/>
+        csu<span class="badge badge-success" style="float:left;">123</span>
+        <span class="badge badge-important" style="float:left;">123</span>
+        <span class="badge" style="float:left;">123</span>
+        <span class="badge badge-info" style="float:left;">123</span><br/>
+        spd<span class="badge badge-success" style="float:left;">123</span>
+        <span class="badge badge-important" style="float:left;">123</span>
+        <span class="badge" style="float:left;">123</span>
+        <span class="badge badge-info" style="float:left;">123</span><br/>
+        grüne<span class="badge badge-success" style="float:left;">123</span>
+        <span class="badge badge-important" style="float:left;">123</span>
+        <span class="badge" style="float:left;">123</span>
+        <span class="badge badge-info" style="float:left;">123</span><br/>
+        linke<span class="badge badge-success" style="float:left;">123</span>
+        <span class="badge badge-important" style="float:left;">123</span>
+        <span class="badge" style="float:left;">123</span>
+        <span class="badge badge-info" style="float:left;">123</span><br/>
     </td>
     <td class="" style="width: 30px; margin-top: 10px; border-left: 1px solid lightgray;">
         uv
