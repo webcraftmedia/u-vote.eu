@@ -215,8 +215,8 @@ function vote_click (poll_ID, vote) {
 }
 
 function submit_commentrate (c_ID, val) {
-    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {  
-        alert('success');
+    alert('success');
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {         
         var items = [];   
         if(data.status == true){                  
         } else {
