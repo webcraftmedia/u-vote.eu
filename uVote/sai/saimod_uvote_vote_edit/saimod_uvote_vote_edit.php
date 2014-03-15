@@ -28,6 +28,7 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         return \SYSTEM\PAGE\replace::replaceFile(dirname(__FILE__).'/main.tpl', $vars);*/
         
         $result = '';
+//        $result.=self::sai_mod_saimod_uvote_new_vote();
         $votes = votes::getAllVotesOfGroup(1);               
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
@@ -60,5 +61,6 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     public static function sai_mod_saimod_uvote_vote_edit_flag_js(){return \SYSTEM\LOG\JsonResult::toString(array(
             \SYSTEM\WEBPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
     ));}
-    
+    public static function sai_mod_saimod_uvote_vote_edit_flag_css(){return \SYSTEM\LOG\JsonResult::toString(array()
+    );}
 }

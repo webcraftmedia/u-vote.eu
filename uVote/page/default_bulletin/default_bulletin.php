@@ -64,7 +64,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $com['count_up'] = $rating['count'];
             $rating2 = votes::get_commentrate($com['c_ID'], 2);
             $com['count_down'] = $rating2['count'];
-            $com['c_txt'] = utf8_encode($com['c_txt']);
+//            $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }
         return $result;
@@ -79,7 +79,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $com['count_up'] = $rating['count'];
             $rating2 = votes::get_commentrate($com['c_ID'], 2);
             $com['count_down'] = $rating2['count'];
-            $com['c_txt'] = utf8_encode($com['c_txt']);
+//            $com['c_txt'] = utf8_encode($com['c_txt']);
             $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
         }
         return $result;

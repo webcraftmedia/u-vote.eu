@@ -225,8 +225,16 @@ function submit_commentrate (c_ID, val) {
     }); 
 }
 
+function encode_utf8(c) {
+  return unescape(encodeURIComponent(c));
+}
+
+function decode_utf8(c) {
+  return decodeURIComponent(escape(c));
+}
+
 function submit_c_data (poll_ID) {
-    var c_txt = $("#c_txt_pro").val();  
+    var c = $("#c_txt_pro").val();
     var c_src = $("#c_src_pro").val();
     var a = document.getElementById("side_select");
     var c_choice = a.options[a.selectedIndex].value;

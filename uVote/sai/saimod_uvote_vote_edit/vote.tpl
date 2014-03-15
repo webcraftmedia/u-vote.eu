@@ -1,8 +1,7 @@
 <tr style="border: solid lightgray 1px;">    
     <td style="padding: 5px;">            
-        <input id="input_poll_title" type="text" placeholder="${title}" style="width: 500px;">
-        <input id="input_poll_link" type="text" placeholder="Link" style="width: 500px;">
-        <input id="input_poll_id" type="text" placeholder="ID" style="">
+        <input id="input_poll_title" poll_ID="${ID}" type="text" value="${title}" style="width: 500px;">
+        <input id="input_poll_link" type="text" value="${iframe_link}" style="width: 500px;">
     </td>
     <td>
         Nr.${ID}

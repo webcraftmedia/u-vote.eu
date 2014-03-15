@@ -163,7 +163,7 @@ class votes {
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
         $res = $res->next();
-        $res['title'] = utf8_encode($res['title']);
+//        $res['title'] = utf8_encode($res['title']);
         return $res;
     }
     
@@ -201,7 +201,7 @@ class votes {
     public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
-        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id,  $c_txt, $c_src));}
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, utf8_encode($c_txt), $c_src));}
         
     public static function write_commentrate($c_ID, $val){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
@@ -211,8 +211,11 @@ class votes {
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
     }   
-    public static function write_poll($ID, $title, $iframe_link ){    
-        return \DBD\UVOTE_DATA_NEW_POLL::Q1($ID, $title, $iframe_link);       
+    public static function write_poll($ID, $title, $iframe_link ){  
+        if ($ID == -1){
+            return \DBD\UVOTE_DATA_NEW_POLL::QI(array($title, $iframe_link));
+        }
+        return \DBD\UVOTE_DATA_UPDATE_POLL::QI(array($title, $iframe_link, $ID));
     }
     
     

@@ -2,7 +2,7 @@ function init_saimod_uvote_vote_edit(){
     
     $('.btn_editvote').click(function() {
         alert ('');
-        var poll_ID = $('#input_poll_ID').val();
+        var poll_ID = $('#input_poll_title').attr('poll_ID');
         var title = $('#input_poll_title').val();
         var iframe_link = $('#input_poll_link').val();
         vote_data_edit(poll_ID, title, iframe_link);
@@ -33,7 +33,7 @@ function init_saimod_uvote_vote_edit(){
 function vote_data_edit (poll_ID, title, iframe_link) {
     alert('vote_data_edit');
     
-    $.getJSON('./api.php?call=vote&action=new_vote&poll_ID=' + poll_ID + 'title=' + title + '&iframe_link=' + iframe_link, function(data) {
+    $.getJSON('./api.php?call=vote&action=new_vote&poll_ID=' + poll_ID + '&title=' + title + '&iframe_link=' + iframe_link, function(data) {
         var items = [];        
         if(data.status == true){
             alert("success");
