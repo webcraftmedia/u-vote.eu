@@ -14,6 +14,6 @@ class UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME extends \SYSTEM\DB\QP {
 FROM uvote_data as a
 LEFT JOIN (Select choice, poll_ID FROM uvote_data WHERE user_ID = ? GROUP BY choice LIMIT 1) b ON a.poll_ID = b.poll_ID
 LEFT JOIN uvote_votes as c ON a.poll_ID = c.ID
-WHERE bt_choice
+WHERE bt_choice AND user_ID = ?
 GROUP BY day;'
 );}}

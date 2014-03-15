@@ -54,4 +54,7 @@ class api_uvote extends \SYSTEM\API\api_login {
     
     public static function call_graph_bt_to_uvote_overall_by_time($timespan = 84600){
         return votes::get_graph_bt_to_uvote_overall_by_time($timespan);}
+        
+    public static function call_graph_bt_to_user_overall_by_time($timespan = 84600){
+        return votes::get_graph_bt_to_user_overall_by_time($timespan);}
 }
