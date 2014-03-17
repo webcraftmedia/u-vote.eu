@@ -18,7 +18,7 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         $result = '';
         $vote = array();
         $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/vote.tpl'), $vote);
-        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('vote' => $result));
+
     }
 
 
@@ -36,7 +36,8 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
             $vote['vote_class'] = self::tablerow_class(votes::getUserPollData($vote['ID']));
             $vote['bt_vote_class'] = self::tablerow_class($vote['bt_choice']);            
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
-            $vote['time_done'] = 100-$vote['time_left'];            
+            $vote['time_done'] = 100-$vote['time_left'];
+            $vote['new_vote'] = self::sai_mod_saimod_uvote_new_vote();
             $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/vote.tpl'), $vote);
         }
         return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('list' => $result));
