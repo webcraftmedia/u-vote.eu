@@ -8,11 +8,11 @@
         <meta name="description" content="">
         <meta name="author" content="">
     
-        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!--<link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="lib/custom/custom_buttons.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">-->
     
         ${css}
 
