@@ -1,4 +1,4 @@
-<div style="margin-bottom: 5px; width: 92%; min-height: 125px; border: solid lightgray 1px; background: beige;">
+<div style="margin-bottom: 5px; width: 100%; min-height: 125px; border: solid lightgray 1px; background: beige;">
     <div style="float: left; width: 75%; padding: 5px; padding-top: 0;">       
         <h5>${title}</h5>           
         <img src="${frontend_logos}icon_urn_${vote_class}.png">               
