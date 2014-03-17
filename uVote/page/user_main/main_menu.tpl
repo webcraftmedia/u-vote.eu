@@ -15,7 +15,7 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse_feedback">Feedback</a>
             </h4>
         </div>            
-        <div id="collapse_feedback" class="panel-collapse collapse">
+        <div id="collapse_feedback" class="panel-collapse collapse in">
             <div class="panel-body">
                 <form>
                     <br /><img src="${frontend_logos}logo2.png" width="180"/>
