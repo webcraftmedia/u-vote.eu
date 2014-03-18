@@ -141,6 +141,16 @@ class votes {
         return \DBD\UVOTE_DATA_UVOTE_TO_PARTY_OVERALL::QA(array());        
     }
 
+    public static function vote_accord_with_party($party){        
+        if (\SYSTEM\SECURITY\Security::isloggedin()){
+            $user = \SYSTEM\SECURITY\Security::getUser()->id;
+        } else {
+            throw new ERROR("U need to be logged in....sry bro / sis");
+        }
+        //echo "TEEEEEEEEEEEEEEEEEEEEEEEEEEEEST".$party.\SYSTEM\SECURITY\Security::getUser()->id;
+        return DBD\UVOTE_ACCORD_WITH_FRACTION::QA(array(1,1));
+        //return "test";
+    }
     public static function get_users_choice_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
         

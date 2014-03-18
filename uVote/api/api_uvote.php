@@ -48,6 +48,10 @@ class api_uvote extends \SYSTEM\API\api_login {
         
     }
     
+    public static function call_vote_action_accord($party){
+        return votes::vote_accord_with_party($party);
+    }
+    
     public static function call_graph_bt_to_uvote_overall_by_time($timespan = 84600){
         return votes::get_graph_bt_to_uvote_overall_by_time($timespan);}
 }
