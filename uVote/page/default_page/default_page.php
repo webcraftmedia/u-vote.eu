@@ -15,7 +15,10 @@ class default_page extends SYSTEM\PAGE\Page {
     }
     
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/default_page.css').'" rel="stylesheet">';}        
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/default_page.css').'" rel="stylesheet">'.
+               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap.min.css').'" rel="stylesheet">'.
+               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-theme.min.css').'" rel="stylesheet">'.
+               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-responsive.min.css').'" rel="stylesheet">';}        
 
     private function get_party_per_poll($choice){
         switch($choice){

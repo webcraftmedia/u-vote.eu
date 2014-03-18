@@ -15,7 +15,7 @@ class votes {
     
     public static function get_graph_bt_to_user_overall_by_time ($timespan = 84600,$returnasjson = true){
         $result = array();
-        $res = \DBD\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id));
+        $res = \DBD\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
         while ($row = $res->next()){
             $result[] = array(  0 => $row['day'],
                                 'class_match' => $row['class_match'] / ($row['class_match']+$row['class_mismatch']+1),
@@ -142,14 +142,12 @@ class votes {
     }
 
     public static function vote_accord_with_party($party){        
-        if (\SYSTEM\SECURITY\Security::isloggedin()){
-            $user = \SYSTEM\SECURITY\Security::getUser()->id;
-        } else {
-            throw new ERROR("U need to be logged in....sry bro / sis");
-        }
-        //echo "TEEEEEEEEEEEEEEEEEEEEEEEEEEEEST".$party.\SYSTEM\SECURITY\Security::getUser()->id;
-        return DBD\UVOTE_ACCORD_WITH_FRACTION::QA(array(1,1));
-        //return "test";
+        if (!\SYSTEM\SECURITY\Security::isloggedin()){
+            throw new ERROR("U need to be logged in....sry bro / sis");}
+        $user = \SYSTEM\SECURITY\Security::getUser()->id;                
+        $data = \DBD\UVOTE_ACCORD_WITH_FRACTION::QA(array('spd',$user));
+        //$data_escaped = array_walk_recursive($data, 'mysql_real_escape_string');        
+        return \SYSTEM\LOG\JsonResult::toString($data);                
     }
     public static function get_users_choice_per_poll($poll_ID){
         return \DBD\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
@@ -163,7 +161,7 @@ class votes {
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
         $res = $res->next();
-        $res['title'] = utf8_encode($res['title']);
+//        $res['title'] = utf8_encode($res['title']);
         return $res;
     }
     
@@ -201,7 +199,7 @@ class votes {
     public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
-        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id,  $c_txt, $c_src));}
+        return \DBD\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, utf8_encode($c_txt), $c_src));}
         
     public static function write_commentrate($c_ID, $val){
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
@@ -210,16 +208,14 @@ class votes {
         
     public static function get_add_data(){
         return \DBD\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
+    }   
+    public static function write_poll($ID, $title, $iframe_link ){  
+        if ($ID == -1){
+            return \DBD\UVOTE_DATA_NEW_POLL::QI(array($title, $iframe_link));
+        }
+        return \DBD\UVOTE_DATA_UPDATE_POLL::QI(array($title, $iframe_link, $ID));
     }
     
-    public static function write_poll($ID, $title, $iframe_link ){    
-        $con = new \SYSTEM\DB\Connection(new \DBD\uVote());                    
-        $res = $con->prepare(   'insertPoll',
-                                'INSERT INTO uvote_votes
-                                 VALUES (?, ?, ?);',
-                                array($ID, $title, $iframe_link));   
-        return JsonResult::ok();
-    }
     
     public static function write_feedback($feedback){
         $feedback = json_decode($feedback);

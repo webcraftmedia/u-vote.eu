@@ -48,7 +48,7 @@ class user_list_active extends SYSTEM\PAGE\Page {
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
             $vote_count = votes::get_count_user_votes_per_poll($vote['ID']);
             
-            $vote['title'] = utf8_encode($vote['title']);            
+//            $vote['title'] = utf8_encode($vote['title']);            
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
             

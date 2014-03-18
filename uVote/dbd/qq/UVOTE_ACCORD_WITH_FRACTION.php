@@ -6,8 +6,12 @@ class UVOTE_ACCORD_WITH_FRACTION extends  \SYSTEM\DB\QP {
 //pg            
 '',
 //mys
-'SELECT uvote_votes.* 
-FROM uvote_votes 
-WHERE ID IN (SELECT poll_ID FROM uvote_votes_per_party WHERE party = ?
-AND choice = ?);'
+'   SELECT v.*, d.choice as user_choice, p.choice as party_choice
+    FROM uvote_data as d
+    LEFT JOIN uvote_votes as v
+        ON d.poll_ID = v.ID
+    LEFT JOIN uvote_votes_per_party as p
+        ON v.ID = p.poll_ID
+    WHERE p.party = ?
+	 AND d.user_ID = ?;'
 );}}

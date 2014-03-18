@@ -215,7 +215,8 @@ function vote_click (poll_ID, vote) {
 }
 
 function submit_commentrate (c_ID, val) {
-    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {   
+    alert('success');
+    $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {         
         var items = [];   
         if(data.status == true){                  
         } else {
@@ -224,12 +225,19 @@ function submit_commentrate (c_ID, val) {
     }); 
 }
 
+function encode_utf8(c) {
+  return unescape(encodeURIComponent(c));
+}
+
+function decode_utf8(c) {
+  return decodeURIComponent(escape(c));
+}
+
 function submit_c_data (poll_ID) {
-    var c_txt = $("#c_txt_pro").val();  
+    var c = $("#c_txt_pro").val();
     var c_src = $("#c_src_pro").val();
     var a = document.getElementById("side_select");
     var c_choice = a.options[a.selectedIndex].value;
-    alert(c_choice);
     $.getJSON('./api.php?call=vote&action=comment&poll_ID=' + poll_ID + '&c_choice=' + c_choice + '&c_txt=' + c_txt + '&c_src=' + c_src, function(data) {
         var items = [];   
         if(data.status == true){
@@ -253,6 +261,7 @@ function submit_add_data () {
     var d = document.getElementById("children");
     var children = d.options[d.selectedIndex].text;
     $.getJSON('./api.php?call=vote&action=data&location=' + location + '&birthyear=' + birthyear + '&gender=' + gender + '&children=' + children, function(data) {
+
         var items = [];   
         if(data.status == true){
             alert("success");                   
@@ -302,17 +311,12 @@ function open_vote (poll_ID) {
             });
         $('.c_up').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 1);
-                   alert("Daumen hoch!");
-                   $('#count_up').reload();
                 });
         $('.c_down').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 2);
-                   alert("Daumen runter!");
-                   $('#count_down').reload();
                 });
         $('.c_spam').click(function () {
                    submit_commentrate($(this).attr('c_ID'), 3);
-                   alert("Als Spammer gemeldet");
                 });
         $('#test').click(function(){
             $('#myModal').modal();
