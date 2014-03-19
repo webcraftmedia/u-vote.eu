@@ -1,0 +1,35 @@
+body {
+    padding-top: 60px;
+}
+
+.main_container {
+}
+
+.modal {
+    float: left; 
+    display:none;
+}
+
+.navbar-inner { 
+    padding-left: 50px; 
+    padding-right: 50px;
+}
+
+#site-content {
+    padding: 0; 
+    margin: 0; 
+    margin-left: 35px;
+}
+            
+#user_main {
+    padding: 0; 
+    padding-top: 0px; 
+    width: 50%; 
+    float: left;
+}
+            
+#user_list { 
+    padding: 0px; 
+    width: 50%; 
+    float: right;
+}

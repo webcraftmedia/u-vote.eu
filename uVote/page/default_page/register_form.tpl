@@ -1,9 +1,7 @@
 <div>
-    
+    <a class="btn" id="btn_register_form" align="left"></a>
 
-    <a class="btn" style="margin-top: 0;" align="left"></a>
-
-      <div class="control-group" style="margin: 0px; padding: 0px;">
+      <div class="control-group" id="control-group_register_form">
         <div class="controls">
             <input  type="text"
                     size="30"
@@ -23,7 +21,7 @@
                     required data-validation-required-message="${login_password_required}"/>
         </div>
       </div>
-        <div class="control-group" style="margin: 0px;">
+        <div class="control-group" id="control-group_register_form2">
         <div class="controls">
             <input  type="password"
                     size="30"
@@ -33,13 +31,11 @@
                     data-validation-matches-message="${register_password_dont_math}"/>
 
         </div>
-        <label><input type="checkbox" id="remember_me" style="margin-top: -1px;">  ${login_rememberMe}</label>
+        <label><input type="checkbox" id="remember_me">  ${login_rememberMe}</label>
         <div class="help-block"></div>
-        <div id="help-block-user-password-combi-wrong" style="display: none"><font color="red">${login_not_successfull}</font></div>
+        <div id="help-block-user-password-combi-wrong">${login_not_successfull}</div>
         
-        <button class="btn btn-primary" style="clear: left; height: 32px; font-size: 13px;"
-                type="submit"
-                id="login_submit">${login}</button>
+        <button class="btn btn-primary" id="btn-primary_register_form" type="submit" id="login_submit">${login}</button>
                 <input type="hidden" />
     </div>
 

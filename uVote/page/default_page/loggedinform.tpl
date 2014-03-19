@@ -12,7 +12,7 @@ Zum Umgang mit diesen Daten lesen sie bitte
 <br>
 unsere AGBs.
         <br>
-        <div class="row" style="padding-bottom: 20px;">
+        <div class="row" id="row_loggedinform" style="padding-bottom: 20px;">
         <div class="span">       
 <li class="dropdown">
                       <a href="#" role="button" class="btn" data-toggle="dropdown">Alter <b class="caret"></b></a>
@@ -56,7 +56,7 @@ unsere AGBs.
                     </li>
         </div>
         <div class="span">
-<button type="submit" align="right" class="btn" style=" margin-left: 150px; height: 100px; width: 100px;">Daten absenden</button>
+<button type="submit" align="right" class="btn" id="btn_loggedinform">Daten absenden</button>
         </div>
         </div>
       

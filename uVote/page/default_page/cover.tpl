@@ -1,6 +1,6 @@
-<div class="row" style="margin-right: 30px;">
+<div class="row">
     <img src="${frontend_logos}cover.png"/>
-    <div style="margin-right: 25px;">
+    <div id="cover_style">
         <img src="${frontend_logos}chrome.png" width="200px"/>
     </div>
 </div>

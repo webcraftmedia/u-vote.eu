@@ -195,7 +195,9 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     private function js(){        
         return  '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin/js/vote.js').'"></script>';}
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';} 
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\bars_user.css').'" rel="stylesheet">'.
+                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\bulletin.css').'" rel="stylesheet">'.
+                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\comment.css').'" rel="stylesheet">';} 
 
         
     

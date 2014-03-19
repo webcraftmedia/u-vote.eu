@@ -1,0 +1,56 @@
+.panel-group#accordion {
+    padding-right: 30px;
+}
+
+#carousel-example-generic {
+    width: 50%; float: left;
+}
+
+#graph_bt_uv_overall {
+    float: left; 
+    width: 300px;
+}
+
+#register_username {
+    margin-bottom: 15px; 
+    float: left;
+}
+
+#register-help-block-username {
+    float: left; 
+    margin-top: 3px;
+}
+
+#register_email {
+    margin-bottom: 15px; 
+    float: left;
+}
+
+#register-help-block-email {
+    float: left; 
+    margin-top: 3px;
+}
+
+#change_user_password_sub {
+    clear: both;
+}
+
+#user_register_password1 {
+    margin-bottom: 15px; 
+    float: left;
+}
+
+#user_register_password2 {
+    margin-bottom: 15px; 
+    float: left;
+}
+
+#help-block_register {
+    float: left; 
+    margin-top: 3px;
+}
+
+#help-block_register2 {
+    float: left; 
+    margin-top: 3px;
+}

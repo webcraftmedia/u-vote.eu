@@ -1,1 +1,1 @@
-<span class="badge ${badge}" style="">${perc}%</span>
+<span class="badge ${badge}">${perc}%</span>

@@ -1,0 +1,9 @@
+.row#row_loggedinform {
+    padding-bottom: 20px;
+}
+
+.btn#btn_loggedinform {
+    margin-left: 150px; 
+    height: 100px; 
+    width: 100px;
+}
