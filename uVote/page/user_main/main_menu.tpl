@@ -1,4 +1,4 @@
-<div class="tabbable" style="padding-right: 50px;">
+<div class="tabbable" id="tabbable_main_menu">
     <ul class="nav nav-tabs" id="tabs_user_main">
         <li class="active"><a href="#tab_uVote" action="user_main_uVote">uVote</a></li>
         <li><a href="#tab_urVote" action="user_main_urVote">urVote</a></li>

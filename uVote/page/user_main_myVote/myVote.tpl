@@ -1,4 +1,4 @@
-<div style="width: 100%; padding-top: 10px;">
+<div id="myVote_main">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
@@ -6,8 +6,8 @@
             </h4>
         </div>        
             <div class="panel-body">                    
-                <div style="float: left; margin-top: 30px;">${myvote_bodytext}</div>
-                <div style="float: right">
+                <div id="myVote_sub1">${myvote_bodytext}</div>
+                <div id="myVote_sub2">
                     <form action="" name="someform">
                         ${location}<br>
                         <select id="location" name="location">

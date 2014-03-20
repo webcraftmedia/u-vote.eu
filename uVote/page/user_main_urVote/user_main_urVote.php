@@ -59,13 +59,26 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
                                 ON uvote_data.poll_ID = uvote_votes_per_party.poll_ID 
                             WHERE user_ID = ? GROUP BY party;',
                             array(\SYSTEM\SECURITY\Security::getUser()->id));
+    $i = 0;
     while($row = $res->next()){
+        
+        $res2 = votes::vote_accord_with_party($row['party']);
+        $row['according_laws'] = $this->build_according_law_html($res2, $row['party']);
         $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
         $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/urvoteparties.tpl'), $row);;
     }
     return $result;        
 }
-    
+    public function build_according_law_html($part, $party){
+        $part = json_decode($part, true);
+        $result = "<div><font color='black'><h6><i>Bei folgenden Gesetzen hast du genauso abgestimmt wie die '".$party."':</i></h6><hr>";
+        foreach ($part['result'] as $p){
+            $result .= $p['title']."<hr>";
+        }
+        $result .= "</font></div>";
+        new INFO($result);
+        return $result;
+    }
     public function html(){
         $vars = array();
 //        $vars['poll_compare'] = $this->count_all_polls();        

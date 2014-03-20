@@ -145,7 +145,7 @@ class votes {
         if (!\SYSTEM\SECURITY\Security::isloggedin()){
             throw new ERROR("U need to be logged in....sry bro / sis");}
         $user = \SYSTEM\SECURITY\Security::getUser()->id;                
-        $data = \DBD\UVOTE_ACCORD_WITH_FRACTION::QA(array('spd',$user));
+        $data = \DBD\UVOTE_ACCORD_WITH_FRACTION::QA(array($party,$user));
         //$data_escaped = array_walk_recursive($data, 'mysql_real_escape_string');        
         return \SYSTEM\LOG\JsonResult::toString($data);                
     }

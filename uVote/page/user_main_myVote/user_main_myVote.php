@@ -13,6 +13,9 @@ class user_main_myVote extends SYSTEM\PAGE\Page {
         
     }
     
+    private function css(){  
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'user_main_myVote/css/myVote.css').'" rel="stylesheet">';}
+    
     public function html(){
         $vars = array();
         $vars = $this->get_add_data();
