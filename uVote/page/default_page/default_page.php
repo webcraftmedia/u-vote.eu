@@ -25,6 +25,7 @@ class default_page extends SYSTEM\PAGE\Page {
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/register_form.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/parties_on_vote.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loggedinform.css').'" rel="stylesheet">'.
+               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/logginform.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap.min.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-theme.min.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-responsive.min.css').'" rel="stylesheet">';}        
