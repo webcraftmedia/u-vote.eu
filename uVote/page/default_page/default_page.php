@@ -69,6 +69,19 @@ class default_page extends SYSTEM\PAGE\Page {
         }
     }
     
+    public static function panel_class($choice){
+        switch($choice){
+            case 1:
+                return 'panel-success';
+            case 2:
+                return 'panel-danger';
+            case 3:
+                return 'panel-info';
+            default:
+                return 'panel-default';
+        }
+    }
+    
     public function generate_votelist(){        
         $result = array('','');
         $votes = votes::getAllVotesOfGroup(1);               
@@ -110,6 +123,9 @@ class default_page extends SYSTEM\PAGE\Page {
                                             'perc' => $v['count'] > 0 ? round($v['count']/$vote_count['count']*100, 2) : 0));
                 }
             }
+            
+            //new panels:
+            $vote['panel_class'] = self::panel_class($user_vote);
             
             if($time_remain > 0){               
                 $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
