@@ -35,3 +35,33 @@
         </div>
         </div>
 </div>
+
+<!--
+<div class="panel ${panel_class}">
+    <div class="panel-heading">
+        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse_${ID}">${title}</a></h4>
+        bis einschließlich ${time_end}; ${time_left}% verblieben
+    </div>
+    <div id="collapse_${ID}" class="panel-collapse collapse">      
+        <div class="panel-body">
+            <img src="${frontend_logos}icon_urn_${vote_class}.png">
+            <a class="btn btn-primary btn-small btn_vote" poll_ID="${ID}">${full_vote_btn}</a>            
+            <div id="vote_data_panel${ID}" poll_ID="${ID}" style="float: right;">
+                <div class="${bt_vote_class}" id="bt_vote_class_">            
+                    <img src="${frontend_logos}icon_bt.png" width="80">
+                    ${bt}            
+                </div>
+                <div class="${uv_vote_class}" id="uv_vote_class_">          
+                    <img src="${frontend_logos}icon_urn.png" width="20">
+                    <span style="">
+                        <font size="2">uVote</font>
+                    </span>
+                    ${uv}
+                    <span class="badge" style="">
+                        ${uv_count}
+                    </span>
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>-->

@@ -75,7 +75,7 @@ function register_login(){
         submitSuccess: function($form, event){
             $.get('./api.php?call=account&action=login&username=' + $('#bt_login_user').val()+'&password_sha='+$.sha1($('#bt_login_password').val())+'&password_md5='+$.md5($('#bt_login_password').val()), function (data) {
                 if(data == 1){
-                    window.location.reload();
+                    window.location.reload();                    
                 } else {
                     $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
                 }                    
@@ -85,7 +85,12 @@ function register_login(){
     });
 }
 function register_logout(){
-    $("#form_logout input").not("[type=submit]").jqBootstrapValidation(
+    $('#btn_logout').click(function(){
+        $.get('./api.php?call=account&action=logout', function () {                      
+            window.location.reload();                                  
+        });
+    })
+    /*$("#form_logout input").not("[type=submit]").jqBootstrapValidation(
     {
         preventSubmit: true,            
         submitError: function($form, event, errors) {},
@@ -95,11 +100,13 @@ function register_logout(){
             });
             event.preventDefault();
         }            
-    });
+    });*/
+    
+    
 }
 
 function register_registerform(){
-    console.log("wegwegwegwegwegweg");
+    //console.log("wegwegwegwegwegweg");
     $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
     {
         preventSubmit: true,            

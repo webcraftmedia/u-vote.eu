@@ -2,11 +2,11 @@
 
 class default_page extends SYSTEM\PAGE\Page {        
     private function js(){        
-        return  '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PJQUERY(),'jquery-1.9.1.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PBOOTSTRAP(),'js/bootstrap.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PVALIDATION(),'jqBootstrapValidation.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.md5.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PCRYPTOSHA(),'jquery.sha1.js').'"></script>'.
+        return  '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery/jquery-1.9.1.min.js').'"></script>'.
+                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/js/bootstrap.min.js').'"></script>'.
+                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jqbootstrapvalidation/jqBootstrapValidation.js').'"></script>'.
+                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'hashmask/jquery.md5.js').'"></script>'.
+                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'hashmask/jquery.sha1.js').'"></script>'.
                 '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery.countdown\jquery.countdown.js').'"></script>'.                
                 '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/loadtexts.js').'"></script>'.               
                 '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/account_create.js').'"></script>'.
@@ -25,6 +25,7 @@ class default_page extends SYSTEM\PAGE\Page {
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/register_form.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/parties_on_vote.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loggedinform.css').'" rel="stylesheet">'.
+               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loginform.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap.min.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-theme.min.css').'" rel="stylesheet">'.
                '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-responsive.min.css').'" rel="stylesheet">';}        
@@ -65,6 +66,19 @@ class default_page extends SYSTEM\PAGE\Page {
                 return 'badge-info';
             default:
                 return '';
+        }
+    }
+    
+    public static function panel_class($choice){
+        switch($choice){
+            case 1:
+                return 'panel-success';
+            case 2:
+                return 'panel-danger';
+            case 3:
+                return 'panel-info';
+            default:
+                return 'panel-default';
         }
     }
     
@@ -109,6 +123,9 @@ class default_page extends SYSTEM\PAGE\Page {
                                             'perc' => $v['count'] > 0 ? round($v['count']/$vote_count['count']*100, 2) : 0));
                 }
             }
+            
+            //new panels:
+            $vote['panel_class'] = self::panel_class($user_vote);
             
             if($time_remain > 0){               
                 $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);

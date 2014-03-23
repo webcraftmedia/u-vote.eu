@@ -81,6 +81,9 @@ class user_list_ended extends SYSTEM\PAGE\Page {
                 }
             }
             
+            //new panels:
+            $vote['panel_class'] = default_page::panel_class($user_vote);
+            
             if($time_remain > 0){               
                 $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
             } else {
