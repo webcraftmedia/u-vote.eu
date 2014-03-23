@@ -19,7 +19,7 @@
             </div>
             <div id="collapse_urVote_1" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <div style="float: left;">
+                    <div style="float: left; width: 49%;">
                         <table style="border-collapse: separate;
                             border-spacing: 10px 5px; width: 350px;"> 
                             <tr>
@@ -33,9 +33,11 @@
                             </tr>               
                         </table>                        
                     </div>
-                    <div style="margin-left: 40px; float: left;">${user_temp_votes}</div>
+                    <div id="right_float" style="float: right; width: 44%;">
+                    <div>${user_temp_votes}</div>
                     <br>
-                    <div style="margin-left: 40px; float: left;">${user_overall_votes}</div>
+                    <div>${user_overall_votes}</div>
+                    </div>
                 </div>
             </div>
         </div>
