@@ -13,5 +13,5 @@ class UVOTE_ACCORD_WITH_FRACTION extends  \SYSTEM\DB\QP {
     LEFT JOIN uvote_votes_per_party as p
         ON v.ID = p.poll_ID
     WHERE p.party = ?
-	 AND d.user_ID = ?;'
+	 AND d.user_ID = ?  AND d.choice = p.choice;'
 );}}
