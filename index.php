@@ -1,5 +1,5 @@
 <?php
-require_once '../system/autoload.inc.php';                                         //SYSTEM Classes
+require_once 'system/autoload.inc.php';                                         //SYSTEM Classes
 require_once 'uVote/autoload.inc.php';                                           //Project Classes
        
 require_once 'config.php';
