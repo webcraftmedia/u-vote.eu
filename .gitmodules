@@ -1,0 +1,3 @@
+[submodule "lib/system"]
+	path = lib/system
+	url = git@mojotrollz.eu:system.git

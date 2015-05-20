@@ -1,13 +1,13 @@
 <?php
-require_once 'system/autoload.inc.php';                                         //SYSTEM Classes
-require_once 'uVote/autoload.inc.php';                                           //Project Classes
-       
-require_once 'config.php';
-SYSTEM\system::start($uvote_config);
+require_once 'lib/system/autoload.inc';                                         //SYSTEM Classes
+require_once 'uvote/autoload.inc';                                              //Project Classes
+require_once '/home/web/web/config/get_config.php';
+
+\SYSTEM\system::start(\WEBCRAFT\get_config(dirname(__FILE__)));
 \SYSTEM\system::include_ExceptionShortcut();
 \SYSTEM\system::include_ResultShortcut();
 \SYSTEM\system::register_errorhandler_dbwriter();
 \SYSTEM\system::register_errorhandler_jsonoutput();
 
-echo \SYSTEM\API\api::run('\SYSTEM\API\verify','page_uvote',array_merge($_POST,$_GET),1,false,true)->html();
+echo \SYSTEM\API\api::run('\SYSTEM\API\verify','page_uvote',array_merge($_POST,$_GET),1,false,true);
 new \SYSTEM\LOG\COUNTER("Page was called sucessfully.");

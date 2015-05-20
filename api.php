@@ -1,9 +1,9 @@
 <?php
-require_once '../system/autoload.inc.php';                                         //SYSTEM Classes
-require_once 'uVote/autoload.inc.php';                                           //Project Classes
+require_once 'lib/system/autoload.inc';                                         //SYSTEM Classes
+require_once 'uvote/autoload.inc';                                              //Project Classes
+require_once '/home/web/web/config/get_config.php';
 
-require_once 'config.php';
-SYSTEM\system::start($uvote_config);
+\SYSTEM\system::start(\WEBCRAFT\get_config(dirname(__FILE__)));
 \SYSTEM\system::include_ExceptionShortcut();
 \SYSTEM\system::include_ResultShortcut();
 \SYSTEM\system::register_errorhandler_dbwriter();
