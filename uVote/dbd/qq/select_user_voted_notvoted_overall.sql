@@ -1,2 +1,0 @@
-SELECT SUM(CASE WHEN uvote_data.user_ID = 15 THEN 1 ELSE 0 END) as voted,
-		 SUM(CASE WHEN uvote_data.user_ID = 15 THEN 0 ELSE 1 END) as not_voted FROM uvote_data RIGHT JOIN uvote_votes ON ( uvote_data.poll_ID  = uvote_votes.ID AND uvote_data.user_ID = 15);
