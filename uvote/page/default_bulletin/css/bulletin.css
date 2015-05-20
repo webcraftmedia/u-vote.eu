@@ -1,0 +1,48 @@
+#bulletin_main {
+    float: left; 
+    width: 100%;
+}
+
+#bulletin_left {
+    float: left;
+}
+
+#bulletin_sub1 {
+    margin-top: 30px;
+}
+
+#bulletin_sub2 {
+    float: left; 
+    width: 50%; 
+    padding-top: 30px;
+}
+
+#bulletin_sub3 {
+    float: right; 
+    width: 50%; 
+    padding-top: 30px;
+}
+#divider {
+    clear: both;
+}
+
+#bulletin_sub4 {
+    padding-top: 30px;
+}
+#bulletin_sub5 {
+    padding-top: 20px;
+}
+
+#bulletin_sub5_sub {
+    float: left; 
+    width: 40%;
+}
+
+ #bulletin_sub6 {
+     float: right; 
+     width: 40%;
+ }
+ 
+ #bulletin_sub7 {
+     clear: both;
+ }

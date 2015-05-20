@@ -1,0 +1,13 @@
+<?php
+SYSTEM\autoload::registerFolder(dirname(__FILE__),'');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_page','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_register','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_bulletin','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/default_comment','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_uVote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_urVote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_myVote','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_list','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_list_active','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_list_ended','');
