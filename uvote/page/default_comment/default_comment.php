@@ -30,7 +30,7 @@ class default_comment extends SYSTEM\PAGE\Page {
         $vars = votes::getUserComments($this->poll_ID, 1);
         foreach($vars as $com){
             $com['c_txt'] = utf8_encode($com['c_txt']);
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/comment.tpl'), $com);
         }
         return $result;
     
@@ -41,7 +41,7 @@ class default_comment extends SYSTEM\PAGE\Page {
         
         foreach($vars as $com){
             $com['c_txt'] = utf8_encode($com['c_txt']);
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/comment.tpl'), $com);
         }
         return $result;
     
@@ -75,13 +75,13 @@ class default_comment extends SYSTEM\PAGE\Page {
         }
         
         $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
         
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_comment/comment.tpl'),$vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_comment/tpl/comment.tpl'),$vars);
     }
   
 }

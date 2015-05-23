@@ -43,7 +43,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
 //        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
         foreach($party_votes as $pv){
             
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/vote_bt.tpl'),
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/vote_bt.tpl'),
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
                                             'choice_class' => $this->tablerow_class($pv['choice']),
@@ -57,7 +57,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     private function get_pro_comments (){
         $result = '';
-        $vars = votes::getUserComments($this->poll_ID, 1);
+        /*$vars = votes::getUserComments($this->poll_ID, 1);
         
         foreach($vars as $com){
             $rating = votes::get_commentrate($com['c_ID'], 1);
@@ -65,14 +65,14 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $rating2 = votes::get_commentrate($com['c_ID'], 2);
             $com['count_down'] = $rating2['count'];
 //            $com['c_txt'] = utf8_encode($com['c_txt']);
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
-        }
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/comment.tpl'), $com);
+        }*/
         return $result;
     
     }
     private function get_con_comments (){
         $result = '';
-        $vars = votes::getUserComments($this->poll_ID, 2); 
+        /*$vars = votes::getUserComments($this->poll_ID, 2); 
                      
         foreach($vars as $com){
             $rating = votes::get_commentrate($com['c_ID'], 1);
@@ -80,8 +80,8 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $rating2 = votes::get_commentrate($com['c_ID'], 2);
             $com['count_down'] = $rating2['count'];
 //            $com['c_txt'] = utf8_encode($com['c_txt']);
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/comment.tpl'), $com);
-        }
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/comment.tpl'), $com);
+        }*/
         return $result;
     
     }
@@ -91,7 +91,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $bars['vote_no_perc'] = round($bars['no_perc']*100,0);
         $bars['vote_ent_perc'] = round($bars['ent_perc']*100,0);
         $bars['title'] = 'Gemessen auf uVote';
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/bars_user.tpl'),$bars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/bars_user.tpl'),$bars);
     }
     
     private function bars_party(){
@@ -102,7 +102,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
             $vote['party_yes'] = $vote['votes_pro'] > 0 ? round($vote['votes_pro']/$vote['total']*100,0) : $vote['votes_pro'];
             $vote['party_no'] = $vote['votes_contra'] > 0 ? round($vote['votes_contra']/$vote['total']*100,0) : $vote['votes_contra'];
             $vote['party_ent'] = $vote['nr_attending'] > 0 ? round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0) : $vote['nr_attending'];
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_parties.tpl'), $vote);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/table_parties.tpl'), $vote);
         }
         
         return $result;
@@ -113,7 +113,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         if (!$vars['bt_total']){
             return '';}
         $info = array();
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/icons_table_parties.tpl'), $info);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/icons_table_parties.tpl'), $info);
     }
     
     private function bars_bt(){
@@ -123,13 +123,13 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
         $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);           
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/table_bt.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/table_bt.tpl'), $vars);
     }
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
         $vars['voteweight'] = round(1/$vars['count']*100);      
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/voteweight.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/voteweight.tpl'), $vars);
     }
     
     private function p_fields (){
@@ -230,13 +230,12 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         }
         
         $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
-        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
-        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
-        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
+        $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
+        $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));       
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/bulletin.tpl'),$vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/bulletin.tpl'),$vars);
     }
   
 }

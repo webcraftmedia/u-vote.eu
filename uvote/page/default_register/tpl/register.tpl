@@ -28,7 +28,7 @@
                           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
+                        <!--<div class="carousel-inner">
                           <div class="item active">
                             <img src="..." alt="...">
                             <div class="carousel-caption">
@@ -36,7 +36,7 @@
                             </div>
                           </div>
                           ...
-                        </div>
+                        </div>-->
 
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

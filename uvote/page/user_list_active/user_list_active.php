@@ -66,7 +66,7 @@ class user_list_active extends SYSTEM\PAGE\Page {
                 $party_votes = votes::get_barsperparty($vote['ID']);
                 $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
                 foreach($party_votes as $pv){
-                    $vote['bt'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_bt.tpl'),
+                    $vote['bt'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/vote_bt.tpl'),
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
                                             'choice_class' => $this->badge_class($pv['choice'])));                    
@@ -76,7 +76,7 @@ class user_list_active extends SYSTEM\PAGE\Page {
                 $uvote = votes::get_users_choice_per_poll($vote['ID']);                
                 $vote['uv_vote_class'] = count($uvote) > 0 ? $this->tablerow_class($uvote[0]['choice']) : '';                                
                 foreach($uvote as $v){
-                    $vote['uv'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote_uv.tpl'),
+                    $vote['uv'] .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/vote_uv.tpl'),
                                     array(  'badge' => self::badge_class($v['choice']),
                                             'perc' => $v['count'] > 0 ? round($v['count']/$vote_count['count']*100, 2) : 0));
                 }
@@ -86,9 +86,9 @@ class user_list_active extends SYSTEM\PAGE\Page {
             $vote['panel_class'] = default_page::panel_class($user_vote);
             
             if($time_remain > 0){               
-                $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
+                $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/vote.tpl'), $vote);
             } else {
-                $result[1] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/vote.tpl'), $vote);
+                $result[1] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/vote.tpl'), $vote);
             }
         }
         return $result[0].$result[1];
@@ -97,11 +97,10 @@ class user_list_active extends SYSTEM\PAGE\Page {
     public function html(){
         $vars = array();
         $vars['votelist'] = $this->generate_votelist();
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
+        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
-        $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_poll'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_list_active/active.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_list_active/tpl/active.tpl'), $vars);
     }
   
 }
