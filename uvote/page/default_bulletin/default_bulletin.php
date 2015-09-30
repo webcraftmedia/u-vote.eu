@@ -202,7 +202,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
         
     
     public function html(){
-        $poll_expired = \DBD\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
+        $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();

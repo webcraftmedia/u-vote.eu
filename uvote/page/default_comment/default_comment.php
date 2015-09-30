@@ -58,7 +58,7 @@ class default_comment extends SYSTEM\PAGE\Page {
         return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page\css\default_page.css').'" rel="stylesheet">';} 
 
     public function html(){
-        $poll_expired = \DBD\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
+        $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
         $user_vote = votes::getUserPollData($this->poll_ID);
         
         $vars = array();
@@ -76,7 +76,7 @@ class default_comment extends SYSTEM\PAGE\Page {
         
         $vars['poll_ID'] =  $this->poll_ID; //put it here - so its filled in!
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
-        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(DBD\locale_string::VALUE_CATEGORY_MAINPAGE));
+        $vars = array_merge($vars,  \SYSTEM\locale::getStrings(SQL\locale_string::VALUE_CATEGORY_MAINPAGE));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(150));
         $vars = array_merge($vars,  \SYSTEM\locale::getStrings(100));
         

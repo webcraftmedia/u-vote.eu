@@ -3,7 +3,7 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     public static function sai_mod__SYSTEM_SAI_saimod_uvote_vote_edit_action_new_vote($data){
         new \SYSTEM\LOG\INFO('json kommt im php an');
          $vote = $data;
-         $con = new \SYSTEM\DB\Connection(new \DBD\uVote());
+         $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
          $res = null;
          $res = $con->prepare('INSERT INTO uvote_votes (poll_ID, title, text, p_fields, time_start, time_end) VALUES (?1, ?2, ?3, ?4, ?5, ?6);', array($poll_ID));        
         return $res->affectedRows() == 0 ? \SYSTEM\LOG\JsonResult::error(new \SYSTEM\LOG\WARNING("no data added")) : \SYSTEM\LOG\JsonResult::ok();
