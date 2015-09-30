@@ -1,8 +1,8 @@
 $(document).ready(function() {    
-    load_user_main();
-    load_user_list();            
-    register_login();
-    register_logout();
+    //load_user_main();
+    //load_user_list();            
+    //register_login();
+    //register_logout();
 });
 
 function load_user_list(){

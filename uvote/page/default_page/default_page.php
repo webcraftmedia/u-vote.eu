@@ -1,35 +1,30 @@
 <?php
-
 class default_page extends SYSTEM\PAGE\Page {        
-    private function js(){        
-        return  '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery/jquery-1.9.1.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/js/bootstrap.min.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jqbootstrapvalidation/jqBootstrapValidation.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'hashmask/jquery.md5.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'hashmask/jquery.sha1.js').'"></script>'.
-                '<script type="text/javascript" language="JavaScript" src="'.SYSTEM\WEBPATH(new PLIB(),'jquery.countdown\jquery.countdown.js').'"></script>'.                
-                '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/loadtexts.js').'"></script>'.               
-                '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/js/account_create.js').'"></script>'.
-                '<script src="https://www.google.com/jsapi" type="text/javascript"></script>'.
+    private function js(){   
+        return  \SYSTEM\HTML\html::script(\LIB\lib_jquery::js()).
+                \SYSTEM\HTML\html::script(\LIB\lib_bootstrap::js()).
+                \SYSTEM\HTML\html::script(\LIB\lib_jqbootstrapvalidation::js()).
+                \SYSTEM\HTML\html::script(\LIB\lib_system::js()).
+                \SYSTEM\HTML\html::script(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/js/loadtexts.js')).
+                \SYSTEM\HTML\html::script(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/js/account_create.js')).
+                \SYSTEM\HTML\html::script('https://www.google.com/jsapi').
                 '<script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>';
     }
     
-    private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/default_page.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/page.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/full_vote.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/cover.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/vote.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/vote_bt.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loggedinformtop.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/register_form.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/parties_on_vote.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loggedinform.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_page/css/loginform.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap.min.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-theme.min.css').'" rel="stylesheet">'.
-               '<link href="'.SYSTEM\WEBPATH(new PLIB(),'bootstrap/css/bootstrap-responsive.min.css').'" rel="stylesheet">';}        
-
+    private function css(){
+        return  \SYSTEM\HTML\html::link(\LIB\lib_bootstrap::css()).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/default_page.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/full_vote.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/cover.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/vote.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/vote_bt.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loggedinformtop.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/register_form.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/parties_on_vote.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loggedinform.css')).
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loginform.css'))
+                ; 
+    }
     private function get_party_per_poll($choice){
         switch($choice){
             case 1:
