@@ -6,8 +6,7 @@ $(document).ready(function() {
 
 function init_user_list(){
     $('#tabs_user_list a').click(function (e) {
-        e.preventDefault();
-        load_user_list_tab($(this).attr('action'));
+        //e.preventDefault();
         $(this).tab('show');        
     });
     $('.btn_vote').click(function () {
@@ -34,31 +33,7 @@ function init_user_main(){
 }
 
 function register_login(){
-    $("#form_login input").not("[type=submit]").jqBootstrapValidation({        
-        //load_user_main_tab('user_main_uVote');
-    });    
-    
-    /*$('#user_list').load('./?action=user_list', function(){
-        $('#tabs_user_list a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-            load_user_list_tab($(this).attr('action'));
-            
-        });
-        $('.btn_vote').click(function () {
-            //vote_click($(this).attr('poll_ID'));
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                      
-                open_vote($(this).attr('poll_ID'));                     
-                register_registerform();
-            });      
-        $('.btn_fade').click(function () {           
-            $('#vote_data_panel' + $(this).attr('poll_ID')).show();
-            });
-
-        //load_user_main_tab('user_main_uVote');
-    });    */
- $("#form_login input").not("[type=submit]").jqBootstrapValidation({
-        
+    $("#form_login input").not("[type=submit]").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {},
         submitSuccess: function($form, event){
@@ -79,19 +54,6 @@ function register_logout(){
             window.location.reload();                                  
         });
     })
-    /*$("#form_logout input").not("[type=submit]").jqBootstrapValidation(
-    {
-        preventSubmit: true,            
-        submitError: function($form, event, errors) {},
-        submitSuccess: function($form, event){
-            $.get('./api.php?call=account&action=logout', function (data) {                      
-                window.location.reload();                                  
-            });
-            event.preventDefault();
-        }            
-    });*/
-    
-    
 }
 
 function register_registerform(){
@@ -132,11 +94,20 @@ function load_user_main_tab(action){
         default:
     }   
 }
-function load_user_list_tab(action){    
-    switch(action){        
-        case 'user_list_active':
-            $('#tab_active').load('./?action='+ action, function(){
-                $('.btn_fade').click(function () {           
+function init_user_list_active(){
+    $('.btn_fade').click(function () {           
+        $('#vote_data_panel' + $(this).attr('poll_ID')).show();
+    });
+    $('.btn_vote').click(function () {
+    //vote_click($(this).attr('poll_ID'));
+    $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+        open_vote($(this).attr('poll_ID'));                     
+        register_registerform();
+
+    })
+}
+function init_user_list_ended(){
+    $('.btn_fade').click(function () {           
                     $('#vote_data_panel' + $(this).attr('poll_ID')).show();
                 });
                 $('.btn_vote').click(function () {
@@ -144,23 +115,7 @@ function load_user_list_tab(action){
                 $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
                     open_vote($(this).attr('poll_ID'));                     
                     register_registerform();
-                
-                })});      
-            return;
-        case 'user_list_ended':
-            $('#tab_ended').load('./?action='+ action, function(){
-                $('.btn_fade').click(function () {           
-                    $('#vote_data_panel' + $(this).attr('poll_ID')).show();
-                });
-                $('.btn_vote').click(function () {
-                //vote_click($(this).attr('poll_ID'));
-                $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-                    open_vote($(this).attr('poll_ID'));                     
-                    register_registerform();
-                })});      
-            return;
-            default:
-    }
+                })
 }
 
 function account_create(inputEmail, inputPassword){

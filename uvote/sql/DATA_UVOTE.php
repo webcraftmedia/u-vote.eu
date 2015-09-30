@@ -7,7 +7,7 @@ class DATA_UVOTE extends \SYSTEM\DB\QI {
                         \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/schema_uvote_data.sql'),
                         \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/schema_uvote_votes_per_party.sql'),
                         \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/.sql'),
-                        \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/.sql'),
+                        \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/system_text.sql'),
                         \SYSTEM\SERVERPATH(new \PSQL(),'/mysql/system_page.sql'));
     }    
 }

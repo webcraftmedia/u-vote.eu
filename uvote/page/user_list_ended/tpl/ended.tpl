@@ -1,1 +1,2 @@
+Ended List:
 ${votelist}
