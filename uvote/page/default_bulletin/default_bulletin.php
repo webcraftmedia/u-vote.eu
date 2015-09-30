@@ -128,7 +128,7 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
-        $vars['voteweight'] = round(1/$vars['count']*100);      
+        $vars['voteweight'] = $vars['count'] ? round(1/$vars['count']*100) : 'no votes';      
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/voteweight.tpl'), $vars);
     }
     

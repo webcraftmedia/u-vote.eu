@@ -26,7 +26,10 @@ class page_uvote extends \SYSTEM\API\api_default {
         return (new user_main_myVote())->html();}    
     
     public static function page_user_main_poll($poll_ID) {
-        return (new user_main_poll($poll_ID))->html();}
+        //return (new user_main_poll($poll_ID))->html();}
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return (new default_register ())->html();}
+        return (new default_bulletin($poll_ID))->html();}
         
     public static function page_user_list(){
         return (new user_list())->html();}
