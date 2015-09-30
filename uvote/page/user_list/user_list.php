@@ -4,6 +4,8 @@ class user_list extends SYSTEM\PAGE\Page {
     
     public static function css(){  
         return array(\SYSTEM\WEBPATH(new PPAGE(),'user_list/css/list_menu.css'));}
+    public static function js(){  
+        return array(\SYSTEM\WEBPATH(new PPAGE(),'user_list/js/user_list.js'));}
     
     public function html(){ 
         $vars = array();

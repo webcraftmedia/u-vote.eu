@@ -4,34 +4,6 @@ $(document).ready(function() {
     register_logout();
 });
 
-function init_user_list(){
-    $('#tabs_user_list a').click(function (e) {
-        //e.preventDefault();
-        $(this).tab('show');        
-    });
-    $('.btn_vote').click(function () {
-        //vote_click($(this).attr('poll_ID'));
-        $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));                      
-        open_vote($(this).attr('poll_ID'));                     
-        register_registerform();
-    });      
-    $('.btn_fade').click(function () {           
-        $('#vote_data_panel' + $(this).attr('poll_ID')).toggle();
-    });
-}
-function init_user_main(){
-    register_registerform();
-    $('#feedback_submit').click(function (data){
-        var test = $('textarea#feedback_text').val();
-        send_feedback(test);            
-    });
-    $('#tabs_user_main a').click(function (e) {
-        e.preventDefault();
-        load_user_main_tab($(this).attr('action'));
-        $(this).tab('show');                
-    });
-}
-
 function register_login(){
     $("#form_login input").not("[type=submit]").jqBootstrapValidation({
         preventSubmit: true,
@@ -56,75 +28,13 @@ function register_logout(){
     })
 }
 
-function register_registerform(){
-    //console.log("wegwegwegwegwegweg");
-    $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
-    {
-        preventSubmit: true,            
-        submitError: function($form, event, errors) {},
-        submitSuccess: function($form, event){
-            $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
-                if(data == 1){
-                    window.location.reload();
-                } else {
-                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
-                }                    
-            });
-            event.preventDefault();
-        }
-    });
-}
-
-function load_user_main_tab(action){    
-    switch(action){        
-        case 'user_main_uVote':
-            //$('#tab_uVote').load('./?action='+ action);        //causes error
-            return;
-        case 'user_main_urVote':
-            $('#tab_urVote').load('./?action='+ action);
-            return;
-        case 'user_main_myVote':
-            $('#tab_myVote').load('./?action='+ action, function(){
-                $('.add_data_submit').click(function () {
-                    submit_add_data();
-                    alert('success');
-                });
-            });
-            return;
-        default:
-    }   
-}
-function init_user_list_active(){
-    $('.btn_fade').click(function () {           
-        $('#vote_data_panel' + $(this).attr('poll_ID')).show();
-    });
-    $('.btn_vote').click(function () {
-    //vote_click($(this).attr('poll_ID'));
-    $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-        open_vote($(this).attr('poll_ID'));                     
-        register_registerform();
-
-    })
-}
-function init_user_list_ended(){
-    $('.btn_fade').click(function () {           
-                    $('#vote_data_panel' + $(this).attr('poll_ID')).show();
-                });
-                $('.btn_vote').click(function () {
-                //vote_click($(this).attr('poll_ID'));
-                $('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
-                    open_vote($(this).attr('poll_ID'));                     
-                    register_registerform();
-                })
-}
-
-function account_create(inputEmail, inputPassword){
+/*function account_create(inputEmail, inputPassword){
     $.get('./api.php?call=account&action=create&username=' + NULL + '&password_sha=' + password + '&email=' + email + '&locale=deDE', function (data) {
             dataTmp = data;               
     }).complete(function() {      
 
     }); 
-}
+}*/
 
 function load_openvoteinfo (poll_ID){
        var openvoteinfo;
@@ -241,6 +151,25 @@ function send_feedback (feedback) {
         },
         error: function(error){
             alert("something failed..."+error);
+        }
+    });
+}
+
+function register_registerform(){
+    //console.log("wegwegwegwegwegweg");
+    $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
+    {
+        preventSubmit: true,            
+        submitError: function($form, event, errors) {},
+        submitSuccess: function($form, event){
+            $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                if(data == 1){
+                    window.location.reload();
+                } else {
+                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                }                    
+            });
+            event.preventDefault();
         }
     });
 }
