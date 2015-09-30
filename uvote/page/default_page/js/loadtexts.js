@@ -1,21 +1,10 @@
-$(document).ready(function() {    
-    //load_user_main();
-    //load_user_list();            
-    //register_login();
-    //register_logout();
+$(document).ready(function() {                
+    new SYSTEM('./api.php',1,'start');
+    register_login();
+    register_logout();
 });
 
-function load_user_list(){
-    $('#user_list').load('./?action=user_list', function(){
-        register_user_list();});
-}
-function load_user_main(){
-    $('#user_main').load('./?action=user_main', function(){
-        register_user_main();
-    });
-}
-
-function register_user_list(){
+function init_user_list(){
     $('#tabs_user_list a').click(function (e) {
         e.preventDefault();
         load_user_list_tab($(this).attr('action'));
@@ -31,7 +20,7 @@ function register_user_list(){
         $('#vote_data_panel' + $(this).attr('poll_ID')).toggle();
     });
 }
-function register_user_main(){
+function init_user_main(){
     register_registerform();
     $('#feedback_submit').click(function (data){
         var test = $('textarea#feedback_text').val();
@@ -49,7 +38,7 @@ function register_login(){
         //load_user_main_tab('user_main_uVote');
     });    
     
-    $('#user_list').load('./?action=user_list', function(){
+    /*$('#user_list').load('./?action=user_list', function(){
         $('#tabs_user_list a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
@@ -67,7 +56,7 @@ function register_login(){
             });
 
         //load_user_main_tab('user_main_uVote');
-    });    
+    });    */
  $("#form_login input").not("[type=submit]").jqBootstrapValidation({
         
         preventSubmit: true,
