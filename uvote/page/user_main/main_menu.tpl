@@ -1,8 +1,8 @@
 <div class="tabbable" id="tabbable_main_menu">
     <ul class="nav nav-tabs" id="tabs_user_main">
-        <li class="active"><a href="#!start(user_main(u))">uVote</a></li>
-        <li><a href="#!start(user_main(ur))">urVote</a></li>
-        <li><a href="#!start(user_main(my))">myVote</a></li>        
+        <li class="active"><a href="#!start(user_main(u))">Abstimmen</a></li>
+        <li><a href="#!start(user_main(ur))">Auswerten</a></li>
+        <li><a href="#!start(user_main(my))">Mithelfen</a></li>        
     </ul>
     <div class="tab-content">        
         <div class="tab-pane active" id="tab_main"></div>

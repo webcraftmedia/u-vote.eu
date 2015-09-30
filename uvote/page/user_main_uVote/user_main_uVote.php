@@ -69,11 +69,17 @@ class user_main_uVote extends SYSTEM\PAGE\Page {
         $vars = votes::get_user_count();       
         return $vars['count'];
     }
-
+    private function get_list_active(){
+        $classObj = new user_list();
+        $var = $classObj->html();
+        return $var;
+    }
     
 
     public function html(){                 
         $vars = array();
+        $vars['list_active'] = $this->get_list_active();
+
         $vars['uvote_to_bt'] = $this->uvote_to_parties();
         $vars['votes_all'] = $this->votes_all();
         $vars['votes_all_bt'] = $this->votes_all_bt();

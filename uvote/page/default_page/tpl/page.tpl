@@ -54,11 +54,9 @@
                 </div>
             </nav>
 
-            <div id="site-content">
+            <div class="row" id="site-content">
 
-                <div id="user_main"></div>
-                
-                <div id="user_list"></div>
+                <div class="row" id="user_main"></div>
                 
             </div>
         </div>
