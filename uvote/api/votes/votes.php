@@ -170,10 +170,4 @@ class votes {
         new WARNING("feedback was added");
         return JsonResult::ok();
     }
-    
-    public static function open_vote($poll_ID){
-        $vote = self::get_voteinfo($poll_ID); //votes::getVoteOfGroup($poll_ID);
-        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/full_vote.tpl'), $vote);
-        return $result;
-    }
 }

@@ -174,38 +174,6 @@ function register_registerform(){
     });
 }
 
-function open_vote (poll_ID) {
-    $('#user_list').load('./api.php?call=vote&action=open_vote&poll_ID=' + poll_ID, function(){
-        $('.btnvote_yes').click(function () {            
-            vote_click($(this).attr('poll_ID'),1);
-            });
-        $('.btnvote_no').click(function () {
-            vote_click($(this).attr('poll_ID'),2);
-            });
-        $('.btnvote_off').click(function () {
-            vote_click($(this).attr('poll_ID'),3);
-            });
-        $('.submit_pro').click(function () {
-            submit_c_data($(this).attr('poll_ID'));
-            alert('success');
-            });
-        $('.c_up').click(function () {
-                   submit_commentrate($(this).attr('c_ID'), 1);
-                });
-        $('.c_down').click(function () {
-                   submit_commentrate($(this).attr('c_ID'), 2);
-                });
-        $('.c_spam').click(function () {
-                   submit_commentrate($(this).attr('c_ID'), 3);
-                });
-        $('#test').click(function(){
-            $('#myModal').modal();
-        });
-        
-        register_registerform();        
-    }); 
-}
-
 function loadAjaxContent(url) {
         var dataTmp;
 	$.get(url, function (data) {

@@ -13,9 +13,6 @@ class api_uvote extends \SYSTEM\API\api_system {
     
     public static function call_vote_action_feedback($feedback) {
         return votes::write_feedback($feedback);}
-    
-    public static function call_vote_action_open_vote($poll_ID) {
-        return votes::open_vote($poll_ID);}
         
     public static function call_vote_action_barsperusers($poll_ID){
         return votes::get_barsperusers($poll_ID);}

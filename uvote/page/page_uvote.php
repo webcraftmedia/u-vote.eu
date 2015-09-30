@@ -24,7 +24,9 @@ class page_uvote extends \SYSTEM\API\api_default {
         
     public static function page_user_main_myVote(){
         return (new user_main_myVote())->html();}    
-        
+    
+    public static function page_user_main_poll($poll_ID) {
+        return (new user_main_poll($poll_ID))->html();}
         
     public static function page_user_list(){
         return (new user_list())->html();}

@@ -1,2 +1,3 @@
 INSERT INTO `system_page` (`id`, `group`, `name`, `state`, `parent_id`, `login`, `type`, `div`, `url`, `func`, `php_class`) VALUES (10, 1, 'user_list', 'start', -1, 0, 0, '#user_list', './?page=user_list', 'init_user_list', 'user_list');
 INSERT INTO `system_page` (`id`, `group`, `name`, `state`, `parent_id`, `login`, `type`, `div`, `url`, `func`, `php_class`) VALUES (11, 1, 'user_main', 'start', -1, 0, 0, '#user_main', './?page=user_main', 'init_user_main', 'user_main');
+INSERT INTO `system_page` (`id`, `group`, `name`, `state`, `parent_id`, `login`, `type`, `div`, `url`, `func`, `php_class`) VALUES (25, 1, 'poll', 'start', 11, 0, 1, '#tab_main', './?page=user_main_poll&poll_ID=${poll}', 'init_poll', 'user_main_poll');
