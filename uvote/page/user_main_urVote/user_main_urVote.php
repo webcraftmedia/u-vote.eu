@@ -76,9 +76,61 @@ class user_main_urVote extends SYSTEM\PAGE\Page {
         new INFO($result);
         return $result;
     }
+    private function votes_all(){
+        $votes = votes::get_all_votes();
+        $result = '';
+        foreach($votes as $vote){
+            switch($vote['choice']){
+                case 1:
+                    $vote['choice'] = 'PRO';
+                    $vote['badge_color'] = 'badge-success';
+                    break;
+                case 2:
+                    $vote['choice'] = 'CON';
+                    $vote['badge_color'] = 'badge-important';
+                    break;
+                case 3:
+                    $vote['choice'] = 'ENT';
+                    $vote['badge_color'] = 'badge-info';
+                    break;
+            }
+            //$vote['count'];
+            //$vote['choice'];
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/tpl/votecountchoice.tpl'),$vote);
+        }
+        return $result;        
+    } 
+    private function votes_all_bt(){
+        $votes = votes::get_all_votes_bt();
+        $result = '';
+        foreach($votes as $vote){
+            switch($vote['bt_choice']){
+                case 1:
+                    $vote['bt_choice'] = 'PRO';
+                    $vote['badge_color'] = 'badge-success';
+                    break;
+                case 2:
+                    $vote['bt_choice'] = 'CON';
+                    $vote['badge_color'] = 'badge-important';
+                    break;
+                case 3:
+                    $vote['bt_choice'] = 'ENT';
+                    $vote['badge_color'] = 'badge-info';
+                    break;
+                case 0:
+                    $vote['bt_choice'] = 'OFFEN';
+            }
+            //$vote['count'];
+            //$vote['choice'];
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_urVote/tpl/votecountchoicebt.tpl'),$vote);
+        }
+        return $result;        
+    } 
     public function html(){
         $vars = array();
-//        $vars['poll_compare'] = $this->count_all_polls();        
+//        $vars['poll_compare'] = $this->count_all_polls();
+        $vars['votes_all'] = $this->votes_all();
+        $vars['votes_all_bt'] = $this->votes_all_bt();
         $vars['choices_user_ID'] = $this->user_per_party_overall();
         $vars['choices_bt_to_user'] = $this->user_to_bt();      
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';

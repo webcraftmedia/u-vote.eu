@@ -38,7 +38,27 @@
                     
                 </div>
             </div>
-                    <div id="graph_bt_user_overall" class="row"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Entscheidungsverhalten der uVote Community</h5>
+                            <span style="">
+                            ${votes_all}
+                            </span>
+                            <span style="">  Wie oft die uVote Community 
+                                <br>  insgesamt Dafür, Dagegen oder 
+                                <br>  Enthaltung gestimmt hat.</span>
+                </div>
+                <div class="col-md-6">
+                    <h5>Entscheidungsverhalten des Bundestags</h5>
+                    <span style="">
+                    ${votes_all_bt}
+                    </span>
+                    <span style="">  Wie oft der Bundestag 
+                        <br>  Dafür, Dagegen oder 
+                        <br>  Enthaltung gestimmt hat.</span>
+                </div>                  
+            </div>                   
+            <div id="graph_bt_user_overall" class="row"></div>
             <script type="text/javascript" language="JavaScript">load_visualisation_urvote('graph_bt_user_overall',84600);</script> 
         </div>
                           

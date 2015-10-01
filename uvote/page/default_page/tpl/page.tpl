@@ -34,25 +34,9 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
-            <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        ${loginform}
-                    </div>
-                    <!--<div class="navbar-inner">-->
-                          <!--  <ul class="nav navbar-nav">              
-                                <li><a class="brand" href="" id="menu_uvote">uVote</a></li>
-                                <li><a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">impressum</font></a></li>
-                                
-                            </ul>                    -->
-                    <!--</div>                -->
-                </div>
-            </nav>
-
             <div class="row" id="site-content">
 
-                <div class="row" id="user_main"></div>
+            <div class="row" id="user_main"></div>
                 
             </div>
         </div>

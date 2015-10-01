@@ -1,10 +1,26 @@
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" id="tabs_user_main">
+                <li class="active"><a href="#!start(user_main(u))">Abstimmen</a></li>
+                <li><a href="#!start(user_main(ur))">Auswerten</a></li>
+                <li><a href="#!start(user_main(my))">Mithelfen</a></li>
+                <li><a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">Impressum</font></a></li>
+            </ul>
+            ${loginform}
+        </div>
+        <!--<div class="navbar-inner">-->
+              <!--  <ul class="nav navbar-nav">              
+                    <li><a class="brand" href="" id="menu_uvote">uVote</a></li>
+                    <li><a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">impressum</font></a></li>
+
+                </ul>                    -->
+        <!--</div>                -->
+    </div>
+</nav>
+
 <div class="tabbable" id="tabbable_main_menu">
-    <ul class="nav nav-tabs" id="tabs_user_main">
-        <li class="active"><a href="#!start(user_main(u))">Abstimmen</a></li>
-        <li><a href="#!start(user_main(ur))">Auswerten</a></li>
-        <li><a href="#!start(user_main(my))">Mithelfen</a></li>
-        <li><a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">Impressum</font></a></li>
-    </ul>
+    
     <div class="tab-content">        
         <div class="tab-pane active" id="tab_main"></div>
     </div>
