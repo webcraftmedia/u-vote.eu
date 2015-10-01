@@ -131,9 +131,6 @@ class default_page extends SYSTEM\PAGE\Page {
         return $result[0].$result[1];
     }        
 
-    public function get_coverpage(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/cover.tpl'), array());}
-
     public function getloggedinform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/loggedinform.tpl'),array());} 
     
@@ -154,7 +151,7 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
-        $vars['votelist'] = $this->generate_votelist();
+        
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
 

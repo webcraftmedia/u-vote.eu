@@ -38,10 +38,6 @@
             <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a class="brand" href="" id="menu_uvote">uVote</a></li>
-                            <li><a data-toggle="modal" class="brand" href="#impressum" id="impressum"><font size="2">impressum</font></a></li>                            
-                        </ul>
                         ${loginform}
                     </div>
                     <!--<div class="navbar-inner">-->
