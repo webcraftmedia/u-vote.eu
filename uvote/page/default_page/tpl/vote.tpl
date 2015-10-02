@@ -2,7 +2,7 @@
     <div id="vote_sub1">       
         <h5>${title}</h5>           
         <img src="${frontend_logos}icon_urn_${vote_class}.png">               
-        <a class="btn btn-primary btn-small btn_vote" poll_ID="${ID}">${full_vote_btn}</a>
+        <a href="#!start(poll);poll.${ID}" class="btn btn-primary btn-small" poll_ID="${ID}">${full_vote_btn}</a>
         <a class="btn btn-primary btn-small btn_fade" poll_ID="${ID}">${fade}</a>              
     </div>
     

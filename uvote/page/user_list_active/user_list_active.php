@@ -39,7 +39,10 @@ class user_list_active extends SYSTEM\PAGE\Page {
                 return '';
         }
     }
-    
+    private function user_count(){
+        $vars = votes::get_user_count();       
+        return $vars['count'];
+    }
     public function generate_votelist(){        
         $result = array('','');
         $votes = votes::getAllVotesOfGroup(1);               
@@ -98,6 +101,7 @@ class user_list_active extends SYSTEM\PAGE\Page {
         $vars = array();
         $vars['votelist'] = $this->generate_votelist();
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
+        $vars['user_count'] = $this->user_count();
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_list_active/tpl/active.tpl'), $vars);

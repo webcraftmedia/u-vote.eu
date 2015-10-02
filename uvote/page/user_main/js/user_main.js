@@ -1,5 +1,12 @@
 function init_user_main(){
     register_registerform();
+    
+        //vote_click($(this).attr('poll_ID'));
+        //$('#user_main').load('./?action=open_bulletin&poll_ID=' + $(this).attr('poll_ID'));
+        //open_vote($(this).attr('poll_ID'));                     
+        //register_registerform();
+  
+
     $('#feedback_submit').click(function (data){
         var test = $('textarea#feedback_text').val();
         send_feedback(test);            

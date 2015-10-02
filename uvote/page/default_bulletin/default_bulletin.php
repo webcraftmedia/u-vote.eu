@@ -193,11 +193,12 @@ class default_bulletin extends SYSTEM\PAGE\Page {
     }
         
     private function js(){        
-        return  '<script src="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin/js/vote.js').'"></script>';}
+        return  \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin/js/vote.js'));}
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\bars_user.css').'" rel="stylesheet">'.
-                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\bulletin.css').'" rel="stylesheet">'.
-                '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_bulletin\css\comment.css').'" rel="stylesheet">';} 
+        return \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bars_user.css')).
+               \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bulletin.css')).
+               \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\comment.css'));                      
+    }
 
         
     
