@@ -1,5 +1,5 @@
 <?php
-class user_main_myVote extends SYSTEM\PAGE\Page { 
+class user_main_options extends SYSTEM\PAGE\Page { 
     
     public function get_add_data (){
         $qqresult = votes::get_add_data();
@@ -14,7 +14,7 @@ class user_main_myVote extends SYSTEM\PAGE\Page {
     }
     
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'user_main_myVote/css/myVote.css').'" rel="stylesheet">';}
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'user_main_options/css/myVote.css').'" rel="stylesheet">';}
     
     public function html(){
         $vars = array();
@@ -22,7 +22,7 @@ class user_main_myVote extends SYSTEM\PAGE\Page {
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=img&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_myVote/tpl/myVote.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_options/tpl/user_main_options.tpl'), $vars);
     }
   
 }

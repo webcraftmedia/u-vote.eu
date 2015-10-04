@@ -37,7 +37,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
 //        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
         foreach($party_votes as $pv){
             
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/vote_bt.tpl'),
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_bt.tpl'),
                                     array(  'party' => $pv['party'],
                                             'choice' => $this->get_party_per_poll($pv['choice']),
                                             'choice_class' => $this->tablerow_class($pv['choice']),
@@ -54,7 +54,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $bars['vote_no_perc'] = round($bars['no_perc']*100,0);
         $bars['vote_ent_perc'] = round($bars['ent_perc']*100,0);
         $bars['title'] = 'Gemessen auf uVote';
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/bars_user.tpl'),$bars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/bars_user.tpl'),$bars);
     }
     
     private function bars_party(){
@@ -65,7 +65,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             $vote['party_yes'] = $vote['votes_pro'] > 0 ? round($vote['votes_pro']/$vote['total']*100,0) : $vote['votes_pro'];
             $vote['party_no'] = $vote['votes_contra'] > 0 ? round($vote['votes_contra']/$vote['total']*100,0) : $vote['votes_contra'];
             $vote['party_ent'] = $vote['nr_attending'] > 0 ? round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0) : $vote['nr_attending'];
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/table_parties.tpl'), $vote);
+            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_parties.tpl'), $vote);
         }
         
         return $result;
@@ -76,7 +76,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         if (!$vars['bt_total']){
             return '';}
         $info = array();
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/icons_table_parties.tpl'), $info);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/icons_table_parties.tpl'), $info);
     }
     
     private function bars_bt(){
@@ -86,13 +86,13 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
         $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);           
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/table_bt.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_bt.tpl'), $vars);
     }
     
     private function voice_weight(){
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
         $vars['voteweight'] = $vars['count'] ? round(1/$vars['count']*100) : 'no votes';      
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_bulletin/tpl/voteweight.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/voteweight.tpl'), $vars);
     }
     
     private function p_fields (){
@@ -112,16 +112,16 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         if($poll_expired){
             if(!$user_poll){
                 return '<h5>Stimme hier ab</h5>
-                                     <a class="btn btn_vote btn-success btn-default btnvote_yes"
+                                     <a class="btn btn-success btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Pro</font></a>
-                                     <a class="btn btn_vote btn-danger btn-default btnvote_no" 
+                                     <a class="btn btn-danger btn-default btnvote_no" 
                                         style="width: 70px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Contra</font></a>
-                                     <a class="btn btn_vote btn-info btn-default btnvote_off" 
+                                     <a class="btn btn-info btn-default btnvote_off" 
                                         style="width: 70px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 

@@ -62,7 +62,7 @@ function get_barsperparty (poll_ID) {
 }
 
 function vote_click (poll_ID, vote) {
-    $.getJSON('./api.php?call=vote&page=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
+    $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
         var items = [];   
         if(data.status == true){
             alert("success");

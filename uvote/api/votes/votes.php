@@ -131,16 +131,10 @@ class votes {
     }
     
     public static function write_vote($poll_ID, $vote){
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
-            throw new ERROR("You need to be logged in.");}
-            
         $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
         $res = $con->prepare(   'selVote',
-                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND time_end < CURDATE();',
-                                array($poll_ID));
-         if ($res->next()){
-             throw new ERROR('Your rights have expired!');}
-                     
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
+                                array($poll_ID));   
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
                                  VALUES (?, ?, ?, 0, NOW());', 

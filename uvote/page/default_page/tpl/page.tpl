@@ -34,7 +34,8 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+        <div class="container" id="site-content" style="">
+        <nav class="navbar navbar-default navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="tabs_user_main">
@@ -47,8 +48,9 @@
                 </div>
             </div>
         </nav>
-        <div class="row" id="site-content">
+        
             <div class="row" id="user_main"></div>
+            
             
         </div>
         </div>

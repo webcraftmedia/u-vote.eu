@@ -1,9 +1,7 @@
 #vote_main {
-    margin-bottom: 5px; 
+    padding: 5px; 
     width: 100%; 
-    min-height: 125px; 
-    border: solid lightgray 1px; 
-    background: beige;
+    border: solid lightgray 3px;
 }
     
 #vote_sub1 {
