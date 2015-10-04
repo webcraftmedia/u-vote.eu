@@ -112,20 +112,18 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         if($poll_expired){
             if(!$user_poll){
                 return '<h5>Stimme hier ab</h5>
-                                     <a class="btn btn-success btn-default btnvote_yes"
+                                     <button id="btnvote_yes" class="btn btn-success btn-default"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Pro</font></a>
-                                     <a class="btn btn-danger btn-default btnvote_no" 
+                                        size="3">Pro</font></button>
+                                     <button id="btnvote_no" class="btn btn-danger btn-default" 
                                         style="width: 70px" 
-                                        href="#" 
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Contra</font></a>
-                                     <a class="btn btn-info btn-default btnvote_off" 
-                                        style="width: 70px" 
-                                        href="#" 
+                                        size="3">Contra</font></button>
+                                     <button id="btnvote_off" class="btn btn-info btn-default" 
+                                        style="width: 70px"
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Enthaltung</font></a>';}
+                                        size="3">Enthaltung</font></button>';}
             $classes = array('','','');
             switch($user_poll){
                 case 1: $classes = array('btn-success disabled','btn-danger','btn-info'); break;
@@ -135,20 +133,20 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             }
             
             return '                 <h5>Ändere deine Stimme hier ab</h5>
-                                     <a class="btn btn_vote '.$classes[0].' btn-default btnvote_yes"
+                                     <button id="btnvote_yes" class="btn btn_vote '.$classes[0].' btn-default btnvote_yes"
                                         style="width: 70px"                                     
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Pro</font></a>
-                                     <a class="btn btn_vote '.$classes[1].' btn-default btnvote_no" 
+                                        size="3">Pro</font></button>
+                                     <button id="btnvote_no" class="btn btn_vote '.$classes[1].' btn-default btnvote_no" 
                                         style="width: 70px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Contra</font></a>
-                                     <a class="btn btn_vote '.$classes[2].' btn-default btnvote_off" 
+                                        size="3">Contra</font></button>
+                                     <button id="btnvote_off" class="btn btn_vote '.$classes[2].' btn-default btnvote_off" 
                                         style="width: 70px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
-                                        size="3">Enthaltung</font></a>
+                                        size="3">Enthaltung</font></button>
                                         ';
         } else {
             return 'ye soon to come infos';
@@ -158,8 +156,8 @@ class user_main_poll extends SYSTEM\PAGE\Page {
          $var = votes::get_voteinfo($this->poll_ID);
          return $var['iframe_link'];
     }
-    private function js(){        
-        return  \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin/js/vote.js'));}
+    public static function js(){        
+        return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_poll/js/user_main_poll.js'));}
     private function css(){  
         return \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bars_user.css')).
                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bulletin.css')).

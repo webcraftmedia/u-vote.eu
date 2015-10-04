@@ -18,7 +18,7 @@ class votes {
     public static function getUserPollData($poll_ID){
         if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
             return NULL;}
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ?;',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
@@ -27,7 +27,7 @@ class votes {
     }
     
     public static function get_barsperusers($poll_ID,$return_as_json = true){
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         //count
         $res = $con->prepare(  'selVoteBy_count',
                                 'SELECT COUNT(*) as "count" FROM `uvote_data` WHERE `poll_ID` = ?;',
@@ -73,7 +73,7 @@ class votes {
     }
     
     public static function get_user_temp_votes($user_ID){
-        return \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
+        return \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID));}
     
     public static function get_user_overall_votes($user_ID, $creationDate){
         return \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array($user_ID, $user_ID, $user_ID, $creationDate));}
@@ -113,7 +113,7 @@ class votes {
         return \SQL\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
     
     public static function get_voteinfo($poll_ID){
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByID',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));        
@@ -131,7 +131,7 @@ class votes {
     }
     
     public static function write_vote($poll_ID, $vote){
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVote',
                                 'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
                                 array($poll_ID));   
@@ -156,7 +156,7 @@ class votes {
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
             
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());                    
+        $con = new \SYSTEM\DB\Connection();                    
         $res = $con->prepare(   'insertFeedback',
                                 'INSERT INTO uvote_beta_feedback
                                  VALUES (?, ?);',

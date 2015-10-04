@@ -22,7 +22,6 @@
                             border-spacing: 10px 5px; width: 350px;"> 
                             <tr>
                             <h5>${urVote_user_party_compare}</h5>
-                            ${urvote_user_party_compare_sub}
                             ${choices_user_ID}
                             </tr>
 

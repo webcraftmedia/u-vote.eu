@@ -111,8 +111,9 @@ class user_main_votelist extends SYSTEM\PAGE\Page {
     public function html(){
         $vars = array();
         $vars['votelist'] = $this->generate_votelist();
-        $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
+        $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
         $vars['user_count'] = $this->user_count();
+        $vars['user_temp_votes'] = user_main_analysis::user_temp_votes();
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/user_main_votelist.tpl'), $vars);

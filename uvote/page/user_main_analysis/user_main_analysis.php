@@ -11,8 +11,8 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
                         'not_voted'=> $nv));
     }
     
-    private function user_temp_votes (){
-        $vars = votes::get_user_temp_votes(\SYSTEM\SECURITY\Security::getUser()->id);
+    public static function user_temp_votes (){
+        $vars = votes::get_user_temp_votes(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id);
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
         print_r($vars, true);
@@ -87,7 +87,7 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
                     break;
                 case 2:
                     $vote['choice'] = 'CON';
-                    $vote['badge_color'] = 'badge-important';
+                    $vote['badge_color'] = 'badge-alert';
                     break;
                 case 3:
                     $vote['choice'] = 'ENT';
@@ -111,7 +111,7 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
                     break;
                 case 2:
                     $vote['bt_choice'] = 'CON';
-                    $vote['badge_color'] = 'badge-important';
+                    $vote['badge_color'] = 'badge-alert';
                     break;
                 case 3:
                     $vote['bt_choice'] = 'ENT';
@@ -120,8 +120,6 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
                 case 0:
                     $vote['bt_choice'] = 'OFFEN';
             }
-            //$vote['count'];
-            //$vote['choice'];
             $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/votecountchoicebt.tpl'),$vote);
         }
         return $result;        
