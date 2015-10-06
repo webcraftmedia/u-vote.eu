@@ -46,6 +46,7 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
 
 
     private function user_per_party_overall(){
+
     //$vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
     $result = '';
     $con = new \SYSTEM\DB\Connection();
@@ -66,9 +67,15 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
     }
     return $result;        
 }
+private function user_per_party_by_choicetype($choice){    
+    return votes::get_user_match_per_choice($choice);
+}
+private function user_per_bt_by_choicetype($choice){    
+    return votes::get_user_match_per_choice_bt($choice);
+}
     public function build_according_law_html($part, $party){
         $part = json_decode($part, true);
-        $result = "<div><font color='black'><h6><i>Bei folgenden Gesetzen hast du genauso abgestimmt wie die '".$party."':</i></h6><hr>";
+        $result = "<div><font color='black'><h6><i>Bei folgenden Gesetzen hast du genauso abgestimmt wie die ".$party."':</i></h6><hr>";
         foreach ($part['result'] as $p){
             $result .= $p['title']."<hr>";
         }
@@ -124,12 +131,29 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
         }
         return $result;        
     } 
+    public static function get_basic_stats(){
+        $vars = votes::get_user_choice_overall(\SYSTEM\SECURITY\Security::getUser()->id);
+        $vars['user_total_total'] = $vars['user_total_pro'] + $vars['user_total_con'] + $vars['user_total_ent'];
+        $vars['user_total_pro_percentage'] = round($vars['user_total_pro']/$vars['user_total_total']*100+1);
+        $vars['user_total_con_percentage'] = round($vars['user_total_con']/$vars['user_total_total']*100+1);
+        $vars['user_total_ent_percentage'] = round($vars['user_total_ent']/$vars['user_total_total']*100+1);
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/user_total.tpl'),$vars);
+    }
+    public static function js(){        
+        return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_analysis/js/user_main_analysis.js'));}
     public function html(){
         $vars = array();
 //        $vars['poll_compare'] = $this->count_all_polls();
+        $vars['basic_stats'] = $this->get_basic_stats();
         $vars['votes_all'] = $this->votes_all();
         $vars['votes_all_bt'] = $this->votes_all_bt();
         $vars['choices_user_ID'] = $this->user_per_party_overall();
+        $vars['choices_user_ID_per_party_pro'] = $this->user_per_party_by_choicetype('1');
+        $vars['choices_user_ID_per_party_con'] = $this->user_per_party_by_choicetype('2');
+        $vars['choices_user_ID_per_party_ent'] = $this->user_per_party_by_choicetype('3');
+        $vars['choices_user_ID_per_bt_pro'] = $this->user_per_bt_by_choicetype('1');
+        $vars['choices_user_ID_per_bt_con'] = $this->user_per_bt_by_choicetype('2');
+        $vars['choices_user_ID_per_bt_ent'] = $this->user_per_bt_by_choicetype('3');
         $vars['choices_bt_to_user'] = $this->user_to_bt();      
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
         $vars['user_temp_votes'] = $this->user_temp_votes();

@@ -28,6 +28,16 @@ class api_uvote extends \SYSTEM\API\api_system {
         
     public static function call_graph_bt_to_user_overall_by_time($timespan = 84600){
         return graphs::graph_bt_to_user_overall_by_time($timespan);}
+    public static function call_graph_party_to_user_overall_by_time_party_cdu($party = 'cdu', $timespan = 84600){
+        return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
+    public static function call_graph_party_to_user_overall_by_time_party_csu($party = 'csu', $timespan = 84600){
+        return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
+    public static function call_graph_party_to_user_overall_by_time_party_spd($party = 'spd', $timespan = 84600){
+        return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
+    public static function call_graph_party_to_user_overall_by_time_party_gruene($party = 'gruene', $timespan = 84600){
+        return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
+    public static function call_graph_party_to_user_overall_by_time_party_linke($party = 'linke', $timespan = 84600){
+        return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
         
     //comments
     public static function call_vote_action_comment($poll_ID, $c_choice, $c_txt, $c_src) {

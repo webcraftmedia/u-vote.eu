@@ -39,12 +39,18 @@ class default_page extends SYSTEM\PAGE\Page {
     
     public function exchange_loginform(){
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/loggedinformtop.tpl'),array());}
+    
+    public function get_menu(){
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu.tpl'),array());}
+    public function exchange_menu(){
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu_loggedout.tpl'),array());}
 
     public function html($_escaped_fragment_ = NULL){
         $vars = array();
         if(!$_escaped_fragment_){
             $vars['js'] = $this->js();}
         $vars['css'] = $this->css();
+        $vars['menu'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->get_menu() : $this->exchange_menu();
         $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
         $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';

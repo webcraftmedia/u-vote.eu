@@ -2,7 +2,15 @@ $(document).ready(function() {
     new SYSTEM('./api.php',1,'start');
     register_login();
     register_logout();
+    navstate();
 });
+function navstate(){
+    $(".nav a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+});
+}
+
 
 function register_login(){
     $("#form_login input").not("[type=submit]").jqBootstrapValidation({
@@ -268,8 +276,38 @@ function load_visualisation_urvote(id, timespan){
             first = true;
             data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
          
-        console.log(data);
         var options = {title: id, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false,  width: "300", height: "250"};
         new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
     });
 }
+
+function load_visualisation_user_to_party_overall(id, party, timespan){
+    $('img#loader').show();  
+    $.getJSON('./api.php?call=graph_party_to_user_overall_by_time&party=' + party,function(json){            
+        if(!json || json.status != true || !json.result){
+            $('img#loader').hide();            
+            return;
+        }
+        json = json.result;
+        $('img#loader').hide();
+        var data = new google.visualization.DataTable();
+        console.log(json);
+        first = true;
+        $.each(json[0], function(key, value){
+            if(first){                
+                data.addColumn('datetime',key);
+                first = false;
+            } else {
+                data.addColumn('number',key);
+            }       
+        });            
+        $.each(json, function(key, value){
+            first = true;
+            data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
+         
+        
+        var options = {title: 'Übereinstimmung mit ' + party, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false, width: "800", height: "250"};
+        new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
+    });
+}
+

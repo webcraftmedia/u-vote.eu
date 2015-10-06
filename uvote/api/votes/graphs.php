@@ -24,4 +24,14 @@ class graphs {
         return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
     }
     
+    public static function graph_party_to_user_overall_by_time ($party, $timespan, $returnasjson = true){
+        $result = array();
+        $res = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, $party, \SYSTEM\SECURITY\Security::getUser()->id));
+        while ($row = $res->next()){
+            $result[] = array(  0 => $row['day'],
+                                'class_match' => $row['class_match'] / ($row['class_match']+$row['class_mismatch']+1));
+        }
+        return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
+    }
+    
 }

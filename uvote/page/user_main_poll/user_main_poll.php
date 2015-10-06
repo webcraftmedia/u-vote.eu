@@ -113,15 +113,15 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             if(!$user_poll){
                 return '<h5>Stimme hier ab</h5>
                                      <button id="btnvote_yes" class="btn btn-success btn-default"
-                                        style="width: 70px"                                     
+                                        style="width: 90px"                                     
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Pro</font></button>
                                      <button id="btnvote_no" class="btn btn-danger btn-default" 
-                                        style="width: 70px" 
+                                        style="width: 90px" 
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Contra</font></button>
                                      <button id="btnvote_off" class="btn btn-info btn-default" 
-                                        style="width: 70px"
+                                        style="width: 90px"
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Enthaltung</font></button>';}
             $classes = array('','','');
@@ -134,16 +134,16 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             
             return '                 <h5>Ändere deine Stimme hier ab</h5>
                                      <button id="btnvote_yes" class="btn btn_vote '.$classes[0].' btn-default btnvote_yes"
-                                        style="width: 70px"                                     
+                                        style="width: 90px"                                     
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Pro</font></button>
                                      <button id="btnvote_no" class="btn btn_vote '.$classes[1].' btn-default btnvote_no" 
-                                        style="width: 70px" 
+                                        style="width: 90px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Contra</font></button>
                                      <button id="btnvote_off" class="btn btn_vote '.$classes[2].' btn-default btnvote_off" 
-                                        style="width: 70px" 
+                                        style="width: 90px" 
                                         href="#" 
                                         poll_ID="${poll_ID}"><font 
                                         size="3">Enthaltung</font></button>

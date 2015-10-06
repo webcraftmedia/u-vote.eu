@@ -18,9 +18,13 @@ class page_uvote extends \SYSTEM\API\api_default {
            
         
     public static function page_user_main_analysis(){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return (new default_register ())->html();}
         return (new user_main_analysis())->html();}
         
     public static function page_user_main_options(){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return (new default_register ())->html();}
         return (new user_main_options())->html();}    
     
     public static function page_user_main_poll($poll_ID) {
@@ -30,6 +34,8 @@ class page_uvote extends \SYSTEM\API\api_default {
         return (new user_main_poll($poll_ID))->html();}       
     
     public static function page_user_main_votelist(){
+        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return (new default_register ())->html();}
         return (new user_main_votelist())->html();}
     
 }
