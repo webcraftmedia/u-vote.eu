@@ -35,7 +35,23 @@
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <div class="container" id="site-content" style="">
-                <div class="row">${menu}</div>            
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-responsive" src="${frontend_logos}logo2.png"/>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-responsive" src="${frontend_logos}cover.png"/>
+                    </div>
+                </div>
+                    <div class="row"><hr></div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                ${menu}
+                            </div>
+                            <div class="col-md-2">
+                                ${loginform}
+                            </div>
+                        </div>            
                 <div class="row" id="user_main"></div>  
             </div>
         </div>

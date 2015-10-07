@@ -6,16 +6,10 @@
                 </h4>
             </div>                        
             <div class="panel-body row">
-                <div class="col-md-6">
-                    <img class="img-responsive" src="${frontend_logos}logo2.png" width="450"/>
-                </div>
+                
                 <div class="col-md-6">
                     ${welcome_text}
                 </div>
-            
-        
-        
-                <div class="row">
                     <div class="col-md-6">
                     <form class="textbox" id="register_user_form">
                         <div class="control-group" id="register_username_control_group">
@@ -96,12 +90,8 @@
                             </table>
                             <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
                         </div>
-                </form>
-                    </div>
-                        <div class="col-md-6">            
-                            <img class="img-responsive" src="${frontend_logos}cover.png" width="450"/>
-                        </div>
+                    </form>
                 </div>
             </div>
-        </div>            
         </div>
+    </div>            

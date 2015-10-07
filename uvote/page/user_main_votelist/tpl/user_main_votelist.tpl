@@ -1,7 +1,6 @@
 <div class="row" style="padding-bottom: 30px;">
-
     <div class="row panel-group" style="margin: 0; padding:0;">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     Willkommen auf uvote.eu!
@@ -12,23 +11,29 @@
                 ${welcome_text}  
                 </div>
                 <div class="col-md-4">
-                ${user_temp_votes}
-                <span class="badge badge-info">${user_count}</span> Nutzer auf uVote  
+                    <div class="row">
+                        ${user_temp_votes}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <br>
+                            <span class="badge badge-info">${user_count}</span>
+                        </div> 
+                        <div class="col-md-10">
+                            <br>
+                            Nutzer auf uVote
+                        </div>
+                    </div>
                 </div>    
             </div>
-        </div>
-        
-    </div>
-    
-    
-
-           
+        </div>     
+    </div>          
 </div>
 <div class="row panel-group">
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-info">
         <div class="panel-heading">
             <h4 class="panel-title">
-                Hier gehts zur Abstimmung
+                <span class="glyphicon glyphicon-th-list"></span>&nbsp;Hier gehts zur Abstimmung
             </h4>
         </div>
         <div class="panel-body">

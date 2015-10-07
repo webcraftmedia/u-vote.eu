@@ -11,9 +11,7 @@ class votes {
         $res = \SQL\UVOTE_DATA_COUNT_VOTES::QQ();
         return $res;}                    
     
-    public static function get_user_choice_overall($user_ID){
-        return \SQL\UVOTE_DATA_USER_CHOICE_OVERALL::Q1(array($user_ID));
-    }    
+        
         
     public static function get_user_choice_per_poll($poll_ID, $user_ID){
         return \SQL\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
@@ -29,84 +27,8 @@ class votes {
         $result = $res->next();                                        
         return $result['choice'];            
     }
-    public static function get_user_match_per_choice($choice){
-        switch($choice){
-                case 1:
-                    $bar = 'progress-bar-success';
-                    break;
-                case 2:
-                    $bar = 'progress-bar-danger';
-                    break;
-                case 3:
-                    $bar = 'progress-bar-info';
-                    break;
-                case 0:
-                    $bar = 'progress-bar';
-            }
-        $result = '';
-        $con = new \SYSTEM\DB\Connection();
-        $res = $con->prepare(   'user_to_party_by_choice',
-                                'SELECT party, sum(case when uvote_data.choice = uvote_votes_per_party.choice then 1 else 0 end) class_MATCH,
-                                               sum(case when uvote_data.choice != uvote_votes_per_party.choice then 1 else 0 end) class_MISSMATCH 
-                                FROM uvote_data INNER JOIN uvote_votes_per_party 
-                                    ON uvote_data.poll_ID = uvote_votes_per_party.poll_ID 
-                                WHERE user_ID = ? AND uvote_data.choice = ? GROUP BY party;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
-        $i = 0;
-        while($row = $res->next()){
-            $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
-            $row['bar'] = $bar;
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvoteparties_by_choice.tpl'), $row);;
-        }
-        if(empty($result)){
-            return 'Keine relevanten Daten verfügbar';
-        }
-        
-        return $result;        
-    }
-    public static function get_user_match_per_choice_bt($choice){
-        switch($choice){
-                case 1:
-                    $bar = 'progress-bar-success';
-                    $icon_type = 'pro';
-                    break;
-                case 2:
-                    $bar = 'progress-bar-danger';
-                    $icon_type = 'con';
-                    break;
-                case 3:
-                    $bar = 'progress-bar-info';
-                    $icon_type = 'ent';
-                    break;
-                case 0:
-                    $bar = 'progress-bar';
-            }
-        $result = '';
-        $con = new \SYSTEM\DB\Connection();
-        $res = $con->prepare(   'user_to_party_by_choice_bt',
-                                'SELECT user_ID, sum(case when uvote_data.choice = uvote_votes.bt_choice then 1 else 0 end) class_MATCH,
-                                               sum(case when uvote_data.choice != uvote_votes.bt_choice then 1 else 0 end) class_MISSMATCH 
-                                FROM uvote_data INNER JOIN uvote_votes
-                                    ON uvote_data.poll_ID = uvote_votes.ID 
-                                WHERE user_ID = ? AND uvote_data.choice = ? GROUP by user_ID;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
-        $i = 0;
-        
-        while($row = $res->next()){
-            if(empty($row['class_MATCH'])){
-            return 'Keine relevanten Daten verfügbar <br>';
-            }
-            $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
-            $row['bar'] = $bar;
-            $row['icon_type'] = $icon_type;
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvotebt_by_choice.tpl'), $row);;
-        }
-        if(empty($result)){
-            return 'Keine relevanten Daten verfügbar';
-        }
-        
-        return $result;        
-    }
+   
+    
     public static function get_barsperusers($poll_ID,$return_as_json = true){
         $con = new \SYSTEM\DB\Connection();
         //count
@@ -153,11 +75,26 @@ class votes {
         return $res;
     }
     
-    public static function get_user_temp_votes($user_ID){
-        return \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID));}
+    public static function get_user_temp_votes(){
+        $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
+        $v = $vars['voted'];
+        $nv = $vars['not_voted'];
+        print_r($vars, true);
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/all_polls.tpl'),
+                array(  'vote_perc'=> round($v/(($nv+$v)*100+1), 2),
+                        'no_vote_perc'=> round($nv/(($nv+$v)*100+1), 2),
+                        'voted'=> $v,
+                        'not_voted'=> $nv));}
     
-    public static function get_user_overall_votes($user_ID, $creationDate){
-        return \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array($user_ID, $user_ID, $user_ID, $creationDate));}
+    public static function get_user_overall_votes(){
+        $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
+        $v = $vars['voted'] > 1 ? $vars['voted'] : 1;
+        $nv = $vars['not_voted'];
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/overall_all_polls.tpl'),
+                array(  'vote_perc'=> round($v/($nv+$v)*100, 2),
+                        'no_vote_perc'=> round($nv/($nv+$v)*100, 2),
+                        'voted'=> $v,
+                        'not_voted'=> $nv));}
     
     public static function get_bar_bt_per_poll($poll_ID){
         return \SQL\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}

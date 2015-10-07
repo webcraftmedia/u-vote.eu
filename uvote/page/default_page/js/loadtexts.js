@@ -291,7 +291,6 @@ function load_visualisation_user_to_party_overall(id, party, timespan){
         json = json.result;
         $('img#loader').hide();
         var data = new google.visualization.DataTable();
-        console.log(json);
         first = true;
         $.each(json[0], function(key, value){
             if(first){                
@@ -306,8 +305,74 @@ function load_visualisation_user_to_party_overall(id, party, timespan){
             data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
          
         
-        var options = {title: 'Übereinstimmung mit ' + party, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false, width: "800", height: "250"};
+        var options = { title: 'Übereinstimmung mit ' + party, 
+                        aggregationTarget: 'category',
+                        selectionMode: 'multiple', 
+                        legend: 'none', 
+                        chartArea:{},
+//                        vAxis:{logScale: false},
+                        vAxis: {viewWindow: {min: 0, max: 100}},
+                        lineWidth: 7,
+                        interpolateNulls: false,
+                        width: "800",
+                        height: "250"};
         new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
     });
 }
+function load_visualisation_user_to_parties_overall(id, timespan){
+    $('img#loader').show();  
+    $.getJSON('./api.php?call=donut_party_to_user_overall',function(json){            
+        if(!json || json.status != true || !json.result){
+            $('img#loader').hide();            
+            return;
+        }
+        json = json.result;
+        $('img#loader').hide();
+        var data = new google.visualization.DataTable();
+        console.log(json);
+        first = true;
+        $.each(json[0], function(key, value){
+            if(first){                
+                data.addColumn('string',key);
+                first = false;
+            } else {
+                data.addColumn('number',key);
+            }       
+        });                    
+        $.each(json, function(key, value){
+        first = true;
+        data.addRow($.map(value, function(v) { if(first){first=false;return v;}else{return [parseFloat(v)];}}));});
+        var options = { title: 'Übereinstimmung mit den Fraktionen relativ zueinander', 
+                        titleTextStyle: {fontSize: 14, bold: 0, italic: 0},
+                        pieSliceText: 'label',
+                        legend: 'none',
+                        colors: ['#000736', '#0022FF', '#33FF00', '#D2067A', '#F20101'],
+                        pieHole: '0.4',
+                        chartArea:{},
+                        width: "500",
+                        height: "400"};
+        new google.visualization.PieChart(document.getElementById(id)).draw(data, options);
+    });
+}
+function load_visualisation_user(id, timespan){
+google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
 
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+      }

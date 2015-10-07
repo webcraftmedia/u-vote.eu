@@ -7,6 +7,10 @@ body {
     border: 2px solid #ccc;
 }*/
 
+.popover{
+    max-width: 600px;
+    width: 600px;
+}
 .pro{
     background: #5eb95e;
 }
