@@ -45,12 +45,7 @@
                 </div>
                     <div class="row"><hr></div>
                         <div class="row">
-                            <div class="col-md-10">
                                 ${menu}
-                            </div>
-                            <div class="col-md-2">
-                                ${loginform}
-                            </div>
                         </div>            
                 <div class="row" id="user_main"></div>  
             </div>
