@@ -10,14 +10,11 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         return $res->affectedRows() == 0 ? \SYSTEM\LOG\JsonResult::error(new \SYSTEM\LOG\WARNING("no data added")) : \SYSTEM\LOG\JsonResult::ok();
         new \SYSTEM\LOG\INFO($vote);
     }
-    
-    public static function sai_mod_saimod_uvote_vote_edit_action_insertPartyChoice ($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice){
-        $vars = votes::insertPartyChoice($poll_ID, $party, $votes_pro, $votes_contra, $nr_attending, $total, $choice);       
-    }
 
     public static function sai_mod_saimod_uvote_new_vote(){
-        
-        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'));
+        $ID = array();
+        $ID['ID'] = '';
+        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'), $ID);
     }
 
 
@@ -32,8 +29,8 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
-            $vote['vote_class'] = self::tablerow_class(\votes::getUserPollData($vote['ID']));
-            $vote['bt_vote_class'] = self::tablerow_class($vote['bt_choice']);            
+            $vote['vote_class'] = \switchers::tablerow_class(\votes::getUserPollData($vote['ID']));
+            $vote['bt_vote_class'] = \switchers::tablerow_class($vote['bt_choice']);            
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
             
@@ -42,21 +39,17 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('list' => $result));
     }
     
-    private static function tablerow_class($choice){
-        switch($choice){
-            case 1:
-                return 'pro';
-            case 2:
-                return 'contra';
-            case 3:
-                return 'ent';
-            default:
-                return '';
-        }        
-    }
-    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_vote($data){
-        $data = \json_decode($data);
-        new \SYSTEM\LOG\WARNING(print_r($data, TRUE));
+    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_vote($data_json){
+        $data_stdClass = \json_decode($data_json);
+        $data = (array)$data_stdClass;
+        if(!$data['poll_ID']){
+            new \SYSTEM\LOG\WARNING(print_r($data, TRUE));
+            \SYSTEM\DBD\SYS_TEXT_SAVE::QI(array($stamp,'deDE',$data['title'], 'wed', ''));
+            \SYSTEM\DBD\SYS_TEXT_SAVE_TAG::QI(array($stamp,$tag));          
+            return \SQL\UVOTE_DATA_NEW_POLL::QA(array($data['title'], $data['time_end'], $data['iframe_link']));
+        }
+        return \SQL\UVOTE_DATA_EDIT_POLL::QA(array($data['poll_ID'], $data['title'], $data['time_end'], $data['iframe_link']));
+        
     }
     public static function html_li_menu(){return '<li><a href="#!vote">Edit Votes</a></li>';}
     public static function right_public(){return false;}    
