@@ -16,10 +16,8 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     }
 
     public static function sai_mod_saimod_uvote_new_vote(){
-        $result = '';
-        $vote = array();
-        $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/vote.tpl'), $vote);
-
+        
+        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'));
     }
 
 
@@ -38,10 +36,9 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
             $vote['bt_vote_class'] = self::tablerow_class($vote['bt_choice']);            
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
-            $vote['new_vote'] = self::sai_mod_saimod_uvote_new_vote();
-            $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/vote.tpl'), $vote);
+            
+            $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'), $vote);
         }
-        
         return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('list' => $result));
     }
     
@@ -57,13 +54,16 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
                 return '';
         }        
     }
-        
+    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_vote($data){
+        $data = \json_decode($data);
+        new \SYSTEM\LOG\WARNING(print_r($data, TRUE));
+    }
     public static function html_li_menu(){return '<li><a href="#!vote">Edit Votes</a></li>';}
     public static function right_public(){return false;}    
     public static function right_right(){return \SYSTEM\SECURITY\Security::check(\SYSTEM\SECURITY\RIGHTS::SYS_SAI);}
-    public static function sai_mod_saimod_uvote_vote_edit_flag_js(){return \SYSTEM\LOG\JsonResult::toString(array(
-            \SYSTEM\WEBPATH(new PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
-    ));}
-    public static function sai_mod_saimod_uvote_vote_edit_flag_css(){return \SYSTEM\LOG\JsonResult::toString(array()
+    public static function js(){return array(
+            \SYSTEM\WEBPATH(new \PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
     );}
+    public static function css(){return array()
+    ;}
 }

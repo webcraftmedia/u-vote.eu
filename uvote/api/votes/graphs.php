@@ -37,7 +37,7 @@ class graphs {
     
     public static function donut_party_to_user_overall ($returnasjson = true){
         $result = array();
-        $res = \SQL\UVOTE_DATA_USER_TO_PARTIES_OVERALL::QQ(array(13));
+        $res = \SQL\UVOTE_DATA_USER_TO_PARTIES_OVERALL::QQ(array(\SYSTEM\SECURITY\Security::getUser()->id));
         while ($row = $res->next()){
             $result[] = array(  0 => $row['party'],
                                 'class_match' => $row['class_MATCH']);

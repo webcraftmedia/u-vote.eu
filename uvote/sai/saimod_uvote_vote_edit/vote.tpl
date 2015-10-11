@@ -1,48 +1,71 @@
-<tr style="border: solid lightgray 1px;">    
-    <td style="padding: 5px;">            
-        <input id="input_poll_title" poll_ID="${ID}" type="text" value="${title}" style="width: 500px;">
-        <input id="input_poll_link" type="text" value="${iframe_link}" style="width: 500px;">
-    </td>
-    <td>
+<div class="row" style="border: solid lightgray 1px;">    
+    <div class="col-md-3" style="padding: 5px;">            
+        <input id="input_poll_title" poll_ID="${ID}" type="text" value="${title}" style="width: 100%;">
+        <input id="input_poll_link" type="text" value="${iframe_link}" style="width: 100%">
+    </div>
+    <div class="col-md-1">
         Nr.${ID}
-    </td>
-    <td>
+    </div>
+    <div class="col-md-1">
         <a class="btn btn-primary btn-small btn_editvote" style="float:right" poll_ID="${ID}">Edit</a>
-    </td>
-    <td class="${bt_vote_class}" style="width: 200px; margin-top: 10px; border-left: 1px solid lightgray;">            
-        cdu<span class="badge badge-success" style="float:left;"></span>
-        <span class="badge badge-important" style="float:left;">123</span>
-        <span class="badge" style="float:left;">123</span>
-        <span class="badge badge-info" style="float:left;">123</span><br/>
-        csu<span class="badge badge-success" style="float:left;">123</span>
-        <span class="badge badge-important" style="float:left;">123</span>
-        <span class="badge" style="float:left;">123</span>
-        <span class="badge badge-info" style="float:left;">123</span><br/>
-        spd<span class="badge badge-success" style="float:left;">123</span>
-        <span class="badge badge-important" style="float:left;">123</span>
-        <span class="badge" style="float:left;">123</span>
-        <span class="badge badge-info" style="float:left;">123</span><br/>
-        grüne<span class="badge badge-success" style="float:left;">123</span>
-        <span class="badge badge-important" style="float:left;">123</span>
-        <span class="badge" style="float:left;">123</span>
-        <span class="badge badge-info" style="float:left;">123</span><br/>
-        linke<span class="badge badge-success" style="float:left;">123</span>
-        <span class="badge badge-important" style="float:left;">123</span>
-        <span class="badge" style="float:left;">123</span>
-        <span class="badge badge-info" style="float:left;">123</span><br/>
-    </td>
-    <td class="" style="width: 30px; margin-top: 10px; border-left: 1px solid lightgray;">
+    </div>
+    <div class="col-md-4 ${bt_vote_class}" style="margin-top: 10px; border-left: 1px solid lightgray;">
+        <div class="row">
+            <div class="col-md-4">
+                cdu
+            </div>
+            <div class="col-md-8">
+                <input type="number"/><input type="number"/><input type="number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                csu
+            </div>
+            <div class="col-md-8">
+                <input type="number"/><input type="number"/><input type="number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                spd
+            </div>
+            <div class="col-md-8">
+                <input type="number"/><input type="number"/><input type="number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+               grüne 
+            </div>
+            <div class="col-md-8">
+                <input type="number"/><input type="number"/><input type="number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+               linke 
+            </div>
+            <div class="col-md-8">
+                <input type="number"/><input type="number"/><input type="number"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1" style="margin-top: 10px; border-left: 1px solid lightgray;">
         uv
-        <span class="badge badge-success" style="float:right;">123</span>
-        <span class="badge badge-important" style="float:right;">123</span>
-        <span class="badge" style="float:right;">123</span>
-    </td>
-    <td class="${vote_class}" style="width: 20px; margin-top: 10px; border-left: 1px solid lightgray;">            
-    </td>
-    <td style="margin: 0; padding: 0; width: 3px;" >
-        <table class="poll_time" time="${time_end}" style="width: 100%; height: 100%; margin: 0; padding: 0;">
-            <tr id="time_done" style="height: ${time_done}%; background: white; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>
-            <tr id="time_left" style="height: ${time_left}%; background: blue; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>
+        <br>
+        <span class="badge badge-success" style="">123</span>
+        <br>
+        <span class="badge badge-important" style="">123</span>
+        <br>
+        <span class="badge" style="">123</span>
+    </div>
+    <div class="col-md-2 ${vote_class}" style="margin-top: 10px; border-left: 1px solid lightgray;">            
+    </div>
+    <!--<div style="margin: 0; padding: 0; width: 3px;" >
+        <table class="poll_time" time="${time_start}" style="width: 100%; height: 100%; margin: 0; padding: 0;">
+            <tr id="time_start" style="height: ${time_start}%; background: white; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>
+            <tr id="time_end" style="height: ${time_end}%; background: blue; margin: 0; padding: 0;"><td style="width: 1px; margin: 0; padding: 0;"></td></tr>
         </table>
-    </td>
-</tr>
+    </div>-->
+</div>

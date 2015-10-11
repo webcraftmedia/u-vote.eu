@@ -25,13 +25,23 @@
                 <div class="col-md-6">
                     ${basic_stats}
                 </div>
-
+                <div class="col-md-6">
+                    ${analysis_help_basic stats}
+                    ${analysis_math_basic stats}
+                </div>
+            </div>
+            <div class="row" style="padding-top: 20px;">
                 <div class="col-md-6">
                     <div>${user_temp_votes}</div>
                     <br>
                     <div>${user_overall_votes}</div>
                 </div>
+                <div class="col-md-6">
+                    ${analysis_help_basic_votes}
+                    ${analysis_math_basic votes}
+                </div>
             </div>
+            
             </div>
         </div>
     </div>
@@ -53,12 +63,21 @@
                     ${choices_user_ID}
                 </div>
                 <div class="col-md-6">
+                    ${analysis_help_user_to_party_overall}
+                    ${analysis_math_user_to_party_overall}
+                </div>
+            
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-md-6">
                     <div id="donut_user_to_party_overall" class="row" style="padding: 0; margin: 0;"></div>
-                    
-                
-                </div>   
+                </div>
+                <div class="col-md-6">
+                    ${analysis_help_user_to_party_overall_donut}
+                    ${analysis_math_user_to_party_overall_donut}
+                </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="panel-group row" id="acc_5" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
@@ -67,24 +86,40 @@
                     <span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;&nbsp;Bilanz: Fraktionen nach Stimmverhalten
                 </h4>
             </div>
-            <div id="acc_5_body" class="row panel-collapse collapse panel-body">
-                    <div class="col-md-4">
+            <div id="acc_5_body" class="row panel-collapse collapse panel-body" style="padding-top: 20px;">
+                <div class="row">
+                    <div class="col-md-6">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_pro.png"/>
                         <h5>Übereinstimmung der pro Stimmen</h5>
                         ${choices_user_ID_per_party_pro}
                     </div>
-                    
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                    ${analysis_help_user_to_party_overall_by_vote_pro}
+                    ${analysis_math_user_to_party_overall_by_vote_pro}
+                </div>
+                </div>
+                <div class="row" style="padding-top: 20px;">
+                    <div class="col-md-6">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_con.png"/>
                         <h5>Übereinstimmung der contra Stimmen</h5>
                         ${choices_user_ID_per_party_con}
                     </div>
-                    
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                    ${analysis_help_user_to_party_overall_by_vote_pro}
+                    ${analysis_math_user_to_party_overall_by_vote_pro}
+                </div>
+                </div>
+                <div class="row" style="padding-top: 20px;">
+                    <div class="col-md-6">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_ent.png"/>
                         <h5>Übereinstimmung der Enthaltungen</h5>
                         ${choices_user_ID_per_party_ent}
                     </div>
+                    <div class="col-md-6">
+                    ${analysis_help_user_to_party_overall_by_vote_pro}
+                    ${analysis_math_user_to_party_overall_by_vote_pro}
+                </div>
+                </div>
             </div>
         </div>
     </div>
@@ -100,6 +135,7 @@
                     Bundestag gesamt
                     ${choices_bt_to_user}
                 </div>
+                
                 <div class="col-md-6">
                     Übereinstimmung mit dem Bundestag
                         <img class="img-responsive" src="${frontend_logos}icon_bt.png"/>    
@@ -181,12 +217,6 @@
 <!--<div id="graph_bt_user_overall" class="row"></div>
 
 <script type="text/javascript" language="JavaScript">load_visualisation_urvote('graph_bt_user_overall',84600);</script>-->
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600);</script>
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600);</script>
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_party_overall('graph_user_to_party_overall_spd', 'spd', 84600);</script>
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_party_overall('graph_user_to_party_overall_gruene', 'gruene', 84600);</script>
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_party_overall('graph_user_to_party_overall_linke', 'linke', 84600);</script>
-<script type="text/javascript" language="JavaScript">load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600);</script>
                           
 
         

@@ -49,7 +49,7 @@ class bars{
                                                sum(case when uvote_data.choice != uvote_votes_per_party.choice then 1 else 0 end) class_MISSMATCH 
                                 FROM uvote_data INNER JOIN uvote_votes_per_party 
                                     ON uvote_data.poll_ID = uvote_votes_per_party.poll_ID 
-                                WHERE user_ID = ? AND uvote_data.choice = ? GROUP BY party;',
+                                WHERE user_ID = ? AND uvote_votes_per_party.choice = ? GROUP BY party;',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
         $i = 0;
         while($row = $res->next()){
@@ -87,7 +87,7 @@ class bars{
                                                sum(case when uvote_data.choice != uvote_votes.bt_choice then 1 else 0 end) class_MISSMATCH 
                                 FROM uvote_data INNER JOIN uvote_votes
                                     ON uvote_data.poll_ID = uvote_votes.ID 
-                                WHERE user_ID = ? AND uvote_data.choice = ? GROUP by user_ID;',
+                                WHERE user_ID = ? AND uvote_votes.bt_choice = ? GROUP by user_ID;',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
         $i = 0;
         
