@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h5>Aktueller Status</h5>
+        <h4>Aktueller Status</h4>
     </div>
 </div>
 <div class="row">

@@ -14,9 +14,17 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
     public static function sai_mod_saimod_uvote_new_vote(){
         $ID = array();
         $ID['ID'] = '';
-        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'), $ID);
+        return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/new.tpl'), $ID);
     }
-
+    public static function party_stats($poll_ID){
+        $result = '';
+        $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/partynew.tpl'));
+        $parties = \SQL\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));
+        foreach($parties as $poll){
+            $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/party.tpl'), $poll);
+        }
+       return $result;
+    }
 
     public static function sai_mod__SAI_saimod_uvote_vote_edit(){       
         /*$vars = array();
@@ -28,28 +36,43 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
         $votes = \votes::getAllVotesOfGroup(1);               
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
-            $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
-            $vote['vote_class'] = \switchers::tablerow_class(\votes::getUserPollData($vote['ID']));
-            $vote['bt_vote_class'] = \switchers::tablerow_class($vote['bt_choice']);            
+            $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);        
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
-            
+            $vote['parties'] = self::party_stats($vote['ID']);
             $result .= \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/main.tpl'), $vote);
         }
         return \SYSTEM\PAGE\replace::replaceFile(\SYSTEM\SERVERPATH(new \PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.tpl'), array('list' => $result));
     }
     
-    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_vote($data_json){
+    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_vote($data_json, $tags_json){
+        $tags = \json_decode($tags_json);
         $data_stdClass = \json_decode($data_json);
         $data = (array)$data_stdClass;
         if(!$data['poll_ID']){
             new \SYSTEM\LOG\WARNING(print_r($data, TRUE));
-            \SYSTEM\DBD\SYS_TEXT_SAVE::QI(array($stamp,'deDE',$data['title'], 'wed', ''));
-            \SYSTEM\DBD\SYS_TEXT_SAVE_TAG::QI(array($stamp,$tag));          
+            \SYSTEM\PAGE\text::save($data['title'], $data['title'], 'deDE', $tags, 'blanc');     
             return \SQL\UVOTE_DATA_NEW_POLL::QA(array($data['title'], $data['time_end'], $data['iframe_link']));
         }
         return \SQL\UVOTE_DATA_EDIT_POLL::QA(array($data['poll_ID'], $data['title'], $data['time_end'], $data['iframe_link']));
         
+    }
+    public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_partydata($data_json){
+        $datastd = \json_decode($data_json);
+        $data = (array)$datastd;
+        new \SYSTEM\LOG\WARNING(print_r($data, TRUE));
+        return \SQL\UVOTE_DATA_EDIT_PARTYDATA::QA(array($data['poll_ID'],
+                                                        $data['party'], 
+                                                        $data['votes_pro'], 
+                                                        $data['votes_contra'], 
+                                                        $data['nr_attending'], 
+                                                        $data['total'], 
+                                                        $data['choice'], 
+                                                        $data['votes_pro'], 
+                                                        $data['votes_contra'], 
+                                                        $data['nr_attending'], 
+                                                        $data['total'], 
+                                                        $data['choice']));
     }
     public static function html_li_menu(){return '<li><a href="#!vote">Edit Votes</a></li>';}
     public static function right_public(){return false;}    

@@ -1,6 +1,6 @@
 function init_user_main_analysis(){
     
-
+load_visualisation_urvote('graph_user_to_party_overall_bt', 84600);
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600);
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600);
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_spd', 'spd', 84600);
@@ -60,7 +60,16 @@ function load_visualisation_urvote(id, timespan){
             first = true;
             data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
          
-        var options = {title: id, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false,  width: "300", height: "250"};
+        var options = {title: id, 
+                        aggregationTarget: 'category', 
+                        selectionMode: 'multiple', 
+                        legend: 'none', 
+                        curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  
+                        vAxis:{logScale: false},
+                        legend: 'none', 
+                        interpolateNulls: false,  
+                        width: "800", 
+                        height: "250"};
         new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
     });
 }

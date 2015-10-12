@@ -30,5 +30,8 @@ class page_uvote extends \SYSTEM\API\api_default {
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             return (new default_register ())->html();}
         return (new user_main_votelist())->html();}
+        
+    public static function page_user_main_impressum(){
+        return (new user_main_impressum())->html();}
     
 }

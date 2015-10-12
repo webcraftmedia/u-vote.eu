@@ -28,9 +28,15 @@ class graphs {
         $result = array();
         $res = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, $party, \SYSTEM\SECURITY\Security::getUser()->id));
         $total = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME_OVERMATCH::Q1(array($party, \SYSTEM\SECURITY\Security::getUser()->id));
+        $matchhandler = 0;
+        $missmatchhandler = 0;
         while ($row = $res->next()){
+            $match = $row['class_match']+$matchhandler;
+            $missmatch = $row['class_mismatch']+$missmatchhandler;
             $result[] = array(  0 => $row['day'],
-                                'class_match' => $row['class_match'] / $total['total']*100);
+                                'class_match' => ($match) / ($match+$missmatch)*100);
+            $matchhandler = $match;
+            $missmatchhandler = $missmatch;
         }
         return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
     }

@@ -15,10 +15,15 @@
     </div>
     <div class="panel-group row" id="acc_2" style="padding-top: 30px;">
         <div class="panel panel-default panel-success">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_2" href="#acc_2_body">
+            <div class="panel-heading" style="padding: 0" >
+                <a data-toggle="collapse" data-parent="#acc_2" href="#acc_2_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Deine Daten
                 </h4>
+                
+                </div>
+                    </a>
             </div>
             <div id="acc_2_body" class="row panel-body panel-collapse collapse">
             <div class="row">
@@ -26,10 +31,11 @@
                     ${basic_stats}
                 </div>
                 <div class="col-md-6">
-                    ${analysis_help_basic stats}
-                    ${analysis_math_basic stats}
+                    ${analysis_help_basic_stats}
+                    ${analysis_math_basic_stats}
                 </div>
             </div>
+                <hr>
             <div class="row" style="padding-top: 20px;">
                 <div class="col-md-6">
                     <div>${user_temp_votes}</div>
@@ -47,10 +53,14 @@
     </div>
     <div class="panel-group row" id="acc_4" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_4" href="#acc_4_body">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_4" href="#acc_4_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Fraktionen
                 </h4>
+                </div>
+                </a>
             </div>
             <div id="acc_4_body" class="row panel-body panel-collapse collapse">
                 <div class="col-md-6">
@@ -81,10 +91,14 @@
     </div>
     <div class="panel-group row" id="acc_5" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_5" href="#acc_5_body">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_5" href="#acc_5_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;&nbsp;Bilanz: Fraktionen nach Stimmverhalten
                 </h4>
+                </div>
+                </a>
             </div>
             <div id="acc_5_body" class="row panel-collapse collapse panel-body" style="padding-top: 20px;">
                 <div class="row">
@@ -125,10 +139,14 @@
     </div>
     <div class="panel-group row" id="acc_7" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_7" href="#acc_7_body">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_7" href="#acc_7_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag
                 </h4>
+                </div>
+                </a>
             </div>
             <div id="acc_7_body" class="row panel-body panel-collapse collapse">
                 <div class="col-md-6">
@@ -150,10 +168,14 @@
     
     <div class="row panel-group" id="acc_6" style="padding-top: 10px;">               
         <div class="panel panel-default panel-danger">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_6" href="#acc_6_body">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_6" href="#acc_6_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-random"></span>&nbsp;&nbsp;&nbsp;Entwicklung: Fraktionen
                 </h4>
+                </div>
+                </a>
             </div>
             <div id="acc_6_body" class="panel-body panel-collapse collapse">
                 <div class="row">
@@ -183,12 +205,36 @@
             </div>   
         </div>
     </div>
+    <div class="row panel-group" id="acc_8" style="padding-top: 10px;">               
+        <div class="panel panel-default panel-danger">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_8" href="#acc_8_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-random"></span>&nbsp;&nbsp;&nbsp;Entwicklung: Bundestag
+                </h4>
+                </div>
+                </a>
+            </div>
+            <div id="acc_8_body" class="panel-body panel-collapse collapse">
+                <div class="row">
+                         <img class="img-responsive" src="${frontend_logos}icon_bt.png"/>
+                </div>
+                <div id="graph_user_to_party_overall_bt" class="row"></div>
+                <hr>
+            </div>   
+        </div>
+    </div>    
     <div class="row panel-group" id="acc_3" style="padding-top: 10px;">               
         <div class="panel panel-default panel-primary">
-            <div class="panel-heading" data-toggle="collapse" data-parent="#acc_3" href="#acc_3_body">
-                <h4 class="panel-title">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_3" href="#acc_3_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                    <h4 class="panel-title" style="color: white">
                     <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;community Statistik
                 </h4>
+            </div>
+                </a>
             </div>
             <div id="acc_3_body" class="panel-body panel-collapse collapse">
                 <div class="col-md-6">

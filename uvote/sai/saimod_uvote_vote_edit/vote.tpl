@@ -10,46 +10,7 @@
         <a class="btn btn-primary btn-small btn_editvote" style="float:right" poll_ID="${ID}">Edit</a>
     </div>
     <div class="col-md-4 ${bt_vote_class}" style="margin-top: 10px; border-left: 1px solid lightgray;">
-        <div class="row">
-            <div class="col-md-4">
-                cdu
-            </div>
-            <div class="col-md-8">
-                <input type="number"/><input type="number"/><input type="number"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                csu
-            </div>
-            <div class="col-md-8">
-                <input type="number"/><input type="number"/><input type="number"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                spd
-            </div>
-            <div class="col-md-8">
-                <input type="number"/><input type="number"/><input type="number"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-               grüne 
-            </div>
-            <div class="col-md-8">
-                <input type="number"/><input type="number"/><input type="number"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-               linke 
-            </div>
-            <div class="col-md-8">
-                <input type="number"/><input type="number"/><input type="number"/>
-            </div>
-        </div>
+        
     </div>
     <div class="col-md-1" style="margin-top: 10px; border-left: 1px solid lightgray;">
         uv

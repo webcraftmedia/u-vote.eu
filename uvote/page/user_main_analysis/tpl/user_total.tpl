@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h5>Deine Stimmverteilung</h5>
+        <h4>Deine Stimmverteilung</h4>
     </div>   
 </div>
 <div class="row">
