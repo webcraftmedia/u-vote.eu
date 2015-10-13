@@ -37,7 +37,6 @@ class bars{
             $result .= $p['title']."<hr>";
         }
         $result .= "</font><hr><button id='close_popup' type='button' class='btn btn-primary'>schließen</button></div>";
-        new INFO($result);
         return $result;
     }
     public static function user_per_party_by_choicetype($choice){

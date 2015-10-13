@@ -27,7 +27,7 @@
                     <input type="text" id="${ID}_time_end" value="${time_end}"/> - 00:00
                     <h4>bt choice</h4>
                     <input type="text" id="${ID}_bt_choice" value="${bt_choice}"/><br><br>
-                    <a id="${ID}_data_submit" class="btn btn-primary bt_data_submit" poll_ID="${ID}">Submit</a>
+                    <a id="${ID}_data_edit" class="btn btn-primary bt_data_edit" poll_ID="${ID}">Submit</a>
                 </div>
             </div>
                 <hr>

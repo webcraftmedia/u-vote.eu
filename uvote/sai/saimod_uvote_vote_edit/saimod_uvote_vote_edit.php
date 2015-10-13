@@ -54,7 +54,7 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {
             \SYSTEM\PAGE\text::save($data['title'], $data['title'], 'deDE', $tags, 'blanc');     
             return \SQL\UVOTE_DATA_NEW_POLL::QA(array($data['title'], $data['time_end'], $data['iframe_link']));
         }
-        return \SQL\UVOTE_DATA_EDIT_POLL::QA(array($data['poll_ID'], $data['title'], $data['time_end'], $data['iframe_link']));
+        return \SQL\UVOTE_DATA_EDIT_POLL::QA(array($data['poll_ID'], $data['title'], $data['time_end'], $data['iframe_link'], $data['bt_choice']));
         
     }
     public static function sai_mod__SAI_saimod_uvote_vote_edit_action_edit_partydata($data_json){

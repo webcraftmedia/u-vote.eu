@@ -77,12 +77,11 @@ class votes {
     
     public static function get_user_temp_votes(){
         $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
-        $v = $vars['voted'];
+        $v = $vars['voted'] > 1 ? $vars['voted'] : 1;
         $nv = $vars['not_voted'];
-        print_r($vars, true);
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/all_polls.tpl'),
-                array(  'vote_perc'=> round($v/(($nv+$v)*100+1), 2),
-                        'no_vote_perc'=> round($nv/(($nv+$v)*100+1), 2),
+                array(  'vote_percent'=> round($v/(($nv+$v)*100+1), 2),
+                        'no_vote_percent'=> round($nv/(($nv+$v)*100+1), 2),
                         'voted'=> $v,
                         'not_voted'=> $nv));}
     
