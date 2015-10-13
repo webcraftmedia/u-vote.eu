@@ -27,23 +27,27 @@
             </div>
             <div id="acc_2_body" class="row panel-body panel-collapse collapse">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     ${basic_stats}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4" style="font-size: 10pt;">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
                     ${analysis_help_basic_stats}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
                     ${analysis_math_basic_stats}
                 </div>
             </div>
                 <hr>
             <div class="row" style="padding-top: 20px;">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div>${user_temp_votes}</div>
                     <br>
                     <div>${user_overall_votes}</div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4" style="font-size: 10pt;">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
                     ${analysis_help_basic_votes}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
                     ${analysis_math_basic votes}
                 </div>
             </div>
@@ -63,27 +67,32 @@
                 </a>
             </div>
             <div id="acc_4_body" class="row panel-body panel-collapse collapse">
-                <div class="col-md-6">
-                    <br>
-                    <br>
-                    Gesamtübereinstimmung mit den Fraktionen im Bundestag<br>
+                <div class="row">
+                <div class="col-md-8">
+                    <h4>Absolute Übereinstimmungsrate</h4>
                     <font size="1">auf %Angabe clicken für Details</font>
                     <br>
                     <br>
                     ${choices_user_ID}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4" style="font-size: 10pt;">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
                     ${analysis_help_user_to_party_overall}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
                     ${analysis_math_user_to_party_overall}
                 </div>
-            
+                </div>
+                <hr>
             <div class="row" style="padding-top: 20px;">
-                <div class="col-md-6">
+                <div class="col-md-8">
+                    <h4>Relative Übereinstimmung</h4>
                     <div id="donut_user_to_party_overall" class="row" style="padding: 0; margin: 0;"></div>
                 </div>
-                <div class="col-md-6">
-                    ${analysis_help_user_to_party_overall_donut}
-                    ${analysis_math_user_to_party_overall_donut}
+                <div class="col-md-4" style="font-size: 10pt;">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
+                    ${analysis_help_party_donut}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
+                    ${analysis_math_party_donut}
                 </div>
             </div>
         </div>
@@ -102,35 +111,40 @@
             </div>
             <div id="acc_5_body" class="row panel-collapse collapse panel-body" style="padding-top: 20px;">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_pro.png"/>
                         <h5>Übereinstimmung der pro Stimmen</h5>
                         ${choices_user_ID_per_party_pro}
                     </div>
-                    <div class="col-md-6">
-                    ${analysis_help_user_to_party_overall_by_vote_pro}
-                    ${analysis_math_user_to_party_overall_by_vote_pro}
+                    <div class="col-md-4" style="font-size: 10pt;">
+                        <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
+                    ${analysis_help_uservera_to_party_pro}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
+                    ${analysis_math_uservera_to_party_pro}
                 </div>
                 </div>
                 <div class="row" style="padding-top: 20px;">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_con.png"/>
                         <h5>Übereinstimmung der contra Stimmen</h5>
                         ${choices_user_ID_per_party_con}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4" style="font-size: 10pt;">
+                        <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
                     ${analysis_help_user_to_party_overall_by_vote_pro}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
                     ${analysis_math_user_to_party_overall_by_vote_pro}
                 </div>
                 </div>
                 <div class="row" style="padding-top: 20px;">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_ent.png"/>
                         <h5>Übereinstimmung der Enthaltungen</h5>
                         ${choices_user_ID_per_party_ent}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4" style="font-size: 10pt;">
                     ${analysis_help_user_to_party_overall_by_vote_pro}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
                     ${analysis_math_user_to_party_overall_by_vote_pro}
                 </div>
                 </div>
@@ -149,18 +163,27 @@
                 </a>
             </div>
             <div id="acc_7_body" class="row panel-body panel-collapse collapse">
-                <div class="col-md-6">
-                    Bundestag gesamt
-                    ${choices_bt_to_user}
+                <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
+                    <div class="col-md-8">
+                        Bundestag gesamt
+                        ${choices_bt_to_user}
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
                 </div>
-                
-                <div class="col-md-6">
-                    Übereinstimmung mit dem Bundestag
-                        <img class="img-responsive" src="${frontend_logos}icon_bt.png"/>    
-                        ${choices_user_ID_per_bt_pro}
-                        ${choices_user_ID_per_bt_con}
-                        ${choices_user_ID_per_bt_ent}              
-                </div>   
+                    <hr>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-md-8">
+                            Übereinstimmung mit dem Bundestag
+                                <img class="img-responsive" src="${frontend_logos}icon_bt.png"/>    
+                                ${choices_user_ID_per_bt_pro}
+                                ${choices_user_ID_per_bt_con}
+                                ${choices_user_ID_per_bt_ent}              
+                        </div> 
+                        <div class="col-md-4">        
+                        </div> 
+                    </div>
             </div>
         </div>
     </div>

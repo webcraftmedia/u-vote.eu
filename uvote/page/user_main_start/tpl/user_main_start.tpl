@@ -29,3 +29,17 @@
         </div>     
     </div>          
 </div>
+<div class="row" style="padding-bottom: 30px;">
+    <div class="row panel-group" style="margin: 0; padding:0;">
+        <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    News
+                </h4>
+            </div>
+            <div class="panel-body">
+                    
+            </div>
+        </div>     
+    </div>          
+</div>

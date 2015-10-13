@@ -118,7 +118,7 @@ class bars{
                             WHERE user_ID = ?;',
                             array(\SYSTEM\SECURITY\Security::getUser()->id));
     while($row = $res->next()){
-        $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH']+1)*100,2);
+        $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
 
         $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/bt_to_user_overall.tpl'), $row);
     }
