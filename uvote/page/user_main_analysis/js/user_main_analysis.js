@@ -60,15 +60,16 @@ function load_visualisation_urvote(id, timespan){
             first = true;
             data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
          
-        var options = {title: id, 
-                        aggregationTarget: 'category', 
+        var options = {title: 'Übereinstimmung mit dem Bundestag', 
+                        aggregationTarget: 'category',
                         selectionMode: 'multiple', 
                         legend: 'none', 
-                        curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  
-                        vAxis:{logScale: false},
-                        legend: 'none', 
-                        interpolateNulls: false,  
-                        width: "800", 
+                        chartArea:{},
+//                        vAxis:{logScale: false},
+                        vAxis: {viewWindow: {min: 0, max: 100}},
+                        lineWidth: 7,
+                        interpolateNulls: false,
+                        width: "800",
                         height: "250"};
         new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
     });

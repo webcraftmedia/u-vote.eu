@@ -37,8 +37,8 @@
                     News
                 </h4>
             </div>
-            <div class="panel-body">
-                    
+            <div class="panel-body" style="padding-left: 50px; padding-right: 50px;">
+                   ${news} 
             </div>
         </div>     
     </div>          

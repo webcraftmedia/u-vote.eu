@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h4>Deine Stimmverteilung</h4>
+        <h5>Absolute Stimmen der Community</h5>
         <hr>
     </div>   
 </div>
@@ -12,7 +12,7 @@
     <div class="col-md-10">
         <font size="1">pro Stimmen</font>
         <div class="progress">
-        <div class="progress-bar progress-bar-success" style="width: ${user_total_pro_percentage}%">${user_total_pro}</div>
+        <div class="progress-bar progress-bar-success" style="width: ${total_pro_percentage}%">${pro}</div>
         </div>
 </div>
 </div>
@@ -24,7 +24,7 @@
     <div class="col-md-10">
         <font size="1">contra Stimmen</font>
         <div class="progress">
-            <div class="progress-bar progress-bar-danger" style="width: ${user_total_con_percentage}%">${user_total_con}</div>
+            <div class="progress-bar progress-bar-danger" style="width: ${total_con_percentage}%">${con}</div>
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@
     <div class="col-md-10">
         <font size="1">Enthaltungen</font>
         <div class="progress">
-            <div class="progress-bar progress-bar-info" style="width: ${user_total_ent_percentage}%">${user_total_ent}</div>
+            <div class="progress-bar progress-bar-info" style="width: ${total_ent_percentage}%">${ent}</div>
         </div>
     </div>
 </div> 
@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-10">
         <div class="progress">
-            <div class="progress-bar progress-bar" style="width: 100%">Total: ${user_total_total}</div>
+            <div class="progress-bar progress-bar" style="width: 100%">Total: ${total_total}</div>
         </div>
     </div>
 </div>

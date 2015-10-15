@@ -1,55 +1,5 @@
 <?php
-class user_main_analysis extends SYSTEM\PAGE\Page {
-    
-    private function votes_all(){
-        $votes = votes::get_all_votes();
-        $result = '';
-        foreach($votes as $vote){
-            switch($vote['choice']){
-                case 1:
-                    $vote['choice'] = 'PRO';
-                    $vote['badge_color'] = 'badge-success';
-                    break;
-                case 2:
-                    $vote['choice'] = 'CON';
-                    $vote['badge_color'] = 'badge-alert';
-                    break;
-                case 3:
-                    $vote['choice'] = 'ENT';
-                    $vote['badge_color'] = 'badge-info';
-                    break;
-            }
-            //$vote['count'];
-            //$vote['choice'];
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/votecountchoice.tpl'),$vote);
-        }
-        return $result;        
-    } 
-    private function votes_all_bt(){
-        $votes = votes::get_all_votes_bt();
-        $result = '';
-        foreach($votes as $vote){
-            switch($vote['bt_choice']){
-                case 1:
-                    $vote['bt_choice'] = 'PRO';
-                    $vote['badge_color'] = 'badge-success';
-                    break;
-                case 2:
-                    $vote['bt_choice'] = 'CON';
-                    $vote['badge_color'] = 'badge-alert';
-                    break;
-                case 3:
-                    $vote['bt_choice'] = 'ENT';
-                    $vote['badge_color'] = 'badge-info';
-                    break;
-                case 0:
-                    $vote['bt_choice'] = 'OFFEN';
-            }
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/votecountchoicebt.tpl'),$vote);
-        }
-        return $result;        
-    } 
-
+class user_main_analysis extends SYSTEM\PAGE\Page {   
     public static function js(){        
         return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_analysis/js/user_main_analysis.js'));}
     public function html(){
@@ -75,8 +25,8 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
         $vars['choices_user_ID_per_bt_ent'] = bars::user_per_bt_by_choicetype('3');
          
         
-        $vars['votes_all'] = $this->votes_all();
-        $vars['votes_all_bt'] = $this->votes_all_bt();
+        $vars['votes_all'] = bars::get_uvote_choice_overall();
+        $vars['votes_all_to_bt'] = bars::get_uvote_choice_overall_to_bt();
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('help'));

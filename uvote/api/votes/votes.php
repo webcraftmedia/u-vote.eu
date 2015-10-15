@@ -80,8 +80,8 @@ class votes {
         $v = $vars['voted'] > 1 ? $vars['voted'] : 1;
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/all_polls.tpl'),
-                array(  'vote_percent'=> round($v/(($nv+$v)*100+1), 2),
-                        'no_vote_percent'=> round($nv/(($nv+$v)*100+1), 2),
+                array(  'vote_percent'=> round($v/($nv+$v)*100, 2),
+                        'no_vote_percent'=> round($nv/($nv+$v)*100, 2),
                         'voted'=> $v,
                         'not_voted'=> $nv));}
     

@@ -3,9 +3,12 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <span class="glyphicon glyphicon-th-list"></span>&nbsp;Hier gehts zur Abstimmung
+                
+                        <div style="float: right"><input type="text"</div>
             </h4>
         </div>
         <div class="panel-body">
+            
             ${votelist} 
         </div>
     </div>

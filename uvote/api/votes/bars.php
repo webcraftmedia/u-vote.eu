@@ -8,6 +8,24 @@ class bars{
         $vars['user_total_ent_percentage'] = round($vars['user_total_ent']/$vars['user_total_total']*100+1);
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/user_total.tpl'),$vars);
     }
+    public static function get_uvote_choice_overall(){
+        $vars = \SQL\UVOTE_DATA_CHOICE_OVERALL::Q1(array());
+        $vars['total_total'] = $vars['pro'] + $vars['con'] + $vars['ent'];
+        $vars['total_pro_percentage'] = round($vars['pro']/$vars['total_total']*100+1);
+        $vars['total_con_percentage'] = round($vars['con']/$vars['total_total']*100+1);
+        $vars['total_ent_percentage'] = round($vars['ent']/$vars['total_total']*100+1);
+        new SYSTEM\LOG\INFO($vars['total_ent_percentage']);
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/uvote_total.tpl'),$vars);
+    }
+    public static function get_uvote_choice_overall_to_bt(){
+        $result = '';
+        $vars = \SQL\UVOTE_DATA_UVOTE_TO_PARTY_OVERALL::QA(array());
+        foreach($vars as $bar){
+            $bar['match_percentage'] = round($bar['class_MATCH']/($bar['class_MATCH']+$bar['class_MISSMATCH'])*100,2);
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvoteparties.tpl'), $bar);
+        }
+        return $result;
+    }
     
     public static function user_per_party_overall(){
     //$vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
@@ -26,7 +44,7 @@ class bars{
             $res2 = votes::vote_accord_with_party($row['party']);
             $row['according_laws'] = self::build_according_law_html($res2, $row['party']);
             $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvoteparties.tpl'), $row);;
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvoteparties.tpl'), $row);
         }
         return $result;        
     }

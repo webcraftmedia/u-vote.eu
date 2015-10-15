@@ -16,10 +16,15 @@ class graphs {
     public static function graph_bt_to_user_overall_by_time ($timespan = 84600,$returnasjson = true){
         $result = array();
         $res = \SQL\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
+        $matchhandler = 0;
+        $missmatchhandler = 0;
         while ($row = $res->next()){
+            $match = $row['class_match']+$matchhandler;
+            $missmatch = $row['class_mismatch']+$missmatchhandler;
             $result[] = array(  0 => $row['day'],
-                                'class_match' => $row['class_match'] / ($row['class_match']+$row['class_mismatch']+1),
-                                'class_mismatch' => $row['class_mismatch'] / ($row['class_match']+$row['class_mismatch']+1));
+                                'class_match' => ($match) / ($match+$missmatch)*100);
+            $matchhandler = $match;
+            $missmatchhandler = $missmatch;
         }
         return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
     }
