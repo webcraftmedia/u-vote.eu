@@ -8,6 +8,8 @@ function init_user_main_poll(){
         $('#btnvote_off').click(function () {
             vote_click($(this).attr('poll_ID'),3);
             });
-    
+        $('#user_main').resize(function(){
+            $('#pollframe').height($('#user_main').height());
+        });
 
 }

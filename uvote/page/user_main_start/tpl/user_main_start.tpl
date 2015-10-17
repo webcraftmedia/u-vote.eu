@@ -3,7 +3,7 @@
         <div class="panel panel-default panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Willkommen auf uvote.eu!
+                    <i class="glyphicon glyphicon-share-alt"></i>&nbsp;&nbsp;Willkommen auf uvote.eu!
                 </h4>
             </div>
             <div class="panel-body">
@@ -34,7 +34,7 @@
         <div class="panel panel-default panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    News
+                    <i class="glyphicon glyphicon-bullhorn"></i>&nbsp;&nbsp;News
                 </h4>
             </div>
             <div class="panel-body" style="padding-left: 50px; padding-right: 50px;">

@@ -4,41 +4,14 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     public function __construct($poll_ID){
         $this->poll_ID = $poll_ID;
     }
-    private static function tablerow_class($choice){
-        switch($choice){
-            case 1:
-                return 'pro';
-            case 2:
-                return 'con';
-            case 3:
-                return 'ent';
-            default:
-                return 'open';
-        }        
-    }
-    
-    private function get_party_per_poll($choice){
-        switch($choice){
-            case 1:
-                return 'pro';
-            case 2:
-                return 'con';
-            case 3:
-                return 'ent';
-            default:
-                return '';
-        }           
-    }
   
     private function choice_party (){
         $result = '';
         $party_votes = votes::get_barsperparty($this->poll_ID);
-
-//        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
         foreach($party_votes as $pv){
             $vote = array(  'party' => $pv['party'],
-                            'choice' => $this->get_party_per_poll($pv['choice']),
-                            'choice_class' => $this->tablerow_class($pv['choice']),
+                            'choice' => switchers::get_party_per_poll($pv['choice']),
+                            'choice_class' => switchers::tablerow_class($pv['choice']),
                             'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : ($pv['choice'] == 1 ? '100' : '0'),
                             'party_no' => $pv['votes_contra'] > 0 ? round($pv['votes_contra']/$pv['total']*100,0) : ($pv['choice'] == 2 ? '100' : '0'),
                             'party_off' => $pv['total'] > 0 ? round(($pv['total'] - $pv['nr_attending'])/$pv['total']*100,0) : '0',
@@ -59,9 +32,8 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     }
     
     private function bars_party(){
-        $partyvotes = votes::get_barsperparty($this->poll_ID);
-        
         $result = "";
+        $partyvotes = votes::get_barsperparty($this->poll_ID);
         foreach($partyvotes as $vote){
             $vote['party_yes'] = $vote['votes_pro'] > 0 ? round($vote['votes_pro']/$vote['total']*100,0) : $vote['votes_pro'];
             $vote['party_no'] = $vote['votes_contra'] > 0 ? round($vote['votes_contra']/$vote['total']*100,0) : $vote['votes_contra'];
@@ -72,18 +44,27 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         return $result;
     }
     
-    private function icons_party(){
-        $vars = votes::get_bar_bt_per_poll($this->poll_ID);
-        if (!$vars['bt_total']){
-            return '';}
-        $info = array();
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/icons_table_parties.tpl'), $info);
-    }
-    
     private function bars_bt(){
         $vars = votes::get_bar_bt_per_poll($this->poll_ID);
+        $info = votes::get_voteinfo($this->poll_ID);
         if (!$vars['bt_total']){
-            return 'Keine differenzierten Ergebnisse für den Bundestag verfügbar.';}
+        
+        $var['disclaimer'] = 'Keine differenzierten Ergebnisse für den Bundestag verfügbar';
+        $var['choice'] = switchers::tablerow_class($info['bt_choice']);
+        $var['choice_full'] = switchers::tablerow_class($info['bt_choice']);
+        if ($var['choice_full'] == ''){
+            $var['choice_full'] = 'noch nicht';
+            }
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_bt_choice.tpl'), $var); 
+        }
+        
+            $vars['disclaimer'] = '';
+            $vars['choice'] = switchers::tablerow_class($info['bt_choice']);
+            $vars['choice_full'] = switchers::tablerow_class($info['bt_choice']);
+            if ($vars['choice_full'] == 'open'){
+            $vars['choice_full'] = 'noch nicht';
+            }
+            $vars['choice_show'] = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_bt_choice.tpl'), $vars);        
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
         $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);
@@ -94,19 +75,6 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $vars = votes::get_count_user_votes_per_poll($this->poll_ID);
         $vars['voteweight'] = $vars['count'] ? round(1/$vars['count']*100) : 'no votes';      
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/voteweight.tpl'), $vars);
-    }
-    
-    private function p_fields (){
-        $result = "";
-        
-        $list = array   (array(1, 'Aussenpolitik'),
-                        array(2, 'Aussenpolitik'),
-                        array(4, 'Aussenpolitik'),
-                        array(8, 'Aussenpolitik'));
-        foreach($list as $l){
-        if($p_fields & $l[0]) $result .= $l[1];       
-        }
-        return $result;
     }
     
     private function vote_buttons($poll_expired,$user_poll){        
@@ -146,7 +114,6 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));
         //$vars['comments_pro'] = $this->get_pro_comments();
         //$vars['comments_con'] = $this->get_con_comments();
-        $vars['icons_party'] = $this->icons_party();
         $vars['choice_party'] = $this->choice_party();
         $vars['bars_party'] = $this->bars_party();
         $vars['bars_user'] =  $this->bars_user();

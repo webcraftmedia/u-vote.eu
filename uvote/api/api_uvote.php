@@ -47,4 +47,11 @@ class api_uvote extends \SYSTEM\API\api_system {
     
     public static function call_vote_action_commentrate($c_ID, $val) {
         return comments::write_commentrate($c_ID, $val);}
+        
+    public static function call_load_tab($set, $cat){
+       return stats_basic::basic($cat);
+    
 }
+}
+
+    

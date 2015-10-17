@@ -1,79 +1,60 @@
-         
-    <div class="panel-group row" id="acc_1">
-        <div class="panel panel-default panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    ${urVote_title}
-                </h4>
-            </div>            
-            <div class="panel-body" id="acc_1_body">
-                <div class="col-md-8">
-                    ${urvote_body_text}
-                </div>
-                <div class="col-md-4" style="border-left: #d9edf7 solid 2px">
-                    ${urvote_info_info_1}
-                    <span class="glyphicon glyphicon-info-sign"></span>
-                    ${urvote_info_info_2}
-                    <span class="glyphicon glyphicon-certificate"></span>
-                    ${urvote_info_info_3}
-                </div>
-            </div>            
-        </div>
+<div class="panel-group row" id="acc_1">
+    <div class="panel panel-default panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <i class="glyphicon glyphicon-cd"></i>&nbsp;&nbsp;${urVote_title}
+            </h4>
+        </div>            
+        <div class="panel-body" id="acc_1_body">
+            <div class="col-md-8">
+                ${urvote_body_text}
+            </div>
+            <div class="col-md-4" style="border-left: #d9edf7 solid 2px">
+                ${urvote_info_info_1}
+                <span class="glyphicon glyphicon-info-sign"></span>
+                ${urvote_info_info_2}
+                <span class="glyphicon glyphicon-certificate"></span>
+                ${urvote_info_info_3}
+            </div>
+        </div>            
     </div>
-    <div class="panel-group row" id="acc_2" style="padding-top: 30px;">
+</div>
+    <div class="row">
+        <h3>Deine Statistik</h3>
+    </div>
+    <div class="panel-group row" id="acc_2" style="">
         <div class="panel panel-default panel-success">
             <div class="panel-heading" style="padding: 0" >
-                <a data-toggle="collapse" data-parent="#acc_2" href="#acc_2_body">
+                <a id="a_acc_2" class="acc_toggle" data-toggle="collapse" data-parent="#acc_2" href="#acc_2_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Deine Daten
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 
                 </div>
                     </a>
             </div>
             <div id="acc_2_body" class="row panel-body panel-collapse collapse">
-            <div class="row">
-                <div class="col-md-8">
-                    ${basic_stats}
-                </div>
-                <div class="col-md-4" style="font-size: 10pt; border-left:#d9edf7 solid 2px">
-                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
-                    ${analysis_help_basic_stats}
-                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
-                    ${analysis_math_basic_stats}
-                </div>
-            </div>
-                <hr>
-            <div class="row" style="padding-top: 20px;">
-                <div class="col-md-8">
-                    <div>${user_temp_votes}</div>
-                    <br>
-                    <div>${user_overall_votes}</div>
-                </div>
-                <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
-                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
-                    ${analysis_help_basic_votes}
-                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
-                    ${analysis_math_basic votes}
-                </div>
-            </div>
+
+                
             
             </div>
         </div>
     </div>
-    <div class="panel-group row" id="acc_4" style="padding-top: 10px;">
+    <div class="panel-group row" id="acc_3" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_4" href="#acc_4_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_3" href="#acc_3_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Fraktionen
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 </div>
                 </a>
             </div>
-            <div id="acc_4_body" class="row panel-body panel-collapse collapse">
+            <div id="acc_3_body" class="row panel-body panel-collapse collapse">
                 <div class="row">
                 <div class="col-md-8">
                     <h4>Absolute Übereinstimmungsrate</h4>
@@ -107,18 +88,19 @@
         </div>
     </div>
     </div>
-    <div class="panel-group row" id="acc_5" style="padding-top: 10px;">
+    <div class="panel-group row" id="acc_4" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_5" href="#acc_5_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_4" href="#acc_4_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;&nbsp;Bilanz: Fraktionen nach Stimmverhalten
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 </div>
                 </a>
             </div>
-            <div id="acc_5_body" class="row panel-collapse collapse panel-body" style="padding-top: 20px;">
+            <div id="acc_4_body" class="row panel-collapse collapse panel-body" style="padding-top: 20px;">
                 <div class="row">
                     <div class="col-md-8">
                         <img class="img-responsive" src="${frontend_logos}icon_urn_pro.png"/>
@@ -159,18 +141,19 @@
             </div>
         </div>
     </div>
-    <div class="row panel-group" id="acc_6" style="padding-top: 10px;">               
+    <div class="row panel-group" id="acc_5" style="padding-top: 10px;">               
         <div class="panel panel-default panel-danger">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_6" href="#acc_6_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_5" href="#acc_5_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-random"></span>&nbsp;&nbsp;&nbsp;Entwicklung: Fraktionen
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 </div>
                 </a>
             </div>
-            <div id="acc_6_body" class="panel-body panel-collapse collapse">
+            <div id="acc_5_body" class="panel-body panel-collapse collapse">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="row">
@@ -208,18 +191,19 @@
             </div>
         </div>
     </div>
-    <div class="panel-group row" id="acc_7" style="padding-top: 10px;">
+    <div class="panel-group row" id="acc_6" style="padding-top: 10px;">
         <div class="panel panel-default panel-warning">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_7" href="#acc_7_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_6" href="#acc_6_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 </div>
                 </a>
             </div>
-            <div id="acc_7_body" class="row panel-body panel-collapse collapse">
+            <div id="acc_6_body" class="row panel-body panel-collapse collapse">
                 <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
                     <div class="col-md-8">
                         Bundestag gesamt
@@ -254,18 +238,19 @@
     
     
     
-    <div class="row panel-group" id="acc_8" style="padding-top: 10px;">               
+    <div class="row panel-group" id="acc_7" style="padding-top: 10px;">               
         <div class="panel panel-default panel-danger">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_8" href="#acc_8_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_7" href="#acc_7_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
                     <span class="glyphicon glyphicon-random"></span>&nbsp;&nbsp;&nbsp;Entwicklung: Bundestag
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
                 </div>
                 </a>
             </div>
-            <div id="acc_8_body" class="panel-body panel-collapse collapse">
+            <div id="acc_7_body" class="panel-body panel-collapse collapse">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="row">
@@ -283,41 +268,35 @@
                 </div>
             </div>   
         </div>
-    </div>    
-    <div class="row panel-group" id="acc_3" style="padding-top: 10px;">               
+    </div>
+    <div class="row">
+        <h3>community Statistik</h3>
+    </div>
+    <div class="row panel-group" id="acc_8" style="padding-top: 10px;">               
         <div class="panel panel-default panel-success">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_3" href="#acc_3_body">
+                <a id="a_acc_8" class="acc_toggle" data-toggle="collapse" data-parent="#acc_8" href="#acc_8_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
                     <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;community Daten
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
             </div>
                 </a>
             </div>
-            <div id="acc_3_body" class="panel-body panel-collapse collapse">
-                <div class="row">
-                    <div class="col-md-8">
-                    <h4>Entscheidungsverhalten der uVote Community</h4>
-                    ${votes_all}
-                </div>
-                <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
-                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
-                    ${analysis_help_community}
-                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
-                    ${analysis_math_community}
-                </div>
-                </div>
+            <div id="acc_8_body" class="panel-body panel-collapse collapse">
+                
             </div>
         </div>
     </div>
     <div class="row panel-group" id="acc_9" style="padding-top: 10px;">               
         <div class="panel panel-default panel-warning">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_9" href="#acc_9_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_9" href="#acc_9_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
-                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: community & Fraktionen
+                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;community-Bilanz: Fraktionen
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
             </div>
                 </a>
@@ -340,30 +319,23 @@
             </div>   
         </div>
     </div>
+    <div class="row">
+        <h3>Bundestag Statistik</h3>
+    </div>
     <div class="row panel-group" id="acc_10" style="padding-top: 10px;">               
         <div class="panel panel-default panel-success">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_10" href="#acc_10_body">
+                <a id="a_acc_10" class="acc_toggle" data-toggle="collapse" data-parent="#acc_10" href="#acc_10_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
                     <span class="glyphicon glyphicon-tasks"></span>&nbsp;&nbsp;&nbsp;Bundestag Daten
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
             </div>
                 </a>
             </div>
             <div id="acc_10_body" class="panel-body panel-collapse collapse">
-                <div class="row">
-                    <div class="col-md-8">
-                    <h4></h4>
-                    ${bt_basic_stats}
-                </div>
-                <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
-                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
-                    ${analysis_help_bt_basic}
-                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
-                    ${analysis_math_bt_basic}
-                </div>
-                </div>
+                
                     
             </div>   
         </div>
@@ -371,10 +343,11 @@
     <div class="row panel-group" id="acc_11" style="padding-top: 10px;">               
         <div class="panel panel-default panel-warning">
             <div class="panel-heading" style="padding: 0">
-                <a data-toggle="collapse" data-parent="#acc_11" href="#acc_11_body">
+                <a class="acc_toggle" data-toggle="collapse" data-parent="#acc_11" href="#acc_11_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
-                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag & Fraktionen
+                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bundestag-Bilanz: Fraktionen
+                    <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                 </h4>
             </div>
                 </a>

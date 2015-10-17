@@ -2,7 +2,7 @@
     <div class="panel panel-default panel-info">
         <div class="panel-heading">
             <h4 class="panel-title">
-                Impressum
+                <i class="glyphicon glyphicon-asterisk"></i>&nbsp;&nbsp;Impressum
             </h4>
         </div>            
         <div class="panel-body" id="acc_1_body">

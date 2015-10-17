@@ -3,13 +3,13 @@ class switchers{
     public static function get_party_per_poll($choice){
         switch($choice){
             case 1:
-                return 'PRO';
+                return 'pro';
             case 2:
-                return 'CON';
+                return 'con';
             case 3:
-                return 'ENT';
+                return 'ent';
             default:
-                return 'NONE';
+                return 'none';
         }           
     }
     
@@ -23,6 +23,18 @@ class switchers{
                 return 'ent';
             default:
                 return 'open';
+        }        
+    }
+    public static function tablerow_class_full($choice){
+        switch($choice){
+            case 1:
+                return 'pro';
+            case 2:
+                return 'contra';
+            case 3:
+                return 'enthaltung';
+            default:
+                return '';
         }        
     }
     

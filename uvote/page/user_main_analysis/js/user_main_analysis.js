@@ -1,5 +1,7 @@
 function init_user_main_analysis(){
-    
+$('.acc_toggle').click(function(){
+    $(this).find('i').toggleClass('glyphicon-circle-arrow-down').toggleClass('glyphicon-circle-arrow-up');
+});
 load_visualisation_urvote('graph_user_to_party_overall_bt', 84600);
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600);
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600);
@@ -8,7 +10,32 @@ load_visualisation_user_to_party_overall('graph_user_to_party_overall_gruene', '
 load_visualisation_user_to_party_overall('graph_user_to_party_overall_linke', 'linke', 84600);
 load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600);
 
+$('#a_acc_2').click(function () {
+         var set = 'basic';
+         var cat = 'user';
+         var body = '#acc_2_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_8').click(function () {
+         var set = 'basic';
+         var cat = 'community';
+         var body = '#acc_8_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_10').click(function () {
+         var set = 'basic';
+         var cat = 'bt';
+         var body = '#acc_10_body';
+         load_tab(set, cat, body);             
+});
 }
+
+function load_tab(set, cat, body){
+    $(body).load('./api.php?call=load_tab&set=' + set + '&cat=' + cat, function(e){
+        e.preventDefault();
+    });
+}
+
 function load_visualisation(id, timespan){
     $('img#loader').show();    
     $.getJSON('./api.php?call=graph_bt_to_uvote_overall_by_time',function(json){

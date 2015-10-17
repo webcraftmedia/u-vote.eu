@@ -2,7 +2,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Willkommen auf uvote.eu!
+                    <i class="glyphicon glyphicon-bookmark"></i>&nbsp;&nbsp;Willkommen auf uvote.eu!
                 </h4>
             </div>                        
             <div class="panel-body row">
@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                     <form class="textbox" id="register_user_form">
                         <div class="control-group" id="register_username_control_group">
-                            <h4>Accounterstellung</h4>
+                            <h4><i class=""></i>Accounterstellung</h4>
                             <table id="userRegisterTable" class="table table-striped">
                                <tbody>
                                     <tr>
@@ -21,7 +21,6 @@
                                        <td>
                                            <div class="control-group controls">
                                                 <input  type="text"
-                                                        size="30"
                                                         id="register_username"
                                                         placeholder="${ari_name}"
                                                         minlength="3" data-validation-minlength-message="${register_user_name_too_short}"
@@ -36,7 +35,6 @@
                                        <td>
                                             <div class="control-group controls">
                                                 <input  type="email"
-                                                        size="30"
                                                         id="register_email"
                                                         placeholder="${ari_mail}"
                                                         data-validation-email-message="${mail_format_wrong}"
@@ -52,7 +50,6 @@
                                             <div class="control-group" id="change_user_password">
                                                   <div class="control-group controls" id="change_user_password_sub">
                                                       <input  type="password"
-                                                              size="30"
                                                               id="user_register_password1"
                                                               name="user_register_password1"
                                                               placeholder="${ari_pass}"
@@ -63,7 +60,6 @@
                                                   </div>
                                                   <div class="control-group controls" style="clear: both">
                                                       <input  type="password"
-                                                              size="30"
                                                               id="user_register_password2"
                                                               name="user_register_password2"
                                                               placeholder="${ari_pass}"
@@ -88,7 +84,7 @@
                                     </tr>
                                </tbody>
                             </table>
-                                       <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
+                                       <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-play-circle"></i> ${register}</button>
                         </div>
                     </form>
                 </div>
