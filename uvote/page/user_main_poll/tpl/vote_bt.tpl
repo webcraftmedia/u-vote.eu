@@ -7,5 +7,5 @@
             <div class="progress-bar progress-bar-info" style="width: ${party_ent}%">${party_ent}%</div>
         </div>
     </div>
-</div>
+    </div>
         <hr>

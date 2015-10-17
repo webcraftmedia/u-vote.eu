@@ -1,10 +1,15 @@
 function init_default_register(){
-
+    register_registerform();
     }
-    /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    
+function register_registerform(){
+    //console.log("wegwegwegwegwegweg");
 
-
+            $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                if(data == 1){
+                    window.location.reload();
+                } else {
+                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                }                    
+            });
+        }

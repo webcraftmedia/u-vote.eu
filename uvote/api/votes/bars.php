@@ -3,9 +3,9 @@ class bars{
     public static function get_user_choice_overall($user_ID){
         $vars = \SQL\UVOTE_DATA_USER_CHOICE_OVERALL::Q1(array($user_ID));
         $vars['user_total_total'] = $vars['user_total_pro'] + $vars['user_total_con'] + $vars['user_total_ent'];
-        $vars['user_total_pro_percentage'] = round($vars['user_total_pro']/$vars['user_total_total']*100+1);
-        $vars['user_total_con_percentage'] = round($vars['user_total_con']/$vars['user_total_total']*100+1);
-        $vars['user_total_ent_percentage'] = round($vars['user_total_ent']/$vars['user_total_total']*100+1);
+        $vars['user_total_pro_percentage'] = $vars['user_total_total'] > 0 ? round($vars['user_total_pro']/$vars['user_total_total']*100) : 0;
+        $vars['user_total_con_percentage'] = $vars['user_total_total'] > 0 ? round($vars['user_total_con']/$vars['user_total_total']*100) : 0;
+        $vars['user_total_ent_percentage'] = $vars['user_total_total'] > 0 ? round($vars['user_total_ent']/$vars['user_total_total']*100) : 0;
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/user_total.tpl'),$vars);
     }
     public static function get_uvote_choice_overall(){
@@ -17,6 +17,15 @@ class bars{
         new SYSTEM\LOG\INFO($vars['total_ent_percentage']);
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/uvote_total.tpl'),$vars);
     }
+    public static function get_bt_choice_overall(){
+        $vars = \SQL\UVOTE_DATA_CHOICE_BT_OVERALL::Q1(array());
+        $vars['total_total'] = $vars['pro'] + $vars['con'] + $vars['ent'];
+        $vars['total_pro_percentage'] = round($vars['pro']/$vars['total_total']*100+1);
+        $vars['total_con_percentage'] = round($vars['con']/$vars['total_total']*100+1);
+        $vars['total_ent_percentage'] = round($vars['ent']/$vars['total_total']*100+1);
+        new SYSTEM\LOG\INFO($vars['total_ent_percentage']);
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/bt_total.tpl'),$vars);
+    }
     public static function get_uvote_choice_overall_to_bt(){
         $result = '';
         $vars = \SQL\UVOTE_DATA_UVOTE_TO_PARTY_OVERALL::QA(array());
@@ -26,7 +35,15 @@ class bars{
         }
         return $result;
     }
-    
+    public static function get_bt_choice_overall_to_bt(){
+        $result = '';
+        $vars = \SQL\UVOTE_DATA_BT_TO_PARTY_OVERALL::QA(array());
+        foreach($vars as $bar){
+            $bar['match_percentage'] = round($bar['class_MATCH']/($bar['class_MATCH']+$bar['class_MISSMATCH'])*100,2);
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvoteparties.tpl'), $bar);
+        }
+        return $result;
+    }
     public static function user_per_party_overall(){
     //$vars = votes::get_user_per_party_overall(array(\SYSTEM\SECURITY\Security::getUser()->id));        
         $result = '';
@@ -118,7 +135,7 @@ class bars{
             $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/urvotebt_by_choice.tpl'), $row);;
         }
         if(empty($result)){
-            return 'Keine relevanten Daten verfügbar';
+            return 'Keine relevanten Daten verfügbar<br><br>';
         }
         
         return $result;        
@@ -135,7 +152,7 @@ class bars{
                             WHERE user_ID = ?;',
                             array(\SYSTEM\SECURITY\Security::getUser()->id));
     while($row = $res->next()){
-        $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
+        $row['match_percentage'] = ($row['class_MATCH']+$row['class_MISSMATCH']) > 0 ? round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2) : 0;
 
         $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/bt_to_user_overall.tpl'), $row);
     }

@@ -77,21 +77,21 @@ class votes {
     
     public static function get_user_temp_votes(){
         $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
-        $v = $vars['voted'] > 1 ? $vars['voted'] : 1;
+        $v = $vars['voted'];
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/all_polls.tpl'),
-                array(  'vote_percent'=> round($v/($nv+$v)*100, 2),
-                        'no_vote_percent'=> round($nv/($nv+$v)*100, 2),
+                array(  'vote_percent'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
+                        'no_vote_percent'=> $nv > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
                         'not_voted'=> $nv));}
     
     public static function get_user_overall_votes(){
         $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
-        $v = $vars['voted'] > 1 ? $vars['voted'] : 1;
+        $v = $vars['voted'];
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/overall_all_polls.tpl'),
-                array(  'vote_perc'=> round($v/($nv+$v)*100, 2),
-                        'no_vote_perc'=> round($nv/($nv+$v)*100, 2),
+                array(  'vote_perc'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
+                        'no_vote_perc'=> $v > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
                         'not_voted'=> $nv));}
     

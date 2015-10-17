@@ -1,13 +1,13 @@
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Welcome
+                    Willkommen auf uvote.eu!
                 </h4>
             </div>                        
             <div class="panel-body row">
                 
-                <div class="col-md-6">
+                <div id="loggedout_text" class="col-md-6" style="border-right: #d9edf7 solid 2px;">
                     ${welcome_text}
                 </div>
                     <div class="col-md-6">
@@ -88,10 +88,27 @@
                                     </tr>
                                </tbody>
                             </table>
-                            <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
+                                       <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>            
+    </div>   
+                        <script>
+                            $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
+                            {
+                                preventSubmit: true,            
+                                submitError: function($form, event, errors) {},
+                                submitSuccess: function($form, event){
+                                    $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                                        if(data == 1){
+                                            window.location.reload();
+                                        } else {
+                                            $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                                        }                    
+                                    });
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>

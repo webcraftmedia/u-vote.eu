@@ -33,5 +33,15 @@ class page_uvote extends \SYSTEM\API\api_default {
         
     public static function page_user_main_impressum(){
         return (new user_main_impressum())->html();}
+   
+    
+    public static function page_user_main_loggedout_start(){
+        return \SYSTEM\PAGE\text::get('welcome_text');
+    }    
+    public static function page_user_main_loggedout_news(){
+        return user_main_start::newsfeed();
+    }
+    private function default_register(){
+        return (new default_register ())->html();}
     
 }

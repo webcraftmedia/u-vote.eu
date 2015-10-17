@@ -7,10 +7,10 @@
                 </h4>
             </div>
             <div class="panel-body">
-                <div class="col-md-8">
-                ${welcome_text}  
+                <div class="col-md-6">
+                ${welcome_text_loggedin}  
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="row">
                         ${user_temp_votes}
                     </div>

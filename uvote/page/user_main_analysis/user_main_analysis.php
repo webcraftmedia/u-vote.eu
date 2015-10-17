@@ -27,6 +27,10 @@ class user_main_analysis extends SYSTEM\PAGE\Page {
         
         $vars['votes_all'] = bars::get_uvote_choice_overall();
         $vars['votes_all_to_bt'] = bars::get_uvote_choice_overall_to_bt();
+        
+        $vars['bt_basic_stats'] = bars::get_bt_choice_overall();
+        
+        $vars['choices_bt'] = bars::get_bt_choice_overall_to_bt();
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('help'));

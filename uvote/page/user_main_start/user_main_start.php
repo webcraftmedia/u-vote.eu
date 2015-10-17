@@ -4,7 +4,7 @@ class user_main_start extends SYSTEM\PAGE\Page {
         $vars = votes::get_user_count();       
         return $vars['count'];
     }
-     public function newsfeed(){
+     public static function newsfeed(){
      $result = '';
      $vars = \SQL\UVOTE_DATA_NEWSFEED::QA(array());
         foreach($vars as $news){

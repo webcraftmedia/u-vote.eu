@@ -20,13 +20,13 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     private function get_party_per_poll($choice){
         switch($choice){
             case 1:
-                return 'PRO';
+                return 'pro';
             case 2:
-                return 'CON';
+                return 'con';
             case 3:
-                return 'ENT';
+                return 'ent';
             default:
-                return 'NONE';
+                return '';
         }           
     }
   
@@ -36,15 +36,16 @@ class user_main_poll extends SYSTEM\PAGE\Page {
 
 //        $vote['bt_vote_class'] = $this->tablerow_class($vote['bt_choice']);
         foreach($party_votes as $pv){
-            
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_bt.tpl'),
-                                    array(  'party' => $pv['party'],
-                                            'choice' => $this->get_party_per_poll($pv['choice']),
-                                            'choice_class' => $this->tablerow_class($pv['choice']),
-                                            'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : $pv['votes_pro'],
-                                            'party_no' => $pv['votes_contra'] > 0 ? round($pv['votes_contra']/$pv['total']*100,0) : $pv['votes_contra'],
-                                            'party_off' => $pv['total'] > 0 ? round(($pv['total'] - $pv['nr_attending'])/$pv['total']*100,0) : $pv['total'],
-                                            'party_ent' => $pv['nr_attending'] > 0 ? round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['nr_attending']*100,0) : $pv['nr_attending']));                    
+            $vote = array(  'party' => $pv['party'],
+                            'choice' => $this->get_party_per_poll($pv['choice']),
+                            'choice_class' => $this->tablerow_class($pv['choice']),
+                            'party_yes' => $pv['votes_pro'] > 0 ? round($pv['votes_pro']/$pv['total']*100,0) : ($pv['choice'] == 1 ? '100' : '0'),
+                            'party_no' => $pv['votes_contra'] > 0 ? round($pv['votes_contra']/$pv['total']*100,0) : ($pv['choice'] == 2 ? '100' : '0'),
+                            'party_off' => $pv['total'] > 0 ? round(($pv['total'] - $pv['nr_attending'])/$pv['total']*100,0) : '0',
+                            'party_ent' => $pv['nr_attending'] > 0 ? round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['nr_attending']*100,0) : $pv['nr_attending']);
+            if($vote['party_yes'] == '0' && $vote['party_no'] == '0' && $vote['party_ent'] == '0'){
+                $vote['party_ent'] = 100;}
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_bt.tpl'),$vote);                    
         }
         return $result;              
     }
@@ -82,10 +83,10 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     private function bars_bt(){
         $vars = votes::get_bar_bt_per_poll($this->poll_ID);
         if (!$vars['bt_total']){
-            return 'Keine Ergebnisse für den Bundestag verfügbar';}
+            return 'Keine differenzierten Ergebnisse für den Bundestag verfügbar.';}
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
-        $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);           
+        $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_bt.tpl'), $vars);
     }
     
@@ -111,43 +112,18 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     private function vote_buttons($poll_expired,$user_poll){        
         if($poll_expired){
             if(!$user_poll){
-                return '<h5>Stimme hier ab</h5>
-                                     <button id="btnvote_yes" class="btn btn-success btn-default"
-                                        style="width: 90px"                                     
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Pro</font></button>
-                                     <button id="btnvote_no" class="btn btn-danger btn-default" 
-                                        style="width: 90px" 
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Contra</font></button>
-                                     <button id="btnvote_off" class="btn btn-info btn-default" 
-                                        style="width: 90px"
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Enthaltung</font></button>';}
+                return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_buttons_fresh.tpl', array('poll_ID'=>$this->poll_ID)));
+                }
             $classes = array('','','');
             switch($user_poll){
-                case 1: $classes = array('btn-success disabled','btn-danger','btn-info'); break;
-                case 2: $classes = array('btn-success','btn-danger disabled','btn-info'); break;
-                case 3: $classes = array('btn-success','btn-danger','btn-info disabled'); break;
+                case 1: $classes = array('poll_ID'=>$this->poll_ID, 'yes'=>'btn-success disabled','no'=>'btn-danger','ent'=>'btn-info','choice'=>'pro'); break;
+                case 2: $classes = array('poll_ID'=>$this->poll_ID, 'yes'=>'btn-success','no'=>'btn-danger disabled','ent'=>'btn-info','choice'=>'con'); break;
+                case 3: $classes = array('poll_ID'=>$this->poll_ID, 'yes'=>'btn-success','no'=>'btn-danger','ent'=>'btn-info disabled','choice'=>'ent'); break;
                 default: array('','','');
             }
             
-            return '                 <h5>Ändere deine Stimme hier ab</h5>
-                                     <button id="btnvote_yes" class="btn btn_vote '.$classes[0].' btn-default btnvote_yes"
-                                        style="width: 90px"                                     
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Pro</font></button>
-                                     <button id="btnvote_no" class="btn btn_vote '.$classes[1].' btn-default btnvote_no" 
-                                        style="width: 90px" 
-                                        href="#" 
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Contra</font></button>
-                                     <button id="btnvote_off" class="btn btn_vote '.$classes[2].' btn-default btnvote_off" 
-                                        style="width: 90px" 
-                                        href="#" 
-                                        poll_ID="${poll_ID}"><font 
-                                        size="3">Enthaltung</font></button>
-                                        ';
+            return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_buttons.tpl'), $classes);
+                             
         } else {
             return 'ye soon to come infos';
         }                                            

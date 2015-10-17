@@ -214,7 +214,7 @@
                 <a data-toggle="collapse" data-parent="#acc_7" href="#acc_7_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                 <h4 class="panel-title">
-                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag
+                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag
                 </h4>
                 </div>
                 </a>
@@ -290,7 +290,7 @@
                 <a data-toggle="collapse" data-parent="#acc_3" href="#acc_3_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
-                    <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;community Statistik
+                    <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;community Daten
                 </h4>
             </div>
                 </a>
@@ -326,6 +326,7 @@
                 <div class="row">
                     <div class="col-md-8">
                     <h4>Übereinstimmung community und Fraktionen</h4>
+                    <br>
                     ${votes_all_to_bt}
                 </div>
                 <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
@@ -339,7 +340,62 @@
             </div>   
         </div>
     </div>
-    
+    <div class="row panel-group" id="acc_10" style="padding-top: 10px;">               
+        <div class="panel panel-default panel-success">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_10" href="#acc_10_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                    <h4 class="panel-title" style="">
+                    <span class="glyphicon glyphicon-tasks"></span>&nbsp;&nbsp;&nbsp;Bundestag Daten
+                </h4>
+            </div>
+                </a>
+            </div>
+            <div id="acc_10_body" class="panel-body panel-collapse collapse">
+                <div class="row">
+                    <div class="col-md-8">
+                    <h4></h4>
+                    ${bt_basic_stats}
+                </div>
+                <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
+                    ${analysis_help_bt_basic}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
+                    ${analysis_math_bt_basic}
+                </div>
+                </div>
+                    
+            </div>   
+        </div>
+    </div>
+    <div class="row panel-group" id="acc_11" style="padding-top: 10px;">               
+        <div class="panel panel-default panel-warning">
+            <div class="panel-heading" style="padding: 0">
+                <a data-toggle="collapse" data-parent="#acc_11" href="#acc_11_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                    <h4 class="panel-title" style="">
+                    <span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;&nbsp;Bilanz: Bundestag & Fraktionen
+                </h4>
+            </div>
+                </a>
+            </div>
+            <div id="acc_11_body" class="panel-body panel-collapse collapse">
+                <div class="row">
+                    <div class="col-md-8">
+                    <h4>Übereinstimmung Bundestag und Fraktionen</h4>
+                    ${choices_bt}
+                </div>
+                <div class="col-md-4" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
+                    ${analysis_help_choices_bt}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
+                    ${analysis_math_choices_bt}
+                </div>
+                </div>
+                    
+            </div>   
+        </div>
+    </div>
 
 <!--<div id="graph_bt_user_overall" class="row"></div>
 

@@ -4,7 +4,8 @@ class default_register extends SYSTEM\PAGE\Page {
       
     private function css(){  
         return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_register/css/register.css').'" rel="stylesheet">';}
-
+    public static function js(){        
+        return array(\SYSTEM\WEBPATH(new \PPAGE(),'default_register/js/default_register.js'));}
      public function html(){
         $vars = array();
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
