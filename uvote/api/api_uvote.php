@@ -4,7 +4,8 @@ class api_uvote extends \SYSTEM\API\api_system {
     //votes
     public static function call_vote_action_vote($poll_ID, $vote) {
         return votes::write_vote($poll_ID, $vote);}
-        
+    public static function call_vote_action_vote_sub($poll_ID, $vote) {
+        return votes::write_vote_sub($poll_ID, $vote);}    
     public static function call_vote_action_data($location, $birthyear, $gender, $children) {
         return votes::write_data($location, $birthyear, $gender, $children);}        
     
@@ -58,8 +59,8 @@ class api_uvote extends \SYSTEM\API\api_system {
         if($set == 'bilance_choice'){
             return stats_bilance_choice::basic_bilance_choice($cat);
         }
+    }
     
-}
 }
 
     

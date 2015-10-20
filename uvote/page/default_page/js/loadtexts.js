@@ -69,23 +69,6 @@ function get_barsperparty (poll_ID) {
     }); 
 }
 
-function vote_click (poll_ID, vote) {
-    $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
-        var items = [];   
-        if(data.status == true){
-            alert("success");
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
-                open_vote(poll_ID);                
-            });                   
-        } else {
-            alert(data.result.message);
-        }
-    }); 
-}
-
-        
-    
-
 function submit_commentrate (c_ID, val) {
     alert('success');
     $.getJSON('./api.php?call=vote&action=commentrate&c_ID=' + c_ID + '&val=' + val, function(data) {         

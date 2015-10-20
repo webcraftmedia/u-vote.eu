@@ -10,3 +10,4 @@ SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_votelist','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_analysis','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_options','');
 SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_poll','');
+SYSTEM\autoload::registerFolder(dirname(__FILE__).'/user_main_poll_sub','');

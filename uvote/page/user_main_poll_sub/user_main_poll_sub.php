@@ -1,5 +1,5 @@
 <?php
-class user_main_poll extends SYSTEM\PAGE\Page { 
+class user_main_poll_sub extends SYSTEM\PAGE\Page { 
     private $poll_ID = null;
     public function __construct($poll_ID){
         $this->poll_ID = $poll_ID;
@@ -67,7 +67,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     }
     
     private function vote_buttons($poll_expired,$user_poll){        
-        if($poll_expired){
+
             if(!$user_poll){
                 return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_buttons_fresh.tpl', array('poll_ID'=>$this->poll_ID)));
                 }
@@ -80,24 +80,20 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             }
             
             return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/vote_buttons.tpl'), $classes);
-                             
-        } else {
-            return 'ye soon to come infos';
-        }                                            
+                                       
     }
     private function get_voteinfo(){
          $var = votes::get_voteinfo($this->poll_ID);
          return $var['iframe_link'];
     }
     public static function js(){        
-        return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_poll/js/user_main_poll.js'));}
+        return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_poll_sub/js/user_main_poll_sub.js'));}
 
     public function html(){
-        $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID, 1));
-        $user_vote = votes::getUserPollData($this->poll_ID);
+        $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID, 2));
+        $user_vote = votes::getUserPollDataSub($this->poll_ID);
         $vars = array();
-        $vars = array_merge($vars, votes::get_voteinfo($this->poll_ID));
-        $vars['sub_buttons'] = votes::get_sublinks($this->poll_ID);
+        $vars = array_merge($vars,votes::get_voteinfo_sub($this->poll_ID));
         $vars['choice_party'] = $this->choice_party();
         $vars['bars_user'] =  $this->bars_user();
         $vars['bars_bt'] = $this->bars_bt();
@@ -108,7 +104,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         //$vars['vote'] = $this->get_voteinfo(); //votes::getVoteOfGroup($poll_ID);
-        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/full_vote.tpl'), $vars);
+        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll_sub/tpl/full_vote.tpl'), $vars);
         return $result;
     }
   

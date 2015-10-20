@@ -20,7 +20,7 @@
         <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
         ${analysis_help_basic_votes}
         <h4><span class="glyphicon glyphicon-certificate"></span></h4>
-        ${analysis_math_basic votes}
+        ${analysis_math_basic_votes}
     </div>
 </div>
             
