@@ -2,14 +2,13 @@ function init_user_main_analysis(){
 $('.acc_toggle').click(function(){
     $(this).find('i').toggleClass('glyphicon-circle-arrow-down').toggleClass('glyphicon-circle-arrow-up');
 });
-load_visualisation_urvote('graph_user_to_party_overall_bt', 84600);
-load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600);
-load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600);
-load_visualisation_user_to_party_overall('graph_user_to_party_overall_spd', 'spd', 84600);
-load_visualisation_user_to_party_overall('graph_user_to_party_overall_gruene', 'gruene', 84600);
-load_visualisation_user_to_party_overall('graph_user_to_party_overall_linke', 'linke', 84600);
-load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600);
 
+
+
+/* -------- clickhandlers for basic_stats_tab -------- 
+----------- set specifies tab type, -------- 
+----------- cat specifies perspective, -------- 
+----------- body specifies load-to element -------- */
 $('#a_acc_2').click(function () {
          var set = 'basic';
          var cat = 'user';
@@ -28,11 +27,70 @@ $('#a_acc_10').click(function () {
          var body = '#acc_10_body';
          load_tab(set, cat, body);             
 });
+
+/* -------- clickhandlers for bilance_stats_tab -------- 
+----------- set specifies tab type, -------- 
+----------- cat specifies perspective, -------- 
+----------- body specifies load-to element -------- */
+$('#a_acc_3').click(function () {
+         var set = 'bilance';
+         var cat = 'user';
+         var body = '#acc_3_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_6').click(function () {
+         var set = 'bilance';
+         var cat = 'user_bt';
+         var body = '#acc_6_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_9').click(function () {
+         var set = 'bilance';
+         var cat = 'community';
+         var body = '#acc_9_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_11').click(function () {
+         var set = 'bilance';
+         var cat = 'bt';
+         var body = '#acc_11_body';
+         load_tab(set, cat, body);             
+});
+
+/* -------- clickhandlers for bilance_choice_stats_tab -------- 
+----------- set specifies tab type, -------- 
+----------- cat specifies perspective, -------- 
+----------- body specifies load-to element -------- */
+$('#a_acc_4').click(function () {
+         var set = 'bilance_choice';
+         var cat = 'user_party';
+         var body = '#acc_4_body';
+         load_tab(set, cat, body);             
+});
+$('#a_acc_12').click(function () {
+         var set = 'bilance_choice';
+         var cat = 'user_bt';
+         var body = '#acc_12_body';
+         load_tab(set, cat, body);             
+});
+
+/* -------- clickhandlers for google charts -------- */
+$('#a_acc_7').click(function () {
+    $('#acc_7_body').load(load_visualisation_urvote('graph_user_to_party_overall_bt', 84600));
+});
+$('#a_acc_5').click(function () {
+    $('#acc_5_body').load(load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600),
+                            load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600),
+                            load_visualisation_user_to_party_overall('graph_user_to_party_overall_spd', 'spd', 84600),
+                            load_visualisation_user_to_party_overall('graph_user_to_party_overall_gruene', 'gruene', 84600),
+                            load_visualisation_user_to_party_overall('graph_user_to_party_overall_linke', 'linke', 84600));
+});
 }
 
 function load_tab(set, cat, body){
-    $(body).load('./api.php?call=load_tab&set=' + set + '&cat=' + cat, function(e){
-        e.preventDefault();
+    $(body).load('./api.php?call=load_tab&set=' + set + '&cat=' + cat, function(){
+        if(set == 'bilance' && cat == 'user'){
+            load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600);}
     });
 }
 
@@ -90,7 +148,10 @@ function load_visualisation_urvote(id, timespan){
         var options = {title: 'Übereinstimmung mit dem Bundestag', 
                         aggregationTarget: 'category',
                         selectionMode: 'multiple', 
-                        legend: 'none', 
+                        legend: 'none',
+                        animation:{
+                        duration: 1000,
+                        easing: 'out',},
                         chartArea:{},
 //                        vAxis:{logScale: false},
                         vAxis: {viewWindow: {min: 0, max: 100}},

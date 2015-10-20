@@ -49,7 +49,15 @@ class api_uvote extends \SYSTEM\API\api_system {
         return comments::write_commentrate($c_ID, $val);}
         
     public static function call_load_tab($set, $cat){
-       return stats_basic::basic($cat);
+        if($set == 'basic'){
+            return stats_basic::basic_basic($cat);
+        }
+        if($set == 'bilance'){
+            return stats_bilance::basic_bilance($cat);
+        }
+        if($set == 'bilance_choice'){
+            return stats_bilance_choice::basic_bilance_choice($cat);
+        }
     
 }
 }

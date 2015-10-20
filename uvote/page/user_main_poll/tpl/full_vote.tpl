@@ -9,17 +9,13 @@
                     </h4>
                 </div>            
                 <div class="panel-body row" id="poll_3_body">
-                   
-                        <div class="col-md-12">
-                            <h4 style="word-break: break-all;">${title}</h4>
-
-                            ${openvote_help_text}
-
-                            ${title} abstimmen.
-                            <hr>
-                            ${voice_weight}
-                        </div>
-                   
+                    <div class="col-md-12">
+                        <h4 style="word-break: break-all;">${title}</h4>
+                        ${openvote_help_text}
+                        ${title} abstimmen.
+                        <hr>
+                        ${voice_weight}
+                    </div>
                 </div>            
             </div>
         </div>         

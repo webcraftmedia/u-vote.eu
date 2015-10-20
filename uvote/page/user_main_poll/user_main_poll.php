@@ -7,7 +7,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
   
     private function choice_party (){
         $result = '';
-        $party_votes = votes::get_barsperparty($this->poll_ID);
+        $party_votes = \SQL\UVOTE_DATA_PARTY_PER_POLL::QA(array($this->poll_ID));
         foreach($party_votes as $pv){
             $vote = array(  'party' => $pv['party'],
                             'choice' => switchers::get_party_per_poll($pv['choice']),
@@ -31,18 +31,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/bars_user.tpl'),$bars);
     }
     
-    private function bars_party(){
-        $result = "";
-        $partyvotes = votes::get_barsperparty($this->poll_ID);
-        foreach($partyvotes as $vote){
-            $vote['party_yes'] = $vote['votes_pro'] > 0 ? round($vote['votes_pro']/$vote['total']*100,0) : $vote['votes_pro'];
-            $vote['party_no'] = $vote['votes_contra'] > 0 ? round($vote['votes_contra']/$vote['total']*100,0) : $vote['votes_contra'];
-            $vote['party_ent'] = $vote['nr_attending'] > 0 ? round(($vote['nr_attending'] - $vote['votes_pro'] - $vote['votes_contra'])/$vote['total']*100,0) : $vote['nr_attending'];
-            $result .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_parties.tpl'), $vote);
-        }
-        
-        return $result;
-    }
+
     
     private function bars_bt(){
         $vars = votes::get_bar_bt_per_poll($this->poll_ID);
@@ -102,20 +91,13 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     }
     public static function js(){        
         return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_poll/js/user_main_poll.js'));}
-    private function css(){  
-        return \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bars_user.css')).
-               \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\bulletin.css')).
-               \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_bulletin\css\comment.css'));                      
-    }
+
     public function html(){
         $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID));
         $user_vote = votes::getUserPollData($this->poll_ID);
         $vars = array();
         $vars = array_merge($vars,votes::get_voteinfo($this->poll_ID));
-        //$vars['comments_pro'] = $this->get_pro_comments();
-        //$vars['comments_con'] = $this->get_con_comments();
         $vars['choice_party'] = $this->choice_party();
-        $vars['bars_party'] = $this->bars_party();
         $vars['bars_user'] =  $this->bars_user();
         $vars['bars_bt'] = $this->bars_bt();
         $vars['voice_weight'] = $this->voice_weight();

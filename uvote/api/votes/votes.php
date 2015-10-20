@@ -79,7 +79,7 @@ class votes {
         $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/all_polls.tpl'),
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/temp_votes.tpl'),
                 array(  'vote_percent'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
                         'no_vote_percent'=> $nv > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
@@ -89,7 +89,7 @@ class votes {
         $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/overall_all_polls.tpl'),
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/overall_votes.tpl'),
                 array(  'vote_perc'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
                         'no_vote_perc'=> $v > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
@@ -121,7 +121,8 @@ class votes {
         $user = \SYSTEM\SECURITY\Security::getUser()->id;                
         $data = \SQL\UVOTE_ACCORD_WITH_FRACTION::QA(array($party,$user));
         //$data_escaped = array_walk_recursive($data, 'mysql_real_escape_string');        
-        return \SYSTEM\LOG\JsonResult::toString($data);                
+        //return \SYSTEM\LOG\JsonResult::toString($data);  
+        return json.encode($data);   
     }
     public static function get_users_choice_per_poll($poll_ID){
         return \SQL\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
@@ -139,8 +140,6 @@ class votes {
         return $res;
     }
     
-    public static function get_barsperparty($poll_ID){
-        return \SQL\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));}
         
     public static function get_party_choice($poll_ID, $party){
         $res = \SQL\UVOTE_DATA_PARTY_CHOICE_PER_POLL::Q1(array($poll_ID, $party));

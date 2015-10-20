@@ -1,6 +1,6 @@
 <?php
 class stats_basic {
-     public static function basic($cat){
+     public static function basic_basic($cat){
          if($cat == 'user'){
             return self::user_basic();
          }
@@ -10,7 +10,7 @@ class stats_basic {
          if($cat == 'bt'){
             return self::bt_basic();
          }
- else {return 'error';}
+    else {return 'error';}
      }
     public static function user_basic(){
         $vars['basic_stats'] = bars::get_user_choice_overall(\SYSTEM\SECURITY\Security::getUser()->id);

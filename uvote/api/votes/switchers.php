@@ -74,6 +74,24 @@ class switchers{
                     return 'progress-bar';
             }
     }
+    public static function bar_ico_class($choice){
+        switch($choice){
+                case 1:
+                    $bar = 'progress-bar-success';
+                    $icon_type = 'pro';
+                    break;
+                case 2:
+                    $bar = 'progress-bar-danger';
+                    $icon_type = 'con';
+                    break;
+                case 3:
+                    $bar = 'progress-bar-info';
+                    $icon_type = 'ent';
+                    break;
+                case 0:
+                    $bar = 'progress-bar';
+            }
+    }
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.
