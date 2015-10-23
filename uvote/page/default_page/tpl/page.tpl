@@ -11,21 +11,14 @@
         ${js}
     </head>
     <body style="background: url(${frontend_logos}tapete.gif); background-attachment: fixed;">
-        <div class="main_container">
             <div class="container" id="site-content">
-                <div class="row">
-                    <div class="row">
-                    <div class="col-md-12" style="border: #0088cc 2px ; padding: 0;">
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-12">
                         <img class="img-responsive" src="${frontend_logos}logo.png" style="width: 100%"/>
                     </div>
-                    </div>
                 </div>
-                    <div class="row"><hr></div>
-                        <div class="row">
-                                ${menu}
-                        </div>            
-                    <font family="Raleway"><div class="row" id="user_main"></div></font>  
+                <div class="row" style="margin-bottom: 15px;">${menu}</div>            
+                <div class="row" id="user_main"></div> 
             </div>
-        </div>
     </body>
 </html>

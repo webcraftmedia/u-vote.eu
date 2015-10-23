@@ -41,7 +41,9 @@ class api_uvote extends \SYSTEM\API\api_system {
         return graphs::graph_party_to_user_overall_by_time($party, $timespan);}
     
     public static function call_donut_party_to_user_overall(){
-        return graphs::donut_party_to_user_overall();}    
+        return graphs::donut_party_to_user_overall();}
+        public static function call_donut_party_to_community_overall(){
+        return graphs::donut_party_to_community_overall();}
     //comments
     public static function call_vote_action_comment($poll_ID, $c_choice, $c_txt, $c_src) {
         return comments::write_comment($poll_ID, $c_choice, $c_txt, $c_src);}
@@ -60,7 +62,12 @@ class api_uvote extends \SYSTEM\API\api_system {
             return stats_bilance_choice::basic_bilance_choice($cat);
         }
     }
-    
+    public static function call_load_list($filter, $time){
+        return lists::generate_votelist($filter);
+    }
+    public static function call_load_list_text_search($text){
+        return lists::text_search($text);
+    }
 }
 
     

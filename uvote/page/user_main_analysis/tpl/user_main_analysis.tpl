@@ -37,6 +37,47 @@
         <div id="acc_2_body" class="row panel-body panel-collapse collapse"></div>
     </div>
 </div>
+<div class="panel-group row" id="acc_13" style="padding-top: 10px;">
+    <div class="panel panel-default panel-info">
+        <div class="panel-heading" style="padding: 0">
+            <a id="a_acc_13" class="acc_toggle" data-toggle="collapse" data-parent="#acc_13" href="#acc_13_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                    <h4 class="panel-title">
+                        <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;Gesamtsituation
+                        <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
+                    </h4>
+                </div>
+            </a>
+        </div>
+        <div id="acc_13_body" class="row panel-body panel-collapse collapse">
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-md-4">
+                    <h4>"Dein" Bundestag</h4>
+                    <hr>
+                    <div id="donut_user_to_party_overall" class="row" style="padding: 0; margin: 0;"></div>
+                </div>
+                <div class="col-md-4">
+                    <h4>Der Bundestag</h4>
+                    <hr>
+                    <div id="donut_bt_to_party_overall" class="row" style="padding: 0; margin: 0;"></div>
+                </div>
+                <div class="col-md-4">
+                    <h4>die uvote community</h4>
+                    <hr>
+                    <div id="donut_community_to_party_overall" class="row" style="padding: 0; margin: 0;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="font-size: 10pt; border-left: #d9edf7 solid 2px">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span></h4>
+                    ${analysis_help_party_donut}
+                    <h4><span class="glyphicon glyphicon-certificate"></span></h4>
+                    ${analysis_math_party_donut}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="panel-group row" id="acc_3" style="padding-top: 10px;">
     <div class="panel panel-default panel-warning">
         <div class="panel-heading" style="padding: 0">
@@ -52,6 +93,8 @@
         <div id="acc_3_body" class="row panel-body panel-collapse collapse"></div>
     </div>
 </div>
+
+            
 <div class="panel-group row" id="acc_4" style="padding-top: 10px;">
     <div class="panel panel-default panel-warning">
         <div class="panel-heading" style="padding: 0">
@@ -187,7 +230,7 @@
             <a id="a_acc_8" class="acc_toggle" data-toggle="collapse" data-parent="#acc_8" href="#acc_8_body">
                 <div style="width: 100%; height: 100%; padding: 10px;">
                     <h4 class="panel-title" style="">
-                        <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;&nbsp;community Daten
+                        <span class="glyphicon glyphicon-cloud"></span>&nbsp;&nbsp;&nbsp;community Daten
                         <i style="float: right" class="glyphicon glyphicon-circle-arrow-down"></i>
                     </h4>
                 </div>

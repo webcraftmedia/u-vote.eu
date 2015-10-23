@@ -55,5 +55,14 @@ class graphs {
         }
         return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
     }
+    public static function donut_party_to_community_overall ($returnasjson = true){
+        $result = array();
+        $res = \SQL\UVOTE_DATA_COMMUNITY_TO_PARTIES_OVERALL::QQ(array());
+        while ($row = $res->next()){
+            $result[] = array(  0 => $row['party'],
+                                'class_match' => $row['class_MATCH']);
+        }
+        return $returnasjson ? SYSTEM\LOG\JsonResult::toString($result) : $result;
+    }
     
 }

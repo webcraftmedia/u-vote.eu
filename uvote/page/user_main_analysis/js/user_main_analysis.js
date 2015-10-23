@@ -78,6 +78,12 @@ $('#a_acc_12').click(function () {
 $('#a_acc_7').click(function () {
     $('#acc_7_body').load(load_visualisation_urvote('graph_user_to_party_overall_bt', 84600));
 });
+$('#a_acc_13').click(function () {
+    $('#acc_13_body').load(load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600),
+    load_visualisation_bt_to_parties_overall('donut_bt_to_party_overall', 84600),
+    load_visualisation_community_to_parties_overall('donut_community_to_party_overall', 84600));
+    
+});
 $('#a_acc_5').click(function () {
     $('#acc_5_body').load(load_visualisation_user_to_party_overall('graph_user_to_party_overall_cdu', 'cdu', 84600),
                             load_visualisation_user_to_party_overall('graph_user_to_party_overall_csu', 'csu', 84600),
@@ -89,8 +95,7 @@ $('#a_acc_5').click(function () {
 
 function load_tab(set, cat, body){
     $(body).load('./api.php?call=load_tab&set=' + set + '&cat=' + cat, function(){
-        if(set == 'bilance' && cat == 'user'){
-            load_visualisation_user_to_parties_overall('donut_user_to_party_overall', 84600);}
+
     });
 }
 
@@ -230,7 +235,70 @@ function load_visualisation_user_to_parties_overall(id, timespan){
                         colors: ['#000736', '#0022FF', '#33FF00', '#D2067A', '#F20101'],
                         pieHole: '0.4',
                         chartArea:{},
-                        width: "500",
+                        width: "350",
+                        height: "400"};
+        new google.visualization.PieChart(document.getElementById(id)).draw(data, options);
+    });
+}
+function load_visualisation_community_to_parties_overall(id, timespan){
+    $('img#loader').show();  
+    $.getJSON('./api.php?call=donut_party_to_community_overall',function(json){            
+        if(!json || json.status != true || !json.result){
+            $('img#loader').hide();            
+            return;
+        }
+        json = json.result;
+        $('img#loader').hide();
+        var data = new google.visualization.DataTable();
+        first = true;
+        $.each(json[0], function(key, value){
+            if(first){                
+                data.addColumn('string',key);
+                first = false;
+            } else {
+                data.addColumn('number',key);
+            }       
+        });                    
+        $.each(json, function(key, value){
+        first = true;
+        data.addRow($.map(value, function(v) { if(first){first=false;return v;}else{return [parseFloat(v)];}}));});
+        var options = { title: 'Übereinstimmung mit den Fraktionen relativ zueinander', 
+                        titleTextStyle: {fontSize: 14, bold: 0, italic: 0},
+                        pieSliceText: 'label',
+                        legend: 'none',
+                        colors: ['#000736', '#0022FF', '#33FF00', '#D2067A', '#F20101'],
+                        pieHole: '0.4',
+                        chartArea:{},
+                        width: "350",
+                        height: "400"};
+        new google.visualization.PieChart(document.getElementById(id)).draw(data, options);
+    });
+}
+function load_visualisation_bt_to_parties_overall(id, timespan){
+    $('img#loader').show();  
+    $.getJSON('./api.php?call=donut_party_to_user_overall',function(json){            
+        if(!json || json.status != true || !json.result){
+            $('img#loader').hide();            
+            return;
+        }
+        json = json.result;
+        $('img#loader').hide();
+        var data = google.visualization.arrayToDataTable([
+          ['party', 'seats'],
+          ['cdu',     255],
+          ['csu',      56],
+          ['grüne', 63],
+          ['linke',    64],
+          ['spd',  193]
+        ]);
+        var options = { title: 'Sitzverteilung im Plenum', 
+                        titleTextStyle: {fontSize: 14, bold: 0, italic: 0},
+                        pieSliceText: 'label',
+                        legend: 'none',
+                        colors: ['#000736', '#0022FF', '#33FF00', '#D2067A', '#F20101'],
+                        pieHole: '0.4',
+                        chartArea:{},
+                        width: "350",
                         height: "400"};
         new google.visualization.PieChart(document.getElementById(id)).draw(data, options);
     });

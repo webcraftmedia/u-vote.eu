@@ -71,7 +71,7 @@
                                              </div>
                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr style="display: none;">
                                        <th>${locale}</th>
                                        <td>
                                            <div id="change_user_locale">
