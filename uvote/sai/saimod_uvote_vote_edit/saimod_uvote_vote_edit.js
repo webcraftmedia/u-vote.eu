@@ -1,44 +1,42 @@
 function init_saimod_uvote_vote_edit(){
+$('.bt_data_submit').click(function() {
+        var poll_ID = $(this).attr('poll_ID');
+        var title = $('#' + poll_ID + '_vote_title').val();
+        var time_end = $('#' + poll_ID + '_time_end').val();
+        var iframe_link = $('#' + poll_ID + '_iframe_link').val();
+        var bt_choice = $('#' + poll_ID + '_bt_choice').val();
+        var tags = JSON.stringify($('#' + poll_ID + '_tags').val().split(',').map(function(s) { return s.trim() }));
+        var data = {poll_ID: poll_ID, title: title, time_end: time_end, iframe_link: iframe_link, bt_choice: bt_choice};
+        $.getJSON('./sai.php?sai_mod=.SAI.saimod_uvote_vote_edit&action=edit_vote&data=' + JSON.stringify(data) + '&tags=' + tags, function(data) {
+            var items = [];        
+            if(data.status == true){
+                alert("success");
+            } else {
+                alert(data.result.message);
+            }
+        }); 
+    });
     
-    $('.btn_editvote').click(function() {
-        alert ('');
-        var poll_ID = $('#input_poll_title').attr('poll_ID');
-        var title = $('#input_poll_title').val();
-        var iframe_link = $('#input_poll_link').val();
-        vote_data_edit(poll_ID, title, iframe_link);
-        
-            
-    
-//    var data = new Array(); 
-//    alert("bla")
-//       $.ajax({
-//        url: SAI_ENDPOINT+'sai_mod=.SYSTEM.SAI.saimod_uvote_vote_edit&action='+ vote,
-//        contentType : "application/json; charset=utf-8",
-//        vote : JSON.stringify({
-//            sai_mod: 'saimod_uvote_vote_edit', 
-//            action: 'new_vote',
-//            json: data,           
-//        }),
-//        dataType : 'json',
-//        type : 'POST' ,
-//        success: function(vote) {
-//            alert("success");
-//        }});
-//        alert("js läuft");
-        })};
+    $('.bt_partydata_submit').click(function() {
+        var poll_ID = $(this).attr('poll_ID');
+        var party = $('#input_party').val();
+        var votes_pro = $('#input_pro').val();
+        var votes_contra = $('#input_con').val();
+        var nr_attending = $('#input_att').val();
+        var total = $('#input_total').val();
+        var choice = $('#input_choice').val();
+        var data = {poll_ID: poll_ID, party: party, votes_pro: votes_pro, votes_contra: votes_contra, nr_attending: nr_attending, total: total, choice: choice};
+        $.getJSON('./sai.php?sai_mod=.SAI.saimod_uvote_vote_edit&action=edit_partydata&data=' + JSON.stringify(data), function(data) {
+            var items = [];        
+            if(data.status == true){
+                alert("success");
+            } else {
+                alert(data.result.message);
+            }
+        }); 
+    });
+};
 
 
 
 
-function vote_data_edit (poll_ID, title, iframe_link) {
-    alert('vote_data_edit');
-    
-    $.getJSON('./api.php?call=vote&action=new_vote&poll_ID=' + poll_ID + '&title=' + title + '&iframe_link=' + iframe_link, function(data) {
-        var items = [];        
-        if(data.status == true){
-            alert("success");
-        } else {
-            alert(data.result.message);
-        }
-    }); 
-}

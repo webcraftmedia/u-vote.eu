@@ -1,27 +1,38 @@
-<div>
-<input type="text" id="vote_title" placeholder="${vote_title}"/>
-<input type="text" id="iframe_link" placeholder="${iframe_link}"/>
-<input type="text" id="poll_ID" placeholder="${poll_ID}"/>
-<br>
-<br>
-<h4>poll start</h4>
-<input type="text" placeholder="JJJJ-TT-MM"/> - 00:00
-<h4>poll end</h4>
-<input type="text" placeholder="JJJJ-TT-MM"/> - 00:00
-<br>
-<a class="btn btn-primary" id="vote_data_submit">Submit</a>
+<div class="panel-group row" id="panel_${ID}" style="padding-top: 5px;">
+        <div class="panel panel-default panel-success">
+            <div class="panel-heading" style="padding: 0" >
+                <a data-toggle="collapse" data-parent="#panel_${ID}" href="#panel_${ID}_body">
+                <div style="width: 100%; height: 100%; padding: 10px;">
+                <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;${title}
+                </h4>
+                
+                </div>
+                    </a>
+            </div>
+            <div id="panel_${ID}_body" class="row panel-body panel-collapse collapse">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>title</h4>
+                    <input style="width: 100%" type="text" id="${ID}_vote_title" value="${title}"/><br><br>
+                    <h4>src</h4>
+                    <input style="width: 100%" type="text" id="${ID}_iframe_link" value="${iframe_link}"/>
+                    <h4>tags</h4>
+                    <input type="text" id="${ID}_tags" value="tags" style="width: 100%"/>
+                </div>
+                <div class="col-md-6">
+                    <h4>poll start</h4>
+                    <input type="text" id="${ID}_time_start" value="${time_start}"/> - 00:00
+                    <h4>poll end</h4>
+                    <input type="text" id="${ID}_time_end" value="${time_end}"/> - 00:00
+                    <h4>bt choice</h4>
+                    <input type="text" id="${ID}_bt_choice" value="${bt_choice}"/><br><br>
+                    <a id="${ID}_data_edit" class="btn btn-primary bt_data_edit" poll_ID="${ID}">Submit</a>
+                </div>
+            </div>
+                <hr>
+            ${parties}
+            <a id="${ID}_partydata_submit" class="btn btn-primary bt_partydata_submit" poll_ID="${ID}">Submit</a>
+    </div>
 </div>
-<br>
-<div>
-    <h4>BT DATEN</h4>
-<input type="text" id="poll_ID" placeholder="${poll_ID}"/>
-<br>
-<input type="text" id="poll_ID" placeholder="${party}"/>
-<input type="text" id="poll_ID" placeholder="${votes_pro}"/>
-<input type="text" id="poll_ID" placeholder="${votes_contra}"/>
-<input type="text" id="poll_ID" placeholder="${nr_attending}"/>
-<input type="text" id="poll_ID" placeholder="${total}"/>
-<input type="text" id="poll_ID" placeholder="${choice}"/>
-<br>
-<a class="btn btn-primary" id="bt_data_submit">Submit</a>
 </div>

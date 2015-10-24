@@ -1,66 +1,19 @@
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    Welcome
+                    <i class="glyphicon glyphicon-bookmark"></i>&nbsp;&nbsp;Willkommen auf uvote.eu!
                 </h4>
             </div>                        
-            <div class="panel-body">
-                <img src="${frontend_logos}logo2.png" width="450"/>
-                <img src="${frontend_logos}cover.png" width="450"/>
-                </br></br>
-                ${welcome_text}
-            </div>            
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_gallery">Gallery</a>
-                </h4>
-            </div>
-            <div id="collapse_gallery" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <!--<div class="carousel-inner">
-                          <div class="item active">
-                            <img src="..." alt="...">
-                            <div class="carousel-caption">
-                              ...
-                            </div>
-                          </div>
-                          ...
-                        </div>-->
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                          <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                          <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                    <div id="graph_bt_uv_overall"></div>
-                    <script type="text/javascript" language="JavaScript">load_visualisation('graph_bt_uv_overall',84600);</script>
+            <div class="panel-body row">
+                
+                <div id="loggedout_text" class="col-md-6" style="border-right: #d9edf7 solid 2px;">
+                    ${welcome_text}
                 </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_register">Registrieren</a>
-                </h4>
-            </div>
-            <div id="collapse_register" class="panel-collapse collapse">
-                <div class="panel-body">
+                    <div class="col-md-6">
                     <form class="textbox" id="register_user_form">
                         <div class="control-group" id="register_username_control_group">
+                            <h4><i class=""></i>Accounterstellung</h4>
                             <table id="userRegisterTable" class="table table-striped">
                                <tbody>
                                     <tr>
@@ -68,7 +21,6 @@
                                        <td>
                                            <div class="control-group controls">
                                                 <input  type="text"
-                                                        size="30"
                                                         id="register_username"
                                                         placeholder="${ari_name}"
                                                         minlength="3" data-validation-minlength-message="${register_user_name_too_short}"
@@ -83,7 +35,6 @@
                                        <td>
                                             <div class="control-group controls">
                                                 <input  type="email"
-                                                        size="30"
                                                         id="register_email"
                                                         placeholder="${ari_mail}"
                                                         data-validation-email-message="${mail_format_wrong}"
@@ -99,7 +50,6 @@
                                             <div class="control-group" id="change_user_password">
                                                   <div class="control-group controls" id="change_user_password_sub">
                                                       <input  type="password"
-                                                              size="30"
                                                               id="user_register_password1"
                                                               name="user_register_password1"
                                                               placeholder="${ari_pass}"
@@ -110,7 +60,6 @@
                                                   </div>
                                                   <div class="control-group controls" style="clear: both">
                                                       <input  type="password"
-                                                              size="30"
                                                               id="user_register_password2"
                                                               name="user_register_password2"
                                                               placeholder="${ari_pass}"
@@ -122,7 +71,7 @@
                                              </div>
                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr style="display: none;">
                                        <th>${locale}</th>
                                        <td>
                                            <div id="change_user_locale">
@@ -135,10 +84,27 @@
                                     </tr>
                                </tbody>
                             </table>
-                            <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> ${register}</button>
+                                       <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-play-circle"></i> ${register}</button>
                         </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
+    </div>   
+                        <script>
+                            $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
+                            {
+                                preventSubmit: true,            
+                                submitError: function($form, event, errors) {},
+                                submitSuccess: function($form, event){
+                                    $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
+                                        if(data == 1){
+                                            window.location.reload();
+                                        } else {
+                                            $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
+                                        }                    
+                                    });
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>

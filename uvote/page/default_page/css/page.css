@@ -2,6 +2,10 @@ body {
     padding-top: 60px;
 }
 
+.panel-heading :hover{
+    cursor: pointer;
+}
+
 .main_container {
 }
 
@@ -18,7 +22,6 @@ body {
 #site-content {
     padding: 0; 
     margin: 0; 
-    margin-left: 35px;
 }
             
 #user_main {

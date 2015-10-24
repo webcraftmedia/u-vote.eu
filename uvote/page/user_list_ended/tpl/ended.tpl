@@ -1,2 +1,0 @@
-Ended List:
-${votelist}

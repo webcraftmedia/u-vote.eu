@@ -2,7 +2,15 @@ $(document).ready(function() {
     new SYSTEM('./api.php',1,'start');
     register_login();
     register_logout();
+    navstate();
 });
+function navstate(){
+    $(".nav a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+});
+}
+
 
 function register_login(){
     $("#form_login input").not("[type=submit]").jqBootstrapValidation({
@@ -38,7 +46,7 @@ function register_logout(){
 
 function load_openvoteinfo (poll_ID){
        var openvoteinfo;
-       $.get('./index.php?action=openinfo&poll_ID=' + poll_ID, function (data) {
+       $.get('./api.php?page=openinfo&poll_ID=' + poll_ID, function (data) {
                 openvoteinfo = data;
                 bodyelem = $("");
                 bodyelem.animate();                
@@ -58,20 +66,6 @@ function get_barsperparty (poll_ID) {
     dataTmp = data;               
     }).complete(function() {      
 
-    }); 
-}
-
-function vote_click (poll_ID, vote) {
-    $.getJSON('./api.php?call=vote&action=vote&poll_ID=' + poll_ID + '&vote=' + vote, function(data) {
-        var items = [];   
-        if(data.status == true){
-            alert("success");
-            $('#user_main').load('./?action=open_bulletin&poll_ID=' + poll_ID, function(){
-                open_vote(poll_ID);                
-            });                   
-        } else {
-            alert(data.result.message);
-        }
     }); 
 }
 
@@ -136,7 +130,7 @@ function send_feedback (feedback) {
     var val = JSON.stringify(feedback);
     console.log("feedback called");
     $.ajax({
-        url: 'http://mojotrollz.eu/web/uVote/api.php',
+        url: './api.php',
        // contentType : "application/json; charset=utf-8",
         data : {
             'call': 'vote',
@@ -155,24 +149,7 @@ function send_feedback (feedback) {
     });
 }
 
-function register_registerform(){
-    //console.log("wegwegwegwegwegweg");
-    $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
-    {
-        preventSubmit: true,            
-        submitError: function($form, event, errors) {},
-        submitSuccess: function($form, event){
-            $.get('./api.php?call=account&action=create&username=' + $('#register_username').val() + '&password_sha=' + $.sha1($('#user_register_password1').val()) + '&email=' + $('#register_email').val() + '&locale=deDE', function (data) {
-                if(data == 1){
-                    window.location.reload();
-                } else {
-                    $('#help-block-user-password-combi-wrong').attr('style', 'display: block;');
-                }                    
-            });
-            event.preventDefault();
-        }
-    });
-}
+
 
 function loadAjaxContent(url) {
         var dataTmp;
@@ -216,60 +193,3 @@ function loadApiPic(id) {
     });
 }
 
-function load_visualisation(id, timespan){
-    $('img#loader').show();    
-    $.getJSON('./api.php?call=graph_bt_to_uvote_overall_by_time',function(json){
-        if(!json || json.status != true || !json.result){
-            $('img#loader').hide();            
-            return;
-        }        
-        json = json.result;
-        $('img#loader').hide();
-        var data = new google.visualization.DataTable();
-        first = true;        
-        $.each(json[0], function(key, value){
-            if(first){                
-                data.addColumn('datetime',key);
-                first = false;
-            } else {
-                data.addColumn('number',key);
-            }       
-        });            
-        $.each(json, function(key, value){
-            first = true;
-            data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
-         
-        console.log(data);
-        var options = {title: 'Übereinstimmung uVote Community/Bundestag', aggregationTarget: 'category', selectionMode: 'multiple', /*curveType: 'function',*/ /*focusTarget: 'category',*/ chartArea:{},  vAxis:{format:'#%', logScale: false}, interpolateNulls: false,  width: "300", height: "250"};
-        //LineChart
-        new google.visualization.ColumnChart(document.getElementById(id)).draw(data, options);
-    });
-}
-function load_visualisation_urvote(id, timespan){
-    $('img#loader').show();    
-    $.getJSON('./api.php?call=graph_bt_to_user_overall_by_time',function(json){
-        if(!json || json.status != true || !json.result){
-            $('img#loader').hide();            
-            return;
-        }        
-        json = json.result;
-        $('img#loader').hide();
-        var data = new google.visualization.DataTable();
-        first = true;        
-        $.each(json[0], function(key, value){
-            if(first){                
-                data.addColumn('datetime',key);
-                first = false;
-            } else {
-                data.addColumn('number',key);
-            }       
-        });            
-        $.each(json, function(key, value){
-            first = true;
-            data.addRow($.map(value, function(v) { if(first){first=false;return [new Date(v)];}else{return [parseFloat(v)];}}));});
-         
-        console.log(data);
-        var options = {title: id, aggregationTarget: 'category', selectionMode: 'multiple', curveType: 'function', /*focusTarget: 'category',*/ chartArea:{},  vAxis:{logScale: false}, interpolateNulls: false,  width: "300", height: "250"};
-        new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
-    });
-}

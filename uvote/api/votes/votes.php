@@ -11,6 +11,8 @@ class votes {
         $res = \SQL\UVOTE_DATA_COUNT_VOTES::QQ();
         return $res;}                    
     
+        
+        
     public static function get_user_choice_per_poll($poll_ID, $user_ID){
         return \SQL\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
     }
@@ -18,16 +20,26 @@ class votes {
     public static function getUserPollData($poll_ID){
         if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
             return NULL;}
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByGrp',
-                                'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ?;',
+                                'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ? AND uvote_data.group = 1;',
+                                array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
+        $result = $res->next();                                        
+        return $result['choice'];            
+    }
+    public static function getUserPollDataSub($poll_ID){
+        if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
+            return NULL;}
+        $con = new \SYSTEM\DB\Connection();
+        $res = $con->prepare(   'selVoteByGrp',
+                                'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ? AND uvote_data.group = 2;',
                                 array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
         $result = $res->next();                                        
         return $result['choice'];            
     }
     
     public static function get_barsperusers($poll_ID,$return_as_json = true){
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         //count
         $res = $con->prepare(  'selVoteBy_count',
                                 'SELECT COUNT(*) as "count" FROM `uvote_data` WHERE `poll_ID` = ?;',
@@ -72,11 +84,25 @@ class votes {
         return $res;
     }
     
-    public static function get_user_temp_votes($user_ID){
-        return \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array($user_ID, $user_ID, $user_ID));}
+    public static function get_user_temp_votes(){
+        $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
+        $v = $vars['voted'];
+        $nv = $vars['not_voted'];
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/temp_votes.tpl'),
+                array(  'vote_percent'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
+                        'no_vote_percent'=> $nv > 0 ? round($nv/($nv+$v)*100, 2) : 0,
+                        'voted'=> $v,
+                        'not_voted'=> $nv));}
     
-    public static function get_user_overall_votes($user_ID, $creationDate){
-        return \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array($user_ID, $user_ID, $user_ID, $creationDate));}
+    public static function get_user_overall_votes(){
+        $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
+        $v = $vars['voted'];
+        $nv = $vars['not_voted'];
+        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/overall_votes.tpl'),
+                array(  'vote_perc'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
+                        'no_vote_perc'=> $v > 0 ? round($nv/($nv+$v)*100, 2) : 0,
+                        'voted'=> $v,
+                        'not_voted'=> $nv));}
     
     public static function get_bar_bt_per_poll($poll_ID){
         return \SQL\UVOTE_DATA_BT_PER_POLL::Q1(array($poll_ID));}
@@ -104,7 +130,8 @@ class votes {
         $user = \SYSTEM\SECURITY\Security::getUser()->id;                
         $data = \SQL\UVOTE_ACCORD_WITH_FRACTION::QA(array($party,$user));
         //$data_escaped = array_walk_recursive($data, 'mysql_real_escape_string');        
-        return \SYSTEM\LOG\JsonResult::toString($data);                
+        //return \SYSTEM\LOG\JsonResult::toString($data);  
+        return json.encode($data);   
     }
     public static function get_users_choice_per_poll($poll_ID){
         return \SQL\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
@@ -113,17 +140,33 @@ class votes {
         return \SQL\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
     
     public static function get_voteinfo($poll_ID){
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByID',
-                                'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND uvote_votes.group = 1;',
                                 array($poll_ID));        
         $res = $res->next();
 //        $res['title'] = utf8_encode($res['title']);
         return $res;
     }
-    
-    public static function get_barsperparty($poll_ID){
-        return \SQL\UVOTE_DATA_PARTY_PER_POLL::QA(array($poll_ID));}
+    public static function get_sublinks($poll_ID){
+        $result = '';
+        $res = \SQL\UVOTE_DATA_POLL_INITIATIVE::QA(array($poll_ID));
+        foreach ($res as $row){
+            
+            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/buttons/sub_button.tpl'), $row);
+        }
+//        $res['title'] = utf8_encode($res['title']);
+        return $result;
+    }
+    public static function get_voteinfo_sub($poll_ID){
+        $con = new \SYSTEM\DB\Connection();
+        $res = $con->prepare(   'selVoteByIDSub',
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND uvote_votes.group = 2;',
+                                array($poll_ID));        
+        $res = $res->next();
+//        $res['title'] = utf8_encode($res['title']);
+        return $res;
+    }
         
     public static function get_party_choice($poll_ID, $party){
         $res = \SQL\UVOTE_DATA_PARTY_CHOICE_PER_POLL::Q1(array($poll_ID, $party));
@@ -131,19 +174,24 @@ class votes {
     }
     
     public static function write_vote($poll_ID, $vote){
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
-            throw new ERROR("You need to be logged in.");}
-            
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());
+        $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVote',
-                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND time_end < CURDATE();',
-                                array($poll_ID));
-         if ($res->next()){
-             throw new ERROR('Your rights have expired!');}
-                     
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
+                                array($poll_ID));   
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
-                                 VALUES (?, ?, ?, 0, NOW());', 
+                                 VALUES (?, ?, ?, 1, NOW());', 
+                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
+        return JsonResult::ok();
+    }
+    public static function write_vote_sub($poll_ID, $vote){
+        $con = new \SYSTEM\DB\Connection();
+        $res = $con->prepare(   'selVote',
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ?;',
+                                array($poll_ID));   
+        $res = $con->prepare(   'insertVote',
+                                'REPLACE uvote_data
+                                 VALUES (?, ?, ?, 2, NOW());', 
                                 array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
@@ -162,7 +210,7 @@ class votes {
         if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
             
-        $con = new \SYSTEM\DB\Connection(new \SQL\uVote());                    
+        $con = new \SYSTEM\DB\Connection();                    
         $res = $con->prepare(   'insertFeedback',
                                 'INSERT INTO uvote_beta_feedback
                                  VALUES (?, ?);',
