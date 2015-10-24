@@ -13,6 +13,10 @@
     <body style="background: url(${frontend_logos}tapete.gif); background-attachment: fixed;">
             <div class="container" id="site-content">
                 <div class="row" style="margin-top: 15px;">
+                    <div class="row" style="text-align: right">
+                        <a href="#!start(user_main(imp))">&nbsp;&nbsp;Impressum</a>
+                    ${loginform}
+                    </div>
                     <div class="col-md-12">
                         <img class="img-responsive" src="${frontend_logos}logo.png" style="width: 100%"/>
                     </div>

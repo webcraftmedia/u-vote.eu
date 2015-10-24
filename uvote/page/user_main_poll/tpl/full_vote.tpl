@@ -1,6 +1,6 @@
-<div id="poll_body" class="row">
+
 <div class="col-md-4">       
-    <div class="row">
+    <div class="row" style="padding: 0; margin: 0;">
         <div class="panel-group" id="poll_3">
             <div class="panel panel-default panel-info">
                 <div class="panel-heading">
@@ -9,18 +9,16 @@
                     </h4>
                 </div>            
                 <div class="panel-body row" id="poll_3_body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 style="word-break: break-all;">${title}</h4>
-                            ${openvote_help_text}
-                            ${title} abstimmen.
-                            
-                        </div>
+                    <div class="col-md-12">
+                        <h4 style="word-break: break-all;">${title}</h4>
+                        ${openvote_help_text}
+                        ${title} abstimmen.
                     </div>
                 </div>            
             </div>
         </div>         
-    </div><div class="row">
+    </div>
+    <div class="row" style="padding: 0; margin: 0;">
         <div class="panel-group" id="poll_7">
             <div class="panel panel-default panel-info">
                 <div class="panel-heading">
@@ -41,7 +39,7 @@
         </div>         
     </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding: 0; margin: 0;">
         <div class="panel-group" id="poll_6">
             <div class="panel panel-default panel-info">
                 <div class="panel-heading">
@@ -114,5 +112,5 @@
     </div>
 
     </div> 
-</div>
+
 

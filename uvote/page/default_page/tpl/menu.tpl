@@ -4,8 +4,6 @@
         <li><a href="#!list"><span class="glyphicon glyphicon-edit"></span>&nbsp;Abstimmen</a></li>
         <li><a href="#!analysis"><span class="glyphicon glyphicon-stats"></span>&nbsp;Auswerten</a></li>
         <!--<li><a href="#!start(user_main(my))"><span class="glyphicon glyphicon-cog"></span>&nbsp;Mithelfen</a></li>-->
-        <li style="float: right"><a href="#!start(user_main(imp))"><span class="glyphicon glyphicon-tags"></span>&nbsp;Impressum</a></li>
-        <li style="float: right">${loginform}</li>
     </ul>
 </div>
 

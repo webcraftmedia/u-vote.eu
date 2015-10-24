@@ -1,7 +1,9 @@
 body {
   padding-bottom: 40px;
 }
-
+btn_logout:hover{
+    cursor: pointer;
+}
 /*.list {
     border: 2px solid #ccc;
 }*/
