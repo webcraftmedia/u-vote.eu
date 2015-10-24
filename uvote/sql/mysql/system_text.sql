@@ -93,6 +93,7 @@ INSERT INTO `system_text` (`id`, `lang`, `text`, `author`, `author_edit`, `time_
 INSERT INTO `system_text` (`id`, `lang`, `text`, `author`, `author_edit`, `time_create`, `time_edit`) VALUES ('analysis_help_basic_stats', 'deDE', 'Die Balken zeigen deine abgegebenen Stimmen an.&nbsp;Der <strong>absolute</strong> Wert ist auf dem Balken vermerkt, die Balkenlänge setzt die Stimmen ins <strong>Verhältnis</strong>.<br><br>', 13, 13, '2015-10-14 20:03:57', '2015-10-14 20:03:57');
 
 
+INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('Beta-News-1', 'news');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('analysis_help_basic_stats', 'domestic');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('ari_mail', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('ari_name', 'uvote');
@@ -132,6 +133,7 @@ INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('urVote_title', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('urVote_user_party_compare', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('urvote_user_party_compare_sub', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('user_email_login', 'uvote_register');
+INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('register', 'uvote_register');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('user_email_register', 'uvote_register');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('user_name_login', 'uvote_register');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('user_name_register', 'uvote_register');
