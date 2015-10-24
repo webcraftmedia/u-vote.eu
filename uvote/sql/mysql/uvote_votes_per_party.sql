@@ -1,3 +1,4 @@
+DELETE FROM `uvote_votes_per_party`;
 INSERT INTO `uvote_votes_per_party` (`poll_ID`, `party`, `votes_pro`, `votes_contra`, `nr_attending`, `total`, `choice`, `bt_choice`) VALUES (32, 'cdu', 248, 0, 254, 255, 1, 0);
 INSERT INTO `uvote_votes_per_party` (`poll_ID`, `party`, `votes_pro`, `votes_contra`, `nr_attending`, `total`, `choice`, `bt_choice`) VALUES (32, 'csu', 53, 0, 56, 56, 1, 0);
 INSERT INTO `uvote_votes_per_party` (`poll_ID`, `party`, `votes_pro`, `votes_contra`, `nr_attending`, `total`, `choice`, `bt_choice`) VALUES (32, 'gruene', 1, 10, 59, 63, 2, 0);

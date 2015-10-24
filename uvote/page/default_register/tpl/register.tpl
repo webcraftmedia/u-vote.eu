@@ -84,7 +84,8 @@
                                     </tr>
                                </tbody>
                             </table>
-                                       <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-play-circle"></i> ${register}</button>
+                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-play-circle"></i> ${register}</button>
+                            <div style="display: none" id="help-block-user-password-combi-wrong">Registrierung Fehlgeschlagen</div>
                         </div>
                     </form>
                 </div>

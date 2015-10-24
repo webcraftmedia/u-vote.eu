@@ -94,7 +94,6 @@ INSERT INTO `system_text` (`id`, `lang`, `text`, `author`, `author_edit`, `time_
 
 
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('Beta-News-1', 'news');
-INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('analysis_help_basic_stats', 'domestic');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('ari_mail', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('ari_name', 'uvote');
 INSERT INTO `system_text_tag` (`id`, `tag`) VALUES ('ari_pass', 'uvote');

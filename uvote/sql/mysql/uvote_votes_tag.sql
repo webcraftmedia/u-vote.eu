@@ -1,3 +1,4 @@
+DELETE FROM `uvote_votes_tag`;
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (32, 'Innenpolitik', 1);
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (32, 'Asylpolitik', 1);
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (33, 'Innenpolitik', 1);

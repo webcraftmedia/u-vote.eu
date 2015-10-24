@@ -12,18 +12,18 @@ class bars{
     public static function get_uvote_choice_overall(){
         $vars = \SQL\UVOTE_DATA_CHOICE_OVERALL::Q1(array());
         $vars['total_total'] = $vars['pro'] + $vars['con'] + $vars['ent'];
-        $vars['total_pro_percentage'] = round($vars['pro']/$vars['total_total']*100+1);
-        $vars['total_con_percentage'] = round($vars['con']/$vars['total_total']*100+1);
-        $vars['total_ent_percentage'] = round($vars['ent']/$vars['total_total']*100+1);
+        $vars['total_pro_percentage'] = $vars['total_total'] > 0 ? round($vars['pro']/$vars['total_total']*100+1) : 0;
+        $vars['total_con_percentage'] = $vars['total_total'] > 0 ? round($vars['con']/$vars['total_total']*100+1) : 0;
+        $vars['total_ent_percentage'] = $vars['total_total'] > 0 ? round($vars['ent']/$vars['total_total']*100+1) : 0;
         new SYSTEM\LOG\INFO($vars['total_ent_percentage']);
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/uvote_total.tpl'),$vars);
     }
     public static function get_bt_choice_overall(){
         $vars = \SQL\UVOTE_DATA_CHOICE_BT_OVERALL::Q1(array());
         $vars['total_total'] = $vars['pro'] + $vars['con'] + $vars['ent'];
-        $vars['total_pro_percentage'] = round($vars['pro']/$vars['total_total']*100+1);
-        $vars['total_con_percentage'] = round($vars['con']/$vars['total_total']*100+1);
-        $vars['total_ent_percentage'] = round($vars['ent']/$vars['total_total']*100+1);
+        $vars['total_pro_percentage'] = $vars['total_total'] > 0 ? round($vars['pro']/$vars['total_total']*100+1) : 0;
+        $vars['total_con_percentage'] = $vars['total_total'] > 0 ? round($vars['con']/$vars['total_total']*100+1) : 0;
+        $vars['total_ent_percentage'] = $vars['total_total'] > 0 ? round($vars['ent']/$vars['total_total']*100+1) : 0;
         new SYSTEM\LOG\INFO($vars['total_ent_percentage']);
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/bt_total.tpl'),$vars);
     }
