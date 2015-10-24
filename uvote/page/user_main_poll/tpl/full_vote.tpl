@@ -1,6 +1,6 @@
 
-<div class="col-md-4">       
-    <div class="row" style="padding: 0; margin: 0;">
+<div class="col-md-4" style="padding: 0; margin: 0;">       
+    <div class="row">
         <div class="panel-group" id="poll_3">
             <div class="panel panel-default panel-info">
                 <div class="panel-heading">

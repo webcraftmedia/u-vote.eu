@@ -1,1 +1,12 @@
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (100, 0, 2, 11, 'vote', 'poll_ID', 'UINT');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (101, 0, 2, 11, 'vote', 'vote', 'UINT');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (103, 0, 2, 10, 'load_tab', 'cat', 'ALL');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (102, 0, 2, 10, 'load_tab', 'set', 'ALL');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (111, 0, 2, 10, 'load_list', 'time', 'ALL');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (110, 0, 2, 10, 'load_list', 'filter', 'STRING');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (106, 0, 2, 11, 'vote_sub', 'vote', 'UINT');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (113, 0, 2, 10, 'load_list_text_search', 'text', 'STRING');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (12, 0, 0, 10, NULL, 'party', NULL);
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (105, 0, 2, 11, 'vote_sub', 'poll_ID', 'UINT');
 INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (130, 1, 2, 1, 'user_main_poll', 'poll_ID', 'UINT');
+INSERT INTO `system_api` (`ID`, `group`, `type`, `parentID`, `parentValue`, `name`, `verify`) VALUES (104, 1, 2, 1, 'user_main_poll_sub', 'poll_ID', 'ALL');

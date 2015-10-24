@@ -27,7 +27,7 @@ class stats_bilance_choice {
         $vars['choices_user_ID_per_bt_con'] = bars::bilance_choice_user_bt('2');
         $vars['choices_user_ID_per_bt_ent'] = bars::bilance_choice_user_bt('3');
         $vars['analysis_help_bt_by_vote'] = \SYSTEM\PAGE\text::get('analysis_help_bt_by_vote');
-        $vars['$analysis_math_bt_by_vote'] = \SYSTEM\PAGE\text::get('$analysis_math_bt_by_vote');
+        $vars['analysis_math_bt_by_vote'] = \SYSTEM\PAGE\text::get('analysis_math_bt_by_vote');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
         return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance_choice/tab_bilance_choice_user_bt.tpl'),$vars);
     }

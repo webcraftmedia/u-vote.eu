@@ -41,7 +41,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $var['disclaimer'] = 'Keine differenzierten Ergebnisse für den Bundestag verfügbar';
         $var['choice'] = switchers::tablerow_class($info['bt_choice']);
         $var['choice_full'] = switchers::tablerow_class($info['bt_choice']);
-        if ($var['choice_full'] == ''){
+        if ($var['choice_full'] == 'open'){
             $var['choice_full'] = 'noch nicht';
             }
         return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/table_bt_choice.tpl'), $var); 
