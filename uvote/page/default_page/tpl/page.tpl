@@ -18,14 +18,24 @@
                     </div>
                     <div class="col-md-6" style="margin: 0; padding: 0; text-align: right;">
                             ${loginform}
-                            <br>
-                            <li class="fa fa-facebook fa-lg"></li>
-                            <br>
-                            <li class="fa fa-twitter fa-lg"></li>
                     </div>
                     
                 </div>
-                <div class="row" style="margin-bottom: 15px;">${menu}</div>            
+                <div class="row" style="margin-bottom: 15px;">
+                    
+                    <div class="col-md-6" style="margin: 0; padding: 0;">
+                        ${menu}
+                    </div>
+                    <div class="col-md-6" style="margin: 0; padding: 0;">
+                        <div class="row">
+                            <ul class="nav nav-pills pull-right">
+                                <li> <a href="#"><span class="fa fa-facebook fa-lg"></span>&nbsp;&nbsp;facebook&nbsp;&nbsp;</a></li>
+                                <li><a href="https://twitter.com/uvote_de" target="blank"><span class="fa fa-twitter fa-lg"></span>&nbsp;&nbsp;twitter</a></li>
+                        </ul> 
+                        </div>
+                        
+                    </div>
+                    </div>            
                 <div class="row" id="user_main"></div> 
                 <a href="#!start(user_main(imp))">&nbsp;&nbsp;Impressum</a>
             </div>
