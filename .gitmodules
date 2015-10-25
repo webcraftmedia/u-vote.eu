@@ -4,3 +4,6 @@
 [submodule "lib/lib_font_awesome"]
 	path = lib/lib_font_awesome
 	url = git@mojotrollz.eu:webcraft/lib_font_awesome.git
+[submodule "lib/font_awesome"]
+	path = lib/font_awesome
+	url = git@mojotrollz.eu:webcraft/lib_font_awesome.git
