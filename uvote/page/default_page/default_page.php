@@ -22,7 +22,8 @@ class default_page extends SYSTEM\PAGE\Page {
                 \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/register_form.css')).
                 \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/parties_on_vote.css')).
                 \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loggedinform.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loginform.css'))
+                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loginform.css')).
+                \SYSTEM\HTML\html::link(\LIB\lib_font_awesome::css())
                 ; 
     }
 
