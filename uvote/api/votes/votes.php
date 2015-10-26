@@ -139,11 +139,11 @@ class votes {
     public static function get_pfields_per_poll($poll_ID){
         return \SQL\UVOTE_DATA_USERS_CHOICE_PER_POLL::QA(array($poll_ID));}
     
-    public static function get_voteinfo($poll_ID){
+    public static function get_voteinfo($poll_ID, $group){
         $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByID',
-                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND uvote_votes.group = 1;',
-                                array($poll_ID));        
+                                'SELECT * FROM `uvote_votes` WHERE `ID` = ? AND uvote_votes.group = ?;',
+                                array($poll_ID, $group));        
         $res = $res->next();
 //        $res['title'] = utf8_encode($res['title']);
         return $res;

@@ -35,7 +35,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
     
     private function bars_bt(){
         $vars = votes::get_bar_bt_per_poll($this->poll_ID);
-        $info = votes::get_voteinfo($this->poll_ID);
+        $info = votes::get_voteinfo($this->poll_ID, 1);
         if (!$vars['bt_total']){
         
         $var['disclaimer'] = 'Keine differenzierten Ergebnisse für den Bundestag verfügbar';
@@ -86,7 +86,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         }                                            
     }
     private function get_voteinfo(){
-         $var = votes::get_voteinfo($this->poll_ID);
+         $var = votes::get_voteinfo($this->poll_ID, 1);
          return $var['iframe_link'];
     }
     public static function js(){        
@@ -96,7 +96,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $poll_expired = \SQL\UVOTE_POLL_EXPIRED::Q1(array($this->poll_ID, 1));
         $user_vote = votes::getUserPollData($this->poll_ID);
         $vars = array();
-        $vars = array_merge($vars, votes::get_voteinfo($this->poll_ID));
+        $vars = array_merge($vars, votes::get_voteinfo($this->poll_ID, 1));
         $vars['sub_buttons'] = votes::get_sublinks($this->poll_ID);
         $vars['choice_party'] = $this->choice_party();
         $vars['bars_user'] =  $this->bars_user();
