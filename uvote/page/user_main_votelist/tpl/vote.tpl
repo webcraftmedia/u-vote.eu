@@ -5,6 +5,7 @@
         </div>
         
         <div class="col-md-8">
+            <font size="1">Abstimmung im Bundestag: ${quick}</font><br>
             ${title}
         </div>
         <div class="col-md-1">

@@ -44,4 +44,20 @@ INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (54, 'Innenpoli
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (44, 'Familienpolitik', 1);
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (44, 'Sozialpolitik', 1);
 INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (45, 'Familienpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (65, 'Wirtschaftspolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (65, 'Finanzpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (67, 'Außenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (67, 'Wirtschaftspolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (69, 'Außenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (69, 'Wirtschaftspolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (70, 'Verbraucherschutz', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (70, 'Innenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (71, 'Außenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (72, 'Außenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (73, 'Finanzpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (73, 'Außenpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (74, 'Sozialpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (74, 'Familienpolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (75, 'Wirtschaftspolitik', 1);
+INSERT INTO `uvote_votes_tag` (`poll_ID`, `tag`, `group`) VALUES (75, 'Außenpolitik', 1);
 
