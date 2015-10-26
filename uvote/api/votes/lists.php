@@ -18,7 +18,9 @@ class lists{
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
             $vote['time_done'] = 100-$vote['time_left'];
             $vote['full_vote_btn'] = $time_remain > 0 ? 'Abstimmen' : 'Ansehen';            
-            $vote['uv'] = $vote['bt'] = '';            
+            $vote['uv'] = $vote['bt'] = '';
+            $quick = new DateTime($vote['quick']);
+            $vote['quick'] = date_format($quick, 'd.m.Y');
             $vote['uv_count'] = $vote_count['count'] > 4 ? $vote_count['count'] : '< 5';
             $user_vote = votes::getUserPollData($vote['ID']);
             $vote['vote_class'] = switchers::tablerow_class($user_vote);
