@@ -97,6 +97,8 @@
                     <div class="panel-body" id="poll_4_body">
                         <div class="row">
                             ${vote_buttons}
+                        </div>
+                        <div class="row">
                             ${voice_weight}
                         </div>
                     </div>            

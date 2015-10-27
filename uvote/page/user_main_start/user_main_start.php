@@ -12,8 +12,6 @@ class user_main_start extends SYSTEM\PAGE\Page {
         }
      return $result;
     }
-    
-
     public function html(){
         $vars = array();
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';

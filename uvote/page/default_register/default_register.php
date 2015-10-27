@@ -3,7 +3,7 @@
 class default_register extends SYSTEM\PAGE\Page {
       
     private function css(){  
-        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_register/css/register.css').'" rel="stylesheet">';}
+        return '<link href="'.SYSTEM\WEBPATH(new PPAGE(),'default_register/css/default_register.css').'" rel="stylesheet">';}
     public static function js(){        
         return array(\SYSTEM\WEBPATH(new \PPAGE(),'default_register/js/default_register.js'));}
      public function html(){

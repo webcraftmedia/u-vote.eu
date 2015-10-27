@@ -4,7 +4,7 @@ class lists{
     public static function generate_votelist($filter){        
         $result = array('','');
         if(!$filter){
-            $votes = votes::getAllVotesOfGroup(1); 
+            $votes = \SQL\UVOTE_GENERATE_VOTELIST::QA(array(1));
         }
         else{
             $votes = \SQL\UVOTE_GENERATE_VOTELIST_FILTERED::QA(array(1, $filter));   
@@ -12,7 +12,7 @@ class lists{
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
-            $vote_count = votes::get_count_user_votes_per_poll($vote['ID']);  
+            $vote_count = \SQL\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($vote['ID']));
             $vote['votecount'] = $vote_count['count'];
             $vote['tags'] = self::get_all_tags_of_vote($vote['ID']);
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);
@@ -50,7 +50,7 @@ class lists{
         foreach($votes as $vote){
             $time_remain = strtotime($vote['time_end'])-  microtime(true);
             $time_span = strtotime($vote['time_end']) - strtotime($vote['time_start']);
-            $vote_count = votes::get_count_user_votes_per_poll($vote['ID']);  
+            $vote_count = \SQL\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($vote['ID']));
             $vote['votecount'] = $vote_count['count'];
             $vote['tags'] = self::get_all_tags_of_vote($vote['ID']);
             $vote['time_left'] = round($time_remain/($time_span+1)*100,0);

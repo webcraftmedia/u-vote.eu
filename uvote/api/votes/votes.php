@@ -1,17 +1,9 @@
 <?php
 
 class votes {
-    public static function getAllVotesOfGroup($groupid){
-        return \SQL\UVOTE_GENERATE_VOTELIST::QA(array($groupid));}
-    
-    public static function getAllExpVotesOfGroup($groupid){
-        return \SQL\UVOTE_GENERATE_VOTELIST_EXP::QA(array($groupid));}        
-    
     public static function countAllPolls(){
         $res = \SQL\UVOTE_DATA_COUNT_VOTES::QQ();
-        return $res;}                    
-    
-        
+        return $res;}    
         
     public static function get_user_choice_per_poll($poll_ID, $user_ID){
         return \SQL\UVOTE_DATA_USER_CHOICE_PER_POLL::Q1(array($poll_ID, $user_ID));
@@ -109,9 +101,6 @@ class votes {
     
     public static function get_user_count(){
         return \SQL\UVOTE_DATA_USER_COUNT_USERS::Q1(array());}        
-    
-    public static function get_count_user_votes_per_poll($poll_ID){
-        return \SQL\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($poll_ID));}
     
     public static function get_user_per_party_overall($user_ID){
         return \SQL\UVOTE_DATA_USER_PER_PARTY_OVERALL::QA(array($user_ID));        

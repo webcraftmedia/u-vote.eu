@@ -14,15 +14,6 @@ class default_page extends SYSTEM\PAGE\Page {
     private function css(){
         return  \SYSTEM\HTML\html::link(\LIB\lib_bootstrap::css()).
                 \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/default_page.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/full_vote.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/cover.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/vote.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/vote_bt.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loggedinformtop.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/register_form.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/parties_on_vote.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loggedinform.css')).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/loginform.css')).
                 \SYSTEM\HTML\html::link(\LIB\lib_font_awesome::css())
                 ; 
     }
@@ -30,21 +21,21 @@ class default_page extends SYSTEM\PAGE\Page {
           
 
     public function getloggedinform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/loggedinform.tpl'),array());} 
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loggedinform.tpl'),array());} 
     
     public function exchange_registerform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/register_form.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/register_form.tpl'),array());}
     
     public function getloginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/loginform.tpl'),array());} 
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loginform.tpl'),array());} 
     
     public function exchange_loginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/loggedinformtop.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loggedinformtop.tpl'),array());}
     
     public function get_menu(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu/menu.tpl'),array());}
     public function exchange_menu(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu_loggedout.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu/menu_loggedout.tpl'),array());}
 
     public function html($_escaped_fragment_ = NULL){
         $vars = array();

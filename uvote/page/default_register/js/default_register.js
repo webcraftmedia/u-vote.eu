@@ -1,7 +1,7 @@
 function init_default_register(){
     register_registerform();
     }
-    function register_registerform(){
+function register_registerform(){
     //console.log("wegwegwegwegwegweg");
     $("#register_user_form input").not("[type=submit]").jqBootstrapValidation(
     {

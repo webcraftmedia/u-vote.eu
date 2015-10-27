@@ -1,14 +1,11 @@
 function init_user_main_analysis(){
+    
+/* toggle little arrows on panel elements (for all) */
 $('.acc_toggle').click(function(){
     $(this).find('i').toggleClass('glyphicon-circle-arrow-down').toggleClass('glyphicon-circle-arrow-up');
 });
 
-
-
-/* -------- clickhandlers for basic_stats_tab -------- 
------------ set specifies tab type, -------- 
------------ cat specifies perspective, -------- 
------------ body specifies load-to element -------- */
+/* -------- clickhandlers for basic_stats_tab -------- */
 $('#a_acc_2').click(function () {
          var set = 'basic';
          var cat = 'user';
@@ -28,10 +25,7 @@ $('#a_acc_10').click(function () {
          load_tab(set, cat, body);             
 });
 
-/* -------- clickhandlers for bilance_stats_tab -------- 
------------ set specifies tab type, -------- 
------------ cat specifies perspective, -------- 
------------ body specifies load-to element -------- */
+/* -------- clickhandlers for bilance_stats_tab -------- */
 $('#a_acc_3').click(function () {
          var set = 'bilance';
          var cat = 'user';
@@ -57,10 +51,7 @@ $('#a_acc_11').click(function () {
          load_tab(set, cat, body);             
 });
 
-/* -------- clickhandlers for bilance_choice_stats_tab -------- 
------------ set specifies tab type, -------- 
------------ cat specifies perspective, -------- 
------------ body specifies load-to element -------- */
+/* -------- clickhandlers for bilance_choice_stats_tab -------- */
 $('#a_acc_4').click(function () {
          var set = 'bilance_choice';
          var cat = 'user_party';
@@ -91,6 +82,8 @@ $('#a_acc_5').click(function () {
                             load_visualisation_user_to_party_overall('graph_user_to_party_overall_gruene', 'gruene', 84600),
                             load_visualisation_user_to_party_overall('graph_user_to_party_overall_linke', 'linke', 84600));
 });
+
+/* END OF CLICKHANDLERS AND INIT FUNCTION*/
 }
 
 function load_tab(set, cat, body){
