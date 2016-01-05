@@ -1,9 +1,6 @@
 [submodule "lib/system"]
 	path = lib/system
-	url = git@mojotrollz.eu:system.git
-[submodule "lib/lib_font_awesome"]
-	path = lib/lib_font_awesome
-	url = git@mojotrollz.eu:webcraft/lib_font_awesome.git
+	url = git@mojotrollz.eu:webcraft/system.git
 [submodule "lib/font_awesome"]
 	path = lib/font_awesome
 	url = git@mojotrollz.eu:webcraft/lib_font_awesome.git
