@@ -27,10 +27,10 @@ class lists{
             $vote['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
             if($time_remain > 0){
                 $vote['statusmarker'] = 'aktuell';
-                $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/vote.tpl'), $vote);
+                $result[0] .= SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_votelist/tpl/vote.tpl'))->SERVERPATH(), $vote);
             } else {
                 $vote['statusmarker'] = 'vergangen';
-                $result[1] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/vote.tpl'), $vote);
+                $result[1] .= SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_votelist/tpl/vote.tpl'))->SERVERPATH(), $vote);
             }
         }
         return $result[0].$result[1];
@@ -39,7 +39,7 @@ class lists{
         $result = '';
         $vars = \SQL\UVOTE_DATA_USER_TAGS_OF_VOTE::QA(array($poll_ID));
         foreach ($vars as $tag){
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/tag.tpl'),$tag);
+            $result .= \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_votelist/tpl/tag.tpl'))->SERVERPATH(),$tag);
         }
         return $result;
     }
@@ -63,18 +63,12 @@ class lists{
             $vote['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
             if($time_remain > 0){
                 $vote['statusmarker'] = 'aktuell';
-                $result[0] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/vote.tpl'), $vote);
+                $result[0] .= SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_votelist/tpl/vote.tpl'))->SERVERPATH(), $vote);
             } else {
                 $vote['statusmarker'] = 'vergangen';
-                $result[1] .= SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_votelist/tpl/vote.tpl'), $vote);
+                $result[1] .= SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_votelist/tpl/vote.tpl'))->SERVERPATH(), $vote);
             }
         }
         return $result[0].$result[1];
     }
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

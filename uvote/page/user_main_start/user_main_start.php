@@ -20,7 +20,7 @@ class user_main_start extends SYSTEM\PAGE\Page {
         $vars['news'] = $this->newsfeed();
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_start/tpl/user_main_start.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_start/tpl/user_main_start.tpl'))->SERVERPATH(), $vars);
     }
   
 }

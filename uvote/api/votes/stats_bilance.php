@@ -1,6 +1,5 @@
 <?php
 class stats_bilance {
-    
     public static function basic_bilance($cat){
         if($cat == 'user'){return self::user_bilance();}
         if($cat == 'user_bt'){return self::user_bt_bilance();}
@@ -17,7 +16,7 @@ class stats_bilance {
         $vars['analysis_help_party_donut'] = \SYSTEM\PAGE\text::get('analysis_help_party_donut');
         $vars['analysis_math_party_donut'] = \SYSTEM\PAGE\text::get('analysis_math_party_donut');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance/tab_bilance_user.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance/tab_bilance_user.tpl'))->SERVERPATH(),$vars);
     }
     public static function user_bt_bilance(){
         $vars = array();
@@ -25,7 +24,7 @@ class stats_bilance {
         $vars['analysis_help_bt'] = \SYSTEM\PAGE\text::get('analysis_help_bt');
         $vars['analysis_math_bt'] = \SYSTEM\PAGE\text::get('analysis_math_bt');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance/tab_bilance_user_bt.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance/tab_bilance_user_bt.tpl'))->SERVERPATH(),$vars);
     }
     public static function community_bilance(){
         $vars = array();
@@ -33,7 +32,7 @@ class stats_bilance {
         $vars['analysis_math_community_to_fr'] = \SYSTEM\PAGE\text::get('analysis_math_community_to_fr');
         $vars['bilance_community'] = bars::bilance_community();
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance/tab_bilance_community.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance/tab_bilance_community.tpl'))->SERVERPATH(),$vars);
     }
     public static function bt_bilance(){
         $vars = array();
@@ -41,6 +40,6 @@ class stats_bilance {
         $vars['analysis_math_choices_bt'] = \SYSTEM\PAGE\text::get('analysis_math_choices_bt');
         $vars['bilance_bt'] = bars::bilance_bt();
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance/tab_bilance_bt.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance/tab_bilance_bt.tpl'))->SERVERPATH(),$vars);
     }
 }

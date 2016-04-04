@@ -1,41 +1,37 @@
 <?php
 class default_page extends SYSTEM\PAGE\Page {        
     private function js(){   
-        return  \SYSTEM\HTML\html::script(\LIB\lib_jquery::js()).
-                \SYSTEM\HTML\html::script(\LIB\lib_bootstrap::js()).
-                \SYSTEM\HTML\html::script(\LIB\lib_jqbootstrapvalidation::js()).
-                \SYSTEM\HTML\html::script(\LIB\lib_system::js()).
-                \SYSTEM\HTML\html::script(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/js/loadtexts.js')).
-                \SYSTEM\HTML\html::script(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/js/account_create.js')).
+        return  \SYSTEM\HTML\html::script(\LIB\lib_jquery::js()->WEBPATH()).
+                \SYSTEM\HTML\html::script(\LIB\lib_bootstrap::js()->WEBPATH()).
+                \SYSTEM\HTML\html::script(\LIB\lib_jqbootstrapvalidation::js()->WEBPATH()).
+                \SYSTEM\HTML\html::script(\LIB\lib_system::js()->WEBPATH()).
+                \SYSTEM\HTML\html::script((new \PPAGE('default_page/js/loadtexts.js'))->WEBPATH()).
                 \SYSTEM\HTML\html::script('https://www.google.com/jsapi').
                 '<script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>';
     }
     
     private function css(){
-        return  \SYSTEM\HTML\html::link(\LIB\lib_bootstrap::css()).
-                \SYSTEM\HTML\html::link(\SYSTEM\WEBPATH(new \PPAGE(),'default_page/css/default_page.css')).
-                \SYSTEM\HTML\html::link(\LIB\lib_font_awesome::css())
-                ; 
+        return  \SYSTEM\HTML\html::link(\LIB\lib_bootstrap::css()->WEBPATH(false)).
+                \SYSTEM\HTML\html::link((new \PPAGE('default_page/css/default_page.css'))->WEBPATH()).
+                \SYSTEM\HTML\html::link(\LIB\lib_font_awesome::css()->WEBPATH(false)); 
     }
 
-          
-
     public function getloggedinform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loggedinform.tpl'),array());} 
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/login/loggedinform.tpl'))->SERVERPATH(),array());} 
     
     public function exchange_registerform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/register_form.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/login/register_form.tpl'))->SERVERPATH(),array());}
     
     public function getloginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loginform.tpl'),array());} 
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/login/loginform.tpl'))->SERVERPATH(),array());} 
     
     public function exchange_loginform(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/login/loggedinformtop.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/login/loggedinformtop.tpl'))->SERVERPATH(),array());}
     
     public function get_menu(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu/menu.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/menu/menu.tpl'))->SERVERPATH(),array());}
     public function exchange_menu(){
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/menu/menu_loggedout.tpl'),array());}
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/menu/menu_loggedout.tpl'))->SERVERPATH(),array());}
 
     public function html($_escaped_fragment_ = NULL){
         $vars = array();
@@ -50,6 +46,6 @@ class default_page extends SYSTEM\PAGE\Page {
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
 
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'default_page/tpl/page.tpl'), $vars);        
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('default_page/tpl/page.tpl'))->SERVERPATH(), $vars);        
     }
 }

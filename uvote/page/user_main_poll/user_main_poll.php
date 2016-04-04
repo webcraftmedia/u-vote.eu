@@ -18,7 +18,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
                             'party_ent' => $pv['nr_attending'] > 0 ? round(($pv['nr_attending'] - $pv['votes_pro'] - $pv['votes_contra'])/$pv['nr_attending']*100,0) : $pv['nr_attending']);
             if($vote['party_yes'] == '0' && $vote['party_no'] == '0' && $vote['party_ent'] == '0'){
                 $vote['party_ent'] = 100;}
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/vote_bt.tpl'),$vote);                    
+            $result .= \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/vote_bt.tpl'))->SERVERPATH(),$vote);                    
         }
         return $result;              
     }
@@ -29,7 +29,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $bars['vote_no_perc'] = round($bars['no_perc']*100,0);
         $bars['vote_ent_perc'] = round($bars['ent_perc']*100,0);
         $bars['title'] = 'Gemessen auf uVote';
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/bars_user.tpl'),$bars);
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/bars_user.tpl'))->SERVERPATH(),$bars);
     }
     
     private function bars_bt(){
@@ -42,7 +42,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
             if ($var['choice_full'] == 'open'){
                 $var['choice_full'] = 'noch nicht';
                 }
-            return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/table_bt_choice.tpl'), $var); 
+            return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/table_bt_choice.tpl'))->SERVERPATH(), $var); 
         }
         $vars['disclaimer'] = '';
         $vars['choice'] = switchers::tablerow_class($info['bt_choice']);
@@ -50,22 +50,22 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         if ($vars['choice_full'] == 'open'){
             $vars['choice_full'] = 'noch nicht';
         }
-        $vars['choice_show'] = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/table_bt_choice.tpl'), $vars);        
+        $vars['choice_show'] = SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/table_bt_choice.tpl'))->SERVERPATH(), $vars);        
         $vars['bt_ent'] = round(($vars['bt_attending'] - $vars['bt_pro'] - $vars['bt_con'])/$vars['bt_total']*100,0);
         $vars['bt_pro'] = round($vars['bt_pro']/$vars['bt_total']*100,0);
         $vars['bt_con'] = round($vars['bt_con']/$vars['bt_total']*100,0);
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/table_bt.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/table_bt.tpl'))->SERVERPATH(), $vars);
     }
     
     private function voice_weight(){
         $vars = \SQL\UVOTE_DATA_USER_COUNT_CHOICE_PER_POLL::Q1(array($this->poll_ID));
         $vars['voteweight'] = $vars['count'] ? round(1/$vars['count']*100) : 'no votes';      
-        return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/stats/voteweight.tpl'), $vars);
+        return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/stats/voteweight.tpl'))->SERVERPATH(), $vars);
     }
     
     private function vote_buttons($user_poll){        
             if(!$user_poll){
-                return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/buttons/vote_buttons_fresh.tpl', array('poll_ID'=>$this->poll_ID)));
+                return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/buttons/vote_buttons_fresh.tpl'))->SERVERPATH(), array('poll_ID'=>$this->poll_ID));
                 }
             $classes = array('','','');
             switch($user_poll){
@@ -75,11 +75,11 @@ class user_main_poll extends SYSTEM\PAGE\Page {
                 default: $classes = array('poll_ID'=>$this->poll_ID, 'yes'=>'','no'=>'','ent'=>'','choice'=>'');
             }
             
-            return SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/buttons/vote_buttons.tpl'), $classes);
+            return SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/buttons/vote_buttons.tpl'))->SERVERPATH(), $classes);
                                                                          
     }
     public static function js(){        
-        return array(\SYSTEM\WEBPATH(new \PPAGE(),'user_main_poll/js/user_main_poll.js'));}
+        return array(new \PPAGE('user_main_poll/js/user_main_poll.js'));}
 
     public function html(){
         $user_vote = votes::getUserPollData($this->poll_ID);
@@ -95,7 +95,7 @@ class user_main_poll extends SYSTEM\PAGE\Page {
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote_register'));
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));
-        $result = SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/full_vote.tpl'), $vars);
+        $result = SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/full_vote.tpl'))->SERVERPATH(), $vars);
         return $result;
     }
   

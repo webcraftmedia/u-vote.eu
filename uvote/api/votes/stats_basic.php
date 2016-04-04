@@ -21,14 +21,14 @@ class stats_basic {
         $vars['analysis_help_basic_votes'] = \SYSTEM\PAGE\text::get('analysis_help_basic_votes');
         $vars['analysis_math_basic_votes'] = \SYSTEM\PAGE\text::get('analysis_math_basic_votes');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/tab_basic_user.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/tab_basic_user.tpl'))->SERVERPATH(),$vars);
     }
     public static function community_basic(){
         $vars['basic_stats_community'] = bars::get_uvote_choice_overall();
         $vars['analysis_help_community'] = \SYSTEM\PAGE\text::get('analysis_help_community');
         $vars['analysis_math_community'] = \SYSTEM\PAGE\text::get('analysis_math_community');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/tab_basic_community.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/tab_basic_community.tpl'))->SERVERPATH(),$vars);
     }
     
     public static function bt_basic(){
@@ -36,6 +36,6 @@ class stats_basic {
         $vars['analysis_help_bt_basic'] = \SYSTEM\PAGE\text::get('analysis_help_bt_basic');
         $vars['analysis_math_bt_basic'] = \SYSTEM\PAGE\text::get('analysis_math_bt_basic');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/tab_basic_bt.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/tab_basic_bt.tpl'))->SERVERPATH(),$vars);
     }
 }

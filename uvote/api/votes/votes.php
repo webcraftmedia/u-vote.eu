@@ -80,7 +80,7 @@ class votes {
         $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/temp_votes.tpl'),
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/temp_votes.tpl'))->SERVERPATH(),
                 array(  'vote_percent'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
                         'no_vote_percent'=> $nv > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
@@ -90,7 +90,7 @@ class votes {
         $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_basic/overall_votes.tpl'),
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/overall_votes.tpl'))->SERVERPATH(),
                 array(  'vote_perc'=> $v > 0 ? round($v/($nv+$v)*100, 2) : 0,
                         'no_vote_perc'=> $v > 0 ? round($nv/($nv+$v)*100, 2) : 0,
                         'voted'=> $v,
@@ -142,7 +142,7 @@ class votes {
         $res = \SQL\UVOTE_DATA_POLL_INITIATIVE::QA(array($poll_ID));
         foreach ($res as $row){
             
-            $result .= \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_poll/tpl/buttons/sub_button.tpl'), $row);
+            $result .= \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_poll/tpl/buttons/sub_button.tpl'))->SERVERPATH(), $row);
         }
 //        $res['title'] = utf8_encode($res['title']);
         return $result;

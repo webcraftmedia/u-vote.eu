@@ -20,7 +20,7 @@ class stats_bilance_choice {
         $vars['analysis_help_uservera_to_party_ent'] = \SYSTEM\PAGE\text::get('analysis_help_uservera_to_party_ent');
         $vars['analysis_math_uservera_to_party_ent'] = \SYSTEM\PAGE\text::get('analysis_math_uservera_to_party_ent');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance_choice/tab_bilance_choice_user_party.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance_choice/tab_bilance_choice_user_party.tpl'))->SERVERPATH(),$vars);
     }
     public static function user_bt_bilance_choice(){
         $vars['choices_user_ID_per_bt_pro'] = bars::bilance_choice_user_bt('1');
@@ -29,6 +29,6 @@ class stats_bilance_choice {
         $vars['analysis_help_bt_by_vote'] = \SYSTEM\PAGE\text::get('analysis_help_bt_by_vote');
         $vars['analysis_math_bt_by_vote'] = \SYSTEM\PAGE\text::get('analysis_math_bt_by_vote');
         $vars['frontend_logos'] = './api.php?call=files&cat=frontend_logos&id=';
-        return \SYSTEM\PAGE\replace::replaceFile(SYSTEM\SERVERPATH(new PPAGE(),'user_main_analysis/tpl/tab_bilance_choice/tab_bilance_choice_user_bt.tpl'),$vars);
+        return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance_choice/tab_bilance_choice_user_bt.tpl'))->SERVERPATH(),$vars);
     }
 }
