@@ -17,7 +17,7 @@ function register_login(){
         preventSubmit: true,
         submitError: function($form, event, errors) {},
         submitSuccess: function($form, event){
-            $.get('./api.php?call=account&action=login&username=' + $('#bt_login_user').val()+'&password_sha='+$.sha1($('#bt_login_password').val())+'&password_md5='+$.md5($('#bt_login_password').val()), function (data) {
+            $.get('./api.php?call=account&action=login&username=' + $('#bt_login_user').val()+'&password_sha1='+$.sha1($('#bt_login_password').val())), function (data) {
                 if(data == 1){
                     window.location.reload();                    
                 } else {
