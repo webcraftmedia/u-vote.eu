@@ -74,11 +74,20 @@ class saimod_uvote_vote_edit extends \SYSTEM\SAI\sai_module {
                                                         $data['total'], 
                                                         $data['choice']));
     }
-    public static function html_li_menu(){return '<li><a href="#!vote">Edit Votes</a></li>';}
+    /**
+     * Generate <li> Menu for the Saimod
+     * 
+     * @return string Returns <li> Menu for the Saimod
+     */
+    public static function menu(){
+        return new \SYSTEM\SAI\sai_module_menu( 1,
+                                                \SYSTEM\SAI\sai_module_menu::POISITION_LEFT,
+                                                \SYSTEM\SAI\sai_module_menu::DIVIDER_NONE,
+                                                \SYSTEM\PAGE\replace::replaceFile((new \PSAI('saimod_uvote_vote_edit/menu.tpl'))->SERVERPATH()));}
     public static function right_public(){return false;}    
     public static function right_right(){return \SYSTEM\SECURITY\security::check(\SYSTEM\SECURITY\RIGHTS::SYS_SAI);}
     public static function js(){return array(
-            \SYSTEM\WEBPATH(new \PSAI(),'saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
+            new \PSAI('saimod_uvote_vote_edit/saimod_uvote_vote_edit.js')
     );}
     public static function css(){return array()
     ;}
