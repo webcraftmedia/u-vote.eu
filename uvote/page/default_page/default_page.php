@@ -1,6 +1,6 @@
 <?php
-class default_page extends SYSTEM\PAGE\Page {        
-    private function js(){   
+class default_page implements SYSTEM\PAGE\DefaultPage {        
+    public static function js(){   
         return  \SYSTEM\HTML\html::script(\LIB\lib_jquery::js()->WEBPATH()).
                 \SYSTEM\HTML\html::script(\LIB\lib_bootstrap::js()->WEBPATH()).
                 \SYSTEM\HTML\html::script(\LIB\lib_jqbootstrapvalidation::js()->WEBPATH()).
@@ -10,7 +10,7 @@ class default_page extends SYSTEM\PAGE\Page {
                 '<script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>';
     }
     
-    private function css(){
+    public static function css(){
         return  \SYSTEM\HTML\html::link(\LIB\lib_bootstrap::css()->WEBPATH(false)).
                 \SYSTEM\HTML\html::link((new \PPAGE('default_page/css/default_page.css'))->WEBPATH()).
                 \SYSTEM\HTML\html::link(\LIB\lib_font_awesome::css()->WEBPATH(false)); 
@@ -38,9 +38,9 @@ class default_page extends SYSTEM\PAGE\Page {
         if(!$_escaped_fragment_){
             $vars['js'] = $this->js();}
         $vars['css'] = $this->css();
-        $vars['menu'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->get_menu() : $this->exchange_menu();
-        $vars['registerform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
-        $vars['loginform'] = \SYSTEM\SECURITY\Security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
+        $vars['menu'] = \SYSTEM\SECURITY\security::isLoggedIn() ? $this->get_menu() : $this->exchange_menu();
+        $vars['registerform'] = \SYSTEM\SECURITY\security::isLoggedIn() ? $this->getloggedinform() : $this->exchange_registerform();
+        $vars['loginform'] = \SYSTEM\SECURITY\security::isLoggedIn() ? $this->exchange_loginform() : $this->getloginform() ;
         $vars['frontend_logos'] = \SYSTEM\CONFIG\config::get(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL).'api.php?call=files&cat=frontend_logos&id=';
         
         $vars = array_merge($vars,  \SYSTEM\PAGE\text::tag('uvote'));

@@ -1,3 +1,6 @@
 RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www\.u-vote\.eu$ [NC]
-RewriteRule ^(.*)$ http://www.u-vote.eu/$1 [R=301,L]
+RewriteRule ^(.*)/fonts/fontawesome-webfont(.*)$ lib/system/lib/font_awesome/lib/fonts/fontawesome-webfont$2 [L]
+RewriteRule ^sai$ sai.php$1 [L]
+
+RewriteRule ^(.*)/files/([^/]+)/([^/]+)$ api.php?call=files&cat=$2&id=$3 [L]
+RewriteRule ^cache/([^/]+)/([^/]+)$ api.php?call=cache&id=$1&ident=$2 [L]

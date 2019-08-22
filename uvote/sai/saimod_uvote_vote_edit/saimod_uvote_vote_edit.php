@@ -1,6 +1,6 @@
 <?php
 namespace SAI;
-class saimod_uvote_vote_edit extends \SYSTEM\SAI\SaiModule {  
+class saimod_uvote_vote_edit extends \SYSTEM\SAI\sai_module {  
     public static function sai_mod__SYSTEM_SAI_saimod_uvote_vote_edit_action_new_vote($data){
         new \SYSTEM\LOG\INFO('json kommt im php an');
          $vote = $data;
