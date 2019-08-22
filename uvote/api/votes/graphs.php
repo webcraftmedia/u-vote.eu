@@ -15,7 +15,7 @@ class graphs {
     
     public static function graph_bt_to_user_overall_by_time ($timespan = 84600,$returnasjson = true){
         $result = array();
-        $res = \SQL\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
+        $res = \SQL\UVOTE_DATA_GRAPH_BT_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\security::getUser()->id, \SYSTEM\SECURITY\security::getUser()->id));
         $matchhandler = 0;
         $missmatchhandler = 0;
         while ($row = $res->next()){
@@ -31,8 +31,8 @@ class graphs {
     
     public static function graph_party_to_user_overall_by_time ($party, $timespan, $returnasjson = true){
         $result = array();
-        $res = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\Security::getUser()->id, $party, \SYSTEM\SECURITY\Security::getUser()->id));
-        $total = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME_OVERMATCH::Q1(array($party, \SYSTEM\SECURITY\Security::getUser()->id));
+        $res = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME::QQ(array($timespan, \SYSTEM\SECURITY\security::getUser()->id, $party, \SYSTEM\SECURITY\security::getUser()->id));
+        $total = \SQL\UVOTE_DATA_GRAPH_PARTY_TO_USER_OVERALL_BY_TIME_OVERMATCH::Q1(array($party, \SYSTEM\SECURITY\security::getUser()->id));
         $matchhandler = 0;
         $missmatchhandler = 0;
         while ($row = $res->next()){
@@ -48,7 +48,7 @@ class graphs {
     
     public static function donut_party_to_user_overall ($returnasjson = true){
         $result = array();
-        $res = \SQL\UVOTE_DATA_USER_TO_PARTIES_OVERALL::QQ(array(\SYSTEM\SECURITY\Security::getUser()->id));
+        $res = \SQL\UVOTE_DATA_USER_TO_PARTIES_OVERALL::QQ(array(\SYSTEM\SECURITY\security::getUser()->id));
         while ($row = $res->next()){
             $result[] = array(  0 => $row['party'],
                                 'class_match' => $row['class_MATCH']);

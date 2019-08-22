@@ -1,5 +1,12 @@
 <?php
-class user_main_analysis extends SYSTEM\PAGE\Page {   
+class user_main_analysis implements SYSTEM\PAGE\Page {
+    public static function title(){
+        return null;}
+    public static function meta(){
+        return array();}
+    
+    public static function css(){
+            return array();}
     public static function js(){        
         return array(new \PPAGE('user_main_analysis/js/user_main_analysis.js'));}
     public function html(){

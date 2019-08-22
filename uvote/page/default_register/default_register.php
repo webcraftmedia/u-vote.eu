@@ -1,6 +1,11 @@
 <?php
-class default_register extends SYSTEM\PAGE\Page {
-    private function css(){  
+class default_register implements SYSTEM\PAGE\Page {
+    public static function title(){
+        return null;}
+    public static function meta(){
+        return array();}
+    
+    public static function css(){  
         return array(new PPAGE('default_register/css/default_register.css'));}
     public static function js(){        
         return array(new PPAGE('default_register/js/default_register.js'));}

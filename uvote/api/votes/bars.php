@@ -47,7 +47,7 @@ class bars{
     }
     public static function bilance_user(){   
         $result = '';
-        $res = \SQL\UVOTE_DATA_USER_BILANCE::QA(array(\SYSTEM\SECURITY\Security::getUser()->id));
+        $res = \SQL\UVOTE_DATA_USER_BILANCE::QA(array(\SYSTEM\SECURITY\security::getUser()->id));
         foreach($res as $row){
             //$res2 = votes::vote_accord_with_party($row['party']);
             //$row['according_laws'] = self::build_according_law_html($res2, $row['party']);
@@ -75,7 +75,7 @@ class bars{
                                 FROM uvote_data INNER JOIN uvote_votes_per_party 
                                     ON uvote_data.poll_ID = uvote_votes_per_party.poll_ID 
                                 WHERE user_ID = ? AND uvote_votes_per_party.choice = ? GROUP BY party;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
+                                array(\SYSTEM\SECURITY\security::getUser()->id, $choice));
         while($row = $res->next()){
             $row['match_percentage'] = round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2);
             $row['bar'] = $bar;
@@ -97,7 +97,7 @@ class bars{
                                 FROM uvote_data INNER JOIN uvote_votes
                                     ON uvote_data.poll_ID = uvote_votes.ID 
                                 WHERE user_ID = ? AND uvote_votes.bt_choice = ? GROUP by user_ID;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id, $choice));
+                                array(\SYSTEM\SECURITY\security::getUser()->id, $choice));
         while($row = $res->next()){
             if(empty($row['class_MATCH'])){
             return 'Keine relevanten Daten verfügbar <br><br>';
@@ -122,7 +122,7 @@ class bars{
                                 FROM uvote_data LEFT JOIN uvote_votes 
                                 ON uvote_data.poll_ID = uvote_votes.ID 
                                 WHERE user_ID = ?;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id));
+                                array(\SYSTEM\SECURITY\security::getUser()->id));
         while($row = $res->next()){
             $row['match_percentage'] = ($row['class_MATCH']+$row['class_MISSMATCH']) > 0 ? round($row['class_MATCH']/($row['class_MATCH']+$row['class_MISSMATCH'])*100,2) : 0;
             $result .= \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_bilance/bars_user_bt.tpl'))->SERVERPATH(), $row);

@@ -1,5 +1,13 @@
 <?php
-class user_main_poll extends SYSTEM\PAGE\Page { 
+class user_main_poll implements SYSTEM\PAGE\Page { 
+    public static function title(){
+        return null;}
+    public static function meta(){
+        return array();}
+    
+    public static function css(){
+            return array();}
+
     private $poll_ID = null;
     public function __construct($poll_ID){
         $this->poll_ID = $poll_ID;

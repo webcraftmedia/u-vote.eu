@@ -1,5 +1,15 @@
 <?php
-class user_main_start extends SYSTEM\PAGE\Page { 
+class user_main_start implements SYSTEM\PAGE\Page { 
+    public static function title(){
+        return null;}
+    public static function meta(){
+        return array();}
+    
+    public static function js(){
+        return array();}
+    public static function css(){
+            return array();}
+
     private function user_count(){
         $vars = votes::get_user_count();       
         return $vars['count'];

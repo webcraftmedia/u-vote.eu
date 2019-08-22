@@ -10,22 +10,22 @@ class votes {
     }
     
     public static function getUserPollData($poll_ID){
-        if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if (!\SYSTEM\SECURITY\security::isLoggedIn()){
             return NULL;}
         $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ? AND uvote_data.group = 1;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
+                                array(\SYSTEM\SECURITY\security::getUser()->id,$poll_ID));        
         $result = $res->next();                                        
         return $result['choice'];            
     }
     public static function getUserPollDataSub($poll_ID){
-        if (!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if (!\SYSTEM\SECURITY\security::isLoggedIn()){
             return NULL;}
         $con = new \SYSTEM\DB\Connection();
         $res = $con->prepare(   'selVoteByGrp',
                                 'SELECT * FROM `uvote_data` WHERE `user_ID` = ? AND poll_ID = ? AND uvote_data.group = 2;',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id,$poll_ID));        
+                                array(\SYSTEM\SECURITY\security::getUser()->id,$poll_ID));        
         $result = $res->next();                                        
         return $result['choice'];            
     }
@@ -77,7 +77,7 @@ class votes {
     }
     
     public static function get_user_temp_votes(){
-        $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id));
+        $vars = \SQL\UVOTE_DATA_TEMP_VOTES::Q1(array(\SYSTEM\SECURITY\security::getUser()->id, \SYSTEM\SECURITY\security::getUser()->id));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/temp_votes.tpl'))->SERVERPATH(),
@@ -87,7 +87,7 @@ class votes {
                         'not_voted'=> $nv));}
     
     public static function get_user_overall_votes(){
-        $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->id, \SYSTEM\SECURITY\Security::getUser()->creationDate));
+        $vars = \SQL\UVOTE_DATA_OVERALL_VOTES::Q1(array(\SYSTEM\SECURITY\security::getUser()->id, \SYSTEM\SECURITY\security::getUser()->id, \SYSTEM\SECURITY\security::getUser()->id, \SYSTEM\SECURITY\security::getUser()->creationDate));
         $v = $vars['voted'];
         $nv = $vars['not_voted'];
         return \SYSTEM\PAGE\replace::replaceFile((new PPAGE('user_main_analysis/tpl/tab_basic/overall_votes.tpl'))->SERVERPATH(),
@@ -114,9 +114,9 @@ class votes {
     }
 
     public static function vote_accord_with_party($party){        
-        if (!\SYSTEM\SECURITY\Security::isloggedin()){
+        if (!\SYSTEM\SECURITY\security::isloggedin()){
             throw new ERROR("U need to be logged in....sry bro / sis");}
-        $user = \SYSTEM\SECURITY\Security::getUser()->id;                
+        $user = \SYSTEM\SECURITY\security::getUser()->id;                
         $data = \SQL\UVOTE_ACCORD_WITH_FRACTION::QA(array($party,$user));
         //$data_escaped = array_walk_recursive($data, 'mysql_real_escape_string');        
         //return \SYSTEM\LOG\JsonResult::toString($data);  
@@ -170,7 +170,7 @@ class votes {
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
                                  VALUES (?, ?, ?, 1, NOW());', 
-                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
+                                array($poll_ID, \SYSTEM\SECURITY\security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
     public static function write_vote_sub($poll_ID, $vote){
@@ -181,29 +181,29 @@ class votes {
         $res = $con->prepare(   'insertVote',
                                 'REPLACE uvote_data
                                  VALUES (?, ?, ?, 2, NOW());', 
-                                array($poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, $vote));   
+                                array($poll_ID, \SYSTEM\SECURITY\security::getUser()->id, $vote));   
         return JsonResult::ok();
     }
     
     public static function write_data($location, $birthyear, $gender, $children){
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if(!\SYSTEM\SECURITY\security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}          
-        return \SQL\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\Security::getUser()->id, $location, $birthyear, $gender, $children));}                                              
+        return \SQL\UVOTE_DATA_USER_ADD_DATA_INSERT::Q1(array(\SYSTEM\SECURITY\security::getUser()->id, $location, $birthyear, $gender, $children, \SYSTEM\SECURITY\security::getUser()->id, $location, $birthyear, $gender, $children));}                                              
         
     public static function get_add_data(){
-        return \SQL\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\Security::getUser()->id)); 
+        return \SQL\UVOTE_DATA_USER_ADD_DATA::Q1(array(\SYSTEM\SECURITY\security::getUser()->id)); 
     }    
     
     public static function write_feedback($feedback){
         $feedback = json_decode($feedback);
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if(!\SYSTEM\SECURITY\security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
             
         $con = new \SYSTEM\DB\Connection();                    
         $res = $con->prepare(   'insertFeedback',
                                 'INSERT INTO uvote_beta_feedback
                                  VALUES (?, ?);',
-                                array(\SYSTEM\SECURITY\Security::getUser()->id, $feedback));   
+                                array(\SYSTEM\SECURITY\security::getUser()->id, $feedback));   
         new WARNING("feedback was added");
         return JsonResult::ok();
     }

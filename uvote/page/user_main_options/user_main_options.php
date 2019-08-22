@@ -1,5 +1,12 @@
 <?php
-class user_main_options extends SYSTEM\PAGE\Page { 
+class user_main_options implements SYSTEM\PAGE\Page { 
+    public static function title(){
+        return null;}
+    public static function meta(){
+        return array();}
+    
+    public static function js(){
+        return array();}
     
     public function get_add_data (){
         $qqresult = votes::get_add_data();

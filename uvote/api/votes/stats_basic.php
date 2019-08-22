@@ -13,7 +13,7 @@ class stats_basic {
     else {return 'error';}
      }
     public static function user_basic(){
-        $vars['basic_stats'] = bars::get_user_choice_overall(\SYSTEM\SECURITY\Security::getUser()->id);
+        $vars['basic_stats'] = bars::get_user_choice_overall(\SYSTEM\SECURITY\security::getUser()->id);
         $vars['user_temp_votes'] = votes::get_user_temp_votes();
         $vars['user_overall_votes'] = votes::get_user_overall_votes();
         $vars['analysis_help_basic_stats'] = \SYSTEM\PAGE\text::get('analysis_help_basic_stats');

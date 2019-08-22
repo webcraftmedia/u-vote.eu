@@ -11,12 +11,12 @@ class comments {
         return \SQL\UVOTE_DATA_USER_COMMENTRATE_PER_COMMENT::Q1(array($c_ID, $val));}
     
     public static function write_comment($poll_ID, $c_choice, $c_txt, $c_src){
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if(!\SYSTEM\SECURITY\security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
-        return \SQL\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\Security::getUser()->id, utf8_encode($c_txt), $c_src));}
+        return \SQL\UVOTE_DATA_USER_COMMENT_INSERT::Q1(array($c_choice, $poll_ID, \SYSTEM\SECURITY\security::getUser()->id, utf8_encode($c_txt), $c_src));}
         
     public static function write_commentrate($c_ID, $val){
-        if(!\SYSTEM\SECURITY\Security::isLoggedIn()){
+        if(!\SYSTEM\SECURITY\security::isLoggedIn()){
             throw new ERROR("You need to be logged in.");}
-        return \SQL\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val, $c_ID, \SYSTEM\SECURITY\Security::getUser()->id, $val));}
+        return \SQL\UVOTE_DATA_USER_COMMENTRATE_INSERT::Q1(array($c_ID, \SYSTEM\SECURITY\security::getUser()->id, $val, $c_ID, \SYSTEM\SECURITY\security::getUser()->id, $val));}
 }
