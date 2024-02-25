@@ -1,6 +1,3 @@
 [submodule "lib/system"]
 	path = lib/system
 	url = ../system.git
-[submodule "lib/font_awesome"]
-	path = lib/font_awesome
-	url = ../lib_font_awesome.git
