@@ -1,0 +1,19 @@
+<?php
+namespace WEBCRAFT;
+function config($basepath){
+    return array(   array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_ERRORREPORTING,        E_ALL | E_STRICT),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEURL,          'http://localhost/'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_BASEPATH,         $basepath.'/'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_TYPE,               \SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_TYPE_MYS),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_HOST,               'mariadb'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_PORT,               ''),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_USER,               'web'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_PASSWORD,           'SECRET'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_DBNAME,             'system'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_SAI_CONFIG_PROJECT,           'uvote'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_SYSTEMPATHREL,    'lib/system/'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,                 array('deDE')),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DEFAULT_LANG,          'deDE'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_CACHE,    	       $basepath.'/cache/'),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CRON_LOG2SQLITE_PATH,         $basepath.'/log/'));
+}

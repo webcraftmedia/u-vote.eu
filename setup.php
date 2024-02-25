@@ -1,4 +1,4 @@
 <?php
-require_once 'include.inc';
+require_once 'index.inc';
 
 echo \SYSTEM\SQL\setup::install();
