@@ -12,7 +12,7 @@ function config($basepath){
                     array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DB_DBNAME,             'system'),
                     array(\SYSTEM\CONFIG\config_ids::SYS_SAI_CONFIG_PROJECT,           'uvote'),
                     array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_SYSTEMPATHREL,    'lib/system/'),
-                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,                 array('deDE')),
+                    array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_LANGS,                 array('deDE','enUS')),
                     array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_DEFAULT_LANG,          'deDE'),
                     array(\SYSTEM\CONFIG\config_ids::SYS_CONFIG_PATH_CACHE,    	       $basepath.'/cache/'),
                     array(\SYSTEM\CONFIG\config_ids::SYS_CRON_LOG2SQLITE_PATH,         $basepath.'/log/'));
